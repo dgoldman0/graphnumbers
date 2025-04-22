@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="Graph Integers and Unique Factorization" />
+  <meta property="og:description" content="The Grothendieck ring of graphs, supporting a unique factorization domain and polynomial-time decomposition algorithm." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/graph-integers.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/graph-integers-preview.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Graph Integers and Unique Factorization" />
+  <meta name="twitter:description" content="The Grothendieck ring of graphs, supporting a unique factorization domain and polynomial-time decomposition algorithm." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/graph-integers-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/graph-integers.html" />
+
+  <title>Graph Integers and Unique Factorization</title>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #ccc;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Graph Integers and Unique Factorization</h1>
+
+  <p>
+    The space of <strong>Graph Integers</strong>, denoted \( \mathcal{Z}_G \), forms a Grothendieck ring over finite simple graphs, constructed as the formal group completion of the semiring \( \mathcal{N}_G \) under disjoint union and Cartesian product. We show that this ring admits unique factorization and, critically, that such factorization is <em>constructive</em> and <em>computable</em>.
+  </p>
+
+  <h2>1. The Grothendieck Ring of Graphs</h2>
+  <p>
+    Begin with \( \mathcal{N}_G \), the set of isomorphism classes of finite graphs under:
+    </p>
+    <ul>
+      <li>Addition: Disjoint union \( G + H := G \sqcup H \)</li>
+      <li>Multiplication: Cartesian product \( G \cdot H := G \square H \)</li>
+    </ul>
+  <p>
+    The Grothendieck group \( \mathcal{Z}_G \) is formed by formally adjoining additive inverses: for any \( [G], [H] \), the element \( [G] - [H] \) represents a graph integer. This ring is embedded into the multivariate polynomial ring \( \mathbb{Z}[x_P : P \in \mathcal{P}] \), where \( \mathcal{P} \) is the set of connected Cartesian-prime graphs.
+  </p>
+
+  <h2>2. Unique Factorization Theorem</h2>
+  <p>
+    Let \( \Psi: \mathcal{Z}_G \to \mathbb{Z}[x_{P_1}, \dots, x_{P_n}] \) be the embedding mapping graph expressions to polynomials indexed by prime graphs. Then:
+  </p>
+  <blockquote>
+    Every nonzero non-unit \( a \in \mathcal{Z}_G \) admits a factorization
+    \[
+      a = p_1\,p_2\cdots p_k,
+    \]
+    where each \( p_i \) is irreducible and the factorization is unique up to reordering and multiplication by \( \pm1 \).
+  </blockquote>
+
+  <h2>3. Constructive Factorization via Polynomial Rings</h2>
+  <p>
+    The isomorphism \( \Psi \) translates factorization into a multivariate polynomial factorization problem over \( \mathbb{Z} \). Each element in \( \mathcal{Z}_G \) maps to a Laurent-free polynomial in finitely many variables. Since \( \mathbb{Z}[x_1, \dots, x_n] \) is a UFD for any finite \( n \), the factorization transfers back through \( \Psi^{-1} \).
+  </p>
+
+  <h2>4. Algorithmic Factorization</h2>
+  <p>
+    The factorization of \( \Psi(a) \in \mathbb{Z}[x_{P_1}, \dots, x_{P_n}] \) is achievable using classical algorithms:
+    </p>
+    <ul>
+      <li><strong>Hensel lifting</strong> to lift modular factorizations back to integer factors</li>
+      <li><strong>LLL-based recombination</strong> to recover multivariate irreducibles from univariate ones</li>
+      <li><strong>Berlekamp–Zassenhaus style fallback</strong> when LLL becomes inefficient</li>
+    </ul>
+  <p>
+    Every step is deterministic once a good prime \( p \) is selected and follows known complexity bounds in \( \deg(\Psi(a)) \) and coefficient bit-size.
+  </p>
+
+  <h2>5. Factorization of Actual Graphs</h2>
+  <p>
+    If \( a = [G] \) is a connected graph, the factorization is even simpler. Since \( \Psi([G]) = \prod_P x_P^{e_P(G)} \), one reads off the exponents directly from the prime decomposition of \( G \) under \( \square \). This decomposition is computable in <strong>linear time</strong> using the Imrich–Peterin algorithm.
+  </p>
+
+  <h2>6. Failure Checks and Robustness</h2>
+  <p>
+    All standard failure modes of symbolic factorization are accounted for:
+    </p>
+    <ul>
+      <li>Square-free checks and content-stripping precede lifting</li>
+      <li>Bad primes are filtered using discriminant and support analysis</li>
+      <li>Degree and variable-ordering heuristics reduce risk of blow-up</li>
+    </ul>
+  <p>
+    When applied to \( \mathcal{Z}_G \), the factorization procedure is provably correct and inherits the robustness of the classical algorithms.
+  </p>
+
+  <h2>7. Structural Implications</h2>
+  <p>
+    The unique factorization property grounds the algebraic structure of graph arithmetic. It ensures that any expression involving disjoint unions and products can be broken into prime graph components canonically—providing a foundation for arithmetic reasoning about graph composition and transformation.
+  </p>
+
+  <h2>8. Draft Status and Open Issues</h2>
+  <p>
+    This exposition reflects a maturing but still exploratory phase of the theory. All operations are believed to be well-founded under the embedding \( \Psi \), and the algorithms match standard symbolic methods in behavior. Nonetheless, further verification and generalization may be required, especially in cases involving infinite primes or subtle edge cases in the Grothendieck ring. Ongoing work aims to formalize and automate these checks in proof assistants and CAS tooling.
+  </p>
+
+</body>
+</html>
