@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CLTs and Concentration for Dense Graphons" />
+  <meta property="og:description" content="A unified framework proving Gaussian and degenerate CLTs plus tight non‑asymptotic concentration for motif counts in dense graphons under mild Sobolev/Hölder regularity." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/graphon-clt.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/graphon-clt-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CLTs and Concentration for Dense Graphons" />
+  <meta name="twitter:description" content="A unified framework proving Gaussian and degenerate CLTs plus tight non‑asymptotic concentration for motif counts in dense graphons under mild Sobolev/Hölder regularity." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/graphon-clt-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/graphon-clt.html" />
+
+  <title>CLTs and Concentration for Dense Graphons</title>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #ccc;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    ol li, ul li {
+      margin-bottom: 0.5em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>CLTs and Concentration for Dense Graphons</h1>
+
+  <p>
+    We present a general theory establishing both Gaussian and degenerate central limit theorems, as well as tight non‑asymptotic concentration inequalities, for subgraph–density functionals in the dense graphon model.  Under a mild Sobolev/Hölder regularity assumption on the graphon \(W\), our approach combines step‑function approximation, finite‑rank U‑statistic CLTs with Berry–Esseen bounds, and operator‑norm continuity in the completed Graph Real space to yield a fully rigorous fluctuation and tail bound framework.
+  </p>
+
+  <h2>1. Regularity Assumptions</h2>
+  <p>
+    We assume
+    \[
+      W \;\in\; W^{s,2}([0,1]^2),
+      \quad s>1,\;\alpha=s-1>0,
+    \]
+    so that by Sobolev embedding \(W\in C^{0,\alpha}\).  Equivalently one may require Hölder–\(\alpha\) continuity or a matching spectral‐decay condition on the integral operator \(T_W\).
+  </p>
+
+  <h2>2. Main Theorem</h2>
+  <p>
+    Let \(H\) be a fixed simple graph with \(v\) vertices, and set
+    \[
+      t(H,G(n,W))
+      = \frac{\hom\bigl(H,G(n,W)\bigr)}{n^v},
+      \quad
+      t(H,W)
+      = \int_{[0,1]^v}\prod_{(i,j)\in E(H)}W(x_i,x_j)\,dx.
+    \]
+  </p>
+  <ul>
+    <li>
+      <strong>Gaussian regime:</strong> If \(D\,t(H)_W\neq0\), then
+      \[
+        \sqrt{n^{\,v-1}}\bigl(t(H,G(n,W)) - t(H,W)\bigr)
+        \;\xrightarrow{d}\;
+        \mathcal N\bigl(0,\sigma_H^2(W)\bigr).
+      \]
+    </li>
+    <li>
+      <strong>Degenerate regime:</strong> Otherwise let \(k\) be the first nonzero derivative order.  Then
+      \[
+        n^{\,k/2}\bigl(t(H,G(n,W)) - t(H,W)\bigr)
+        \;\xrightarrow{d}\;
+        \sum_{\ell}\lambda_\ell\,(\chi^2_{1,\ell}-1),
+      \]
+      a weighted chi‑square chaos determined by \(D^k t(H)_W\).
+    </li>
+  </ul>
+
+  <h2>3. Proof Outline</h2>
+  <ol>
+    <li>
+      <strong>Step‑kernel approximation:</strong> Partition into \(N\times N\) blocks and form \(W_N\).  By embedding,
+      \(\|W - W_N\|_{\!\square}=O(N^{-\alpha})\) and
+      \(\|T_W - T_{W_N}\|_{\rm op}=O(N^{-\alpha})\).
+    </li>
+    <li>
+      <strong>Finite‑rank CLT:</strong> Each \(W_N\) is finite‑rank, so \(t(H,G(n,W_N))\) is a U‑statistic.  Berry–Esseen bounds yield Gaussian or chi‑square limits at rate \(O(n^{-1/2})\).
+    </li>
+    <li>
+      <strong>Bias & variance control:</strong> Choose \(N(n)\approx n^{1/(2\alpha)}\) to force the bias
+      \(\sqrt{n}\,O(N^{-\alpha})\to0\), and use operator‑norm Lipschitz continuity to pass variance estimates from \(W_N\) to \(W\).
+    </li>
+    <li>
+      <strong>Transfer by continuity:</strong> Since the homomorphism density map is continuous on the completed Graph Real space \((I+\mathcal K,\|\cdot\|_{\rm op})\), the finite‑rank CLT extends to the true graphon \(W\).
+    </li>
+  </ol>
+
+  <h2>4. Non‑Asymptotic Concentration</h2>
+  <p>
+    By McDiarmid’s bounded‑difference or Chatterjee’s graph‑functional inequalities, one shows for all \(\varepsilon>0\):
+    \[
+      \Pr\bigl(|t(H,G(n,W)) - t(H,W)| \ge \varepsilon\bigr)
+      \;\le\;
+      2\exp\bigl(-c\,n\,\varepsilon^2\bigr).
+    \]
+  </p>
+
+  <h2>5. Choosing the Block Size</h2>
+  <p>
+    The critical tuning is
+    \[
+      N(n)\;\approx\;n^{\frac{1}{2\alpha}},
+    \]
+    which balances the \(O(n^{-1/2})\) CLT rate against the \(O(N^{-\alpha})\) approximation error to ensure vanishing bias.
+  </p>
+
+  <h2>6. Theoretical Guarantees</h2>
+  <ul>
+    <li><strong>Unified framework:</strong> Gaussian and degenerate CLTs both follow from one two‑step argument.</li>
+    <li><strong>Mild assumptions:</strong> Sobolev/Hölder regularity covers most smooth and many piecewise‑regular graphons.</li>
+    <li><strong>Finite‑rank core:</strong> All technical work is on trace‑class step‑kernels, then pushed to \(W\) by continuity.</li>
+    <li><strong>Sharp tails:</strong> Exponential concentration matches the CLT scale.</li>
+  </ul>
+
+  <h2>7. Applications and Future Directions</h2>
+  <p>
+    This result opens the door to:
+  </p>
+  <ul>
+    <li>Joint and process‑level CLTs for multiple motifs or growing families of graphs;</li>
+    <li>Extensions to induced subgraph counts and sparse graphon sampling;</li>
+    <li>Spectral statistics CLTs for eigenvalue linear functionals;</li>
+    <li>Statistical inference CLTs for graphon estimation procedures.</li>
+  </ul>
+  <h2>7. Draft Status and Open Issues</h2>
+  <p>
+    This presentation reflects an early-stage synthesis of known probabilistic tools and the operator–theoretic structure developed in the Graph Reals framework. While the core argument—approximate with trace-class step-kernels, apply U-statistic CLTs, and pass limits through continuity—appears valid under standard assumptions, many components remain provisional.
+  </p>
+  <p>
+    In particular:
+  </p>
+  <ul>
+    <li>The analytic properties of the Graph Real field, while carefully designed, have not been rigorously formalized at all levels of abstraction (e.g. the full extension of Fréchet differentiability for homomorphism densities).</li>
+    <li>The use of operator-norm continuity as a bridge between finite-rank approximants and infinite-rank limits is plausible and supported by existing results, but would benefit from more explicit boundedness controls and remainder estimates.</li>
+    <li>The generality of the Sobolev assumption covers a wide class of graphons, but the optimal regularity conditions for various limit regimes remain to be precisely classified.</li>
+    <li>The matching of higher-order degenerate CLTs to spectrum-based chi-square limits in this setting still requires a careful Malliavin–Stein analysis or an analogous chaos decomposition justified directly in Graph Reals.</li>
+  </ul>
+  <p>
+    Overall, this document should be viewed as a draft proposal: theorems are stated with plausible bounds and limiting behavior drawn from U-statistic theory and functional analysis, but complete proofs, formalization of all intermediate function spaces, and full rigor for derivative behavior in the infinite-dimensional setting remain open. Feedback, counterexamples, and collaboration on these fronts are welcome.
+  </p>
+</body>
+</html>
+
