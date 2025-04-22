@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Canonicalization Algorithm for Graphons" />
+  <meta property="og:description" content="A constructive algorithm that approximates the unique Graph Real representing any graphon, via step functions and graph integer reduction." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/graphon-canonicalization.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/graphon-canonical-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Canonicalization Algorithm for Graphons" />
+  <meta name="twitter:description" content="A constructive algorithm that approximates the unique Graph Real representing any graphon, via step functions and graph integer reduction." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/graphon-canonical-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/graphon-canonicalization.html" />
+
+  <title>The Canonicalization Algorithm for Graphons</title>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #ccc;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>The Canonicalization Algorithm for Graphons</h1>
+
+  <p>
+    This page describes an approximation algorithm that constructs a canonical Graph Real for any graphon \( W \colon [0,1]^2 \to [0,1] \). Each step is fully constructive and finite, and the output converges (in the operator–pair metric) to a unique representative of \(W\) in the Graph Reals field \( \widehat{\mathcal{Q}_G} \). This process defines, in the limit, a canonical form for any graphon.
+  </p>
+
+  <h2>1. Algorithm Overview</h2>
+  <p>
+    The algorithm proceeds in four stages:
+  </p>
+  <ol>
+    <li><strong>Step Function Approximation:</strong> Approximate the input graphon by a rational-valued step function \( W_{N,\varepsilon} \) of fixed block resolution.</li>
+    <li><strong>Graph Rational Encoding:</strong> Express the step function exactly as a Graph Rational \( x/y \), where \( x,y \in \mathcal{Z}_G \) are graph integers.</li>
+    <li><strong>Exact Canonicalization:</strong> Reduce \( x/y \) to a unique canonical form by connected-component cancellation and canonical labeling.</li>
+    <li><strong>Embedding into Graph Reals:</strong> Map the canonical pair \( (x', y') \) to an operator–pair \( (T_{x'}^{\text{reg}}, T_{y'}^{\text{reg}}) \in \widehat{\mathcal{Q}_G} \).</li>
+  </ol>
+
+  <h2>2. Step Function Approximation</h2>
+  <p>
+    Partition the unit square into \( N \times N \) equal blocks. Define \( W_N \) by averaging \( W \) over each block. Then round each value to a rational \( \frac{r_{ij}}{D} \), with common denominator \( D \), yielding:
+    \[
+      W_{N,\varepsilon}(u,v) = \frac{r_{ij}}{D}, \quad (u,v) \in I_i \times I_j.
+    \]
+    The rational step function satisfies \( \| W - W_{N,\varepsilon} \|_\square < \varepsilon \).
+  </p>
+
+  <h2>3. Encoding as a Graph Rational</h2>
+  <p>
+    Given \( W_{N,\varepsilon} \), construct two graph integers:
+  </p>
+  <ul>
+    <li>
+      The numerator \( x = \sum_{i,j} r_{ij} \cdot [K_{n_i,n_j}] \), where \( K_{n_i,n_j} \) is the complete (bi)partite graph on vertex classes of size \( n_i \) and \( n_j \).
+    </li>
+    <li>
+      The denominator \( y = D \cdot [K_1] \), representing \( D \) disjoint one-vertex graphs.
+    </li>
+  </ul>
+  <p>
+    Then \( x/y \in \mathcal{Q}_G \) exactly encodes \( W_{N,\varepsilon} \).
+  </p>
+
+  <h2>4. Canonicalization of the Graph Rational</h2>
+  <p>
+    The pair \( (x, y) \) is reduced as follows:
+  </p>
+  <ul>
+    <li><strong>Component Cancellation:</strong> Remove shared connected components from numerator and denominator.</li>
+    <li><strong>Canonical Labeling:</strong> Assign unique certificates to each remaining component using isomorphism testing.</li>
+  </ul>
+  <p>
+    This yields a canonical Graph Rational \( (x', y') \) in reduced form.
+  </p>
+
+  <h2>5. Embedding into the Graph Reals</h2>
+  <p>
+    Using regularized adjacency kernels \( T_{x'} = T_{W_{x'}} + \delta I \), define the operator–pair:
+    \[
+      E\left( \frac{x'}{y'} \right) = \left( T_{x'}^{\text{reg}}, T_{y'}^{\text{reg}} \right).
+    \]
+    This pair lies in \( \widehat{\mathcal{Q}_G} \), and may optionally be normalized via polar decomposition to define:
+    \[
+      \Psi\left( \frac{x'}{y'} \right)
+      = |T_{y'}|^{-1/2} T_{x'} |T_{y'}|^{-1/2}.
+    \]
+  </p>
+
+  <h2>6. Convergence to the Canonical Graph Real</h2>
+  <p>
+    As the block resolution increases and approximation error shrinks, the resulting operator–pairs converge in the pair metric:
+    \[
+      \left( T_{x'}^{\text{reg}}, T_{y'}^{\text{reg}} \right) \to \left( T_W^{\text{reg}}, T_1^{\text{reg}} \right).
+    \]
+    Thus, the algorithm yields an arbitrarily close approximation to the canonical Graph Real representing the original graphon \( W \). This canonical element is unique by continuity and the density of Graph Rationals.
+  </p>
+
+  <h2>7. Theoretical Guarantees</h2>
+  <ul>
+    <li><strong>Well-defined:</strong> Every graphon has a unique canonical Graph Real.</li>
+    <li><strong>Approximate and convergent:</strong> The output of the algorithm converges to this unique representative.</li>
+    <li><strong>Exact on rational step functions:</strong> No error is introduced when \(W\) is already rational-valued.</li>
+    <li><strong>Compatible with graphon equivalence:</strong> The canonical form is invariant under measure-preserving relabelings of the original graphon.</li>
+  </ul>
+
+  <h2>8. Applications and Future Work</h2>
+  <p>
+    This approximation algorithm enables symbolic manipulation and canonical comparison of graphons, and lays the foundation for new spectral, topological, and algebraic tools on the Graph Reals. Of course it also offers the same for Graph Reals in general: there is a limiting process for canonical representation of Graph Reals. Future directions include:
+  </p>
+  <ul>
+    <li>Explicit bounds on approximation error for given block resolution \(N\);</li>
+    <li>Extensions to signed graphons or weighted kernels beyond \([0,1]\);</li>
+    <li>Fast canonicalization of graph integers via optimized isomorphism routines.</li>
+  </ul>
+
+</body>
+</html>
+
