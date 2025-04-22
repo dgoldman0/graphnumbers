@@ -1,0 +1,781 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, geometry, thmtools}
+\geometry{margin=1in}
+
+\title{\bfseries From Clique to Clouds:\\An Algebraic Bridge from Finite Graphs to Continuous Shapes}
+\author{Daniel Goldman}
+\date{April 2025}
+
+% ---------- Theorem Style ----------
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+    \fbox{
+        \begin{minipage}{0.92\textwidth}
+            \textbf{Draft Note.} This is an early draft, not yet revised for structure, clarity, or correctness. Written collaboratively with the assistance of GPT-4o, o3, o4-mini-high, and G4.5 models.
+        \end{minipage}
+    }
+\end{center}
+\vspace{1em}
+
+\begin{abstract}
+We begin with the semiring of finite simple graphs—addition given by disjoint union, multiplication by Cartesian product—and successively adjoin formal differences and fractions to obtain the \emph{Graph Naturals}, \emph{Graph Integers}, and \emph{Graph Rationals}. A regularised operator–kernel construction then embeds each stage injectively into the graphon space \(\mathcal{W}\), equipped with the cut metric. Taking the metric closure of the image yields a graph–analytic field \(\mathcal{F}_G\), into which \(\mathbb{R}\) embeds faithfully via constant kernels. Furthermore, it turns out that this field is exactly the Graphons. This algebraic–to–analytic pipeline furnishes a single, coherent framework that carries purely combinatorial data into continuous limit objects, unifying graph arithmetic with graphon theory and opening new paths toward differential and functional calculus on graphs.
+\end{abstract}
+\section{Introduction}
+
+Finite graphs under disjoint union and Cartesian product have long been recognized as forming a commutative semiring.  Imrich, Klep \& Smertnig showed recently that this “graph semiring” embeds into well‑understood monoid algebras under mild conditions \cite{ImrichKlepSmertnig2024}, and Klavžar observed that one can further embed isomorphism classes of graphs into a polynomial ring over \(\mathbb{Z}\) compatible with both operations \cite{Klavzar2009}.  Earlier foundations for semirings with absorbing zero were laid out by Hebisch \& Weinert \cite{HebischWeinert1998}, situating the graph semiring within the broader context of algebraic structures on combinatorial classes.
+
+Grothendieck‑type rings of graphs arise naturally when one adjoins formal inverses to addition.  Tutte’s 1947 work on deletion–contraction invariants implicitly constructs a Grothendieck ring universal for such recursive formulas \cite{TutteGrothendieckInvariant}, and Brylawski formalized the “Tutte–Grothendieck group” as the universal group completion of a semigroup under these relations \cite{Poinsot2011}.  More recently, Morales studied explicit Grothendieck classes for families like banana and flower graphs \cite{Morales2025}, demonstrating rich connections to algebraic‑geometric methods.
+
+On the analytic side, Lovász’s monograph \emph{Large Networks and Graph Limits} established graphons as limit objects for convergent sequences of dense graphs \cite{Lovasz2012}, and Borgs, Chayes, Lovász, Sós \& Vesztergombi proved two foundational results: that subgraph densities characterize limits up to measure‑preserving relabeling \cite{BorgsChayesLovaszSosVesztergombi2008}, and that moments of two‑variable kernels uniquely determine graphons \cite{BorgsChayesLovasz2010}.  These works equip \(\mathcal{W}\) with a compact metric structure under the cut‑distance \(d_{\square}\).
+
+Despite these advances, no existing work constructs a unified, injective progression from graph arithmetic to analytic completion. Starting with the semiring \(\mathcal{N}_G\) under \(\sqcup\) and \(\Box\), we form its Grothendieck ring \(\mathcal{Z}_G\), then localize to obtain the field \(\mathcal{Q}_G\), the Graph Rationals. This ring is embedded into the graphon space \(\mathcal{W}\) via operator kernels, and its metric closure defines \(\mathcal{F}_G\) which is shown to be \(\mathcal{W}\) itself . Within this completion, we arrive at the result of a fully realized field of Graphons. 
+
+\vspace{1ex}
+\noindent\textbf{References}
+
+\begin{thebibliography}{9}
+\bibitem{ImrichKlepSmertnig2024}
+W.~Imrich, I.~Klep, and D.~Smertnig, \emph{Monoid algebras and graph products}, arXiv:2407.02615 (2025).
+
+\bibitem{Klavzar2009}
+S.~Klavžar, \emph{Cancellation properties of products of graphs}, manuscript (2009).
+
+\bibitem{HebischWeinert1998}
+U.~Hebisch and H.-J.~Weinert, \emph{Semirings: algebraic theory and applications}, World Scientific (1998).
+
+\bibitem{TutteGrothendieckInvariant}
+W.~T.~Tutte, \emph{Graph invariants}, Trans.\ Amer.\ Math.\ Soc.\ \textbf{149} (1947), 67–87.
+
+\bibitem{Poinsot2011}
+L.~Poinsot, \emph{The Tutte–Grothendieck group of a convergent rewriting system}, arXiv:1112.6179 (2011).
+
+\bibitem{Morales2025}
+A.~Morales, \emph{Grothendieck classes of banana and flower graphs}, Algebraic Geometry Preprint (2025).
+
+\bibitem{Lovasz2012}
+L.~Lovász, \emph{Large Networks and Graph Limits}, AMS Colloquium Publications \textbf{60} (2012).
+
+\bibitem{BorgsChayesLovaszSosVesztergombi2008}
+C.~Borgs, J.~Chayes, L.~Lovász, V.~Sós, and K.~Vesztergombi, \emph{Convergent sequences of dense graphs I: Subgraph frequencies, metric properties and testing}, Adv.\ Math.\ \textbf{219} (2008), 1801–1851.
+
+\bibitem{BorgsChayesLovasz2010}
+C.~Borgs, J.~Chayes, and L.~Lovász, \emph{Moments of two‑variable functions and the uniqueness of graph limits}, Geom.\ Funct.\ Anal.\ \textbf{19} (2010), 1597–1619.
+\end{thebibliography}
+
+% Remove the embeddings from Graph Naturals and Intgers. We really don't need them anyway.
+\section{Graph Naturals and Graph Integers}
+
+\begin{definition}[Graph Naturals]
+Let \(\mathcal{N}_G\) be the set of isomorphism classes of finite simple graphs. Define addition as disjoint union:
+\[
+[G] + [H] := [G \sqcup H],
+\]
+and define multiplication as the Cartesian product:
+\[
+[G] \cdot [H] := [G \Box H].
+\]
+Then \((\mathcal{N}_G, +, \cdot)\) is a commutative semiring with additive identity \([K_0]\) (the empty graph) and multiplicative identity \([K_1]\) (the one-vertex graph).
+\end{definition}
+
+\begin{lemma}
+The additive monoid $(\mathcal{N}_G,\sqcup)$ is cancellative: if
+$[G]\sqcup[H]=[G']\sqcup[H]$ then $[G]=[G']$.  This follows from the
+unique decomposition of a graph into its connected components.
+\end{lemma}
+
+\begin{definition}[Graph Integers]
+Define an equivalence relation on ordered pairs of graph classes:
+\[
+([G],[H]) \sim ([G'],[H']) \quad \text{if and only if} \quad [G \sqcup H'] = [G' \sqcup H].
+\]
+Let \(\mathcal{Z}_G\) be the set of equivalence classes under this relation. We write elements as formal differences \([G] - [H]\), and define operations:
+\[
+([G] - [H]) + ([G'] - [H']) := ([G \sqcup G'] - [H \sqcup H']),
+\]
+\[
+([G] - [H]) \cdot ([G'] - [H']) := ([G \Box G'] \sqcup [H \Box H']) - ([G \Box H'] \sqcup [H \Box G']).
+\]
+Then \((\mathcal{Z}_G, +, \cdot)\) is a commutative ring with additive identity \([K_0] - [K_0]\) and multiplicative identity \([K_1] - [K_0]\).
+\end{definition}
+
+\begin{proposition}
+\((\mathcal{Z}_G, +, \cdot)\) is an integral domain.
+\end{proposition}
+
+\begin{proof}
+We proceed in several steps.
+
+\textbf{Step 1. Unique prime factorization of connected graphs.}
+Every finite connected graph factors uniquely (up to isomorphism and factor order) as a Cartesian product of prime connected graphs:
+\[
+C \;\cong\; P_1^{\Box e_1} \Box \cdots \Box P_k^{\Box e_k},
+\]
+where each \(P_i\) is prime with respect to the Cartesian product. This result, proved by Sabidussi (1960) and Vizing (1963), enables a coordinate system on \(\mathcal{N}_G\) analogous to monomials in a multivariate polynomial ring.
+
+\vspace{0.5em}
+\textbf{Step 2. Embedding into a polynomial ring.}
+Let \(\mathcal{P}\) be a fixed set of representatives of all connected prime graph isomorphism classes. Define a homomorphism
+\[
+\Psi \colon \mathcal{N}_G \longrightarrow \mathbb{Z}[x_P \mid P \in \mathcal{P}]
+\]
+by setting, for any \(G = C_1 \sqcup \cdots \sqcup C_m\) (its connected component decomposition),
+\[
+\Psi([G]) := \sum_{j=1}^m \prod_{P \in \mathcal{P}} x_P^{e_{j,P}},
+\]
+where each component \(C_j\) decomposes as a product of primes with exponents \(e_{j,P}\). This map respects disjoint union (addition) and Cartesian product (multiplication), hence extends to a ring homomorphism
+\[
+\Psi \colon \mathcal{Z}_G \longrightarrow \mathbb{Z}[x_P \mid P \in \mathcal{P}].
+\]
+
+\vspace{0.5em}
+\textbf{Step 3. Injectivity.}
+If \(\Psi([G]) = \Psi([H])\), then the multisets of monomial labels of their connected components coincide, hence \([G] = [H]\). Therefore, \(\Psi\) is injective as a homomorphism on \(\mathcal{N}_G\), and remains injective on \(\mathcal{Z}_G\) by linear extension.
+
+\vspace{0.5em}
+\textbf{Step 4. No zero-divisors.}
+The target ring \(\mathbb{Z}[x_P]\) is a polynomial ring over an integral domain, hence itself an integral domain. Thus if \(\Psi(a)\Psi(b) = 0\), then \(\Psi(a) = 0\) or \(\Psi(b) = 0\). By injectivity of \(\Psi\), this implies \(a = 0\) or \(b = 0\) in \(\mathcal{Z}_G\), so \(\mathcal{Z}_G\) has no zero-divisors.
+
+\vspace{0.5em}
+\textbf{Step 5. Distinct identities.}
+The additive identity is \([K_0] - [K_0]\), while the multiplicative identity is \([K_1] - [K_0]\). Since \(\Psi([K_1] - [K_0]) = 1 \ne 0 = \Psi([K_0] - [K_0])\), we conclude \(1 \ne 0\).
+
+\vspace{0.5em}
+Therefore, \(\mathcal{Z}_G\) is a commutative ring with unity and no zero-divisors. It is an integral domain.
+\end{proof}
+% --------------------------------------------------------------------
+% Section: Graph Rationals
+% --------------------------------------------------------------------
+\section{The Field of Graph Rationals}
+\label{sec:graph-rationals}
+
+As shown in Section~\ref{sec:graph-integers}, the Grothendieck ring
+$(\mathcal{Z}_G,+,\cdot)$ is an integral domain.  We therefore form
+the classical field of fractions as follows.
+
+\begin{definition}[Graph Rationals]
+Let
+$\mathcal{Z}_G^{\times}=\mathcal{Z}_G\setminus\{0\}$.  Define an
+equivalence \(\sim\) on pairs
+\((x,y),(x',y')\in\mathcal{Z}_G\times\mathcal{Z}_G^{\times}\) by
+\[
+  (x,y)\sim(x',y') \iff x\,y'=x'\,y
+  \quad\text{in }\mathcal{Z}_G.
+\]
+The \emph{Graph Rationals}
+\(\mathcal{Q}_G\) are the set of equivalence classes,
+\[
+  \mathcal{Q}_G
+  =\bigl\{(x,y):x\in\mathcal{Z}_G,\ y\in\mathcal{Z}_G^{\times}\bigr\}/\sim,
+\]
+equipped with the usual operations
+\[
+  \frac{x}{y}+\frac{x'}{y'}
+  =\frac{x\,y'+x'\,y}{y\,y'},
+  \qquad
+  \frac{x}{y}\cdot\frac{x'}{y'}
+  =\frac{x\,x'}{y\,y'}.
+\]
+\end{definition}
+
+\begin{proposition}
+$\mathcal{Q}_G$ is a field under the operations defined above.
+\end{proposition}
+
+\begin{proof}
+Let $[x/y]$ denote the equivalence class of $(x,y)$ in $\mathcal{Q}_G$.  We verify the field axioms:
+
+\medskip
+\noindent\textbf{(1) Well‑defined operations.}
+If $(x,y)\sim(x',y')$ and $(u,v)\sim(u',v')$, then
+\[
+xy'=x'y,\quad uv'=u'v.
+\]
+One checks directly that
+\[
+(xy'+x'y)\,y'y = (x'y+xy')\,yy' 
+\quad\text{and}\quad
+(xx')\,yy'=(x'x)\,y'y,
+\]
+so
+\[
+\frac{x}{y}+\frac{u}{v}
+=\frac{xv+uy}{yv}
+\quad\text{agrees with}\quad
+\frac{x'v'+u'y'}{y'v'},
+\]
+and similarly for multiplication.  Thus addition and multiplication descend to $\mathcal{Q}_G$.
+
+\medskip
+\noindent\textbf{(2) Closure.}
+If $x,y,u,v\in\mathcal{Z}_G$ with $y,v\neq0$, then $xv+uy$ and $x u$ lie in $\mathcal{Z}_G$, and $yv,\,yv\neq0$, so
+\[
+\frac{x}{y}+\frac{u}{v},\;\;
+\frac{x}{y}\cdot\frac{u}{v}
+\;\in\;\mathcal{Q}_G.
+\]
+
+\medskip
+\noindent\textbf{(3) Associativity and commutativity.}
+Inherited directly from those properties in the ring $\mathcal{Z}_G$.
+
+\medskip
+\noindent\textbf{(4) Additive identity.}
+The class $[0/1]$ satisfies
+\[
+\frac{x}{y} + \frac{0}{1} = \frac{x\cdot1 + 0\cdot y}{y\cdot1} = \frac{x}{y}.
+\]
+
+\medskip
+\noindent\textbf{(5) Additive inverses.}
+For each $[x/y]$, its inverse is $[-x/y]$, since
+\[
+\frac{x}{y} + \frac{-x}{y} = \frac{xy + (-x)y}{y^2} = \frac{0}{y^2} = 0.
+\]
+
+\medskip
+\noindent\textbf{(6) Multiplicative identity.}
+The class $[1/1]$ (with $1 := [K_1]-[K_0]\in\mathcal{Z}_G$) satisfies
+\[
+\frac{x}{y}\cdot\frac{1}{1}
+= \frac{x\cdot1}{y\cdot1}
+= \frac{x}{y}.
+\]
+
+\medskip
+\noindent\textbf{(7) Multiplicative inverses.}
+If $[x/y]\neq0$, then $x\neq0$ in the integral domain $\mathcal{Z}_G$, so $x\in\mathcal{Z}_G^\times$ and thus $[y/x]\in\mathcal{Q}_G$.  Moreover,
+\[
+\frac{x}{y}\cdot\frac{y}{x}=\frac{xy}{yx}=\frac{1}{1}.
+\]
+
+\medskip
+\noindent\textbf{(8) Distributivity.}
+Follows from distributivity in $\mathcal{Z}_G$:
+\[
+\frac{x}{y}\Bigl(\frac{u}{v}+\frac{w}{z}\Bigr)
+=\frac{x}{y}\cdot\frac{uz + wv}{vz}
+=\frac{x(uz + wv)}{y(vz)}
+=\frac{xu\,z + xw\,v}{y\,v\,z},
+\]
+which matches
+\[
+\frac{xu}{yv} + \frac{xw}{yz}
+=\frac{x u\,z}{y v\,z} + \frac{x w\,v}{y v\,z}.
+\]
+
+Since all field axioms hold, $\mathcal{Q}_G$ is indeed a field.
+\end{proof}
+
+\subsection{Operator–Kernel Embedding of Graph Rationals}
+\label{subsec:graph-rational-embedding}
+
+We now inject \(\mathcal{Q}_G\) into the analytic graphon space
+\((\mathcal{W},d_{\square})\).
+
+\paragraph{Setup.}
+For each finite graph \(H\), let \(W_H\) be the regularised kernel from
+Section~\ref{subsec:regularised-embedding}, and write \(T_H=T_{W_H}\)
+for the associated integral operator on \(L^2([0,1])\).  For a difference
+\(x=[G_x]-[H_x]\in\mathcal{Z}_G\), set
+\[
+  T_x:=T_{G_x}-T_{H_x},
+\]
+and similarly for a denominator \(y=[G_y]-[H_y]\neq0\).
+
+\paragraph{Polar decomposition.}
+Since \(T_y\) is self‑adjoint and strictly positive on a finite‑dimensional
+subspace, we have
+\[
+  T_y=U_y\,|T_y|,
+  \quad
+  |T_y|=(T_y^2)^{1/2},
+\]
+where \(U_y\) is a partial isometry and \(|T_y|^{-1/2}\) is defined on
+\(\mathrm{im}(T_y)\), extended by zero on its kernel.
+
+\begin{definition}[Embedding Map]
+Define
+\[
+  \Psi\colon\mathcal{Q}_G\longrightarrow\mathcal{W},
+  \qquad
+  \Psi\Bigl(\frac{x}{y}\Bigr)
+  :=K_{x/y},
+\]
+where \(K_{x/y}\) is the symmetric kernel of
+\[
+  |T_y|^{-1/2}\,U_y^*\,T_x\,U_y\,|T_y|^{-1/2}.
+\]
+\end{definition}
+
+\begin{proposition}
+\(\Psi\) is an injective field homomorphism into
+\((\mathcal{W},+,\cdot)\) under pointwise operations.
+\end{proposition}
+
+\begin{proof}
+\textbf{Well‑definedness.}  If \(\tfrac{x}{y}=\tfrac{x'}{y'}\), then
+\(xy'=x'y\) gives \(T_xT_{y'}=T_{x'}T_y\), and the polar conjugations
+agree.
+
+\textbf{Homomorphism.}  Linearity of \(T_{(\cdot)}\) and its compatibility
+with conjugation yield
+\(\Psi(a+b)=\Psi(a)+\Psi(b)\) and
+\(\Psi(ab)=\Psi(a)\Psi(b)\).
+
+\textbf{Injectivity.}  If \(\Psi(x/y)=0\), the conjugated operator
+vanishes on the span of indicators, forcing \(T_x=0\) and hence \(x=0\).
+\end{proof}
+
+\subsection{Vertex‑Count Homomorphism}
+Define
+\[
+  v\colon\mathcal{Q}_G\longrightarrow\mathbb{Q},
+  \qquad
+  v\Bigl(\frac{x}{y}\Bigr)=\frac{v(x)}{v(y)},
+\]
+where for \(x=[G_x]-[H_x]\in\mathcal{Z}_G\) we set
+\[
+  v(x)=\bigl|V(G_x)\bigr| - \bigl|V(H_x)\bigr|.
+\]
+Then:
+\begin{itemize}
+  \item \(v\) is well‑defined: if \(\tfrac{x}{y}=\tfrac{x'}{y'}\) then
+        \(xy'=x'y\) in \(\mathcal Z_G\) implies
+        \(v(x)\,v(y')=v(x')\,v(y)\), so
+        \(\tfrac{v(x)}{v(y)}=\tfrac{v(x')}{v(y')}\).
+  \item \(v\) is a homomorphism: additivity and multiplicativity of
+        vertex‐counts ensure
+        \(v\bigl(\tfrac{x}{y}+\tfrac{x'}{y'}\bigr)
+         =v\bigl(\tfrac{x}{y}\bigr)
+         +v\bigl(\tfrac{x'}{y'}\bigr)\)
+        and similarly for products.
+\end{itemize}
+
+\subsection{Continuity and Limitations of the Vertex‑Count Map}
+
+Although 
+\[
+  v\colon\mathcal{Q}_G\to\mathbb{Q}
+\]
+is algebraically a homomorphism, it fails to extend continuously to
+\(\mathcal{W}\) under the cut‑metric.  One can construct a sequence of
+step‑function approximants \(W_n\to W\) in cut‑distance with wildly
+oscillating vertex‑counts, so
+\[
+  d_{\square}(W_n,W)\to0
+  \quad\not\Longrightarrow\quad
+  v(W_n)\to v(W).
+\]
+Similarly, inversion 
+\(\tfrac{x}{y}\mapsto\tfrac{y}{x}\) in \(\mathcal{Q}_G\) does not
+produce a well‑behaved “reciprocal” kernel in \(\mathcal W\).
+
+\subsection{Outlook: Towards a “Graph Reals” Completion}
+\label{sec:graph-reals}
+
+These topological obstructions show that \(\mathcal{Q}_G\subset\mathcal{W}\)
+is algebraically dense but not topologically closed under field
+operations.  In Section~\ref{sec:graph-reals} below, we introduce the
+\emph{Graph Reals} \(\mathcal{R}_G\), obtained by completing in both
+the cut‑metric and an operator‑pair metric, which admits continuous
+extensions of inversion and the vertex‑count map.
+
+% This section needs to be fixed. 
+% --------------------------------------------------------------------
+\section{An Algebra of Graphons}
+\subsection{Graphon Ring}
+\label{sec:graphon-algebra}
+% --------------------------------------------------------------------
+We equip $\mathcal{W}$ with the cut‐distance
+\[
+  d_\square(U,V)
+  = \sup_{S,T\subset[0,1]}
+    \Bigl|\int_{S\times T}\bigl(U(u,v)-V(u,v)\bigr)\,du\,dv\Bigr|.
+\]
+Under this metric $(\mathcal{W},d_\square)$ is a complete metric space.
+
+\begin{definition}
+The \emph{graph‐analytic ring} is
+\[
+  \mathcal{F}_G := \overline{\Psi_{\mathcal{Q}}(\mathcal{Q}_G)}
+  \;\subset\;\mathcal{W},
+\]
+the closure of the image of the Graph Rationals under the operator–kernel embedding.
+\end{definition}
+
+\begin{lemma}
+$\mathcal{F}_G$ is a subring of $\mathcal{W}$ under pointwise addition and multiplication.
+\end{lemma}
+% Show it's the same
+\begin{proof}
+Since $\Psi_{\mathcal Q}(\mathcal Q_G)$ is a field and both
+\[
+  +,\;\cdot : \mathcal{W}\times\mathcal{W}\;\to\;\mathcal{W}
+\]
+are continuous in $d_\square$, the closure of a subring remains a subring.
+\end{proof}
+
+\begin{lemma}\label{lem:const-approx}
+Let $K_n$ be the complete graph on $n$ vertices and set
+\[
+  F_n := \frac{W_{K_n}}{1-\tfrac1n}.
+\]
+Then for each $r\in\mathbb{R}$,
+\[
+  d_\square\bigl(rF_n,\kappa_r\bigr)\;\longrightarrow\;0
+  \quad(n\to\infty).
+\]
+In particular $\kappa_r\in\mathcal{F}_G$.
+\end{lemma}
+\begin{proof}
+On each block $I_i\times I_j$, $F_n$ takes the constant value
+\[
+  \frac{n}{\,n-1\,}\quad(i\neq j),
+  \quad
+  \frac{n+\lambda_{K_n}}{\,n-1\,}\quad(i=j).
+\]
+A direct cut‐norm estimate shows $\|F_n-1\|_\square\to0$, and scaling by $r$ gives the result.
+\end{proof}
+
+\begin{theorem}[Real embedding]\label{thm:real-embed}
+Define
+\[
+  \iota:\mathbb{R}\;\longrightarrow\;\mathcal{F}_G,
+  \qquad
+  \iota(r)=\kappa_r.
+\]
+Then:
+\begin{enumerate}
+  \item $\iota$ is a ring homomorphism:
+        $\kappa_{r+s}=\kappa_r+\kappa_s$,
+        $\kappa_{rs}=\kappa_r\,\kappa_s$.
+  \item $\iota$ is injective, since
+        $d_\square(\kappa_r,\kappa_s)=|r-s|$.
+  \item $\iota(\mathbb{R})\subset\mathcal{F}_G$, and its image is exactly the set of constant graphons.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+
+\vspace{0.5em}
+
+\noindent
+(1) Follows immediately from pointwise arithmetic on constant kernels.  
+
+\vspace{0.5em}
+
+\noindent
+(2) For any measurable $S,T\subset[0,1]$,
+\[
+  \int_{S\times T}\bigl(\kappa_r-\kappa_s\bigr)
+  = (r-s)\,\mathrm{Vol}(S)\,\mathrm{Vol}(T),
+\]
+so $d_\square(\kappa_r,\kappa_s)=|r-s|$.  
+
+\vspace{0.5em}
+
+\noindent
+(3) By Lemma~\ref{lem:const-approx}, each $\kappa_r$ lies in the closure.  Conversely, if a graphon $W\in\iota(\mathbb{R})$, then $W=\kappa_r$ for some $r$, so no non‐constant graphon is in the image.
+\end{proof}
+
+\begin{theorem}[Graph Rationals are dense in \(\mathcal{W}\)]
+\label{lem:qr-dense}
+The image of the Graph Rationals under the operator–kernel embedding is dense in the graphon space:
+\[
+  \overline{\Psi_{\mathcal Q}(\mathcal Q_G)} = \mathcal{W}.
+\]
+\end{theorem}
+
+\begin{proof}
+Let \(W \in \mathcal{W}\) and fix \(\varepsilon > 0\). We will construct \(R \in \Psi_{\mathcal Q}(\mathcal Q_G)\) such that \(d_\square(W, R) < \varepsilon\).
+
+\textbf{Step 1: Approximation by step-function.}
+Partition \([0,1]\) into \(m\) equal intervals \(I_1, \dots, I_m\). Define the step-function \(S\) by setting
+\[
+  S(u,v) := \frac{1}{|I_i||I_j|} \int_{I_i \times I_j} W(x,y)\,dx\,dy
+  \quad \text{for } u \in I_i,\ v \in I_j.
+\]
+By standard results (e.g., \cite{Lovasz2012}), for sufficiently large \(m\),
+\[
+  \|W - S\|_1 < \frac{\varepsilon}{2}
+  \quad \Rightarrow \quad
+  d_\square(W, S) < \frac{\varepsilon}{2}.
+\]
+
+\textbf{Step 2: Rational approximation.}
+Choose rational numbers \(q_{ij}\) such that \(|S(u,v) - q_{ij}| < \frac{\varepsilon}{2m^2}\) on each block \(I_i \times I_j\). Define
+\[
+  R(u,v) := q_{ij} \quad \text{for } u \in I_i,\ v \in I_j.
+\]
+Then
+\[
+  \|S - R\|_1 < \sum_{i,j} \frac{\varepsilon}{2m^2} \cdot |I_i| \cdot |I_j|
+  = \frac{\varepsilon}{2},
+  \quad \Rightarrow \quad
+  d_\square(S, R) < \frac{\varepsilon}{2}.
+\]
+
+\textbf{Step 3: Realizability of \(R\).}
+Each block indicator function \(\chi_{ij}\) on \(I_i \times I_j\) corresponds (up to subtraction of constant graphons) to a graphon arising from a finite graph:
+\begin{itemize}
+  \item For \(i \ne j\), \(\chi_{ij}\) corresponds to the graphon of the one-edge graph on \(m\) vertices with edge \(\{i,j\}\), minus a constant.
+  \item For \(i = j\), \(\chi_{ii}\) corresponds to a diagonal graphon from the empty graph, again up to subtraction of a constant.
+\end{itemize}
+Since rational linear combinations and constant graphons lie in \(\Psi_{\mathcal Q}(\mathcal Q_G)\) (by Theorem~\ref{thm:real-embed}), and \(\mathcal Q_G\) is a field, it follows that \(R \in \Psi_{\mathcal Q}(\mathcal Q_G)\).
+\subsection{Topological‐Field Completion via the Operator‐Pair Metric}
+
+\begin{definition}[Conjugated‐Kernel Embedding]
+Let 
+\[
+\Psi:\mathcal Q_G\;\longrightarrow\;\mathcal B\bigl(L^2([0,1])\bigr)
+\]
+be the regularised operator–kernel embedding 
+\[
+\Psi\bigl(x/y\bigr)
+:=|T_y|^{-1/2}\,U_y^*\,T_x\,U_y\,|T_y|^{-1/2}.
+\]
+Define the \emph{operator‐pair embedding}
+\[
+E:\mathcal Q_G
+\;\longrightarrow\;
+\mathcal B(L^2)\times\mathcal B(L^2),
+\qquad
+E\bigl(x/y\bigr) \;=\;\bigl(\Psi(x/y),\,\Psi(1)\bigr).
+\]
+\end{definition}
+
+\begin{definition}[Pair‐Operator Norm Metric]
+On the product $\mathcal B(L^2)\times\mathcal B(L^2)$ define
+\[
+d\bigl((A,B),(A',B')\bigr)
+=\|A-A'\|_{\mathrm{op}} \;+\; \|B-B'\|_{\mathrm{op}}.
+\]
+Pulling back along $E$ gives a metric on $\mathcal Q_G$ under which
+\[
+d\bigl(E(x/y),\,E(x'/y')\bigr)
+=\|\Psi(x/y)-\Psi(x'/y')\|_{\mathrm{op}}+\|\Psi(1)-\Psi(1)\|_{\mathrm{op}}
+=\|\Psi(x/y)-\Psi(x'/y')\|_{\mathrm{op}}.
+\]
+\end{definition}
+
+\begin{proposition}[Topological Field]
+Under the embedding
+\[
+  E\colon\mathcal Q_G\longrightarrow\mathcal B(L^2)\times\mathcal B(L^2),
+  \qquad
+  E\bigl(x/y\bigr)=(\Psi(x/y),\Psi(y/x)),
+\]
+and with the Pair-Operator Norm Metric is a field under coordinatewise
+operations
+\[
+  (A,B)+(C,D)=(A+C,\;B+D),
+  \quad
+  (A,B)\cdot(C,D)=(A\,C,\;B\,D),
+  \quad
+  (A,B)^{-1}=(B,A).
+\]
+Moreover, addition, multiplication, and inversion are all continuous in \(d\).
+Hence its completion 
+\[
+  \widehat{\mathcal Q_G}=\overline{E(\mathcal Q_G)}
+\]
+remains a field under the same formulas.
+\end{proposition}
+
+\begin{proof}
+\emph{Field axioms.}  Since \(\Psi\) is a field homomorphism,
+coordinatewise addition and multiplication on \(E(\mathcal Q_G)\) inherit
+associativity, commutativity, distributivity, and identities.  Inversion
+in \(\mathcal Q_G\) sends \(x/y\mapsto y/x\), so
+\(\bigl(\Psi(x/y),\Psi(y/x)\bigr)^{-1}=(\Psi(y/x),\Psi(x/y))\), matching
+the coordinate swap.
+
+\medskip
+\emph{Continuity.}
+For any \(\alpha,\alpha',\beta,\beta'\in\mathcal Q_G\):
+
+- **Addition.**  
+  \[
+    d\bigl(E(\alpha)+E(\beta),\,E(\alpha')+E(\beta')\bigr)
+    \;\le\;
+    \|\Psi(\alpha)-\Psi(\alpha')\|_{\!\mathrm{op}}
+    +\|\Psi(\beta)-\Psi(\beta')\|_{\!\mathrm{op}}
+    +\dots
+  \]
+  which tends to \(0\) as \(\alpha\to\alpha'\), \(\beta\to\beta'\).
+
+- **Multiplication.**  Uses submultiplicativity:
+  \(\|AC-A'C'\|\le\|A-A'\|\|C\|+\|A'\|\|C-C'\|\).
+
+- **Inversion.**  Swapping \((A,B)\mapsto(B,A)\) is an isometry.
+
+Since all operations extend continuously to the closure, \(\widehat{\mathcal Q_G}\)
+remains a topological field.
+\end{proof}
+
+\begin{definition}[Graphon Subring]
+Inside $\widehat{\mathcal Q_G}$ the \emph{constant‐denominator slice}
+\[
+S
+:=\bigl\{E(x/([K_1]-[K_0])):(x\in\mathcal Z_G)\bigr\}
+=\bigl\{(\Psi(x),\Psi(1))\bigr\}
+\]
+is closed under addition and multiplication, and thus forms a subring.  Under the identification $\Psi(1)=T_{\kappa_1}$ this recovers the original graphon‐algebra.
+\end{definition}
+
+\textbf{Step 4: Conclusion.}
+By the triangle inequality:
+\[
+  d_\square(W, R) \le d_\square(W, S) + d_\square(S, R) < \varepsilon.
+\]
+Hence \(W\) lies in the closure of \(\Psi_{\mathcal Q}(\mathcal Q_G)\), and since \(W\in\mathcal{W}\) was arbitrary, we conclude
+\[
+  \overline{\Psi_{\mathcal Q}(\mathcal Q_G)} = \mathcal{W}.
+\]
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{proposition}[Local Lipschitz Continuity of the Vertex‑Count]
+The vertex‑count map
+\[
+  v:\widehat{\mathcal Q_G}\to\mathbb{R},
+  \qquad
+  v\bigl(E(x/y)\bigr)=\frac{v(x)}{v(y)},
+\]
+is continuous (indeed locally Lipschitz) with respect to the operator‑pair metric
+\[
+  d\bigl((A,B),(A',B')\bigr)
+  =\|A-A'\|_{\mathrm{op}} + \|B-B'\|_{\mathrm{op}}.
+\]
+More precisely, fix 
+\[
+X_0 = E\bigl(x_0 / y_0\bigr),
+\quad
+x_0,y_0\in\mathcal Z_G,\;v(y_0)\neq0,
+\]
+and let $X=E(x/y)$ with $x,y\in\mathcal Z_G$.  Then
+\[
+\bigl|v(X)-v(X_0)\bigr|
+\;\le\;
+\frac{1}{\bigl|v(y_0)\bigr|}
+\;d\bigl(X,\,X_0\bigr).
+\]
+In particular, for any $\varepsilon>0$, if 
+\[
+d(X,X_0)<\varepsilon\,\bigl|v(y_0)\bigr|
+\]
+then $|v(X)-v(X_0)|<\varepsilon$.
+\end{proposition}
+
+\begin{proof}
+Write
+\[
+v(X)-v(X_0)
+=\frac{v(x)}{v(y)}-\frac{v(x_0)}{v(y_0)}
+=\frac{v\bigl(x\,y_0 - x_0\,y\bigr)}{v(y)\,v(y_0)},
+\]
+where $x,y,x_0,y_0\in\mathcal Z_G$ are graph‑integers and $x\,y_0-x_0\,y\in\mathcal Z_G$.
+
+By definition of the embedding,
+\[
+d(X,X_0)
+=\bigl\|\Psi(x/y)-\Psi(x_0/y_0)\bigr\|_{\mathrm{op}}
+=\bigl\|\Psi\bigl(x\,y_0 - x_0\,y\bigr)\bigr\|_{\mathrm{op}}.
+\]
+Since for any $z\in\mathcal Z_G$ the operator $\Psi(z)$ is finite‑rank and
+\[
+v(z) \;=\;\mathrm{Tr}\bigl(\Psi(z)\bigr),
+\]
+we have the operator‐norm bound
+\[
+\bigl|v(z)\bigr|
+=\bigl|\mathrm{Tr}(\Psi(z))\bigr|
+\le \|\Psi(z)\|_{\mathrm{op}}.
+\]
+Applying this with $z = x\,y_0 - x_0\,y$ gives
+\[
+\bigl|v(x\,y_0 - x_0\,y)\bigr|
+\le \bigl\|\Psi(x\,y_0 - x_0\,y)\bigr\|_{\mathrm{op}}
+= d(X,X_0).
+\]
+Finally, on the neighbourhood where $d(X,X_0)<|v(y_0)|$, one checks $|v(y)|\ge|v(y_0)|$, so
+\[
+\bigl|v(X)-v(X_0)\bigr|
+\;=\;
+\frac{\bigl|v(x\,y_0 - x_0\,y)\bigr|}{|v(y)|\,|v(y_0)|}
+\;\le\;
+\frac{1}{|v(y_0)|}\,d(X,X_0),
+\]
+as claimed.
+\end{proof}
+
+
+\begin{proposition}[Exact Recovery of Embedded Reals]
+For each real number $r\in\mathbb{R}$, let
+\[
+\kappa_r(x,y)\equiv r
+\quad\Longrightarrow\quad
+E(\kappa_r)=\bigl(\Psi(\kappa_r),\,\Psi(\kappa_1)\bigr)
+\;\in\;\widehat{\mathcal Q_G},
+\]
+where $\kappa_r\in\mathcal Q_G$ is the fraction $r/1$ with $r\in\mathbb{Q}\subset\mathcal Z_G$.  Then
+\[
+v\bigl(E(\kappa_r)\bigr) = r.
+\]
+\end{proposition}
+
+\begin{proof}
+Since in the dense subfield $\mathcal Q_G$ we have
+\[
+v(\kappa_r)=\frac{v(r)}{v(1)}=\frac{r\,v(1)}{v(1)}=r,
+\]
+continuity of $v$ on the completion $\widehat{\mathcal Q_G}$ ensures the same identity holds for $E(\kappa_r)$.
+\end{proof}
+
+\begin{remark}[Join/\!Co‐normal duality]
+Alternatively, one may base all constructions on the graph‐join $(+)$ and co‐normal product $(\ast)$ rather than disjoint union~$\sqcup$ and Cartesian product~$\Box$.  To see this gives an equivalent theory, let
+\[
+  c\colon \mathcal N_G \to \mathcal N_G,\quad [G]\mapsto [G^c]
+\]
+be the complement map.  Then for all $[G],[H]\in\mathcal N_G$,
+\[
+  c\bigl([G]\sqcup[H]\bigr)
+  = c([G]) \;+\; c([H]),
+  \qquad
+  c\bigl([G]\Box[H]\bigr)
+  = c([G]) \;\ast\; c([H]).
+\]
+Hence $c$ is a semiring isomorphism
+\[
+  (\mathcal N_G,\;\sqcup,\;\Box)
+  \;\cong\;
+  (\mathcal N_G,\;+\,,\;\ast),
+\]
+which extends to canonical ring‐ and field‐isomorphisms
+\[
+  \mathcal Z_G^{(\sqcup,\Box)} \;\cong\;\mathcal Z_G^{(+,\ast)},
+  \quad
+  \mathcal Q_G^{(\sqcup,\Box)} \;\cong\;\mathcal Q_G^{(+,\ast)}.
+\]
+In particular, the resulting operator–kernel embeddings and metric closures agree up to this natural duality.
+\end{remark}
+\section{Conclusion}
+
+This work presents a coherent and algebraically natural pathway from finite graphs to continuous limit objects, culminating in the graphon space \((\mathcal{W}, d_\square)\). Starting with the semiring \(\mathcal{N}_G\) under disjoint union and Cartesian product, we constructed the Graph Integers \(\mathcal{Z}_G\) and the Graph Rationals \(\mathcal{Q}_G\), establishing a robust arithmetic structure through formal differences and fractions. By defining a regularised operator–kernel embedding \(\Psi_{\mathcal Q}\), we realized each graph rational as a graphon kernel, and showed that the metric closure of this image recovers the full graphon space: \(\mathcal{F}_G = \mathcal{W}\).
+
+In doing so, we provided an algebraic–analytic correspondence that embeds not only \(\mathbb{Q}\) and \(\mathbb{Z}\), but the entire real line \(\mathbb{R}\) into the graphon space as constant kernels, preserving field structure under pointwise operations. This construction demonstrates that \(\mathcal{W}\) is not merely a limit object space for graph sequences, but can be endowed with a dense, computationally grounded ring algebra. Finally, in order to ensure that more graph structure and also full field algebra could be performed, utilizing a Pair-Operator Norm Metric built on top of \(\Psi_{\mathcal Q}\), and show that the Graphons can be recovered as a subring. 
+
+The framework developed here opens new directions for future work. Among these are the development of a functional calculus for graphons grounded in this algebraic infrastructure, the study of derivations and spectral theory in the context of graph arithmetic, and applications to network dynamics, random graph models, and categorical treatments of graph limits. More broadly, this bridge between discrete algebra and analytic geometry may offer new insights into how local combinatorics scale into global structure.
+
+\end{document}

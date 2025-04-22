@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Open Graph (for Facebook and others) -->
+  <meta property="og:title" content="From Clique to Clouds: A High-Level Overview" />
+  <meta property="og:description" content="A unified framework extending finite graph arithmetic into continuous shapes via graphons and operator theory." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/graphons.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/graphons-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="From Clique to Clouds: A High-Level Overview" />
+  <meta name="twitter:description" content="An algebraic-analytic bridge from graph theory to operator limits and graphons." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/graphons-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/graphons.html" />
+
+  <title>From Clique to Clouds: A High-Level Overview</title>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #ccc;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>From Clique to Clouds: A High-Level Overview</h1>
+
+  <p>
+    This page summarizes a unified algebraic–analytic framework that extends finite graph arithmetic into a continuous limit structure via graphons and operator theory. The central goal is to build a field-like object from finite graphs and embed it into a space of operators that connects naturally with analytic graph limit theory.
+  </p>
+
+  <h2>1. Combinatorial-Algebraic Layers</h2>
+  <ul>
+    <li>
+      <strong>Graph Naturals</strong> \( \mathcal{N}_G \): Isomorphism classes of finite simple graphs under disjoint union \( \sqcup \) and Cartesian product \( \Box \), forming a commutative semiring.
+    </li>
+    <li>
+      <strong>Graph Integers</strong> \( \mathcal{Z}_G \): The Grothendieck group completion of \( (\mathcal{N}_G, \sqcup) \), forming a commutative ring using formal differences \( [G] - [H] \).
+    </li>
+    <li>
+      <strong>Graph Rationals</strong> \( \mathcal{Q}_G \): Field of fractions of \( \mathcal{Z}_G \), denoted as \( x/y \).
+    </li>
+  </ul>
+
+  <h2>2. Operator–Kernel Embedding</h2>
+  <p>
+    Each graph or formal difference maps to a regularized integral operator:
+    \[
+      T_x = T_{W_{G_x}} - T_{W_{H_x}}.
+    \]
+    Here, \( W_G \) is a block-constant kernel derived from the adjacency matrix of \( G \), regularized to ensure positivity.
+  </p>
+  <p>
+    The operator embedding for a rational element \( x/y \) is defined as:
+    \[
+      \Psi\left(\frac{x}{y}\right) = |T_y|^{-1/2} \, U_y^* \, T_x \, U_y \, |T_y|^{-1/2},
+    \]
+    where \( T_y = U_y |T_y| \) is the polar decomposition.
+  </p>
+
+  <h2>3. Graphons and the Cut-Metric Closure</h2>
+  <p>
+    The graphon space \( \mathcal{W} \) consists of symmetric measurable functions \( W: [0,1]^2 \to [0,1] \) under measure-preserving relabeling. With the cut-metric
+    \[
+      d_\square(U, V) = \sup_{S, T} \left| \int_{S \times T} (U - V) \right|,
+    \]
+    the space \( (\mathcal{W}, d_\square) \) is complete.
+  </p>
+  <p>
+    The closure \( \mathcal{F}_G = \overline{\Psi(\mathcal{Q}_G)} \subset \mathcal{W} \) is a commutative \( \mathbb{R} \)-algebra of graphons. However, it is not a field—division is not continuous in \( d_\square \).
+  </p>
+
+  <h2>4. The Operator–Pair Metric and Topological Field Completion</h2>
+  <p>
+    To recover field structure, we define:
+    \[
+      E\left(\frac{x}{y}\right) := (\Psi(x/y), \Psi(1)),
+    \]
+    with a metric on pairs:
+    \[
+      d_{\text{pair}}\big((A, B), (A', B')\big) := \|A - A'\|_{\text{op}} + \|B - B'\|_{\text{op}}.
+    \]
+    This makes \( E(\mathcal{Q}_G) \) into a topological field where inversion is just coordinate swapping. The completion \( \widehat{\mathcal{Q}_G} \) remains a field.
+  </p>
+
+  <h2>5. The Graphon Subring and Compatibility</h2>
+  <p>
+    The constant-denominator slice \( S = \{ (\Psi(x), \Psi(1)) \} \) forms a subring of the field. Algebraically, this is isomorphic to the original graphon algebra, though the metrics differ.
+  </p>
+  <p>
+    Moreover, the operator–pair metric dominates the cut-metric:
+    \[
+      d_\square(U, V) \le \|T_U - T_V\|_{\text{op}} \le d_{\text{pair}}((T_U, I), (T_V, I)),
+    \]
+    which allows the transfer of continuity and density results back to \( d_\square \).
+  </p>
+
+  <h2>6. Real Line and Spectral Interpretation</h2>
+  <p>
+    The embedding \( r \mapsto \kappa_r \) is isometric under both metrics, with \( d = |r - s| \). On this slice, operator-norm and cut-norm coincide.
+  </p>
+  <p>
+    In the full field, \( d_{\text{pair}} \) captures global spectral deviation—differences in principal eigenvalues, walk counts, and other structural graph features. It acts as a spectral extension of classical graph properties to formal graph fractions.
+  </p>
+<h2>7. Draft Status and Open Issues</h2>
+<p>
+  This framework remains a <strong>work in progress</strong>. While the algebraic and analytic constructions appear consistent and promising, significant open issues remain in formally verifying that all operations are well-defined and compatible at each stage and in general, this work is an early brainstorm, and not a final result. Proofs are rough and need to be thoroughly verified by additional parties. These gaps are structural and technical, not merely cosmetic. The theory presented should be viewed as a plausible extension awaiting further foundational work.
+</p>
+</body>
+</html>
+

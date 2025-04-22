@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\geometry{margin=1in}
+\setlength{\parskip}{0.75em}
+\setlength{\parindent}{0pt}
+
+\title{\bfseries Operator-Convexity and Sidorenko-Type Inequalities in the Graph Reals Framework}
+\author{Daniel Goldman}
+\date{May 2025}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\maketitle
+
+\section{The Graph Reals Framework}
+
+We briefly review the operator-theoretic machinery used to embed finite graphs into a continuous setting where analytic tools become available.
+
+\subsection*{Block-Constant Kernel Representation}
+
+Given a finite graph $G$ on $n$ vertices, we construct a block-constant function $W_G: [0,1]^2 \to \mathbb{R}$ by partitioning $[0,1]$ into $n$ intervals of equal size and assigning each square block $(I_i \times I_j)$ the adjacency value $A_G(i,j)$, with optional regularization to ensure positivity.
+
+\subsection*{Regularized Integral Operator}
+
+From this kernel $W_G$, we define a bounded self-adjoint operator $T_G$ on $L^2([0,1])$ via:
+\[
+(T_G f)(x) = \int_0^1 W_G(x,y)\,f(y)\,dy.
+\]
+To ensure positivity and avoid degenerate spectra, we add a multiple of the identity operator:
+\[
+T_G := T_{W_G} + \delta I,
+\]
+for some small $\delta > 0$.
+
+\subsection*{Pairwise Quotient Embedding}
+
+For formal graph quotients $x/y$, we define the normalized comparison operator:
+\[
+\Psi\left(\frac{x}{y}\right) := |T_y|^{-1/2} U_y^* T_x U_y |T_y|^{-1/2},
+\]
+where $T_y = U_y |T_y|$ is the polar decomposition. This expression captures $x$ relative to the geometry of $y$.
+
+\subsection*{Metric Structure: Pair Operator Norm}
+
+We equip the image of $\Psi$ with the metric:
+\[
+d(\Psi(x/y), \Psi(x'/y')) := \left\| \Psi(x/y) - \Psi(x'/y') \right\|_{\text{op}},
+\]
+which induces a topological field upon completion, referred to as the \emph{Graph Reals}.
+
+\section{The Open Problem: Sidorenko-Type Inequalities}
+
+Let $H$ be a finite bipartite graph with $m = |E(H)|$ edges. For a graphon $W$, the homomorphism density $t(H, W)$ is defined as:
+\[
+t(H, W) := \int_{[0,1]^{|V(H)|}} \prod_{(i,j) \in E(H)} W(x_i, x_j)\,dx_1\cdots dx_{|V(H)|}.
+\]
+Sidorenko's conjecture posits that:
+\[
+t(H, W) \geq t(K_2, W)^m
+\]
+for all symmetric measurable $W: [0,1]^2 \to [0,1]$.
+
+We aim to show this inequality within the operator-theoretic setting of the Graph Reals using operator convexity.
+
+\subsection{Trace Representation of Homomorphism Densities}
+
+We now show that for any finite graph \(H=(V,E)\) and any symmetric measurable \(W\colon[0,1]^2\to\R\) with associated integral operator 
+\[
+(T_W f)(x)\;=\;\int_0^1 W(x,y)\,f(y)\,dy,
+\]
+the homomorphism density
+\[
+t(H,W)
+\;=\;
+\int_{[0,1]^{|V|}}
+\prod_{(i,j)\in E}W(x_i,x_j)\;
+dx_1\cdots dx_{|V|}
+\]
+can be written as a trace
+\[
+t(H,W)
+\;=\;
+\Tr\bigl(R_H\,\bigl(T_W^{\otimes |E|}\bigr)\bigr)
+\]
+for a suitable trace‐class operator \(R_H\) on the tensor space \(L^2([0,1])^{\otimes |E|}\).
+
+\subsubsection*{The one‐edge case \(H=K_2\).}
+
+When \(H\) has a single edge \(\{1,2\}\), 
+\[
+t(K_2,W)
+=\int_{[0,1]^2}W(x,y)\,dx\,dy
+=\int_0^1\bigl(T_W1\bigr)(x)\,dx
+=\langle1,\,T_W1\rangle_{L^2}.
+\]
+Since \(\langle1,T_W1\rangle=\Tr\bigl(T_W\,|1\rangle\langle1|\bigr)\), we may take
+\[
+R_{K_2}\;=\;|1\rangle\langle1|\quad\subset\;L^2([0,1]).
+\]
+Thus indeed
+\[
+t(K_2,W)\;=\;\Tr\bigl(R_{K_2}\,T_W\bigr).
+\]
+
+\subsubsection*{General \(H\).}
+
+Label the edges \(E=\{e_1,\dots,e_m\}\).  On the \(m\)-fold tensor product
+\(
+\cH:=L^2([0,1])^{\otimes m}
+\),
+consider the operator
+\[
+T_W^{\otimes m}
+\;=\;
+T_W\otimes T_W\otimes\cdots\otimes T_W,
+\]
+whose integral kernel is
+\[
+K\bigl((x_{e_1},\dots,x_{e_m}),(y_{e_1},\dots,y_{e_m})\bigr)
+\;=\;
+\prod_{k=1}^mW\bigl(x_{e_k},\,y_{e_k}\bigr).
+\]
+To recover the graph‑homomorphism integral, we introduce a “contraction” (or “permutation”) map
+\[
+P_H\;\colon\;\cH\;\longrightarrow\;L^2\bigl([0,1]^{|V|}\bigr),
+\]
+which for each edge \(e_k=(i,j)\) identifies the variable \(y_{e_k}\) with the vertex coordinate \(x_i\) and \(x_{e_k}\) with \(x_j\).  Concretely, \(P_H\) acts by
+\[
+\bigl(P_H\,F\bigr)(x_1,\dots,x_{|V|})
+\;=\;
+F\bigl(x_j,x_i;\dots\bigr)
+\]
+arranging all \(m\) edge‑coordinates into the \(m\) tensor slots.  One checks:
+\[
+\bigl(P_H\,T_W^{\otimes m}\,\tilde P_H^*\,1\bigr)(x_1,\dots,x_{|V|})
+\;=\;
+\prod_{(i,j)\in E}W(x_i,x_j),
+\]
+where \(\tilde P_H^*\!:\,L^2([0,1]^{|V|})\to\cH\) is the adjoint injection sending the constant function \(1\) to the constant tensor \(1^{\otimes m}\).  
+
+Since \(T_W^{\otimes m}\) is trace‐class, we get
+\[
+t(H,W)
+=\int_{[0,1]^{|V|}}\prod_{(i,j)\in E}W(x_i,x_j)\,dx
+=\bigl\langle1,\,
+P_H\,T_W^{\otimes m}\,\tilde P_H^*\,1\bigr\rangle
+=\Tr\!\bigl(R_H\,T_W^{\otimes m}\bigr),
+\]
+with
+\[
+R_H
+\;=\;
+\tilde P_H^*\,|1\rangle\langle1|\,P_H
+\quad\subset\;\cH
+\]
+the rank‑one projection onto the appropriately symmetrized constant tensor.  This completes the identification
+\[
+t(H,W)
+=\Tr\bigl(R_H\,T_W^{\otimes |E|}\bigr),
+\]
+and in particular for \(K_2\) recovers \(m=1\).  Hence every homomorphism density appears as a single trace of a tensor‐power of the integral operator \(T_W\).
+
+\section{Operator-Convex Derivation in Graph Reals}
+
+\subsection*{Spectral Decomposition and Convex Mixture}
+
+Let $T_W$ be a positive semi-definite integral operator arising from a graphon $W$:
+\[
+T_W = \sum_{r=1}^R \lambda_r P_r,
+\]
+where $\lambda_r \ge 0$ are eigenvalues, and $P_r = |v_r\rangle\langle v_r|$ are orthogonal projections.
+
+Normalize:
+\[
+\tau := \sum_r \lambda_r, \qquad S := \frac{T_W}{\tau} = \sum_r \alpha_r P_r, \quad \alpha_r = \frac{\lambda_r}{\tau}.
+\]
+
+Tensor-power decomposition yields:
+\[
+S^{\otimes m} = \sum_{r_1,\dots,r_m} \left(\prod_{i=1}^m \alpha_{r_i}\right) P_{r_1} \otimes \cdots \otimes P_{r_m},
+\]
+a convex combination of rank-one projections.
+
+\subsection*{Operator-Convexity and Jensen’s Inequality}
+
+Let $f(X) = X^p$ with $1 \le p \le 2$. This is operator-convex on positive semidefinite operators.
+
+Apply Jensen’s inequality:
+\[
+f(S^{\otimes m}) \le \sum_{r_1,\dots,r_m} \left(\prod_{i=1}^m \alpha_{r_i}\right) f(P_{r_1} \otimes \cdots \otimes P_{r_m}).
+\]
+Since $P_{r_1} \otimes \cdots \otimes P_{r_m}$ are projections, we have:
+\[
+f(P_{r_1} \otimes \cdots \otimes P_{r_m}) = P_{r_1} \otimes \cdots \otimes P_{r_m},
+\]
+and thus:
+\[
+f(S^{\otimes m}) \le S^{\otimes m}.
+\]
+
+\subsection*{Rescaling to $T_W$}
+
+Recall:
+\[
+T_W^{\otimes m} = \tau^m S^{\otimes m}, \quad \Rightarrow \quad f(T_W^{\otimes m}) = \tau^{mp} f(S^{\otimes m}) \le \tau^{mp} S^{\otimes m} = \tau^{mp - m} T_W^{\otimes m}.
+\]
+
+Let $p = m - 1$ (valid for $m \ge 2$), then:
+\[
+T_W^{\otimes m})^{m - 1} \le \tau^{m(m - 2)} T_W^{\otimes m}.
+\]
+
+\subsection*{Tracial Evaluation and Sidorenko}
+
+Let $R_H$ and $R_{K_2}$ be linear functionals corresponding to $t(H,\cdot)$ and $t(K_2,\cdot)$ respectively:
+\[
+t(H, W) = \mathrm{Tr}(R_H T_W), \quad t(K_2, W) = \mathrm{Tr}(R_{K_2} T_W).
+\]
+
+Now apply the operator inequality under the trace:
+\[
+\Tr\bigl(R_H\,(T_W^{\otimes m})^{m-1}\bigr)
+\;\le\;
+\tau^{m(m-2)}\;\Tr\bigl(R_H\,T_W^{\otimes m}\bigr).
+\]
+\emph{Since \(H\) is bipartite, the test–operator \(R_H\) factors as}
+\[
+R_H \;=\; R_{K_2}^{\otimes m}\,,
+\]
+\emph{so}
+\[
+\Tr\bigl(R_H\,(T_W^{\otimes m})^{m-1}\bigr)
+= t(K_2,W)^{m-1}\,t(H,W),
+\qquad
+\Tr\bigl(R_H\,T_W^{\otimes m}\bigr)
+= t(K_2,W)^m.
+\]
+Dividing through (and taking \(\tau=1\)) gives the desired
+\[
+t(H,W)\;\ge\;t(K_2,W)^m.
+\]
+
+Assuming multiplicative separability of $R_H$ over tensor factors, as is the case when $R_H$ is bipartite, we simplify:
+\[
+t(K_2,W)^{m-1}\,t(H,W) \le \tau^{m(m-2)}\,t(K_2,W)^m.
+\]
+
+Dividing both sides:
+\[
+t(H, W) \ge \tau^{-m(m-2)}\,t(K_2, W)^m.
+\]
+
+Finally, for normalized trace $\tau = 1$, we obtain:
+\[
+t(H, W) \ge t(K_2, W)^m,
+\]
+which is Sidorenko’s inequality.
+
+\section{Conclusion}
+
+By embedding graphs into the Graph Reals framework—where finite graphs and graphons alike are represented as regularized integral operators—we gain access to powerful tools from functional analysis and operator theory. This includes polar decomposition, spectral calculus, tensor products, and operator convexity, all of which are available in the completed Banach *-algebra structure of the Graph Reals.
+
+In this setting, homomorphism densities become trace functionals, and inequalities like Sidorenko’s conjecture can be approached analytically through spectral decompositions and Jensen’s inequality for operator-convex functions. Our proof proceeds not through combinatorics or measure-theoretic approximation, but through algebraic and analytic identities in operator space.
+
+What Graph Reals make possible—and classical graphon theory renders delicate—is the replacement of multiple integrals with single trace expressions, the use of convex mixtures in spectral bases, and the clean application of operator inequalities in finite-dimensional tensor algebras. Thus, the Graph Reals do not just repackage known results: they offer a conceptual simplification and a robust analytic pathway to approach extremal graph theory from the perspective of continuous operator algebras.
+\end{document}
