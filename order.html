@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="The Dominating Order in Graph Reals" />
+  <meta property="og:description" content="A canonical partial order on the Graph Reals, unifying positive graph invariants through operator-theoretic structure." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/dominating-order.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/dominating-order-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Dominating Order in Graph Reals" />
+  <meta name="twitter:description" content="A canonical partial order on the Graph Reals, unifying positive graph invariants through operator-theoretic structure." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/dominating-order-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/dominating-order.html" />
+
+  <title>The Dominating Order in Graph Reals</title>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #ccc;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>The Dominating Order in Graph Reals</h1>
+
+  <p>
+    This page introduces and analyzes the <strong>Dominating Order</strong> on the field of Graph Reals \( \widehat{\mathcal{Q}_G} \). Defined via positivity of associated operators, this canonical partial order encodes a powerful hierarchy among graph-limit elements, unifying the behavior of positive graph invariants, spectral dominance, and homomorphism densities.
+  </p>
+
+  <h2>1. Definition via Operator Positivity</h2>
+  <p>
+    Given \( x, y \in \widehat{\mathcal{Q}_G} \), we write:
+    \[
+      x \preceq_{\text{dom}} y \quad \Longleftrightarrow \quad \Psi(y - x) \succeq 0
+    \]
+    where \( \Psi \colon \widehat{\mathcal{Q}_G} \to \mathcal{B}(L^2) \) is the regularized operator embedding. This means that \( y \) dominates \( x \) whenever their difference maps to a positive semi-definite operator.
+  </p>
+  <p>
+    The set of all elements dominating \( 0 \), denoted \( \mathcal{C} = \{ x : \Psi(x) \succeq 0 \} \), is the <strong>positive cone</strong> of the Graph Reals.
+  </p>
+
+  <h2>2. Properties of the Dominating Order</h2>
+  <ul>
+    <li><strong>Partial, not total:</strong> \( \preceq_{\text{dom}} \) is a partial order; many elements cannot be compared directly.</li>
+    <li><strong>Refinement of invariant order:</strong> If \( x \preceq_{\text{dom}} y \), then \( v(x) \le v(y) \), \( e(x) \le e(y) \), and \( t(F, x) \le t(F, y) \) for all test graphs \( F \).</li>
+    <li><strong>Archimedean:</strong> If \( n x \preceq_{\text{dom}} y \) for all \( n \in \mathbb{N} \), then \( x \preceq_{\text{dom}} 0 \). This excludes infinitesimal positive elements.</li>
+    <li><strong>Closedness:</strong> The cone \( \mathcal{C} \) is closed under the pair-operator norm metric.</li>
+  </ul>
+
+  <h2>3. Graph-Theoretic Interpretation</h2>
+  <p>
+    The relation \( x \preceq_{\text{dom}} y \) asserts that <em>every positive graph parameter</em> increases from \( x \) to \( y \). This includes:
+  </p>
+  <ul>
+    <li>Vertex and edge count;</li>
+    <li>Homomorphism densities \( t(F, x) \);</li>
+    <li>Spectral invariants of the kernel \( \Psi(x) \);</li>
+    <li>Linear evaluations via any positive state \( \phi(\Psi(\cdot)) \).</li>
+  </ul>
+  <p>
+    Thus, the Dominating Order captures structural containment, density, and richness in a single framework.
+  </p>
+
+  <h2>4. Functional Structure and the Order-Unit Norm</h2>
+  <p>
+    The Graph Reals become an <strong>Archimedean order-unit space</strong> with unit element \( 1 \in \widehat{\mathcal{Q}_G} \). We define:
+    \[
+      \|x\|_u := \inf\{ \lambda > 0 : -\lambda \cdot 1 \preceq_{\text{dom}} x \preceq_{\text{dom}} \lambda \cdot 1 \}.
+    \]
+    This norm is equivalent to the pair-operator norm, and it allows the application of Banach lattice techniques, convex analysis, and Choquet theory to study the geometry of \( \mathcal{C} \).
+  </p>
+
+  <h2>5. Compatibility with the Pair Metric</h2>
+  <p>
+    The Dominating Order is strongly compatible with the metric structure of \( \widehat{\mathcal{Q}_G} \):
+  </p>
+  <ul>
+    <li><strong>Closed cone:</strong> \( \mathcal{C} \) is closed under the pair metric.</li>
+    <li><strong>Order intervals:</strong> Sets of the form \( \{ z : x \preceq_{\text{dom}} z \preceq_{\text{dom}} y \} \) are compact and convex in the metric topology.</li>
+    <li><strong>Monotonicity:</strong> If \( 0 \preceq_{\text{dom}} x \preceq_{\text{dom}} y \), then \( d(0,x) \le d(0,y) \).</li>
+  </ul>
+
+  <h2>6. Future Directions</h2>
+  <p>
+    The Dominating Order opens new research directions across graph theory, analysis, and convex geometry:
+  </p>
+  <ul>
+    <li><strong>Classifying extremal rays</strong> of \( \mathcal{C} \) to identify irreducible graph limits;</li>
+    <li><strong>Studying states and dual functionals</strong> to define new monotone invariants;</li>
+    <li><strong>Applying functional calculus</strong> to define operator means and interpolate between graph structures;</li>
+    <li><strong>Exploring projective metrics</strong> and contraction mappings for iterative graph processes.</li>
+  </ul>
+
+  <h2>7. Draft Status and Refinement</h2>
+  <p>
+    This presentation of the Dominating Order is based on preliminary operator-theoretic analysis. While the compatibility of the order with spectral and metric structure is well-supported, deeper structural classification of the cone and its extremal structure remains ongoing. Readers are encouraged to interpret this page as a high-level sketch of a promising analytic extension of combinatorial graph comparison.
+  </p>
+
+</body>
+</html>
+
