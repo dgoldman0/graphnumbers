@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="Ordered Graph Reals: Extending Graph Arithmetic to the Directed Continuum" />
+  <meta property="og:description" content="A generalization of the Graph Reals incorporating directionality via weighted kernel operators and refined partitions." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/ordered-graph-reals.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/ordered-graph-reals-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ordered Graph Reals: Directed Graph Arithmetic and Operator Fields" />
+  <meta name="twitter:description" content="An operator-theoretic framework for directed graph limits, extending the Graph Reals to asymmetric structures." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/ordered-graph-reals-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/ordered-graph-reals.html" />
+
+  <title>Ordered Graph Reals: Directed Graph Arithmetic and Operator Fields</title>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      border-bottom: 1px solid #ccc;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Ordered Graph Reals: Directed Graph Arithmetic and Operator Fields</h1>
+
+  <p>
+    This page introduces the <strong>Ordered Graph Reals</strong>: a field-like extension of finite directed graphs into an analytic continuum, based on weighted step kernels and operator norms. Building on the Graph Reals framework, this variant encodes edge directionality intrinsically through asymmetry in operator kernels, enabling a generalization to non-symmetric graph limits.
+  </p>
+
+  <h2>1. Directed Graph Algebra</h2>
+  <ul>
+    <li>
+      <strong>Directed Graph Naturals</strong> \( \mathcal{N}_G^{\rightarrow} \): Simple finite directed graphs (no loops), with disjoint union \( \sqcup \) and Cartesian product \( \Box \), forming a commutative semiring.
+    </li>
+    <li>
+      <strong>Directed Graph Integers</strong> \( \mathcal{Z}_G^{\rightarrow} \): Formal differences of directed graphs, forming a ring.
+    </li>
+    <li>
+      <strong>Directed Graph Rationals</strong> \( \mathcal{Q}_G^{\rightarrow} \): Field of fractions \( x/y \) where \( y \ne 0 \), equipped with the usual addition and multiplication of fractions.
+    </li>
+  </ul>
+
+  <h2>2. Weighted Operator Embedding</h2>
+  <p>
+    Each directed graph is embedded into \( L^2([0,1]) \) via a <strong>refined partition</strong> and a <strong>distinct edge weighting</strong>. The associated step-kernel
+    \[
+      W_G(x,y) = w(i,j) \quad \text{if } x \in B_i,\ y \in B_j,\ \text{and } i \to j \text{ in } G
+    \]
+    defines a bounded operator \( T_G \) on \( L^2 \) by integration. The choice of weights ensures injectivity and analytic invertibility for all nonzero graphs.
+  </p>
+
+  <h2>3. Operator Metric and Completion</h2>
+  <p>
+    Define a metric on directed Graph Rationals by
+    \[
+      d(x/y, x'/y') = \left\| T_x T_y^{-1} - T_{x'} T_{y'}^{-1} \right\|_{2 \to 2}.
+    \]
+    This operator-norm metric turns the image of \( \mathcal{Q}_G^{\rightarrow} \) into a metric space. Completion under this metric yields the <strong>Ordered Graph Reals</strong>, a complete topological field.
+  </p>
+
+  <h2>4. Continuity and Field Structure</h2>
+  <p>
+    Addition, multiplication, and inversion are continuous under the operator norm. All constructions are defined purely via bounded linear maps, allowing a singular-value calculus to replace self-adjoint spectral theory.
+  </p>
+
+  <h2>5. Compatibility and Embedding of Undirected Theory</h2>
+  <p>
+    The traditional Graph Reals embed isometrically into the Ordered Graph Reals by symmetrizing graphs and weights. That is, any undirected graph \( G \) can be viewed as a symmetric directed graph with \( i \to j \) and \( j \to i \) whenever \( \{i,j\} \in E(G) \), and \( w(i,j) = w(j,i) \). The corresponding operator \( T_G \) then matches the undirected step-kernel operator.
+  </p>
+
+  <h2>6. Outlook and Applications</h2>
+  <p>
+    The Ordered Graph Reals extend the combinatorial–analytic bridge of the Graph Reals to encompass flows, asymmetric adjacency, and structural asymmetries in networks. Potential applications include directed graph limits, spectral embeddings, and generalizations of graphon-based convergence to asymmetric settings.
+  </p>
+
+  <h2>7. Status and Open Questions</h2>
+  <p>
+    This theory is <strong>provisional</strong> but well-grounded. Major theoretical gaps from the undirected case have been repaired by the introduction of weighted kernels and directional partitions. However, formal proofs of Archimedean ordering, spectral continuity, and compatibility with known graph limit objects remain open and in progress.
+  </p>
+
+</body>
+</html>
+

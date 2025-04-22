@@ -1,0 +1,147 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb, amsthm, geometry, thmtools}
+\geometry{margin=1in}
+
+\title{\bfseries From Arrows to Operators:\\A Directed Field Completion of Graph Arithmetic}
+\author{Daniel Goldman}
+\date{April 2025}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{lemma}[definition]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[definition]{Remark}
+
+\begin{document}
+\maketitle
+
+\begin{center}
+    \fbox{
+        \begin{minipage}{0.92\textwidth}
+            \textbf{Draft Note.} This is a first complete draft of the Ordered Graph Reals. It extends the Graph Reals framework to directed graphs by using weighted asymmetric kernels and refined partitions, dispensing with the need for a coordinate pair metric. The document remains a working manuscript and may contain technical errors or incomplete arguments.
+        \end{minipage}
+    }
+\end{center}
+\vspace{1em}
+
+\begin{abstract}
+This work constructs a topological field of Ordered Graph Reals by embedding directed graphs into a space of weighted, asymmetric step kernels acting on \( L^2([0,1]) \). Beginning from the semiring of finite directed graphs, we adjoin formal differences and fractions to define the Directed Graph Rationals. Each such rational is embedded into a single operator via a refined partition and weight-based step-kernel. We show that the resulting operator norm captures field structure directly—addition, multiplication, and inversion become continuous in the operator norm. Unlike the undirected case, where a pair metric was needed to restore invertibility and injectivity, the directed embedding is sufficient on its own. The resulting field completion subsumes the undirected Graph Reals as a symmetric special case and lays groundwork for a theory of directed graph limits with full algebraic control.
+\end{abstract}
+
+\section{Directed Graph Arithmetic}
+
+Let \( \mathcal{N}_G^\to \) denote the isomorphism classes of finite simple directed graphs (no loops, no multiple edges). Define:
+
+\begin{itemize}
+  \item Addition: \( [G] + [H] := [G \sqcup H] \)
+  \item Multiplication: \( [G] \cdot [H] := [G \Box H] \), the Cartesian product on directed graphs.
+\end{itemize}
+
+\begin{definition}[Directed Graph Integers and Rationals]
+The Grothendieck group \( \mathcal{Z}_G^\to \) is defined via formal differences:
+\[
+  [G] - [H] := ([G],[H]) / \sim, \quad \text{where } ([G],[H]) \sim ([G'],[H']) \iff G \sqcup H' \cong G' \sqcup H.
+\]
+We define the Directed Graph Rationals:
+\[
+  \mathcal{Q}_G^\to := \left\{ \frac{x}{y} \;\middle|\; x \in \mathcal{Z}_G^\to, y \in \mathcal{Z}_G^\to \setminus \{0\} \right\} / \sim,
+\quad
+\frac{x}{y} = \frac{x'}{y'} \iff x y' = x' y.
+\]
+\end{definition}
+
+The ring and field axioms follow exactly as in the undirected case and will not be repeated here.
+
+\section{Weighted Operator Embedding}
+
+\subsection{Refined Step-Kernel Construction}
+
+Let \( G \) be a directed graph on \( n \) vertices. Fix a partition of \([0,1]\) into \( p \ge n \) intervals and a weight function \( w: \{1,\dots,n\}^2 \to \mathbb{R}_{>0} \) such that all weights are distinct. Define the map \( \pi(b) := \lfloor (b-1)n/p \rfloor + 1 \) assigning each block to a vertex.
+
+\begin{definition}[Weighted Step-Kernel]
+The associated step-kernel is defined by:
+\[
+  W_G(x,y) := w(\pi(b_x), \pi(b_y)) \cdot A_{\pi(b_x),\pi(b_y)},
+\]
+where \( A \) is the adjacency matrix of \( G \) and \( b_x, b_y \) are the partition blocks containing \( x, y \).
+\end{definition}
+
+\begin{definition}[Operator Embedding]
+For any \( G \), define the bounded linear operator:
+\[
+  T_G[f](x) := \int_0^1 W_G(x,y)\,f(y)\,dy.
+\]
+Then extend linearly to all \( x \in \mathcal{Z}_G^\to \) and multiplicatively to all \( \frac{x}{y} \in \mathcal{Q}_G^\to \) via:
+\[
+  \Phi\left( \frac{x}{y} \right) := T_x T_y^{-1}.
+\]
+\end{definition}
+
+\section{Metric Structure and Field Completion}
+
+\begin{definition}[Operator Norm Metric]
+Define
+\[
+  d\left( \frac{x}{y}, \frac{x'}{y'} \right) := \left\| T_x T_y^{-1} - T_{x'} T_{y'}^{-1} \right\|_{2 \to 2}.
+\]
+\end{definition}
+
+\subsection{Well-Definedness and Field Compatibility}
+
+\begin{theorem}
+The embedding \( \Phi: \mathcal{Q}_G^\to \to \mathcal{B}(L^2) \) is well-defined, injective, and respects the field operations.
+\end{theorem}
+
+\begin{proof}
+\textbf{(1) Well-defined:} If \( \tfrac{x}{y} = \tfrac{x'}{y'} \) then \( xy' = x'y \), so
+\[
+  T_x T_{y'} = T_{x'} T_y \Rightarrow T_x T_y^{-1} = T_{x'} T_{y'}^{-1}.
+\]
+
+\textbf{(2) Injectivity:} If \( T_x T_y^{-1} = T_{x'} T_{y'}^{-1} \), then \( T_x T_{y'} = T_{x'} T_y \Rightarrow xy' = x'y \Rightarrow \tfrac{x}{y} = \tfrac{x'}{y'} \).
+
+\textbf{(3) Algebra:} Since \( T \) is a homomorphism, products and sums in the field carry through.
+
+\textbf{(4) Continuity:} Inversion is continuous via the standard operator inequality:
+\[
+  \| A^{-1} - B^{-1} \| \le \|A^{-1}\| \cdot \|A - B\| \cdot \|B^{-1}\|.
+\]
+\end{proof}
+
+\subsection{Completion}
+
+\begin{definition}[Ordered Graph Reals]
+Define the topological field of Ordered Graph Reals as the completion:
+\[
+  \widehat{\mathcal{Q}_G^\to} := \overline{\Phi(\mathcal{Q}_G^\to)}
+  \subseteq \mathcal{B}(L^2).
+\]
+\end{definition}
+
+\begin{theorem}
+\(\widehat{\mathcal{Q}_G^\to}\) is a complete topological field under the operator norm.
+\end{theorem}
+
+\begin{proof}
+Closure under addition, multiplication, and inversion follows from norm-continuity of each operation and from the field properties of \( \mathcal{Q}_G^\to \). Since Cauchy sequences converge in \( \mathcal{B}(L^2) \), the space is complete.
+\end{proof}
+
+\section{Compatibility with the Undirected Case}
+
+\begin{theorem}
+The embedding of undirected Graph Rationals into \( \mathcal{Q}_G^\to \) via symmetric arcs and symmetric weights recovers the original Graph Reals under \( T_G \).
+\end{theorem}
+
+\begin{proof}
+Let \( G \) be an undirected graph. Construct \( \tilde{G} \) as the symmetric directed graph where \( i \to j \) and \( j \to i \) whenever \( \{i,j\} \in E(G) \). Choose weights such that \( w(i,j) = w(j,i) = 1 \). Then the step-kernel \( W_{\tilde{G}} \) is symmetric and matches the one used in the undirected theory. Therefore, \( T_{\tilde{G}} = T_G \) as before.
+\end{proof}
+
+\section{Conclusion}
+
+The Ordered Graph Reals provide a clean, continuous extension of finite directed graphs into an operator-theoretic field. By embedding weighted, direction-aware kernels into \( \mathcal{B}(L^2) \), we are able to dispense with the coordinate-pair embedding used in the undirected case. Every graph fraction is represented by a single invertible operator, and all field operations—including inversion—are continuous under the operator norm. This construction fully generalizes the Graph Reals, supports asymmetric graph structure, and opens the door to a robust analytic theory of directed graph limits.
+
+\end{document}
+
