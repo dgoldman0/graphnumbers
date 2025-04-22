@@ -153,6 +153,27 @@ The additive identity is \([K_0] - [K_0]\), while the multiplicative identity is
 \vspace{0.5em}
 Therefore, \(\mathcal{Z}_G\) is a commutative ring with unity and no zero-divisors. It is an integral domain.
 \end{proof}
+
+\begin{theorem}
+  The Grothendieck ring $\mathcal Z_G$ is a \emph{unique factorization domain}.  In particular, every nonzero non‐unit $a\in\mathcal Z_G$ admits a factorization
+  \[
+    a = p_1\,p_2\cdots p_k,
+  \]
+  uniquely determined up to reorderings and multiplication by $\pm1$, where each $p_i$ is irreducible (hence prime) in~$\mathcal Z_G$.
+\end{theorem}
+\begin{proof}
+Under the isomorphism
+\[
+  \Psi:\mathcal Z_G \;\xrightarrow{\;\cong\;}\;\mathbb Z[x_P : P\in\mathcal P],
+\]
+each element of $\mathcal Z_G$ corresponds to a (Laurent‐free) polynomial in the indeterminates~$x_P$.
+Although $\mathbb Z[x_P\mid P\in\mathcal P]$ may have infinitely many variables, any specific polynomial involves only finitely many of them, say $x_{P_1},\dots,x_{P_n}$.  Thus
+\[
+  \Psi(a)\;\in\;\mathbb Z[x_{P_1},\dots,x_{P_n}],
+\]
+and that finite ring is known to be Noetherian and a UFD.  Existence and uniqueness of the factorization of $\Psi(a)$ into irreducibles in $\mathbb Z[x_{P_1},\dots,x_{P_n}]$ therefore transfers back, via $\Psi^{-1}$, to a unique irreducible decomposition of~$a$ in~$\mathcal Z_G$.  Finally, the only units in $\mathbb Z[x_P]$ are $\pm1$, so the only units in $\mathcal Z_G$ are $\pm([K_1]-[K_0])^0$.
+\end{proof}
+
 % --------------------------------------------------------------------
 % Section: Graph Rationals
 % --------------------------------------------------------------------
