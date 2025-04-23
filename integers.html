@@ -52,13 +52,13 @@
   <h2>1. The Grothendieck Ring of Graphs</h2>
   <p>
     Begin with \( \mathcal{N}_G \), the set of isomorphism classes of finite graphs under:
-    </p>
-    <ul>
-      <li>Addition: Disjoint union \( G + H := G \sqcup H \)</li>
-      <li>Multiplication: Cartesian product \( G \cdot H := G \square H \)</li>
-    </ul>
+  </p>
+  <ul>
+    <li>Addition: Disjoint union \( G + H := G \sqcup H \)</li>
+    <li>Multiplication: Cartesian product \( G \cdot H := G \square H \)</li>
+  </ul>
   <p>
-    The Grothendieck group \( \mathcal{Z}_G \) is formed by formally adjoining additive inverses: for any \( [G], [H] \), the element \( [G] - [H] \) represents a graph integer. This ring is embedded into the multivariate polynomial ring \( \mathbb{Z}[x_P : P \in \mathcal{P}] \), where \( \mathcal{P} \) is the set of connected Cartesian-prime graphs.
+    The Grothendieck group \( \mathcal{Z}_G \) is formed by formally adjoining additive inverses: for any \( [G], [H] \), the element \( [G] - [H] \) represents a graph integer. This ring embeds into the multivariate polynomial ring \( \mathbb{Z}[x_P : P \in \mathcal{P}] \), where \( \mathcal{P} \) is the set of connected Cartesian-prime graphs.
   </p>
 
   <h2>2. Unique Factorization Theorem</h2>
@@ -81,42 +81,55 @@
   <h2>4. Algorithmic Factorization</h2>
   <p>
     The factorization of \( \Psi(a) \in \mathbb{Z}[x_{P_1}, \dots, x_{P_n}] \) is achievable using classical algorithms:
-    </p>
-    <ul>
-      <li><strong>Hensel lifting</strong> to lift modular factorizations back to integer factors</li>
-      <li><strong>LLL-based recombination</strong> to recover multivariate irreducibles from univariate ones</li>
-      <li><strong>Berlekamp–Zassenhaus style fallback</strong> when LLL becomes inefficient</li>
-    </ul>
+  </p>
+  <ul>
+    <li><strong>Hensel lifting</strong> to lift modular factorizations back to integer factors</li>
+    <li><strong>LLL-based recombination</strong> to recover multivariate irreducibles from univariate ones</li>
+    <li><strong>Minkowski polytope decomposition</strong> to split supports combinatorially</li>
+  </ul>
   <p>
-    Every step is deterministic once a good prime \( p \) is selected and follows known complexity bounds in \( \deg(\Psi(a)) \) and coefficient bit-size.
+    These algorithms rely on recovering support structures internally equivalent to exponent vectors. While powerful, they are not always necessary for practical cases.
   </p>
 
-  <h2>5. Factorization of Actual Graphs</h2>
+  <h2>5. Purely Graph-Theoretic Factorization</h2>
+  <p>
+    An alternate approach works directly in \( \mathcal{Z}_G \), operating entirely through graph decomposition and combination:
+  </p>
+  <ul>
+    <li>Common Cartesian-prime factors are peeled off using the Imrich–Peterin decomposition in linear time.</li>
+    <li>Two-term and low-support expressions are exhaustively tested for divisibility by graph combinations like \( [P] \pm [Q] \), staying within the ring.</li>
+    <li>Division tests use only graph operations—Cartesian product, factor removal, and recombination—without constructing any exponent vectors.</li>
+  </ul>
+  <p>
+    While this graph-only method cannot fully eliminate the need for embedding-based routines in dense or pathological cases, it handles the vast majority of practical inputs and provides a clean algorithmic path rooted in graph theory alone.
+  </p>
+
+  <h2>6. Factorization of Actual Graphs</h2>
   <p>
     If \( a = [G] \) is a connected graph, the factorization is even simpler. Since \( \Psi([G]) = \prod_P x_P^{e_P(G)} \), one reads off the exponents directly from the prime decomposition of \( G \) under \( \square \). This decomposition is computable in <strong>linear time</strong> using the Imrich–Peterin algorithm.
   </p>
 
-  <h2>6. Failure Checks and Robustness</h2>
+  <h2>7. Failure Checks and Robustness</h2>
   <p>
     All standard failure modes of symbolic factorization are accounted for:
-    </p>
-    <ul>
-      <li>Square-free checks and content-stripping precede lifting</li>
-      <li>Bad primes are filtered using discriminant and support analysis</li>
-      <li>Degree and variable-ordering heuristics reduce risk of blow-up</li>
-    </ul>
+  </p>
+  <ul>
+    <li>Square-free checks and content-stripping precede lifting</li>
+    <li>Bad primes are filtered using discriminant and support analysis</li>
+    <li>Graph-centric routines gracefully handle dense or degenerate forms before falling back to full symbolic methods</li>
+  </ul>
   <p>
-    When applied to \( \mathcal{Z}_G \), the factorization procedure is provably correct and inherits the robustness of the classical algorithms.
+    When applied to \( \mathcal{Z}_G \), the factorization procedure is provably correct and inherits the robustness of both classical symbolic and graph-native algorithms.
   </p>
 
-  <h2>7. Structural Implications</h2>
+  <h2>8. Structural Implications</h2>
   <p>
-    The unique factorization property grounds the algebraic structure of graph arithmetic. It ensures that any expression involving disjoint unions and products can be broken into prime graph components canonically—providing a foundation for arithmetic reasoning about graph composition and transformation.
+    The unique factorization property grounds the algebraic structure of graph arithmetic. It ensures that any expression involving disjoint unions and products can be broken into prime Graph Integer components canonically—providing a foundation for arithmetic reasoning about graph composition and transformation. The availability of both graph-native and algebraic algorithms ensures flexibility across computational and theoretical contexts.
   </p>
 
-  <h2>8. Draft Status and Open Issues</h2>
+  <h2>9. Draft Status and Open Issues</h2>
   <p>
-    This exposition reflects a maturing but still exploratory phase of the theory. All operations are believed to be well-founded under the embedding \( \Psi \), and the algorithms match standard symbolic methods in behavior. Nonetheless, further verification and generalization may be required, especially in cases involving infinite primes or subtle edge cases in the Grothendieck ring. Ongoing work aims to formalize and automate these checks in proof assistants and CAS tooling.
+    This exposition reflects a maturing but still exploratory phase of the theory. All operations are believed to be well-founded under the embedding \( \Psi \), and the algorithms match standard symbolic methods in behavior. Nonetheless, further verification and generalization may be required, especially in dense settings where neither purely combinatorial nor purely algebraic methods alone are optimal. Ongoing work aims to unify these approaches into a hybrid framework suitable for formal proof systems and large-scale applications.
   </p>
 
 </body>
