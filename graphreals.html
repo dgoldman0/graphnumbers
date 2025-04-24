@@ -70,7 +70,24 @@
     \[
       T_x = T_{W_{G_x}} - T_{W_{H_x}}.
     \]
-    Here, \( W_G \) is a block-constant kernel derived from the adjacency matrix of \( G \), regularized to ensure positivity.
+  </p>
+  <p>
+    Concretely, if the raw step-kernel is
+    \[
+      W_G^0(x,y)
+      = \sum_{i,j=1}^n A_G(i,j)\,\mathbf1_{I_i}(x)\,\mathbf1_{I_j}(y),
+    \]
+    we choose
+    \(\displaystyle \lambda_G > -\min\spec(A_G)\)
+    and set
+    \[
+      W_G(x,y)
+      = W_G^0(x,y)
+      \;+\;\lambda_G\sum_{i=1}^n\mathbf1_{I_i\times I_i}(x,y).
+    \]
+    This “loop shift” \(+\lambda_G\delta_{ij}\) guarantees
+    \(A_G + \lambda_GI\) has no negative eigenvalues, so the integral operator
+    \(T_{W_G}\) is strictly positive and admits a bounded inverse in the polar decomposition.
   </p>
   <p>
     The operator embedding for a rational element \( x/y \) is defined as:
