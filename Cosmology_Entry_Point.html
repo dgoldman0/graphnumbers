@@ -132,7 +132,7 @@
       ghost coefficient \( \gamma \) over large regions and interprets
       \(\rho_g \propto \bar{\gamma}\) as an effective dark-energy–like component in a flat
       FRW universe with equation-of-state parameter \(w_g\). At background level, this
-      reproduces constant-\(w\) dark energy, but with a clear microphysical origin in
+      reproduces constant-\(w\) dark energy, with a microphysical origin in
       the kernel of the Graph Reals operator map.
     </li>
     <li style="margin-top:0.5rem;">
@@ -151,20 +151,51 @@
       observational tests using CMB, BAO, supernovae, and structure growth.
     </li>
   </ul>
-  <h3>1.3 Literature Review</h3>
+
+  <h3>1.3 Ghost Tracking Tests and Data Path</h3>
 
   <ul>
     <li>
-      <a href="Literature_Review.html">Graph Reals, Ghost Edges, and Cosmology — Literature Review</a>
+      <a href="Ghost_Tracking_Cosmology_Initial_Test.html">
+        Ghost Tracking Cosmology: Initial Test Suite and Constraints
+      </a>
+      <br/>
+      Applies the three test blocks defined in the model-and-strategy document
+      (early-universe, background expansion, and growth of structure) to the tracking
+      cosmology at a qualitative level. Summarizes how current CMB, BAO, supernova,
+      and growth data carve out viable regions in \((\Omega_g, f_{\text{trk}},
+      w_{g,\infty})\)-space and argues that the minimal tracking model survives present
+      observations while being meaningfully constrained.
+    </li>
+    <li style="margin-top:0.5rem;">
+      <a href="MCMC_Parameter_Estimation_Path.html">
+        MCMC Parameter Estimation Path
+      </a>
+      <br/>
+      Lays out a practical roadmap for full Bayesian parameter estimation of the
+      ghost tracking cosmology using a Boltzmann solver (such as CLASS or CAMB)
+      coupled to an MCMC engine (such as Cobaya or MontePython). Describes the
+      chosen parameterization, how to implement the tracking fluid in the background
+      and perturbation equations, which cosmological likelihoods to include, and how
+      to interpret posterior distributions and model-comparison statistics relative
+      to standard \(\Lambda\)CDM.
+    </li>
+  </ul>
+
+  <h3>1.4 Literature Review</h3>
+
+  <ul>
+    <li>
+      <a href="Literature_Review.html">
+        Graph Reals, Ghost Edges, and Cosmology — Literature Review
+      </a>
       <br/>
       Collects foundational references from graph limits, pregeometric models, relational
-      quantum frameworks, and modern cosmology. Demonstrates how the Graph Reals and
+      quantum frameworks, and modern cosmology. Shows how the Graph Reals and
       ghost-edge program fits naturally into existing mathematical and physical research.
       Includes annotated summaries and BibTeX entries for key works on graphons, emergent
       locality, causal sets, relational quantum mechanics, Planck cosmology, tracking
-      quintessence, early dark energy, and running vacuum models. Serves as the scholarly
-      context unifying the mathematical structure of Graph Reals with its cosmological
-      applications.
+      quintessence, early dark energy, and running vacuum models.
     </li>
   </ul>
   <h2>2. What This Framework Actually Does</h2>
