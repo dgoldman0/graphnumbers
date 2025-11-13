@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Ghost Tracking Cosmology – Model and Testing Strategy</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ghost Tracking Cosmology – Model and Testing Strategy" />
+  <meta property="og:description" content="A simple cosmological model where ghost edges track matter at early times and peel off into dark-energy–like behavior, with a concrete observational testing strategy." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/ghost-tracking-cosmology.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/ghost-tracking-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ghost Tracking Cosmology – Model and Testing Strategy" />
+  <meta name="twitter:description" content="Ghost edges as a tracking dark component: dust-like in the early universe, dark-energy–like at late times, with specific observational signatures." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/ghost-tracking-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/ghost-tracking-cosmology.html" />
+
+  <!-- Basic styling -->
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.2em;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .highlight {
+      background-color: #fffaf0;
+      border-left: 4px solid #e69138;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    ul {
+      margin-left: 1.2rem;
+    }
+  </style>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+<body>
+
+  <h1>Ghost Tracking Cosmology – Model and Testing Strategy</h1>
+
+  <p>
+    This page defines a simple cosmological model motivated by the Graph Reals framework and its
+    <em>ghost edge</em> sector. Ghost edges are relational degrees of freedom that live in the kernel
+    of an operator map and represent pure relation without geometric location. When coarse-grained
+    over cosmological scales, the ghost sector behaves as an effective fluid:
+  </p>
+
+  <ul>
+    <li>
+      At early times it tracks ordinary matter and looks like an extra dust component.
+    </li>
+    <li>
+      At late times it peels away and behaves like a dark-energy–like component with
+      equation-of-state parameter close to \(-1\).
+    </li>
+  </ul>
+
+  <p>
+    The goal here is to specify this <strong>ghost tracking cosmology</strong> cleanly and to outline a
+    testing strategy against cosmological data.
+  </p>
+
+  <h2>1. Model Overview</h2>
+
+  <p>
+    We work in a spatially flat FRW universe with scale factor \(a(t)\), Hubble parameter
+    \(H = \dot{a}/a\), and present-day Hubble parameter \(H_0\). Energy densities today are
+    encoded in the usual dimensionless parameters
+    \[
+      \Omega_r = \frac{\rho_{r0}}{\rho_{\text{crit},0}},\quad
+      \Omega_m = \frac{\rho_{m0}}{\rho_{\text{crit},0}},\quad
+      \Omega_g = \frac{\rho_{g0}}{\rho_{\text{crit},0}},
+    \]
+    with
+    \[
+      \rho_{\text{crit},0} = \frac{3H_0^2}{8\pi G}
+    \]
+    and flatness condition
+    \[
+      \Omega_r + \Omega_m + \Omega_g = 1.
+    \]
+  </p>
+
+  <p>
+    The ghost component is interpreted as the coarse-grained energy density of ghost edges in the
+    pregeometric Graph Reals description.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Ghost energy density).</strong>
+    Let \( \bar{\gamma}(a) \) denote the coarse-grained ghost edge content per unit comoving volume
+    at scale factor \( a \). The associated ghost energy density is
+    \[
+      \rho_g(a) = \Lambda_g \,\bar{\gamma}(a),
+    \]
+    where \( \Lambda_g \) is a fixed microscopic conversion scale.
+  </div>
+
+  <h2>2. Ghost Tracking Evolution Law</h2>
+
+  <p>
+    To model how ghost content evolves with the expansion of the universe, we introduce a simple
+    evolution equation in terms of \( \ln a \):
+    \[
+      \frac{d\bar{\gamma}}{d\ln a} + B\,\bar{\gamma}
+      = A\,\frac{\rho_m(a)}{\rho_{\text{crit},0}},
+      \quad A,B > 0.
+    \]
+  </p>
+
+  <p>
+    Here:
+  </p>
+
+  <ul>
+    <li>
+      The source term \( A\rho_m/\rho_{\text{crit},0} \) describes ghost edges being created wherever
+      matter exists: ghost relations are seeded by ordinary adjacency.
+    </li>
+    <li>
+      The damping term \( -B\bar{\gamma} \) encodes relaxation of ghost content toward a slowly
+      decaying background mode as the universe expands.
+    </li>
+  </ul>
+
+  <p>
+    For pressureless matter,
+    \[
+      \rho_m(a) = \rho_{m0} a^{-3}
+      = \Omega_m \rho_{\text{crit},0}\, a^{-3},
+    \]
+    the evolution equation becomes
+    \[
+      \frac{d\bar{\gamma}}{d\ln a} + B\,\bar{\gamma}
+      = A\Omega_m a^{-3}.
+    \]
+  </p>
+
+  <p>
+    Solving this linear equation yields
+    \[
+      \bar{\gamma}(a)
+      = \frac{A\Omega_m}{B-3}\,a^{-3} + C\,a^{-B},
+      \quad B \neq 3,
+    \]
+    with integration constant \(C\) fixed by the present value \( \bar{\gamma}_0 = \bar{\gamma}(1) \).
+    Consequently,
+    \[
+      \rho_g(a) = \Lambda_g \bar{\gamma}(a)
+      = C_1 a^{-3} + C_2 a^{-B},
+    \]
+    for suitable constants \(C_1, C_2\).
+  </p>
+
+  <h3>2.1 Parametrization in Terms of Tracking Fraction</h3>
+
+  <p>
+    It is convenient to encode the solution using the present ghost density \(\rho_{g0}\) and a
+    tracking fraction \(f_{\text{trk}}\), defined by
+    \[
+      f_{\text{trk}} := \frac{C_1}{\rho_{g0}},\quad 0 \le f_{\text{trk}} \le 1,\quad
+      \rho_{g0} = C_1 + C_2.
+    \]
+    Then
+    \[
+      \boxed{
+      \rho_g(a) = \rho_{g0} \left[
+        f_{\text{trk}}\,a^{-3} + (1-f_{\text{trk}})\,a^{-B}
+      \right].
+      }
+    \]
+  </p>
+
+  <p>
+    The ghost density in critical units becomes
+    \[
+      \frac{\rho_g(a)}{\rho_{\text{crit},0}}
+      = \Omega_g \left[
+        f_{\text{trk}}\,a^{-3} + (1-f_{\text{trk}})\,a^{-B}
+      \right].
+    \]
+  </p>
+
+  <h2>3. Background Expansion</h2>
+
+  <p>
+    The Friedmann equation for a flat universe with radiation, matter, and ghost dark energy reads
+    \[
+      \frac{H^2(a)}{H_0^2}
+      = \frac{\rho_r(a) + \rho_m(a) + \rho_g(a)}{\rho_{\text{crit},0}}.
+    \]
+  </p>
+
+  <p>
+    Using
+    \[
+      \frac{\rho_r(a)}{\rho_{\text{crit},0}} = \Omega_r a^{-4},\quad
+      \frac{\rho_m(a)}{\rho_{\text{crit},0}} = \Omega_m a^{-3},
+    \]
+    and the expression for \(\rho_g(a)\), we obtain
+    \[
+      \boxed{
+      \frac{H^2(a)}{H_0^2}
+      = \Omega_r a^{-4}
+      + \Omega_m a^{-3}
+      + \Omega_g\left[
+        f_{\text{trk}}\,a^{-3} + (1-f_{\text{trk}})\,a^{-B}
+      \right].
+      }
+    \]
+  </p>
+
+  <p>
+    Grouping the matter-like terms,
+    \[
+      \frac{H^2(a)}{H_0^2}
+      = \Omega_r a^{-4}
+      + \underbrace{\big(\Omega_m + f_{\text{trk}}\Omega_g\big)}_{\text{effective matter-like}}\,a^{-3}
+      + \Omega_g(1-f_{\text{trk}})\,a^{-B}.
+    \]
+  </p>
+
+  <p>
+    For \( 0 \le B < 3 \), the structure is:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Early times:</strong>
+      \( a \ll 1 \) ⇒ the \(a^{-3}\) terms dominate; ghost behaves effectively like an additional
+      dust component.
+    </li>
+    <li>
+      <strong>Late times:</strong>
+      \( a \gg 1 \) ⇒ the \(a^{-B}\) term dominates in the ghost sector; if \(B\) is small,
+      this acts like a slowly varying dark-energy–like component.
+    </li>
+  </ul>
+
+  <h2>4. Effective Ghost Equation of State</h2>
+
+  <p>
+    One can view the ghost sector as a single effective fluid with energy density \(\rho_g(a)\)
+    and effective equation-of-state parameter \(w_g(a)\) defined by
+    \[
+      \frac{d\rho_g}{d\ln a} = -3(1+w_g)\rho_g.
+    \]
+  </p>
+
+  <p>
+    From
+    \[
+      \rho_g(a) = \rho_{g0}\left[
+        f_{\text{trk}} a^{-3} + (1-f_{\text{trk}})a^{-B}
+      \right],
+    \]
+    we obtain
+    \[
+      \frac{d\rho_g}{d\ln a}
+      = \rho_{g0}\left[
+        -3 f_{\text{trk}} a^{-3} - B(1-f_{\text{trk}})a^{-B}
+      \right].
+    \]
+  </p>
+
+  <p>
+    Setting this equal to \(-3(1+w_g)\rho_g\) gives
+    \[
+      1 + w_g(a)
+      = \frac{f_{\text{trk}} a^{-3} + \frac{B}{3}(1-f_{\text{trk}})a^{-B}}
+             {f_{\text{trk}} a^{-3} + (1-f_{\text{trk}})a^{-B}},
+    \]
+    hence
+    \[
+      \boxed{
+      w_g(a)
+      = \frac{f_{\text{trk}} a^{-3} + \frac{B}{3}(1-f_{\text{trk}})a^{-B}}
+             {f_{\text{trk}} a^{-3} + (1-f_{\text{trk}})a^{-B}} - 1.
+      }
+    \]
+  </p>
+
+  <p>
+    Asymptotically:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Early universe, \( a \ll 1 \):</strong>
+      the term \(f_{\text{trk}} a^{-3}\) dominates in both numerator and denominator, so
+      \[
+        w_g(a \ll 1) \approx 0.
+      \]
+      Ghost energy behaves like dust.
+    </li>
+    <li>
+      <strong>Late universe, \( a \gg 1 \):</strong>
+      the term \((1-f_{\text{trk}})a^{-B}\) dominates, giving
+      \[
+        w_g(a \gg 1) \approx \frac{B}{3} - 1 = -1 + \frac{B}{3}.
+      \]
+    </li>
+  </ul>
+
+  <p>
+    Define the asymptotic late-time value
+    \[
+      w_{g,\infty} := -1 + \frac{B}{3},\quad 0 \le B < 3.
+    \]
+    One can invert this as
+    \[
+      B = 3(1 + w_{g,\infty}),
+    \]
+    and use \(w_{g,\infty}\) rather than \(B\) as a primary parameter for late-time behavior.
+  </p>
+
+  <h2>5. Parameter Set</h2>
+
+  <p>
+    A convenient set of parameters for the ghost tracking model is:
+  </p>
+
+  <ul>
+    <li>Usual cosmological parameters: \( \Omega_r, \Omega_m, H_0 \).</li>
+    <li>Ghost sector parameters:
+      <ul>
+        <li>\( \Omega_g \): present-day ghost density fraction.</li>
+        <li>\( f_{\text{trk}} \): fraction of ghost energy that historically tracked matter.</li>
+        <li>\( w_{g,\infty} \): late-time asymptotic equation-of-state value.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <p>
+    These satisfy
+    \[
+      \Omega_r + \Omega_m + \Omega_g = 1,
+    \]
+    with \(0 \le f_{\text{trk}} \le 1\) and \( -1 \le w_{g,\infty} < 0 \) (for \(0 \le B < 3\)),
+    if one wants a late-time component that interpolates between dust-like and dark-energy–like behavior.
+  </p>
+
+  <h2>6. Testing Strategy</h2>
+
+  <p>
+    The model is now specific enough to be constrained and potentially falsified by cosmological data.
+    The key idea is that the ghost sector obeys a highly restricted evolution:
+  </p>
+
+  <ul>
+    <li>
+      It behaves like extra dust in the early universe.
+    </li>
+    <li>
+      It transitions smoothly to a dark-energy–like component with fixed asymptotic \(w_{g,\infty}\).
+    </li>
+    <li>
+      The transition is controlled by just two parameters, \(f_{\text{trk}}\) and \(w_{g,\infty}\),
+      rather than an arbitrary function \(w(z)\).
+    </li>
+  </ul>
+
+  <h3>6.1 Early-Universe Constraints (CMB and BBN)</h3>
+
+  <p>
+    At early times (\(a \ll 1\), ignoring radiation for the moment), ghost energy behaves like dust:
+    \[
+      \rho_g(a) \approx \rho_{g0} f_{\text{trk}} a^{-3}.
+    \]
+  </p>
+
+  <p>
+    The effective matter-like density is then
+    \[
+      \rho_{\text{m,eff}}(a)
+      \approx \big(\Omega_m + f_{\text{trk}}\Omega_g\big)\rho_{\text{crit},0}\,a^{-3}.
+    \]
+  </p>
+
+  <p>
+    Precision measurements of the early universe (CMB anisotropies, Big Bang nucleosynthesis) tightly
+    constrain the effective matter density at high redshift. This yields bounds on the combination
+    \(\Omega_m + f_{\text{trk}}\Omega_g\), thus limiting the allowed early tracking fraction \(f_{\text{trk}}\)
+    for a given \(\Omega_g\).
+  </p>
+
+  <div class="highlight">
+    <strong>Early-universe test:</strong>
+    If the inferred early-time matter density from CMB/BBN excludes any reasonable
+    \(\Omega_m + f_{\text{trk}}\Omega_g\) combination compatible with late-time fits, the ghost tracking
+    model (in this form) is ruled out.
+  </div>
+
+  <h3>6.2 Background Expansion (SN, BAO, CMB Distance)</h3>
+
+  <p>
+    The Hubble history
+    \[
+      \frac{H^2(a)}{H_0^2}
+      = \Omega_r a^{-4}
+      + \big(\Omega_m + f_{\text{trk}}\Omega_g\big)a^{-3}
+      + \Omega_g(1-f_{\text{trk}})a^{-B}
+    \]
+    determines luminosity distances for supernovae, angular-diameter distances for BAO, and the
+    distance to the surface of last scattering in the CMB.
+  </p>
+
+  <p>
+    Observations can be used to fit the parameters \((\Omega_g, f_{\text{trk}}, w_{g,\infty})\) and to
+    check:
+  </p>
+
+  <ul>
+    <li>
+      Whether the data prefer a nonzero \(\Omega_g\) and a late-time \(w_{g,\infty} \neq -1\).
+    </li>
+    <li>
+      Whether the specific functional form \(\rho_g(a) \propto f_{\text{trk}} a^{-3} + (1-f_{\text{trk}})a^{-B}\)
+      can fit distance data as well as or better than \(\Lambda\)CDM or generic \(w\)CDM.
+    </li>
+    <li>
+      Whether the smooth, monotonic interpolation of \(w_g(a)\) from \(0\) to \(w_{g,\infty}\)
+      is compatible with reconstructed \(w(z)\).
+    </li>
+  </ul>
+
+  <div class="highlight">
+    <strong>Background test:</strong>
+    If distance data prefer a time variation of dark energy that lies outside the smooth,
+    two-parameter family implied by the ghost tracking law, the model is disfavored.
+  </div>
+
+  <h3>6.3 Growth of Structure</h3>
+
+  <p>
+    The ghost sector modifies the effective matter content and late-time expansion history, which in
+    turn affect the growth of linear perturbations. Schematically, the growth rate \(f\sigma_8(z)\)
+    depends on:
+  </p>
+
+  <ul>
+    <li>
+      The early-time effective matter fraction \(\Omega_m + f_{\text{trk}}\Omega_g\).
+    </li>
+    <li>
+      The detailed expansion history governed by \(\Omega_g, f_{\text{trk}}\), and \(w_{g,\infty}\).
+    </li>
+  </ul>
+
+  <p>
+    A distinctive feature of the tracking model is that early extra “dust-like” ghost content and
+    late-time dark-energy–like ghost content are not independent; they are linked through a single
+    fluid with a specific \(w_g(a)\).
+  </p>
+
+  <div class="highlight">
+    <strong>Growth test:</strong>
+    Compare the model’s predicted growth history, derived from the above \(H(a)\) and effective matter
+    fraction, with redshift-space distortions and weak lensing data. If the combination of background
+    and growth data cannot be fit by any \((\Omega_g, f_{\text{trk}}, w_{g,\infty})\), the ghost tracking
+    hypothesis in this minimal form is ruled out.
+  </div>
+
+  <h3>6.4 Distinctive Signatures</h3>
+
+  <p>
+    In summary, the ghost tracking model makes the following qualitative predictions:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Early extra dust:</strong> a small, matter-like contribution to the early universe energy
+      budget from ghost edges, parameterized by \(f_{\text{trk}}\Omega_g\).
+    </li>
+    <li>
+      <strong>Smooth interpolation of \(w_g(a)\):</strong> the ghost equation of state transitions
+      monotonically from \(w_g \approx 0\) at high redshift to \(w_{g,\infty} = -1 + B/3\) at late times.
+    </li>
+    <li>
+      <strong>Coupled early and late behavior:</strong> the amount of early tracking and the late-time
+      dark-energy behavior are tied together by a single evolution law, rather than being independent
+      free functions.
+    </li>
+    <li>
+      <strong>Coincidence framing:</strong> the onset of acceleration is linked to the dilution of matter
+      and the peeling off of the \(a^{-B}\) mode, providing a relational explanation for why dark energy
+      becomes important only when matter has diluted sufficiently.
+    </li>
+  </ul>
+
+  <p>
+    These features distinguish ghost tracking cosmology from both pure \(\Lambda\)CDM and completely
+    generic dynamical dark-energy models.
+  </p>
+
+  <h2>7. Outlook</h2>
+
+  <p>
+    The ghost tracking model provides a concrete, minimal bridge between pregeometric ghost edges
+    in Graph Reals and cosmological observables. It replaces a generic dark-energy fluid with a
+    single structured component whose early and late behavior are linked through a simple evolution law.
+  </p>
+
+  <p>
+    Future work can extend this framework to:
+  </p>
+
+  <ul>
+    <li>
+      Include perturbations in the ghost sector explicitly and track their impact on structure formation.
+    </li>
+    <li>
+      Derive the effective parameters \(f_{\text{trk}}\) and \(w_{g,\infty}\) from microscopic dynamics
+      in the Graph Reals algebra, rather than treating them as free.
+    </li>
+    <li>
+      Explore connections between ghost tracking behavior and other regimes, such as black holes
+      and the early universe, within the same pregeometric picture.
+    </li>
+  </ul>
+
+  <p>
+    As observational data continue to sharpen, this model offers a clear and testable way to ask whether
+    the dark sector could indeed be the large-scale shadow of relational degrees of freedom that standard
+    geometric operators do not see.
+  </p>
+
+</body>
+</html>
+
