@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Ghost Tracking Cosmology – Initial Pass Constraints</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ghost Tracking Cosmology – Initial Pass Constraints" />
+  <meta property="og:description" content="A first-pass synthesis of early-universe, background, and growth constraints on the ghost tracking cosmology model." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/ghost-tracking-initial-pass.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/ghost-tracking-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ghost Tracking Cosmology – Initial Pass Constraints" />
+  <meta name="twitter:description" content="Early-universe, background, and growth tests applied to the ghost tracking cosmology." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/ghost-tracking-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/ghost-tracking-initial-pass.html" />
+
+  <!-- Basic styling -->
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.2em;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    h3 {
+      margin-top: 1.5rem;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .highlight {
+      background-color: #fffaf0;
+      border-left: 4px solid #e69138;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .section-note {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    ul {
+      margin-left: 1.2rem;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 1em 0;
+      width: 100%;
+      font-size: 0.95em;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5em 0.6em;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .small {
+      font-size: 0.9em;
+    }
+  </style>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+<body>
+
+  <h1>Ghost Tracking Cosmology – Initial Pass Constraints</h1>
+
+  <p>
+    This page summarizes a first-pass synthesis of current constraints on the ghost tracking
+    cosmology model. The goal is not a full likelihood analysis, but a qualitative map of which
+    regions of parameter space remain viable once three tests are applied:
+  </p>
+
+  <ul>
+    <li>the <strong>early-universe test</strong> (CMB and BBN),</li>
+    <li>the <strong>background expansion test</strong> (SN, BAO, CMB distances), and</li>
+    <li>the <strong>growth test</strong> (redshift-space distortions and weak lensing).</li>
+  </ul>
+
+  <div class="section-note">
+    <strong>Parameter recap.</strong>
+    The model uses the parameters
+    \[
+      \Omega_r,\quad \Omega_m,\quad \Omega_g,\quad
+      f_{\text{trk}},\quad w_{g,\infty},
+    \]
+    with flatness \(\Omega_r + \Omega_m + \Omega_g = 1\). The ghost density evolves as
+    \[
+      \rho_g(a) = \rho_{g0}\left[f_{\text{trk}}\,a^{-3} + (1-f_{\text{trk}})a^{-B}\right],
+      \quad B = 3\bigl(1 + w_{g,\infty}\bigr),
+    \]
+    so that ghost energy tracks matter at early times and behaves like dark energy at late times.
+  </div>
+
+  <h2>1. Snapshot of Test Outcomes</h2>
+
+  <p>
+    Table&nbsp;1 summarizes how each test currently acts on the ghost sector, in the sense of a
+    qualitative “pass with constraints” versus clear exclusion or data-poor uncertainty.
+  </p>
+
+  <table>
+    <caption class="small"><strong>Table 1.</strong> Qualitative outcome of the three tests for the ghost tracking model.</caption>
+    <thead>
+      <tr>
+        <th>Test</th>
+        <th>Main observables</th>
+        <th>Effective constraint</th>
+        <th>Qualitative outcome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Early-universe test</td>
+        <td>
+          CMB anisotropies, CMB lensing, BBN-inferred baryon density.
+        </td>
+        <td>
+          Fixes the combination
+          \(\Omega_m + f_{\text{trk}}\Omega_g\) to the Planck-level matter density,
+          and restricts the early tracking contribution
+          \(f_{\text{trk}}\Omega_g\) to a small fraction of the total energy density
+          at recombination.
+        </td>
+        <td>
+          <strong>Passes, with upper bounds</strong> on
+          \(f_{\text{trk}}\Omega_g\).
+        </td>
+      </tr>
+      <tr>
+        <td>Background expansion test</td>
+        <td>
+          Type&nbsp;Ia SNe distances, BAO scale, and distance to last scattering.
+        </td>
+        <td>
+          Drives the Hubble history
+          \[
+            \frac{H^2(a)}{H_0^2}
+            = \Omega_r a^{-4}
+            + (\Omega_m + f_{\text{trk}}\Omega_g)a^{-3}
+            + \Omega_g(1-f_{\text{trk}})a^{-B}
+          \]
+          extremely close to the best-fit \(\Lambda\)CDM expansion history, keeping
+          \(w_{g,\infty}\) near \(-1\) and limiting large deviations.
+        </td>
+        <td>
+          <strong>Passes, with the ghost sector confined</strong> to a narrow
+          neighbourhood of the \(\Lambda\)CDM expansion history.
+        </td>
+      </tr>
+      <tr>
+        <td>Growth test</td>
+        <td>
+          Redshift-space distortions \(f\sigma_8(z)\),
+          galaxy clustering, weak lensing (\(S_8\)).
+        </td>
+        <td>
+          Favors a growth history with slightly suppressed clustering relative to
+          Planck \(\Lambda\)CDM, guiding \(\Omega_m\) toward values that can be
+          slightly lower, while \(\Omega_m + f_{\text{trk}}\Omega_g\) and
+          \(H(a)\) stay close to the background fit.
+        </td>
+        <td>
+          <strong>Passes, with growth data further trimming</strong> the allowed
+          region in \((\Omega_g, f_{\text{trk}}, w_{g,\infty})\)-space.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    In all three cases, current observations leave viable parameter space. The tests
+    act together as a set of strong priors shaping the ghost sector rather than
+    eliminating it.
+  </p>
+
+  <h2>2. Early-Universe Test – CMB and BBN</h2>
+
+  <p>
+    In the early universe the ghost sector contributes an additional dustlike piece,
+    \[
+      \rho_g(a) \approx \rho_{g0} f_{\text{trk}} a^{-3},
+    \]
+    which combines with ordinary matter to form an effective dust density
+    \[
+      \rho_{\text{m,eff}}(a)
+      \approx \bigl(\Omega_m + f_{\text{trk}}\Omega_g\bigr)\rho_{\text{crit},0}\,a^{-3}.
+    \]
+  </p>
+
+  <p>
+    CMB and BBN measurements fix the physical matter density
+    \(\omega_m = \Omega_{\text{m,eff}} h^2\) at roughly the percent level. This pins
+    \(\Omega_m + f_{\text{trk}}\Omega_g\) to the Planck value and restricts the size of
+    \(f_{\text{trk}}\Omega_g\) to the regime where the ghost contribution behaves like a modest
+    “early dark matter” component rather than a large extra dust reservoir.
+  </p>
+
+  <div class="highlight">
+    <strong>Outcome.</strong>
+    Early-universe data already require
+    \(\Omega_m + f_{\text{trk}}\Omega_g\) to match the Planck-inferred value and place
+    a clear upper bound on \(f_{\text{trk}}\Omega_g\). The ghost sector still has
+    room at the level of a few percent of the energy density at recombination, so
+    the early-universe test alone does not remove the model.
+  </div>
+
+  <h2>3. Background Expansion Test – Distances</h2>
+
+  <p>
+    The same combination \(\Omega_m + f_{\text{trk}}\Omega_g\) enters the background expansion
+    together with the late-time ghost mode:
+    \[
+      \frac{H^2(a)}{H_0^2}
+      = \Omega_r a^{-4}
+      + \bigl(\Omega_m + f_{\text{trk}}\Omega_g\bigr)a^{-3}
+      + \Omega_g(1-f_{\text{trk}})a^{-B}.
+    \]
+  </p>
+
+  <p>
+    Type&nbsp;Ia supernovae, BAO, and the CMB distance to last scattering already prefer
+    an expansion history extremely close to that of flat \(\Lambda\)CDM. Because the ghost
+    sector produces a smooth two-parameter family of \(w_g(a)\), and includes \(\Lambda\)CDM
+    as a special case, this test compresses
+    \((\Omega_g, f_{\text{trk}}, w_{g,\infty})\) into a narrow region where
+    \(H(a)\) essentially mirrors the \(\Lambda\)CDM best fit.
+  </p>
+
+  <div class="highlight">
+    <strong>Outcome.</strong>
+    Distance data encourage \(w_{g,\infty}\) values close to \(-1\) and limit large
+    tracking fractions, yet still admit a continuous band of ghost-tracking models
+    that reproduce the preferred \(\Lambda\)CDM-like expansion history.
+  </div>
+
+  <h2>4. Growth Test – Structure Formation</h2>
+
+  <p>
+    Linear growth responds both to the effective matter content and to the expansion
+    rate. In the tracking model, the growth rate \(f\sigma_8(z)\) depends on
+  </p>
+
+  <ul>
+    <li>the early-time effective matter fraction \(\Omega_m + f_{\text{trk}}\Omega_g\), and</li>
+    <li>the detailed expansion history controlled by \(\Omega_g, f_{\text{trk}}, w_{g,\infty}\).</li>
+  </ul>
+
+  <p>
+    Redshift-space distortions and weak lensing measurements currently lean toward
+    a growth amplitude slightly lower than that implied by Planck \(\Lambda\)CDM
+    extrapolated to late times. Within the tracking framework this behaviour is
+    captured by choosing \(\Omega_m\) a bit lower while holding
+    \(\Omega_m + f_{\text{trk}}\Omega_g\) and \(H(a)\) near the background best fit,
+    something the ghost sector accomplishes naturally.
+  </p>
+
+  <div class="highlight">
+    <strong>Outcome.</strong>
+    Growth data carve additional structure in the allowed region of
+    \((\Omega_g, f_{\text{trk}}, w_{g,\infty})\), favouring combinations that gently
+    suppress growth relative to a Planck-only \(\Lambda\)CDM fit. Within current
+    uncertainties the minimal ghost-tracking model remains compatible with these
+    measurements.
+  </div>
+
+  <h2>5. Interpretation and Next Steps</h2>
+
+  <p>
+    The three tests together give a coherent first picture:
+  </p>
+
+  <ul>
+    <li>
+      The ghost sector behaves as a tightly regulated companion to standard matter
+      and dark energy rather than a free-form additive component.
+    </li>
+    <li>
+      Early-universe and distance data strongly shape the model yet still admit a
+      continuous family of solutions with background expansion very close to the
+      Planck \(\Lambda\)CDM best fit.
+    </li>
+    <li>
+      Growth data encourage a mild shift in the balance between \(\Omega_m\) and the
+      ghost contribution, something the tracking law provides in a controlled way.
+    </li>
+  </ul>
+
+  <p>
+    A full parameter scan with a Boltzmann code and global likelihood analysis would
+    convert this qualitative map into quantitative bounds on
+    \(\Omega_g, f_{\text{trk}}, w_{g,\infty}\). The present initial pass already
+    indicates that the model clears the main observational hurdles and earns a more
+    detailed numerical treatment.
+  </p>
+
+  <h2>6. References</h2>
+
+  <ol class="small">
+    <li>
+      Planck Collaboration, “Planck 2018 results. VI. Cosmological parameters,”
+      <em>Astronomy &amp; Astrophysics</em> 641, A6 (2020), arXiv:1807.06209.
+    </li>
+    <li>
+      D. M. Scolnic et&nbsp;al., “The Pantheon+ Analysis: Cosmological Constraints,”
+      <em>Astrophysical Journal</em> 938, 113 (2022), arXiv:2112.03863.
+    </li>
+    <li>
+      S. Alam et&nbsp;al., “Completed SDSS-IV extended Baryon Oscillation Spectroscopic Survey:
+      Cosmological Implications from Two Decades of Spectroscopic Surveys at the Apache Point Observatory,”
+      <em>Physical Review D</em> 103, 083533 (2021), arXiv:2007.08991.
+    </li>
+    <li>
+      DES Collaboration, “Dark Energy Survey Year 3 Results: Cosmological Constraints from Weak Lensing and Galaxy Clustering,”
+      <em>Physical Review D</em> 105, 023520 (2022), arXiv:2105.13549.
+    </li>
+    <li>
+      KiDS Collaboration, “KiDS-1000 Cosmology: Cosmic shear constraints and comparison between two point statistics,”
+      <em>Astronomy &amp; Astrophysics</em> 646, A140 (2021), arXiv:2007.15633.
+    </li>
+    <li>
+      For early dark energy and growth-oriented analyses, see for example:
+      works by T. Karwal and M. Kamionkowski (2016), V. Poulin et&nbsp;al. (2019),
+      and later constraint studies on early dark energy and growth of structure.
+    </li>
+  </ol>
+
+</body>
+</html>
+
