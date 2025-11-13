@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Ghost Tracking Cosmology – MCMC Parameter Estimation</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ghost Tracking Cosmology – MCMC Parameter Estimation" />
+  <meta property="og:description" content="How to implement and run full MCMC parameter estimation for the ghost tracking cosmology using modern cosmological pipelines." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/ghost-tracking-mcmc.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/ghost-tracking-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ghost Tracking Cosmology – MCMC Parameter Estimation" />
+  <meta name="twitter:description" content="A concrete recipe for testing the ghost tracking cosmology with CLASS/CAMB and MCMC samplers." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/ghost-tracking-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/ghost-tracking-mcmc.html" />
+
+  <!-- Basic styling -->
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.2em;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    pre {
+      background: #f8f8f8;
+      padding: 0.75em;
+      overflow-x: auto;
+      border-radius: 4px;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .highlight {
+      background-color: #fffaf0;
+      border-left: 4px solid #e69138;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .section-note {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    ul {
+      margin-left: 1.2rem;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 1em 0;
+      width: 100%;
+      font-size: 0.95em;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 0.5em 0.6em;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f5f5f5;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .small {
+      font-size: 0.9em;
+    }
+  </style>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+<body>
+
+  <h1>Ghost Tracking Cosmology – MCMC Parameter Estimation</h1>
+
+  <p>
+    This page describes how to perform a full Markov Chain Monte Carlo (MCMC) analysis of the
+    ghost tracking cosmology. The aim is to turn the qualitative test suite into quantitative
+    constraints on the parameter set
+    \[
+      (\Omega_g,\; f_{\text{trk}},\; w_{g,\infty})
+    \]
+    alongside the usual cosmological parameters.
+  </p>
+
+  <div class="section-note">
+    <strong>Overview.</strong>
+    The basic workflow is:
+    <ol>
+      <li>Choose a parameterization of the ghost sector suitable for sampling.</li>
+      <li>Implement the ghost tracking fluid in a Boltzmann solver (e.g. CLASS or CAMB).</li>
+      <li>Connect the solver to an MCMC engine (e.g. Cobaya or MontePython).</li>
+      <li>Include standard likelihoods (CMB, BAO, SNe, growth) and run chains.</li>
+      <li>Analyse posteriors, derived parameters, and model comparisons.</li>
+    </ol>
+  </div>
+
+  <h2>1. Parameterization for MCMC</h2>
+
+  <p>
+    The ghost tracking cosmology is defined by a spatially flat FRW universe with radiation,
+    ordinary matter, and a ghost sector with density
+    \[
+      \rho_g(a)
+      = \rho_{g0}\left[f_{\text{trk}}\,a^{-3} + (1-f_{\text{trk}})\,a^{-B}\right],
+      \quad B = 3\bigl(1 + w_{g,\infty}\bigr),
+    \]
+    and the flatness condition
+    \[
+      \Omega_r + \Omega_m + \Omega_g = 1.
+    \]
+  </p>
+
+  <p>
+    For a cosmological MCMC analysis it is convenient to sample a set of parameters close to
+    the standard \(\Lambda\)CDM choices, augmented by the ghost sector:
+  </p>
+
+  <ul>
+    <li>Standard parameters:
+      \(\omega_b = \Omega_b h^2\),
+      \(\omega_c = \Omega_c h^2\),
+      \(h\),
+      \(n_s\),
+      \(A_s\) (or \(\ln(10^{10}A_s)\)),
+      and \(\tau_{\text{reio}}\).
+    </li>
+    <li>Ghost parameters:
+      \(\Omega_g\) (ghost fraction today),
+      \(f_{\text{trk}}\in[0,1]\) (tracking fraction),
+      and \(w_{g,\infty}\) (asymptotic late-time EoS).
+    </li>
+  </ul>
+
+  <p>
+    Flatness can either be enforced by deriving a separate cosmological constant from the
+    other parameters, or the model can be set up so the ghost sector accounts for all
+    late-time dark energy with no explicit \(\Omega_\Lambda\).
+  </p>
+
+  <div class="definition">
+    <strong>Example priors.</strong>
+    A simple first choice of broad, top-hat priors for the ghost sector is
+    \[
+      0 \le f_{\text{trk}} \le 0.3,\quad
+      0 \le \Omega_g \le 0.9,\quad
+      -1.2 \le w_{g,\infty} \le -0.8,
+    \]
+    reflecting early-universe and background-expansion expectations while remaining generous.
+  </div>
+
+  <h2>2. Ghost Tracking in a Boltzmann Solver</h2>
+
+  <p>
+    A full MCMC analysis requires embedding the ghost sector into a Boltzmann code such as
+    CLASS or CAMB. This section describes a practical implementation strategy.
+  </p>
+
+  <h3>2.1 Background evolution</h3>
+
+  <p>
+    The total ghost equation-of-state parameter is
+    \[
+      w_g(a)
+      = \frac{p_g}{\rho_g}
+      = \frac{(1-f_{\text{trk}})\,w_{g,\infty}\,a^{-B}}
+             {f_{\text{trk}}\,a^{-3} + (1-f_{\text{trk}})\,a^{-B}},
+    \]
+    which interpolates between dustlike behaviour (\(w_g\approx 0\)) at early times and
+    dark-energy–like behaviour (\(w_g\to w_{g,\infty}\)) at late times.
+  </p>
+
+  <p>
+    In the Boltzmann solver, the ghost sector appears in the Friedmann equation as
+    \[
+      \frac{H^2(a)}{H_0^2}
+      = \Omega_r a^{-4}
+      + \bigl(\Omega_m + f_{\text{trk}}\Omega_g\bigr)a^{-3}
+      + \Omega_g(1-f_{\text{trk}})a^{-B}.
+    \]
+  </p>
+
+  <div class="highlight">
+    <strong>Implementation strategy (background).</strong>
+    Add a “ghost tracking” dark energy option that:
+    <ul>
+      <li>reads \(\Omega_g, f_{\text{trk}}, w_{g,\infty}\) from the parameter file;</li>
+      <li>computes \(\rho_g(a)\) and \(w_g(a)\) using the tracking formula;</li>
+      <li>returns these to the background integrator alongside standard species.</li>
+    </ul>
+  </div>
+
+  <h3>2.2 Perturbations and clustering</h3>
+
+  <p>
+    The simplest perturbation prescription for an initial MCMC is to treat the ghost sector
+    as a smooth dark energy fluid with a large effective sound speed, so that perturbations
+    are negligible on sub-horizon scales. In this case, the main effect of the ghost sector
+    on growth arises through its influence on the background expansion and the effective
+    matter fraction.
+  </p>
+
+  <p>
+    A more detailed implementation can later split the ghost into two internal parts:
+  </p>
+
+  <ul>
+    <li>a dustlike component that clusters like cold dark matter, and</li>
+    <li>a dark-energy–like component with constant \(w_{g,\infty}\) and negligible clustering.</li>
+  </ul>
+
+  <p>
+    These two internal components share the total \(\Omega_g\) according to \(f_{\text{trk}}\),
+    and their joint dynamics reproduce the tracking law at the background level.
+  </p>
+
+  <h2>3. Verification Before Sampling</h2>
+
+  <p>
+    Before running MCMC chains it is useful to perform several consistency checks:
+  </p>
+
+  <ul>
+    <li>
+      <strong>ΛCDM limit.</strong>
+      Choose parameters that reduce the ghost sector to a standard cosmological constant
+      (for example \(f_{\text{trk}}=0\), \(w_{g,\infty}=-1\), and \(\Omega_g=\Omega_\Lambda\)).
+      Confirm that the code reproduces standard ΛCDM distances and CMB spectra.
+    </li>
+    <li>
+      <strong>Asymptotic behaviour.</strong>
+      Verify numerically that \(w_g(a)\to 0\) at small scale factor and
+      \(w_g(a)\to w_{g,\infty}\) at large scale factor.
+    </li>
+    <li>
+      <strong>Growth sanity checks.</strong>
+      Compare the predicted \(f\sigma_8(z)\) for a few ghost parameter choices
+      against semi-analytic expectations from the linear-growth equation.
+    </li>
+  </ul>
+
+  <h2>4. MCMC Framework and Likelihoods</h2>
+
+  <p>
+    Once the ghost sector is implemented in the Boltzmann solver, it can be connected to an
+    MCMC sampler. Modern options include Cobaya, MontePython, and CosmoMC.
+  </p>
+
+  <h3>4.1 Example configuration</h3>
+
+  <p>
+    As a concrete example, a Cobaya configuration might specify:
+  </p>
+
+  <ul>
+    <li>theory block pointing to the modified CLASS code with ghost tracking enabled;</li>
+    <li>parameter priors for standard and ghost parameters;</li>
+    <li>likelihoods for Planck CMB, BAO, supernovae, and late-time growth probes.</li>
+  </ul>
+
+  <p>
+    A schematic (non-functional) YAML snippet:
+  </p>
+
+  <pre><code>theory:
+  class:
+    path: /path/to/class
+    extra_args:
+      use_ghost_tracking: True
+
+params:
+  omega_b:
+    prior: {min: 0.02, max: 0.025}
+  omega_cdm:
+    prior: {min: 0.09, max: 0.15}
+  H0:
+    prior: {min: 60, max: 80}
+  ln10^{10}A_s:
+    prior: {min: 2.5, max: 3.7}
+  n_s:
+    prior: {min: 0.9, max: 1.05}
+  tau_reio:
+    prior: {min: 0.01, max: 0.1}
+
+  Omega_g:
+    prior: {min: 0.0, max: 0.9}
+  f_trk:
+    prior: {min: 0.0, max: 0.3}
+  w_g_inf:
+    prior: {min: -1.2, max: -0.8}
+
+likelihood:
+  planck_2018_highl_plik.TTTEEE: null
+  planck_2018_lowl.TT: null
+  planck_2018_lowl.EE: null
+  planck_2018_lensing.clik: null
+  bao_boss_dr12: null
+  pantheonplus: null
+  # add RSD and weak-lensing likelihoods
+
+sampler:
+  mcmc:
+    Rminus1_stop: 0.01
+    max_tries: 100000</code></pre>
+
+  <p>
+    The exact likelihood names and options follow the documentation of the chosen MCMC
+    framework and installed data sets.
+  </p>
+
+  <h3>4.2 Data combinations</h3>
+
+  <p>
+    Several data combinations are especially informative for the ghost sector:
+  </p>
+
+  <ul>
+    <li>
+      <strong>Planck CMB-only.</strong>
+      Dominates constraints on \(\Omega_m + f_{\text{trk}}\Omega_g\) and the early-universe
+      behaviour.
+    </li>
+    <li>
+      <strong>Planck + BAO + SNe.</strong>
+      Provides tight control of the background expansion history out to low redshift.
+    </li>
+    <li>
+      <strong>Growth-focused sets.</strong>
+      Redshift-space distortions and weak lensing constrain the growth of structure,
+      probing the balance between \(\Omega_m\) and the ghost contribution.
+    </li>
+  </ul>
+
+  <h2>5. Running Chains and Diagnosing Convergence</h2>
+
+  <p>
+    After configuring the theory and likelihoods, multiple MCMC chains can be run with
+    different starting points. Convergence diagnostics typically include:
+  </p>
+
+  <ul>
+    <li>
+      the Gelman–Rubin statistic \(R-1\) for each parameter (target values around 0.01),
+    </li>
+    <li>
+      effective sample size estimates for robust posterior summaries, and
+    </li>
+    <li>
+      visual inspection of trace plots for slow drifts or trapped chains.
+    </li>
+  </ul>
+
+  <p>
+    Once convergence is achieved, the combined chains can be used to produce:
+  </p>
+
+  <ul>
+    <li>marginalized posteriors for \(\Omega_g, f_{\text{trk}}, w_{g,\infty}\),</li>
+    <li>derived constraints on parameters such as \(S_8\) and \(H_0\), and</li>
+    <li>corner plots showing correlations between ghost and standard parameters.</li>
+  </ul>
+
+  <h2>6. Model Comparison and Variants</h2>
+
+  <p>
+    With a working MCMC pipeline in place, several comparison exercises become straightforward:
+  </p>
+
+  <ul>
+    <li>
+      <strong>ΛCDM vs ghost tracking.</strong>
+      Run a baseline ΛCDM chain with the same data and compare best-fit \(\chi^2\) values or
+      information criteria (AIC, BIC) to quantify any preference.
+    </li>
+    <li>
+      <strong>Early-universe vs late-universe slices.</strong>
+      Perform CMB-only and late-time-only runs to see how the ghost sector parameters move,
+      revealing which data primarily shape each direction in parameter space.
+    </li>
+    <li>
+      <strong>Growth-only fits.</strong>
+      Fix the background close to the best-fit expansion and allow the ghost sector freedom
+      when constrained only by growth data, directly exercising the growth test.
+    </li>
+  </ul>
+
+  <p>
+    These variations build intuition for how the ghost sector interacts with different
+    observational regimes and highlight possible future probes that are especially sensitive
+    to tracking behaviour.
+  </p>
+
+  <h2>7. References</h2>
+
+  <ol class="small">
+    <li>
+      J. Lesgourgues, “The Cosmic Linear Anisotropy Solving System (CLASS) I: Overview,”
+      <em>arXiv:1104.2932</em>.
+    </li>
+    <li>
+      A. Lewis and S. Bridle, “Cosmological parameters from CMB and other data: A Monte Carlo approach,”
+      <em>Physical Review D</em> 66, 103511 (2002), arXiv:astro-ph/0205436.
+    </li>
+    <li>
+      J. Torrado and A. Lewis, “Cobaya: Code for Bayesian Analysis of hierarchical physical models,”
+      <em>Journal of Cosmology and Astroparticle Physics</em> 05 (2021) 057, arXiv:2005.05290.
+    </li>
+    <li>
+      B. Audren et&nbsp;al., “Conservative constraints on early cosmology with MontePython,”
+      <em>Journal of Cosmology and Astroparticle Physics</em> 02 (2013) 001, arXiv:1210.7183.
+    </li>
+    <li>
+      Planck Collaboration, “Planck 2018 results. VI. Cosmological parameters,”
+      <em>Astronomy &amp; Astrophysics</em> 641, A6 (2020), arXiv:1807.06209.
+    </li>
+  </ol>
+
+</body>
+</html>
+
