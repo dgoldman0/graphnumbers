@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Sidorenko for C₄ in Graph Reals: Normalizing Inside the Field"/>
+  <meta property="og:description" content="A test case for Strategy A: recasting Sidorenko’s inequality for the 4-cycle using normalization inside the Graph Reals field."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://yourdomain.com/graph-reals-sidorenko-c4.html"/>
+  <meta property="og:image" content="https://yourdomain.com/images/graph-reals-sidorenko-preview.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Sidorenko for C₄ in Graph Reals: Normalizing Inside the Field"/>
+  <meta name="twitter:description" content="A worked example of Strategy A for Sidorenko’s conjecture using Graph Reals and the Graph–Field metric."/>
+  <meta name="twitter:image" content="https://yourdomain.com/images/graph-reals-sidorenko-preview.png"/>
+  <meta name="twitter:url" content="https://yourdomain.com/graph-reals-sidorenko-c4.html"/>
+
+  <title>Sidorenko for C₄ in Graph Reals: Normalizing Inside the Field</title>
+
+  <!-- MathJax for TeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script async id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.25em;
+      margin-top: 2em;
+    }
+    ul {
+      margin-left: 1.2em;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .theorem, .lemma, .proposition {
+      background-color: #fffbea;
+      border-left: 4px solid #d4a000;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .remark {
+      background-color: #f5f5f5;
+      border-left: 4px solid #888;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .example {
+      background-color: #f9f9ff;
+      border-left: 4px solid #4a90e2;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .tagline {
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sidorenko for C₄ in Graph Reals: Normalizing Inside the Field</h1>
+
+  <p class="tagline">
+    This page illustrates Strategy A for Sidorenko’s conjecture inside the
+    Graph Reals framework, using the 4-cycle \( C_4 \) as a test case and
+    normalizing entirely inside the field \( \mathbb{R}_G \).
+  </p>
+
+  <p>
+    Other pages in this series describe the construction of the Graph Reals
+    \( \mathbb{R}_G \) from graph rationals \( \mathcal{Q}_G \), the Graph–Field
+    metric \( d_{\mathrm{GF}} \), the Real slice, and the ghost edge. Here the
+    goal is narrower:
+  </p>
+
+  <ul>
+    <li>Recast Sidorenko’s inequality for \( C_4 \) using field normalization.</li>
+    <li>Write the normalized problem on a single level set in \( \mathbb{R}_G \).</li>
+    <li>Compute the first and second variation near the constant Graph Real.</li>
+  </ul>
+
+  <p>
+    The outcome is a clean local picture: in normalized coordinates the constant
+    Graph Real is a critical point of the \( C_4 \)-density functional, and the
+    second variation is a positive quadratic form related to the operator
+    embedding. This is a small but concrete glimpse of why Strategy A has
+    genuine bite.
+  </p>
+
+  <h2>1. Setup: Graphons, Graph Reals, and Operators</h2>
+
+  <p>
+    Let \( X \in \mathbb{R}_G \) be a <em>graphon-type</em> Graph Real, arising
+    as the limit (in the Graph–Field metric) of a Cauchy sequence of step-graph
+    rationals whose kernel operators converge to a symmetric kernel
+    \( W_X : [0,1]^2 \to \mathbb{R} \).
+  </p>
+
+  <p>
+    The operator embedding from the Graph Reals construction assigns
+    \[
+      T_X := \Psi(X),
+    \]
+    a bounded self-adjoint operator on \( L^2([0,1]) \) whose integral kernel
+    is \( W_X \) along the graphon slice. The Graph–Field metric
+    \( d_{\mathrm{GF}} \) is defined through
+    \[
+      G(q) = \bigl(\Psi(q),\, f(\|\Psi(q)\|)\Psi(q)^{-1}\bigr),
+    \]
+    and completion of \( (\mathcal{Q}_G, d_{\mathrm{GF}}) \) yields the field
+    \( \mathbb{R}_G \).
+  </p>
+
+  <p>
+    On the constant-denominator slice \( S = \{ x/1 : x \in \mathcal{Z}_G \} \),
+    the Graph–Field metric dominates both the operator norm and the graphon cut
+    metric. Convergence in \( d_{\mathrm{GF}} \) therefore implies convergence
+    in the usual graphon sense along this slice.
+  </p>
+
+  <h3>1.1. Homomorphism densities in operator form</h3>
+
+  <p>
+    For a graphon \( W_X \) attached to \( X \), let
+  </p>
+
+  <ul>
+    <li>
+      The edge density
+      \[
+        p(X) := t(K_2,X) = \iint W_X(x,y)\,dx\,dy.
+      \]
+    </li>
+    <li>
+      The \( C_4 \)-density
+      \[
+        t(C_4,X)
+          = \int W_X(x_1,x_2)W_X(x_2,x_3)
+                 W_X(x_3,x_4)W_X(x_4,x_1)\,dx_1\cdots dx_4.
+      \]
+    </li>
+  </ul>
+
+  <p>
+    On the operator side this satisfies the familiar identity
+    \[
+      t(C_4,X) = \mathrm{tr}(T_X^4),
+    \]
+    since expanding the trace of \( T_X^4 \) over an orthonormal basis yields
+    the same 4-fold integral as the graphon definition of \( t(C_4,\cdot) \).
+  </p>
+
+  <h2>2. Field Normalization for Sidorenko</h2>
+
+  <p>
+    Sidorenko’s inequality for \( C_4 \) in graphon form reads:
+  </p>
+
+  <div class="definition">
+    <strong>Sidorenko for \( C_4 \) (graphon version).</strong>
+    For every graphon \( W \),
+    \[
+      t(C_4,W) \;\ge\; t(K_2,W)^4.
+    \]
+  </div>
+
+  <p>
+    In terms of Graph Reals, this becomes a statement about \( X \in \mathbb{R}_G \)
+    whose kernel is \( W_X \). The Sidorenko ratio
+    \[
+      R_{C_4}(X) := \frac{t(C_4,X)}{p(X)^4}
+    \]
+    is well-defined whenever \( p(X)=t(K_2,X)>0 \).
+  </p>
+
+  <h3>2.1. Multiplying by the Real slice</h3>
+
+  <p>
+    The Real slice embedding \( \kappa:\mathbb{R}\to\mathbb{R}_G \) from the
+    Graph Reals construction satisfies
+    \[
+      \Psi(\kappa_a) = a I_{L^2}
+    \]
+    for every scalar \( a \). Multiplying a graphon-type Graph Real \( X \) by
+    \( \kappa_a \) scales its operator by \( a \):
+    \[
+      \Psi(\kappa_a X) = \Psi(\kappa_a)\Psi(X) = a\,T_X.
+    \]
+  </p>
+
+  <p>
+    For homomorphism densities this gives homogeneous scaling:
+  </p>
+
+  <ul>
+    <li>
+      Each edge in \( K_2 \) contributes one factor of \( a \), so
+      \[
+        t(K_2,\kappa_a X) = a\,t(K_2,X).
+      \]
+    </li>
+    <li>
+      Each edge in \( C_4 \) contributes one factor of \( a \), so
+      \[
+        t(C_4,\kappa_a X) = a^4\,t(C_4,X).
+      \]
+    </li>
+  </ul>
+
+  <p>
+    This is the key homogeneity property that Strategy A uses, now realized
+    as an internal operation of \( \mathbb{R}_G \).
+  </p>
+
+  <h3>2.2. Normalized Graph Reals</h3>
+
+  <p>
+    Let \( X\in\mathbb{R}_G \) be graphon-type with
+    \[
+      p(X) := t(K_2,X) > 0.
+    \]
+    Define the normalized Graph Real
+    \[
+      Y := \kappa_{p(X)^{-1}}\cdot X.
+    \]
+    The edge density of \( Y \) is
+    \[
+      t(K_2,Y) = t(K_2,\kappa_{p^{-1}}X)
+               = p(X)^{-1}\,t(K_2,X)
+               = 1.
+    \]
+    The \( C_4 \)-density scales as
+    \[
+      t(C_4,Y) = t(C_4,\kappa_{p^{-1}}X)
+               = p(X)^{-4} t(C_4,X)
+               = R_{C_4}(X).
+    \]
+  </p>
+
+  <div class="definition">
+    <strong>Normalized cone.</strong>
+    Let
+    \[
+      \mathcal{C} := \{\, Y\in\mathbb{R}_G : Y \text{ is graphon-type and }
+                                    t(K_2,Y)=1 \,\}
+    \]
+    be the normalized level set for the edge density functional.
+  </div>
+
+  <p>
+    Sidorenko’s inequality for \( C_4 \) is therefore equivalent to:
+  </p>
+
+  <div class="theorem">
+    <strong>Sidorenko for \( C_4 \) (field-normalized form).</strong>
+    For every graphon-type \( Y \in \mathcal{C} \),
+    \[
+      t(C_4,Y) \ge 1.
+    \]
+    In particular, the constant Graph Real \( Y_\star \in \mathcal{C} \)
+    with kernel \( W\equiv 1 \) satisfies
+    \[
+      t(C_4,Y) \ge t(C_4,Y_\star) = 1.
+    \]
+  </div>
+
+  <p>
+    The constant kernel \( W \equiv 1 \) has
+    \[
+      t(K_2,W)=1,\quad t(C_4,W)=1,
+    \]
+    so its Graph Real avatar \( Y_\star \) is the canonical base point in
+    the normalized cone \( \mathcal{C} \).
+  </p>
+
+  <h2>3. Local Coordinates Around the Constant Graph Real</h2>
+
+  <p>
+    To probe the geometry of \( t(C_4,\cdot) \) on \( \mathcal{C} \), consider
+    a small perturbation around \( Y_\star \). On the kernel side, write
+    \[
+      W_Y(x,y) = 1 + \varepsilon f(x,y),
+    \]
+    where \( f \) is symmetric and \( \varepsilon \) is a small parameter.
+  </p>
+
+  <h3>3.1. Edge-density constraint</h3>
+
+  <p>
+    The constraint \( t(K_2,Y) = 1 \) reads
+    \[
+      1 = t(K_2,Y)
+        = \iint (1+\varepsilon f(x,y))\,dx\,dy
+        = 1 + \varepsilon \iint f(x,y)\,dx\,dy + O(\varepsilon^2).
+    \]
+    Hence the first-order condition is
+    \[
+      \iint f(x,y)\,dx\,dy = 0.
+    \]
+  </p>
+
+  <p>
+    Tangent directions to \( \mathcal{C} \) at \( Y_\star \) therefore correspond
+    to symmetric functions \( f \) with zero global mean. These are precisely
+    the perturbations that preserve edge density at first order.
+  </p>
+
+  <h3>3.2. Operator representation</h3>
+
+  <p>
+    On the operator side, \( W_Y = 1+\varepsilon f \) corresponds to
+    \[
+      T_Y = T_1 + \varepsilon T_f,
+    \]
+    where:
+  </p>
+
+  <ul>
+    <li>
+      \( T_1: L^2\to L^2 \) is the rank-one operator
+      \[
+        (T_1 g)(x) = \int g(y)\,dy,
+      \]
+      projection onto the constant functions with eigenvalue 1.
+    </li>
+    <li>
+      \( T_f \) is the Hilbert–Schmidt operator with kernel \( f \).
+    </li>
+  </ul>
+
+  <p>
+    The \( C_4 \)-density satisfies
+    \[
+      t(C_4,Y) = \mathrm{tr}(T_Y^4)
+               = \mathrm{tr}\bigl( (T_1+\varepsilon T_f)^4 \bigr).
+    \]
+  </p>
+
+  <h2>4. First and Second Variation of \( t(C_4,Y) \)</h2>
+
+  <p>
+    Expanding \( T_Y^4 \) as a binomial in \( T_1 \) and \( T_f \) gives
+    \[
+      T_Y^4
+        = T_1^4
+          + 4\varepsilon T_1^3 T_f
+          + 6\varepsilon^2 T_1^2 T_f^2
+          + 4\varepsilon^3 T_1 T_f^3
+          + \varepsilon^4 T_f^4.
+    \]
+    Taking traces yields
+    \[
+      t(C_4,Y)
+        = \mathrm{tr}(T_1^4)
+          + 4\varepsilon\,\mathrm{tr}(T_1^3 T_f)
+          + 6\varepsilon^2\,\mathrm{tr}(T_1^2 T_f^2)
+          + O(\varepsilon^3).
+    \]
+  </p>
+
+  <h3>4.1. Zeroth and first order</h3>
+
+  <p>
+    The zeroth-order term is
+    \[
+      \mathrm{tr}(T_1^4) = \mathrm{tr}(T_1) = 1,
+    \]
+    which matches \( t(C_4,Y_\star)=1 \).
+  </p>
+
+  <p>
+    For the first variation, note that \( T_1^3 = T_1 \), so
+    \[
+      \mathrm{tr}(T_1^3 T_f) = \mathrm{tr}(T_1 T_f).
+    \]
+    In an orthonormal basis with \( e_0 \) proportional to the constant function
+    and the remaining basis vectors orthogonal to it, one has
+    \[
+      T_1 = | e_0 \rangle \langle e_0 |.
+    \]
+    The condition \( \iint f = 0 \) implies
+    \[
+      \langle e_0, T_f e_0 \rangle
+        = \iint f(x,y)\,dx\,dy = 0,
+    \]
+    and therefore
+    \[
+      \mathrm{tr}(T_1 T_f) = \langle e_0, T_f e_0 \rangle = 0.
+    \]
+  </p>
+
+  <p>
+    Hence the first-order term vanishes:
+    \[
+      \frac{d}{d\varepsilon} t(C_4,Y)\bigg|_{\varepsilon=0} = 0.
+    \]
+    The constant Graph Real \( Y_\star \) is a stationary point of
+    \( t(C_4,\cdot) \) on the normalized cone \( \mathcal{C} \).
+  </p>
+
+  <h3>4.2. Second order</h3>
+
+  <p>
+    The second-order term involves
+    \[
+      6\varepsilon^2\,\mathrm{tr}(T_1^2 T_f^2)
+      = 6\varepsilon^2\,\mathrm{tr}(T_1 T_f^2),
+    \]
+    since \( T_1^2 = T_1 \). Using the same basis,
+    \[
+      \mathrm{tr}(T_1 T_f^2)
+        = \langle e_0, T_f^2 e_0 \rangle
+        = \| T_f e_0 \|_2^2 \ge 0.
+    \]
+  </p>
+
+  <p>
+    Therefore
+    \[
+      \frac{d^2}{d\varepsilon^2} t(C_4,Y)\bigg|_{\varepsilon=0}
+        = 12 \, \| T_f e_0 \|_2^2
+        \ge 0.
+    \]
+  </p>
+
+  <div class="proposition">
+    <strong>Second variation at the constant Graph Real.</strong>
+    On the normalized cone \( \mathcal{C} \), the constant Graph Real
+    \( Y_\star \) is a stationary point of the functional
+    \( Y \mapsto t(C_4,Y) \). The second variation in tangent directions
+    given by zero-mean kernels \( f \) is
+    \[
+      \delta^2 t(C_4)[f]
+        = 12 \, \| T_f e_0 \|_2^2 \ge 0,
+    \]
+    with equality precisely when \( T_f e_0 = 0 \).
+  </div>
+
+  <p>
+    This yields a local minimality statement: in a Graph–Field neighborhood
+    of \( Y_\star \) inside \( \mathcal{C} \), any small normalized perturbation
+    can only increase \( t(C_4,\cdot) \) up to second order.
+  </p>
+
+  <h2>5. How Strategy A Appears in This Calculation</h2>
+
+  <p>
+    Several aspects of this computation highlight the advantages of normalizing
+    inside \( \mathbb{R}_G \).
+  </p>
+
+  <ul>
+    <li>
+      <strong>Internal normalization.</strong>
+      Edge density is absorbed into the field via the Real slice.
+      The normalized element
+      \[
+        Y = \kappa_{p(X)^{-1}} X
+      \]
+      lies on the level set \( t(K_2,Y)=1 \). The Sidorenko ratio for
+      \( C_4 \) becomes simply
+      \[
+        R_{C_4}(X) = t(C_4,Y),
+      \]
+      so Sidorenko is a minimization statement for a single functional on
+      the normalized hypersurface \( \mathcal{C} \).
+    </li>
+
+    <li>
+      <strong>Single base point with clean operator avatar.</strong>
+      The constant graphon \( W\equiv 1 \) corresponds to a canonical
+      Graph Real \( Y_\star\in\mathcal{C} \) with operator avatar
+      \( T_1 = |e_0\rangle\langle e_0| \). It sits at the center of this
+      normalized picture, and the local expansion of \( t(C_4,\cdot) \)
+      around it uses exactly the operators that define the Graph–Field
+      metric.
+    </li>
+
+    <li>
+      <strong>Operator-based variation compatible with the metric.</strong>
+      The perturbation \( T_Y = T_1 + \varepsilon T_f \) lives naturally
+      in the operator coordinate \( \Psi(X) \), and the second variation
+      involves \( \|T_f e_0\|_2^2 \), a quantity handled comfortably by
+      the analytic side of the Graph–Field setup.
+    </li>
+  </ul>
+
+  <p>
+    For \( C_4 \), the full Sidorenko inequality is known by direct analytic
+    arguments, so this computation serves as a consistency check and a
+    demonstration of technique. Similar expansions for other bipartite
+    graphs \( H \) may reveal patterns in the second variation that relate
+    to convexity or majorization properties within the normalized cone
+    \( \mathcal{C} \).
+  </p>
+
+  <h2>6. Outlook</h2>
+
+  <p>
+    This worked example shows how Strategy A packages Sidorenko’s inequality
+    into the geometry of a functional on a normalized hypersurface inside
+    \( \mathbb{R}_G \). For \( C_4 \), the constant Graph Real is a local
+    minimum of \( t(C_4,\cdot) \) on \( \mathcal{C} \), with a positive
+    second variation expressed in terms of the operator embedding.
+  </p>
+
+  <p>
+    The broader program is to:
+  </p>
+
+  <ul>
+    <li>
+      Extend this analysis to general bipartite \( H \), tracking
+      \( t(H,\cdot) \) along normalized Graph Reals.
+    </li>
+    <li>
+      Seek geodesic or convexity properties of \( \log t(H,\cdot) \)
+      along natural paths in \( \mathcal{C} \) defined through the
+      Graph–Field metric.
+    </li>
+    <li>
+      Combine these properties with the scalar–ghost decomposition from
+      the ghost-edge page to separate “random baseline” behavior from
+      structured contributions.
+    </li>
+  </ul>
+
+  <p>
+    Even modest convexity results inside this framework would give fresh
+    perspectives on Sidorenko-type inequalities, now phrased as geometric
+    statements in the field of Graph Reals.
+  </p>
+
+</body>
+</html>
+

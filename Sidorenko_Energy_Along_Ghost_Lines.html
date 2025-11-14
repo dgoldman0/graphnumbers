@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Sidorenko Energy Along Ghost Lines: A Toy Model Result in Graph Reals"/>
+  <meta property="og:description" content="A small but concrete convexity result for Sidorenko-type energy inside the Graph Reals framework, using the ghost edge direction."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://yourdomain.com/Sidorenko_Energy_Along_Ghost_Lines.html"/>
+  <meta property="og:image" content="https://yourdomain.com/images/graph-reals-sidorenko-preview.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Sidorenko Energy Along Ghost Lines: A Toy Model Result in Graph Reals"/>
+  <meta name="twitter:description" content="Sidorenko energy, ghost edges, and a one-parameter convexity result inside the Graph Reals field."/>
+  <meta name="twitter:image" content="https://yourdomain.com/images/graph-reals-sidorenko-preview.png"/>
+  <meta name="twitter:url" content="https://yourdomain.com/Sidorenko_Energy_Along_Ghost_Lines.html"/>
+
+  <title>Sidorenko Energy Along Ghost Lines: A Toy Model Result in Graph Reals</title>
+
+  <!-- MathJax for TeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script async id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.25em;
+      margin-top: 2em;
+    }
+    ul {
+      margin-left: 1.2em;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .tagline {
+      font-style: italic;
+      color: #555;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .theorem {
+      background-color: #fffbea;
+      border-left: 4px solid #d4a000;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .remark {
+      background-color: #f5f5f5;
+      border-left: 4px solid #888;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .example {
+      background-color: #f9f9ff;
+      border-left: 4px solid #4a90e2;
+      padding: 1em;
+      margin: 1em 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Sidorenko Energy Along Ghost Lines: A Toy Model Result in Graph Reals</h1>
+
+  <p class="tagline">
+    A small convexity result for Sidorenko-type energy inside the field of Graph Reals,
+    using the ghost edge as a one-dimensional test direction.
+  </p>
+
+  <p>
+    Other entries in this series introduce
+    the construction of <em>Graph Reals</em> \( \mathbb{R}_G \), the Graph–Field metric,
+    and the ghost edge \( \mathbb{E}_\varnothing \).
+    This note applies that machinery to a classical object from extremal graph theory:
+    <strong>Sidorenko’s conjecture</strong>.
+  </p>
+
+  <p>
+    The goal here is modest but concrete:
+    package Sidorenko’s inequality into a log-ratio that behaves like an “energy,”
+    extend it to Graph Reals along the graphon slice,
+    and then prove a simple convexity statement along one particular
+    one-parameter family of Graph Reals, the <em>ghost line</em>.
+  </p>
+
+  <h2>1. Sidorenko’s Conjecture and Energy</h2>
+
+  <p>
+    Let \( H \) be a finite bipartite graph.
+    For a graphon \( W:[0,1]^2 \to [0,1] \),
+    the homomorphism density of \( H \) in \( W \) is
+  </p>
+
+  <p>
+    \[
+      t(H,W)
+      = \int_{[0,1]^{V(H)}} \prod_{(i,j)\in E(H)}
+          W(x_i,x_j)\,dx.
+    \]
+  </p>
+
+  <p>
+    The edge density is the special case
+    \[
+      t(K_2,W) = \int_{[0,1]^2} W(x,y)\,dx\,dy.
+    \]
+  </p>
+
+  <p>
+    <strong>Sidorenko’s conjecture</strong> asserts that for each bipartite \( H \),
+    every graphon \( W \) obeys
+    \[
+      t(H,W) \;\ge\; t(K_2,W)^{e(H)}.
+    \]
+    The constant graphon \( W \equiv p \) gives equality.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Sidorenko energy).</strong>
+    For a graphon \( W \) with \( t(H,W) &gt; 0 \) and \( t(K_2,W) &gt; 0 \),
+    define the <em>Sidorenko energy</em> of \( H \) at \( W \) by
+    \[
+      \mathcal{E}_H(W)
+      := \log t(H,W) - e(H)\,\log t(K_2,W).
+    \]
+    Sidorenko’s inequality is equivalent to
+    \[
+      \mathcal{E}_H(W) \ge 0.
+    \]
+  </div>
+
+  <p>
+    In this logarithmic form,
+    the conjecture says that the constant graphons minimize
+    \( W \mapsto \mathcal{E}_H(W) \) among all graphons with a given edge density.
+  </p>
+
+  <h2>2. Graph Reals and the Graphon Slice</h2>
+
+  <p>
+    The Graph Reals \( \mathbb{R}_G \) arise by:
+  </p>
+
+  <ul>
+    <li>forming the graph rationals \( \mathcal{Q}_G \) from graph naturals and integers,</li>
+    <li>embedding \( \mathcal{Q}_G \) into bounded operators on a Hilbert space
+        via an operator map \( \Psi \),</li>
+    <li>equipping \( \mathcal{Q}_G \) with the Graph–Field metric \( d_{\mathrm{GF}} \)
+        built from \( \Psi(q) \) and its regularized inverse,</li>
+    <li>completing \( (\mathcal{Q}_G,d_{\mathrm{GF}}) \) to a topological field
+        \( \mathbb{R}_G \).</li>
+  </ul>
+
+  <p>
+    Along a suitable “graphon slice” of \( \mathcal{Q}_G \),
+    each element can be represented by a step kernel,
+    hence by a graphon \( W \), and the operator
+    \( \Psi(q) \) acts as the usual kernel operator \( T_W \) on \( L^2[0,1] \).
+    Limits in \( d_{\mathrm{GF}} \) along this slice recover graphon limits
+    in the cut metric and in operator norm.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Graphon-valued Graph Reals).</strong>
+    A Graph Real \( X \in \mathbb{R}_G \) is called
+    <em>graphon-valued</em> when the operator
+    \( \Psi(X) \) arises from a symmetric kernel
+    \( W_X:[0,1]^2\to[0,1] \) in the usual way.
+    On these elements one sets
+    \[
+      t(H,X) := t(H,W_X),\quad
+      t(K_2,X) := t(K_2,W_X),
+    \]
+    and defines the Sidorenko energy
+    \[
+      \mathcal{E}_H(X)
+        := \log t(H,X) - e(H)\,\log t(K_2,X).
+    \]
+  </div>
+
+  <p>
+    Graphon convergence in the cut metric follows from convergence in
+    \( d_{\mathrm{GF}} \) along that slice, so the same formulas extend
+    by continuity from graph rationals to the completed field.
+  </p>
+
+  <h2>3. The Ghost Edge and Ghost Line</h2>
+
+  <p>
+    The <em>ghost edge</em> \( \mathbb{E}_\varnothing \in \mathbb{R}_G \)
+    is constructed as a Cauchy limit of suitably normalized cycle or clique graphs.
+    It has three key properties:
+  </p>
+
+  <ul>
+    <li>\( v(\mathbb{E}_\varnothing) = 0 \) (zero vertex count),</li>
+    <li>\( e(\mathbb{E}_\varnothing) = 1 \) (unit edge count),</li>
+    <li>\( \Psi(\mathbb{E}_\varnothing) = 0 \) (zero kernel operator).</li>
+  </ul>
+
+  <p>
+    The last item is central for this note:
+    kernel-level quantities are blind to ghost edges.
+  </p>
+
+  <div class="definition">
+    <strong>Definition (Ghost line).</strong>
+    The <em>ghost line</em> in \( \mathbb{R}_G \) is the set
+    \[
+      L_{\mathrm{ghost}} := \{ a\,\mathbb{E}_\varnothing : a \in \mathbb{R} \}.
+    \]
+    Each element of \( L_{\mathrm{ghost}} \) carries a pure edge count
+    via \( e(a\,\mathbb{E}_\varnothing)=a \) and no vertex count or kernel.
+  </div>
+
+  <p>
+    For any \( X\in\mathbb{R}_G \) one can form the translated line
+    \[
+      X_\lambda := X + \lambda\,\mathbb{E}_\varnothing,
+    \]
+    a one-parameter family parallel to the ghost line.
+    At the level of counts, this changes the effective edge count
+    while leaving the operator \( \Psi(X) \) unchanged.
+  </p>
+
+  <h2>4. A Toy Model Convexity Result: Sidorenko Energy Along Ghost Lines</h2>
+
+  <p>
+    The following statement uses the ghost line to produce a one-dimensional
+    family of Graph Reals along which the Sidorenko energy
+    stays completely flat. This gives a first, simple “geodesic” for
+    Sidorenko energy inside \( \mathbb{R}_G \).
+  </p>
+
+  <div class="theorem">
+    <strong>Theorem (Ghost-line convexity of Sidorenko energy).</strong>
+    Let \( H \) be a bipartite graph.
+    Let \( X \in \mathbb{R}_G \) be a graphon-valued Graph Real with
+    \( t(H,X) &gt; 0 \) and \( t(K_2,X) &gt; 0 \).
+    For each real parameter \( \lambda \), define
+    \[
+      X_\lambda := X + \lambda\,\mathbb{E}_\varnothing.
+    \]
+    Then:
+    <ol>
+      <li>
+        Every \( X_\lambda \) has the same kernel operator as \( X \).
+      </li>
+      <li>
+        The Sidorenko energy satisfies
+        \[
+          \mathcal{E}_H(X_\lambda) = \mathcal{E}_H(X)
+          \quad\text{for all }\lambda\in\mathbb{R}.
+        \]
+        As a function of \( \lambda \), the map
+        \( \lambda \mapsto \mathcal{E}_H(X_\lambda) \)
+        is constant, hence convex.
+      </li>
+    </ol>
+  </div>
+
+  <h3>Proof</h3>
+
+  <p>
+    <strong>Step 1 (Kernel invariance).</strong>
+    The operator embedding \( \Psi \) is linear,
+    and the ghost edge satisfies \( \Psi(\mathbb{E}_\varnothing)=0 \).
+    Hence
+    \[
+      \Psi(X_\lambda)
+        = \Psi(X + \lambda\,\mathbb{E}_\varnothing)
+        = \Psi(X) + \lambda\,\Psi(\mathbb{E}_\varnothing)
+        = \Psi(X).
+    \]
+    Every \( X_\lambda \) corresponds to the same kernel \( W_X \),
+    so the underlying graphon is independent of \( \lambda \).
+  </p>
+
+  <p>
+    <strong>Step 2 (Homomorphism densities are ghost-blind).</strong>
+    Since \( X_\lambda \) and \( X \) share the same kernel \( W_X \),
+    the homomorphism densities coincide:
+    \[
+      t(H,X_\lambda) := t(H,W_{X_\lambda})
+        = t(H,W_X)
+        = t(H,X),
+    \]
+    and similarly for the edge density,
+    \[
+      t(K_2,X_\lambda) := t(K_2,W_{X_\lambda})
+        = t(K_2,W_X)
+        = t(K_2,X).
+    \]
+  </p>
+
+  <p>
+    <strong>Step 3 (Energy independence).</strong>
+    Plugging these identities into the definition of the Sidorenko energy gives
+    \[
+      \mathcal{E}_H(X_\lambda)
+        = \log t(H,X_\lambda) - e(H)\,\log t(K_2,X_\lambda)
+        = \log t(H,X) - e(H)\,\log t(K_2,X)
+        = \mathcal{E}_H(X)
+    \]
+    for every real \( \lambda \).
+    This function of \( \lambda \) is constant
+    and therefore convex on \( \mathbb{R} \).
+    \(\square\)
+  </p>
+
+  <h2>5. Interpretation and Next Directions</h2>
+
+  <p>
+    The theorem shows that along each line parallel to the ghost axis,
+    Sidorenko energy behaves in a very simple way: it stays fixed.
+    From the point of view of the log-ratio
+    \[
+      \mathcal{E}_H(X)
+        = \log t(H,X) - e(H)\,\log t(K_2,X),
+    \]
+    the ghost direction acts as a genuine null direction.
+  </p>
+
+  <div class="remark">
+    <strong>Remark (Shape vs mass).</strong>
+    The ghost component changes the effective edge count \( e(\cdot) \)
+    and related size information in \( \mathbb{R}_G \),
+    yet leaves the kernel \( W_X \) unchanged.
+    Sidorenko energy depends only on the “shape” of this kernel,
+    not on how much extra edge mass has been tucked into the ghost line.
+  </div>
+
+  <p>
+    In the scalar–ghost plane view,
+    the constant kernels (Erdős–Rényi graphons) live along a scalar line,
+    and ghost edges extend that line into a two-dimensional plane.
+    The result above says that, once one fixes the underlying kernel,
+    moving within the ghost direction has no effect on Sidorenko energy.
+  </p>
+
+  <p>
+    From a wider perspective,
+    this suggests organizing Sidorenko-type questions inside
+    \( \mathbb{R}_G \) on a reduced “shape space”
+    obtained by modding out ghost translations (and, if desired,
+    positive scalings of the kernel).
+    Nontrivial convexity or extremality statements for
+    \( \mathcal{E}_H \) on that reduced space would express genuine
+    structure theorems for Sidorenko graphs in a Graph-Reals language.
+  </p>
+
+  <p>
+    This short note focuses on a single one-parameter family
+    to illustrate how the ghost edge interacts with Sidorenko energy.
+    The same framework invites further questions, such as:
+  </p>
+
+  <ul>
+    <li>
+      geodesic convexity of \( \mathcal{E}_H \) along other
+      paths inside the graphon slice of \( \mathbb{R}_G \),
+      especially those interpolating between structured kernels
+      and their constant baselines;
+    </li>
+    <li>
+      spectral reinterpretations of \( t(H,X) \) in terms of
+      the operator \( \Psi(X) \), aimed at majorization-type
+      inequalities for eigenvalues;
+    </li>
+    <li>
+      flows in \( \mathbb{R}_G \) that preserve edge density
+      and drive \( X_t \) toward scalar–ghost baselines
+      while sending the Sidorenko energy steadily downward.
+    </li>
+  </ul>
+
+  <p>
+    Even though the theorem here is deliberately small,
+    it shows that Sidorenko’s conjecture can be discussed
+    directly inside the Graph Reals field and that the ghost edge
+    singles out clean null directions for Sidorenko energy.
+    This already hints that the richer geometry of \( \mathbb{R}_G \)
+    might support deeper convexity or flow-based approaches
+    to long-standing extremal problems.
+  </p>
+
+</body>
+</html>
+
