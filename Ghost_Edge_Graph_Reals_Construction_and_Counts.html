@@ -539,5 +539,45 @@
 
   <div class="remark">
     <strong>Ghost amplitude and distance from geometry.</strong>
-    On the plane \( P \), the coordinate \( s \) can be interpreted as
+    On the plane \( P \), the coordinate \( s \) can be interpreted as a
+    <em>ghost amplitude</em>:
+    \[
+      \mathrm{GhostAmp}(\kappa(r) + s\,\mathbb{E}_\varnothing) := s.
+    \]
+    More generally, for any Graph Real \( x \in \mathbb{R}_G \), one can define a
+    <em>distance to the Real slice</em>
+    \[
+      \mathrm{GeomDev}(x) :=
+        \inf_{r\in\mathbb{R}} d_G\bigl(x,\kappa(r)\bigr),
+    \]
+    which measures how far \( x \) sits from purely scalar geometry in the
+    Graph&ndash;Field Metric. Ghost-rich configurations have nonzero ghost amplitude
+    and typically lie at positive distance from the Real slice.
+  </div>
+
+  <h2>6. Summary</h2>
+
+  <p>
+    The Graph&ndash;Field Metric and its completion \( \mathbb{R}_G \) support a
+    precise treatment of the ghost edge:
+  </p>
+
+  <ul>
+    <li>Vertex and edge counts extend from finite graphs
+        through graph integers \( \mathcal{Z}_G \) and graph rationals \( \mathcal{Q}_G \)
+        to continuous maps \( v,e : \mathbb{R}_G \to \mathbb{R} \).</li>
+    <li>The unit cycle \( \mathbb{I}_\circ \) is a Graph Real with
+        \( v(\mathbb{I}_\circ)=1 \), \( e(\mathbb{I}_\circ)=1 \).</li>
+    <li>The ghost edge \( \mathbb{E}_\varnothing = \mathbb{I}_\circ - K_1 \) admits
+        consistent Cauchy representatives and satisfies
+        \( v(\mathbb{E}_\varnothing)=0 \), \( e(\mathbb{E}_\varnothing)=1 \).</li>
+    <li>The ghost line \( L_{\mathrm{ghost}} = \{a\,\mathbb{E}_\varnothing\} \) gives
+        a one-dimensional family of vertexless edge configurations inside \( \mathbb{R}_G \).</li>
+    <li>Together with the embedded real line, the ghost direction spans a
+        two-dimensional plane of Graph Reals where one coordinate captures scalar
+        geometry and the other captures residual relational structure.</li>
+  </ul>
+
+</body>
+</html>
 
