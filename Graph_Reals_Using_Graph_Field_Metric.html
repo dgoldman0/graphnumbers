@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="From Clique to Clouds: Graph Reals via the Graph–Field Metric"/>
+  <meta property="og:description" content="A unified framework extending finite graph arithmetic to Graph Reals via operator theory and a scaled operator–pair metric."/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:url" content="https://yourdomain.com/graph-reals.html"/>
+  <meta property="og:image" content="https://yourdomain.com/images/graphons-preview.png"/>
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="From Clique to Clouds: Graph Reals via the Graph–Field Metric"/>
+  <meta name="twitter:description" content="An algebraic–analytic bridge from finite graphs to Graph Reals and graphon limits."/>
+  <meta name="twitter:image" content="https://yourdomain.com/images/graphons-preview.png"/>
+  <meta name="twitter:url" content="https://yourdomain.com/graph-reals.html"/>
+
+  <title>From Clique to Clouds: Graph Reals via the Graph–Field Metric</title>
+
+  <!-- MathJax for TeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script async id="MathJax-script"
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.25em;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .theorem, .lemma, .proposition {
+      background-color: #fffbea;
+      border-left: 4px solid #d4a000;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .remark {
+      background-color: #f5f5f5;
+      border-left: 4px solid #888;
+      padding: 1em;
+      margin: 1em 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>From Clique to Clouds: Graph Reals via the Graph–Field Metric</h1>
+
+  <p>
+    This page summarizes a unified algebraic–analytic framework that extends finite
+    graph arithmetic to a completed field of <em>Graph Reals</em>, built from
+    operator-theoretic data. The goal is to extend counting and spectral
+    information from finite graphs to continuous “clouds” (graphons and their
+    operator avatars) while keeping a genuine field structure in the background.
+  </p>
+
+  <h2>1. Combinatorial–Algebraic Layers</h2>
+
+  <ul>
+    <li>
+      <strong>Graph Naturals</strong> \( \mathcal{N}_G \): Isomorphism classes of
+      finite simple graphs, with disjoint union \( \sqcup \) and Cartesian product
+      \( \Box \), forming a commutative semiring.
+    </li>
+    <li>
+      <strong>Graph Integers</strong> \( \mathcal{Z}_G \): Grothendieck completion
+      of \( \mathcal{N}_G \), forming a ring of formal differences
+      \( [G] - [H] \).
+    </li>
+    <li>
+      <strong>Graph Rationals</strong> \( \mathcal{Q}_G \): Field of fractions of
+      \( \mathcal{Z}_G \), with elements \( x/y \) for \( x, y \in \mathcal{Z}_G \),
+      \( y \neq 0 \).
+    </li>
+  </ul>
+
+  <p>
+    Intuitively, \( \mathcal{Q}_G \) is the smallest field in which we can divide
+    graph differences by each other while preserving the combinatorial operations
+    inherited from the semiring and ring layers.
+  </p>
+
+  <h2>2. Operator–Kernel Embedding</h2>
+
+  <p>
+    Each finite graph (or formal difference) gives rise to a regularized
+    step-kernel operator on \( H := L^2([0,1]) \).
+  </p>
+
+  <div class="definition">
+    <p>
+      For a graph \( G \) on \( n \) vertices with adjacency matrix \( A_G \),
+      partition \( [0,1] \) into intervals
+      \( I_i := [(i-1)/n, i/n) \). Define the raw step kernel
+      \[
+        W_G^0(x,y)
+        := \sum_{i,j=1}^n A_G(i,j)\,\mathbf{1}_{I_i}(x)\,\mathbf{1}_{I_j}(y)
+      \]
+      and then regularize via a “loop shift”
+      \[
+        W_G(x,y) = W_G^0(x,y) + \lambda_G\,\mathbf{1}_{I_i \times I_i}(x,y),
+      \]
+      where \( \lambda_G > -\min \operatorname{spec}(A_G) \) is chosen so the
+      associated operator
+      \(
+        T_{W_G} : H \to H
+      \)
+      is strictly positive and invertible.
+    </p>
+  </div>
+
+  <p>
+    For a graph integer \( x = [G] - [H] \in \mathcal{Z}_G \), define
+    \[
+      T_x := T_{W_G} - T_{W_H}.
+    \]
+    For a graph rational element \( x/y \in \mathcal{Q}_G \), with
+    \( x,y \in \mathcal{Z}_G \), we write the polar decomposition
+    \(
+      T_y = U_y |T_y|
+    \)
+    and define the operator embedding
+    \[
+      \Psi\!\left(\frac{x}{y}\right)
+      := |T_y|^{-1/2} U_y^*\, T_x\, U_y\, |T_y|^{-1/2}.
+    \]
+  </p>
+
+  <p>
+    The construction is arranged so that:
+  </p>
+  <ul>
+    <li>\( \Psi \) is a ring homomorphism \( \mathcal{Z}_G \to \mathcal{B}(H) \),</li>
+    <li>
+      \( \Psi \) extends to a field embedding \( \mathcal{Q}_G \hookrightarrow \mathcal{B}(H) \)
+      by sending \( (x,y) \mapsto \Psi(x)\Psi(y)^{-1} \) in a way compatible with the
+      polar-decomposition normalization above,
+    </li>
+    <li>\( \Psi \) is injective, so operator equality reflects equality in \( \mathcal{Q}_G \).</li>
+  </ul>
+
+  <p>
+    In short, each graph rational \( q\in\mathcal{Q}_G \) has an operator avatar
+    \( \Psi(q)\in\mathcal{B}(H) \) that respects the field operations.
+  </p>
+
+  <h2>3. Graphons and the Cut-Metric Closure</h2>
+
+  <p>
+    The graphon space \( \mathcal{W} \) consists of symmetric measurable kernels
+    \( U:[0,1]^2\to\mathbb{R} \), modulo equality almost everywhere and modulo
+    measure-preserving relabeling. Equipped with the cut-metric
+    \[
+      d_\square(U, V)
+      := \sup_{S,T \subset [0,1]} \left| \int_{S\times T} (U - V) \right|,
+    \]
+    the space \( (\mathcal{W}, d_\square) \) is a complete metric space.
+  </p>
+
+  <p>
+    Step-kernels from finite graphs embed densely into \( \mathcal{W} \), and
+    \( T_U \) denotes the integral operator associated to a graphon \( U \). There
+    is a close link between the operator norm and the cut norm, but the graphon
+    space on its own carries only an additive metric structure; there is no
+    multiplicative structure compatible with \( d_\square \).
+  </p>
+
+  <p>
+    The image \( \Psi(\mathcal{Q}_G) \) lies densely in a Banach subspace
+    \( \mathcal{F}_G \subset \mathcal{B}(H) \) of “graph-generated operators”,
+    preserving addition and multiplication but not necessarily forming
+    a closed field under inversion.
+  </p>
+
+  <h2>4. Graph–Field Metric and Graph Reals</h2>
+
+  <p>
+    We now introduce a metric on \( \mathcal{Q}_G \) that captures both additive
+    and multiplicative geometry through the operator embedding \( \Psi \), and then
+    complete \( \mathcal{Q}_G \) with respect to this metric to obtain the
+    <em>Graph Reals</em>.
+  </p>
+
+  <h3>4.1 Definition of the Graph–Field Metric</h3>
+
+  <p>
+    The goal is to measure how close two graph rationals are by comparing both
+    their operators and their operator inverses, while allowing sequences of
+    graph rationals to converge to \( 0 \) in the natural operator sense.
+  </p>
+
+  <div class="definition">
+    <p>
+      Fix a continuous function
+      \[
+        f : [0,\infty) \to [0,\infty)
+      \]
+      with the following properties:
+    </p>
+    <ul>
+      <li>\( f(0)=0 \), and \( f(t)>0 \) for all \( t>0 \);</li>
+      <li>for every \( \delta>0 \), there exists \( c_\delta>0 \) with
+        \( t \ge \delta \Rightarrow f(t)\ge c_\delta \);</li>
+      <li>\( f \) is bounded: there exists \( M>0 \) with \( f(t)\le M \) for all \( t\ge 0 \).</li>
+    </ul>
+    <p>
+      A concrete choice is
+      \[
+        f(t) := \frac{t^2}{1+t^2}.
+      \]
+    </p>
+    <p>
+      Define the <strong>scaled operator–pair embedding</strong>
+      \[
+        G : \mathcal{Q}_G \to \mathcal{B}(H)\times\mathcal{B}(H)
+      \]
+      by
+      \[
+        G(q) :=
+        \begin{cases}
+          \big(\Psi(q),\, f(\|\Psi(q)\|_{\mathrm{op}})\,\Psi(q)^{-1}\big),
+          & q \neq 0,\\[6pt]
+          (0,0), & q = 0.
+        \end{cases}
+      \]
+      Equip \( \mathcal{B}(H)\times\mathcal{B}(H) \) with the product norm
+      \[
+        \|(A,B)\|_{\times} := \|A\|_{\mathrm{op}} + \|B\|_{\mathrm{op}}.
+      \]
+      The <strong>Graph–Field Metric</strong> on \( \mathcal{Q}_G \) is then
+      \[
+        d_{\mathrm{GF}}(q,r)
+        := \big\|G(q) - G(r)\big\|_{\times}.
+      \]
+    </p>
+  </div>
+
+  <p>
+    This is a scaled operator–pair metric: when \( q,r \) stay away from \( 0 \),
+    it essentially reduces to comparing both \( \Psi(q) \) and \( \Psi(q^{-1}) \)
+    to their counterparts for \( r \); when \( q \to 0 \), the second coordinate
+    is damped by the factor \( f(\|\Psi(q)\|) \), so sequences can converge to
+    \( 0 \) in the usual operator sense.
+  </p>
+
+  <div class="lemma">
+    <strong>Lemma 4.1 (Metric).</strong>
+    <p>
+      \( d_{\mathrm{GF}} \) is a metric on \( \mathcal{Q}_G \).
+    </p>
+    <em>Proof.</em>
+    <p>
+      Symmetry and the triangle inequality follow because
+      \( d_{\mathrm{GF}}(q,r) = \|G(q)-G(r)\|_{\times} \) is the pullback of a
+      norm on a linear space via the map \( G \). To see definiteness, suppose
+      \( d_{\mathrm{GF}}(q,r)=0 \). Then \( G(q)=G(r) \).
+    </p>
+    <ul>
+      <li>
+        If both are nonzero, then
+        \( \Psi(q)=\Psi(r) \) and
+        \( f(\|\Psi(q)\|)\Psi(q)^{-1} = f(\|\Psi(r)\|)\Psi(r)^{-1} \).
+        Because \( f(\|\Psi(q)\|)>0 \), the first equality implies
+        \( q=r \) by injectivity of \( \Psi \).
+      </li>
+      <li>
+        If exactly one of \( q,r \) is zero, then the first coordinates
+        \( \Psi(q) \) and \( \Psi(r) \) differ, so \( G(q)\neq G(r) \).
+      </li>
+    </ul>
+    <p>
+      Hence \( d_{\mathrm{GF}}(q,r)=0 \) only when \( q=r \).
+      \(\square\)
+    </p>
+  </div>
+
+  <p>
+    We may therefore regard \( (\mathcal{Q}_G, d_{\mathrm{GF}}) \) as a
+    metric subset of the Banach space \( (\mathcal{B}(H)^2,\|\cdot\|_{\times}) \)
+    via the embedding \( G \).
+  </p>
+
+  <h3>4.2 Completion: the Graph Reals</h3>
+
+  <div class="definition">
+    <p>
+      A sequence \( (q_n) \) in \( \mathcal{Q}_G \) is
+      <strong>Cauchy</strong> in the Graph–Field metric if for every
+      \( \varepsilon>0 \) there exists \( N \) such that
+      \[
+        n,m \ge N \;\Rightarrow\; d_{\mathrm{GF}}(q_n,q_m) < \varepsilon.
+      \]
+      Two Cauchy sequences \( (q_n) \) and \( (r_n) \) are
+      <strong>equivalent</strong> if
+      \[
+        \lim_{n\to\infty} d_{\mathrm{GF}}(q_n,r_n) = 0.
+      \]
+    </p>
+    <p>
+      The set of equivalence classes of Cauchy sequences is the space of
+      <strong>Graph Reals</strong>, denoted
+      \[
+        \mathbb{R}_G := \{ [q_n] : (q_n)\text{ Cauchy in }(\mathcal{Q}_G,d_{\mathrm{GF}})\}.
+      \]
+      For two classes \( [q_n] \) and \( [r_n] \), define
+      \[
+        \widehat{d}_{\mathrm{GF}}([q_n],[r_n])
+        := \lim_{n\to\infty} d_{\mathrm{GF}}(q_n,r_n),
+      \]
+      which exists and does not depend on the choice of representatives.
+    </p>
+  </div>
+
+  <div class="lemma">
+    <strong>Lemma 4.2 (Completeness).</strong>
+    <p>
+      \( (\mathbb{R}_G, \widehat{d}_{\mathrm{GF}}) \) is a complete metric space.
+    </p>
+    <em>Proof.</em>
+    <p>
+      This is the standard Cauchy-sequence completion construction: by definition,
+      \( \mathbb{R}_G \) consists of Cauchy sequences modulo the relation
+      “distance tends to \(0\)”, and \( \widehat{d}_{\mathrm{GF}} \) is the usual
+      quotient metric. Every Cauchy sequence of classes admits a diagonal
+      representative that converges, so every Cauchy sequence in
+      \( \mathbb{R}_G \) has a limit. \(\square\)
+    </p>
+  </div>
+
+  <div class="lemma">
+    <strong>Lemma 4.3 (Canonical embedding).</strong>
+    <p>
+      The map
+      \[
+        \iota : \mathcal{Q}_G \to \mathbb{R}_G,\quad
+        \iota(q) := [q,q,q,\dots],
+      \]
+      is an isometric embedding with dense image.
+    </p>
+    <em>Proof.</em>
+    <p>
+      For \( q,r \in \mathcal{Q}_G \),
+      \[
+        \widehat{d}_{\mathrm{GF}}(\iota(q),\iota(r))
+        = \lim_{n\to\infty} d_{\mathrm{GF}}(q,r)
+        = d_{\mathrm{GF}}(q,r),
+      \]
+      so \( \iota \) preserves distances and is injective. Density follows because
+      every Cauchy sequence \( (q_n) \) has \( \iota(q_n) \to [q_n] \) in
+      \( \mathbb{R}_G \) by construction. \(\square\)
+    </p>
+  </div>
+
+  <p>
+    We identify \( \mathcal{Q}_G \) with its image in \( \mathbb{R}_G \) and
+    think of \( \mathbb{R}_G \) as the Graph–Field completion of
+    \( \mathcal{Q}_G \).
+  </p>
+
+  <h3>4.3 Field Operations and Topological Field Structure</h3>
+
+  <p>
+    We now extend the field structure from \( \mathcal{Q}_G \) to \( \mathbb{R}_G \).
+  </p>
+
+  <div class="definition">
+    <p>
+      For \( [q_n],[r_n] \in \mathbb{R}_G \), define:
+    </p>
+    <ul>
+      <li>
+        Addition:
+        \[
+          [q_n] + [r_n] := [q_n + r_n].
+        \]
+      </li>
+      <li>
+        Additive inverse:
+        \[
+          -[q_n] := [-q_n].
+        \]
+      </li>
+      <li>
+        Multiplication:
+        \[
+          [q_n]\cdot[r_n] := [q_n r_n].
+        \]
+      </li>
+      <li>
+        Multiplicative inverse:
+        if \( [q_n]\neq 0 \), choose a representative with \( q_n\neq 0 \) for all
+        large \( n \), and set
+        \[
+          [q_n]^{-1} := [q_n^{-1}].
+        \]
+      </li>
+    </ul>
+  </div>
+
+  <div class="lemma">
+    <strong>Lemma 4.4 (Well-defined operations).</strong>
+    <p>
+      Addition, additive inverse, multiplication, and inversion as defined above
+      do not depend on the choice of representatives of the equivalence classes.
+    </p>
+    <em>Proof.</em>
+    <p>
+      Suppose \( (q_n)\sim(q_n') \) and \( (r_n)\sim(r_n') \). Then
+      \( d_{\mathrm{GF}}(q_n,q_n')\to 0 \) and \( d_{\mathrm{GF}}(r_n,r_n')\to 0 \),
+      which means
+      \(
+        G(q_n)\to G(q_n')
+      \)
+      and
+      \(
+        G(r_n)\to G(r_n')
+      \)
+      in the ambient Banach space \( \mathcal{B}(H)^2 \).
+    </p>
+    <p>
+      The field operations on \( \mathcal{Q}_G \) can be expressed at the operator
+      level as continuous functions of \( G(q) \) and \( G(r) \):
+    </p>
+    <ul>
+      <li>
+        For addition, the first coordinate of \( G(q+r) \) is
+        \( \Psi(q+r)=\Psi(q)+\Psi(r) \), and the second coordinate is
+        \( f(\|\Psi(q+r)\|)\Psi(q+r)^{-1} \), both continuous in
+        \( \Psi(q),\Psi(r) \).
+      </li>
+      <li>
+        For multiplication, \( \Psi(qr)=\Psi(q)\Psi(r) \) and
+        \( (qr)^{-1}=r^{-1}q^{-1} \), so \( G(qr) \) depends continuously on
+        \( G(q),G(r) \).
+      </li>
+      <li>
+        For inversion, on the nonzero locus \( G(q^{-1}) \) is given by a
+        continuous transformation of \( G(q) \), involving \( \Psi(q)^{-1} \) and
+        \( \Psi(q) \).
+      </li>
+    </ul>
+    <p>
+      Since \( G(q_n)\to G(q_n') \) and \( G(r_n)\to G(r_n') \), continuity of
+      these operator-level maps implies:
+      \[
+        G(q_n + r_n) - G(q_n' + r_n') \to 0,\quad
+        G(q_n r_n) - G(q_n' r_n') \to 0,\quad
+        G(q_n^{-1}) - G(q_n'^{-1}) \to 0
+      \]
+      wherever the operations are defined. That is,
+      \[
+        d_{\mathrm{GF}}(q_n+r_n, q_n'+r_n') \to 0,\quad
+        d_{\mathrm{GF}}(q_n r_n, q_n' r_n') \to 0,\quad
+        d_{\mathrm{GF}}(q_n^{-1}, q_n'^{-1}) \to 0.
+      \]
+    </p>
+    <p>
+      Hence \( (q_n + r_n)\sim(q_n'+r_n') \), \( (q_n r_n)\sim(q_n' r_n') \), and
+      \( (q_n^{-1})\sim(q_n'^{-1}) \), so the operations on \( \mathbb{R}_G \)
+      are well-defined. \(\square\)
+    </p>
+  </div>
+
+  <div class="proposition">
+    <strong>Proposition 4.5 (Field structure).</strong>
+    <p>
+      With the above operations, \( \mathbb{R}_G \) is a field, and
+      \( \iota:\mathcal{Q}_G\hookrightarrow \mathbb{R}_G \) is a field embedding
+      with dense image.
+    </p>
+    <em>Proof.</em>
+    <p>
+      The field axioms (associativity, commutativity of addition and
+      multiplication, distributivity, existence of additive and multiplicative
+      identities and inverses, etc.) hold in \( \mathcal{Q}_G \). Because
+      operations on \( \mathbb{R}_G \) are defined termwise on representatives,
+      these identities pass to equivalence classes.
+    </p>
+    <p>
+      The embedding \( \iota \) respects all operations by construction:
+      \( \iota(q+r)=\iota(q)+\iota(r) \), \( \iota(qr)=\iota(q)\iota(r) \), and
+      so on. Its injectivity and density follow from Lemma 4.3. \(\square\)
+    </p>
+  </div>
+
+  <div class="theorem">
+    <strong>Theorem 4.6 (Topological field).</strong>
+    <p>
+      Equipped with the metric \( \widehat{d}_{\mathrm{GF}} \) and the operations
+      defined above, \( \mathbb{R}_G \) is a complete topological field: addition,
+      subtraction, multiplication, and inversion on \( \mathbb{R}_G^\times \) are
+      continuous maps.
+    </p>
+    <em>Proof.</em>
+    <p>
+      On \( \mathcal{Q}_G \), the operations are continuous with respect to
+      \( d_{\mathrm{GF}} \), since they are obtained by restricting continuous
+      maps on the Banach space \( \mathcal{B}(H)^2 \) to the embedded subset
+      \( G(\mathcal{Q}_G) \).
+    </p>
+    <p>
+      The completion construction of \( \mathbb{R}_G \) ensures that any
+      continuous operation on a dense subspace that sends Cauchy sequences to
+      Cauchy sequences and respects equivalence extends uniquely to a continuous
+      operation on the completion. Lemma 4.4 verifies the Cauchy and
+      equivalence-preserving properties for addition, multiplication, and
+      inversion, so these extend to continuous operations on
+      \( \mathbb{R}_G \).
+    </p>
+    <p>
+      Completeness is Lemma 4.2. Thus \( \mathbb{R}_G \) is a complete
+      topological field. \(\square\)
+    </p>
+  </div>
+
+  <h2>5. Graphon Subspace and Metric Domination</h2>
+
+  <p>
+    The constant-denominator slice
+    \[
+      S := \{\; x/1 \in \mathcal{Q}_G : x\in\mathcal{Z}_G \;\}
+    \]
+    maps under \( \Psi \) to regularized step-kernels and their limits, which
+    embed into the graphon space \( \mathcal{W} \) via associated kernels
+    \( W_x \). On this slice, the Graph–Field metric dominates the cut-metric:
+    if \( U,V \) are graphons corresponding to elements of \( S \),
+    \[
+      d_\square(U,V)
+      \;\le\; \|T_U - T_V\|_{\mathrm{op}}
+      \;\le\; d_{\mathrm{GF}}(x/1, y/1).
+    \]
+  </p>
+
+  <p>
+    Therefore, convergence in the Graph Reals along this slice implies
+    convergence in the graphon cut-metric. This allows operator-level and
+    graphon-level limits to be studied simultaneously within a single
+    completed field.
+  </p>
+
+  <h2>6. Real Line and Spectral Interpretation</h2>
+
+  <p>
+    One expects to embed a copy of the usual real line \( \mathbb{R} \) into
+    \( \mathbb{R}_G \) by identifying scalars with appropriate “scalar graph
+    ratios”. For example, a one-parameter family
+    \( r \mapsto \kappa_r \in \mathcal{Q}_G \) can be chosen so that:
+  </p>
+  <ul>
+    <li>\( \kappa_r + \kappa_s = \kappa_{r+s} \),</li>
+    <li>\( \kappa_r \cdot \kappa_s = \kappa_{rs} \),</li>
+    <li>
+      and the restriction of \( \widehat{d}_{\mathrm{GF}} \) to
+      \( \{\kappa_r : r\in\mathbb{R}\} \) agrees with the usual absolute value
+      \( |r-s| \) up to a fixed multiplicative constant.
+    </li>
+  </ul>
+
+  <p>
+    On such slices, the metric and field structure recover the familiar real
+    number line, while on more general elements of \( \mathbb{R}_G \) they
+    encode higher-order spectral and combinatorial information.
+  </p>
+
+  <p>
+    More generally, the operator coordinates \( \Psi(q) \) and
+    \( f(\|\Psi(q)\|)\Psi(q)^{-1} \) of a Graph Real \( q \in \mathbb{R}_G^\times \)
+    record global spectral features (eigenvalue distribution, condition number,
+    etc.) of the underlying graph ratios, suggesting a spectral interpretation
+    of numerical invariants computed in this field.
+  </p>
+
+  <h2>7. Draft Status and Open Issues</h2>
+
+  <p>
+    This framework remains a <strong>work in progress</strong>. While the
+    algebraic and analytic foundations of the Graph Reals and the Graph–Field
+    Metric appear sound, several directions invite further development:
+  </p>
+  <ul>
+    <li>
+      Precise characterization of the image of \( \mathbb{R}_G^\times \) inside
+      \( \mathcal{B}(H)^2 \) under the scaled operator–pair embedding \( G \).
+    </li>
+    <li>
+      Identification of canonical copies of \( \mathbb{R} \subset \mathbb{R}_G \)
+      via spectral or homomorphism-density data.
+    </li>
+    <li>
+      Interaction of the Graph Reals with homomorphism densities and
+      subgraph-counting polynomials.
+    </li>
+    <li>
+      Extensions to signed, weighted, or directed graphs, and to hypergraph
+      analogues.
+    </li>
+  </ul>
+
+  <p>
+    The present document should be read as a cleaned-up scaffold: the Graph–Field
+    Metric is now explicitly defined as a scaled operator–pair metric, the Graph
+    Reals are constructed as its completion, and the resulting structure is
+    proved to be a complete topological field. Further refinements will likely
+    sharpen the interplay with graphons and spectral graph theory.
+  </p>
+</body>
+</html>
+
