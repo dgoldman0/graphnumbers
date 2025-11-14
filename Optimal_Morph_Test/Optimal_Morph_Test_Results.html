@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta property="og:title" content="Constant-Denominator Slice Experiment: Operator-Linear Morph" />
+  <meta property="og:description" content="A grid-to-SBM morph inside the constant-denominator slice of the Graph Reals, used to probe geodesics and network statistics in the Graph–Field Metric." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/constant-denominator-morph.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/graphons-preview.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Constant-Denominator Slice Experiment: Operator-Linear Morph" />
+  <meta name="twitter:description" content="Spectral and combinatorial behaviour along a geodesic in the constant-denominator slice of the Graph Reals." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/graphons-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/constant-denominator-morph.html" />
+
+  <title>Constant-Denominator Slice Experiment: Operator-Linear Morph</title>
+
+  <!-- MathJax for LaTeX rendering -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.3em;
+      margin-top: 2em;
+    }
+    ul {
+      margin-left: 1.2em;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.2em 0.4em;
+      border-radius: 3px;
+    }
+    .definition {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .theorem, .lemma, .corollary {
+      background-color: #faf5ff;
+      border-left: 4px solid #7e57c2;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    .remark {
+      background-color: #f9f9f9;
+      border-left: 4px solid #999;
+      padding: 1em;
+      margin: 1em 0;
+    }
+    figure {
+      margin: 1.5em 0;
+    }
+    figure img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border: 1px solid #ddd;
+    }
+    figure figcaption {
+      font-size: 0.9em;
+      color: #555;
+      margin-top: 0.5em;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Constant-Denominator Slice Experiment: Operator-Linear Morph</h1>
+
+  <p>
+    This page records a numerical experiment inside a particular region of the
+    Graph Reals \( \mathbb{R}_G \): the <em>constant-denominator slice</em>.
+    The goal is to see how classical network statistics behave along an
+    operator-linear geodesic there, and to clarify exactly what kind of
+    morphing this tests.
+  </p>
+
+  <h2>1. The Constant-Denominator Slice of \( \mathbb{R}_G \)</h2>
+
+  <p>
+    The Graph Reals are built as the completion of the field of graph rationals
+    \( \mathcal{Q}_G \) under the Graph&ndash;Field Metric, defined via the
+    scaled operator&ndash;pair embedding
+    \[
+      G(q) = \bigl(\Psi(q),\, f(\|\Psi(q)\|)\,\Psi(q)^{-1}\bigr),
+    \]
+    with product norm
+    \(\|(A,B)\|_\times = \|A\|_{\mathrm{op}} + \|B\|_{\mathrm{op}}\).
+  </p>
+
+  <div class="definition">
+    <strong>Constant-denominator slice.</strong>
+    <p>
+      The constant-denominator slice is the subset
+      \[
+        S := \{\,x/1 \in \mathcal{Q}_G : x \in \mathcal{Z}_G\,\}
+      \subset \mathbb{R}_G.
+      \]
+      Under the operator embedding, this maps to pairs
+      \[
+        G(x/1) = \bigl(\Psi(x/1),\, f(\|\Psi(x/1)\|)\,\Psi(x/1)^{-1}\bigr),
+      \]
+      and in the operator&ndash;pair completion it appears as
+      \[
+        S \;\cong\; \{ (\Psi(x), \Psi(1)) : x \in \mathcal{Z}_G \},
+      \]
+      a linear subspace with a fixed second coordinate.
+    </p>
+  </div>
+
+  <p>
+    On this slice, each element corresponds to a graph-generated operator
+    \( T_x \) (or its limit) sitting on a uniform denominator background.
+    Step-kernels from finite graphs embed densely into this region, and their
+    associated graphons live inside the usual cut-metric space.
+  </p>
+
+  <div class="remark">
+    <strong>Why this slice is the right setting here.</strong>
+    <p>
+      The experiment concerns:
+    </p>
+    <ul>
+      <li>eigenvalues of a normalized adjacency operator \(T\),</li>
+      <li>triangle counts, clustering, and path lengths of sampled graphs,</li>
+      <li>and distances computed from interpolation \(T_t = (1-t)T_0 + tT_1\).</li>
+    </ul>
+    <p>
+      All of these are observables of the operator component \( \Psi(x/1) \)
+      and the graphs it generates on a fixed vertex space. They do not require
+      changes in the denominator geometry, so restricting to the constant
+      denominator slice isolates exactly the operator&ndash;level geometry that
+      drives these quantities.
+    </p>
+  </div>
+
+  <h2>2. Geodesics in the Constant-Denominator Slice</h2>
+
+  <p>
+    The image of \( S \) under the scaled operator&ndash;pair embedding lies
+    inside the Banach space \( \mathcal{B}(H)\times\mathcal{B}(H) \). The
+    distance between two points is
+    \[
+      d_{\mathrm{GF}}(q,r)
+        = \bigl\|G(q) - G(r)\bigr\|_\times.
+    \]
+    In any normed linear space, straight segments are constant-speed geodesics:
+    for
+    \[
+      Z(t) = (1-t)Z_0 + t Z_1,
+    \]
+    one has
+    \[
+      \|Z(t) - Z_0\|_\times = t\,\|Z_1 - Z_0\|_\times,
+      \qquad
+      \|Z(t) - Z_1\|_\times = (1-t)\,\|Z_1 - Z_0\|_\times.
+    \]
+  </p>
+
+  <div class="theorem">
+    <strong>Geodesics with fixed denominator.</strong>
+    <p>
+      Inside the constant-denominator slice, the image of \( S \) is a linear
+      subspace of \( \mathcal{B}(H)\times\mathcal{B}(H) \). For any two points
+      represented by operators \(T_0,T_1\) on the same Hilbert space, the path
+      \[
+        T_t = (1-t)T_0 + t T_1
+      \]
+      corresponds to a straight segment in the ambient space and therefore
+      realizes a constant-speed geodesic between the two endpoints within
+      this slice.
+    </p>
+  </div>
+
+  <p>
+    The experiment uses this geodesic structure as the definition of an
+    <em>optimal morph</em> between two graphs whose denominators (support
+    and measure) remain fixed.
+  </p>
+
+  <h2>3. Setup of the Numerical Experiment</h2>
+
+  <p>
+    Two graphs on \( n = 100 \) vertices are chosen:
+  </p>
+
+  <ul>
+    <li>\(G_0\): a \(10 \times 10\) grid (large diameter, very few triangles),</li>
+    <li>\(G_1\): a two-block stochastic block model (short diameter, high clustering).</li>
+  </ul>
+
+  <p>
+    Each is mapped to a symmetric normalized adjacency operator
+    \[
+      T_i = D_i^{-1/2} A_i D_i^{-1/2}, \quad i=0,1,
+    \]
+    a finite-dimensional version of the graphon operator \(T_{U_i}\). The
+    operator-linear morph is then
+    \[
+      T_t = (1-t) T_0 + t T_1,\quad t \in [0,1].
+    \]
+  </p>
+
+  <p>
+    For each \( t \), two things are done:
+  </p>
+  <ul>
+    <li>spectral data of \( T_t \) are computed (top eigenvalues),</li>
+    <li>a simple graph is sampled from a rescaled version of \( T_t \) and
+        classical statistics (triangles, clustering, path length) are measured.</li>
+  </ul>
+
+  <div class="remark">
+    <strong>What this test is actually checking.</strong>
+    <ul>
+      <li>That the operator-linear path is behaving as a genuine geodesic
+          between \(T_0\) and \(T_1\) inside the constant-denominator slice
+          (distance to each endpoint varies linearly along the path).</li>
+      <li>How classical network statistics respond along such a geodesic:
+          whether they change smoothly, exhibit sharp transitions, or show
+          structure reminiscent of phase changes.</li>
+      <li>How much of the complexity of “network morphing” is already present
+          in the numerator/operator layer, before any denominator or ghost
+          geometry is introduced.</li>
+    </ul>
+  </div>
+
+  <h2>4. Results</h2>
+
+  <h3>4.1 Spectral Behaviour</h3>
+
+  <figure>
+    <img src="fig1.png" alt="Top-k eigenvalues along operator-linear morph">
+    <figcaption>
+      Figure 1: Top \(k\) eigenvalues of \( T_t \) as a function of \( t \).
+      The leading eigenvalue stays near \(1\); the others dip and then rise
+      again as the morph moves from grid to SBM.
+    </figcaption>
+  </figure>
+
+  <p>
+    The leading eigenvalue sits close to \(1\), as expected for a symmetric
+    normalized adjacency with a dominant stationary mode. The remaining
+    eigenvalues vary smoothly with \(t\) and many follow a U-shaped curve:
+    they decrease from the grid endpoint, reach a minimum in the interior,
+    and then increase again near the SBM endpoint. This behaviour matches
+    the picture of a straight operator path inside the constant-denominator
+    slice: the path is geometrically simple in the Graph&ndash;Field metric,
+    yet passes through an intermediate regime with weaker coherent structure.
+  </p>
+
+  <h3>4.2 Triangles and Clustering</h3>
+
+  <figure>
+    <img src="fig2.png" alt="Triangle count and clustering along morph">
+    <figcaption>
+      Figure 2: Triangle counts (top) and average clustering (bottom) for
+      graphs sampled from \( T_t \).
+    </figcaption>
+  </figure>
+
+  <p>
+    Near \(t=0\), the grid has essentially no triangles and very low clustering.
+    Both statistics remain small for much of the morph, then mount sharply as
+    \(t\) approaches the SBM endpoint. The underlying path in operator space
+    is linear, yet motif counts respond in a strongly curved way.
+  </p>
+
+  <p>
+    This highlights a key phenomenon:
+    the Graph&ndash;Field geodesic in the constant-denominator slice is
+    spectrally smooth, while classical combinatorial statistics register
+    something much closer to a transition from “lattice-like” to
+    “community-rich” behaviour.
+  </p>
+
+  <h3>4.3 Average Path Length</h3>
+
+  <figure>
+    <img src="fig3.png" alt="Average shortest path along morph">
+    <figcaption>
+      Figure 3: Average shortest path length on the largest connected component
+      of sampled graphs along the morph.
+    </figcaption>
+  </figure>
+
+  <p>
+    The average shortest path length starts around \(8.5\) on the grid and
+    decreases steadily toward about \(2.4\) for the SBM. There is mild sampling
+    noise, but the overall trend moves smoothly downward as the morph progresses.
+  </p>
+
+  <p>
+    In geometric terms, the morph collapses a long-diameter lattice into a
+    dense, clustered graph along a constant-speed path in the
+    Graph&ndash;Field geometry. At intermediate times one already sees much
+    shorter paths but still modest clustering, reminiscent of small-world
+    effects where distances shrink before clustering fully appears.
+  </p>
+
+  <h3>4.4 Distances to Endpoints</h3>
+
+  <figure>
+    <img src="fig4.png" alt="Frobenius distances to endpoints along morph">
+    <figcaption>
+      Figure 4: Frobenius distances \( \|T_t - T_0\|_F \) and
+      \( \|T_t - T_1\|_F \) as functions of \( t \).
+    </figcaption>
+  </figure>
+
+  <p>
+    The curves \( \|T_t - T_0\|_F \) and \( \|T_t - T_1\|_F \) appear as clean
+    straight lines crossing at \( t \approx 0.5 \). Algebraically,
+    \[
+      T_t - T_0 = t (T_1 - T_0), \qquad
+      T_t - T_1 = (t-1)(T_1 - T_0),
+    \]
+    so
+    \[
+      \|T_t - T_0\|_F = t\,\|T_1 - T_0\|_F,\qquad
+      \|T_t - T_1\|_F = (1-t)\,\|T_1 - T_0\|_F.
+    \]
+    This is the numerical signature of a constant-speed geodesic segment in
+    the ambient norm.
+  </p>
+
+  <div class="remark">
+    <strong>Relation to the Graph–Field Metric.</strong>
+    <p>
+      The plots use the Frobenius norm for convenience, while the
+      Graph&ndash;Field Metric employs the operator norm in the product space.
+      Straight segments enjoy the same linearity property in either normed
+      setting:
+      \(\|Z(t)-Z_0\| = t\|Z_1-Z_0\|\), so this experiment gives direct
+      evidence that the operator-linear path behaves as a genuine geodesic
+      between \(T_0\) and \(T_1\) in the constant-denominator slice.
+    </p>
+  </div>
+
+  <h2>5. What We Learn From This Slice</h2>
+
+  <ul>
+    <li>
+      With denominator fixed, the operator-linear morph \(T_t\) is a clean
+      model of an <em>optimal morph</em> between graphs on a common support
+      in the Graph&ndash;Field geometry.
+    </li>
+    <li>
+      Classical observables along this geodesic (spectra, triangles,
+      clustering, path length) show structured behaviour: smooth spectral
+      evolution, sharply increasing clustering, and steadily shrinking
+      average distances.
+    </li>
+    <li>
+      The experiment isolates the contribution of the numerator/operator
+      structure, creating a baseline before introducing denominator
+      geometry and ghost directions. Any additional complexity observed
+      when those are allowed to vary can be understood relative to this
+      flat, constant-denominator starting point.
+    </li>
+  </ul>
+
+</body>
+</html>
+
