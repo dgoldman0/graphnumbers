@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Graph Reals and Network Theory – Literature Review</title>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Graph Reals and Network Theory – Literature Review" />
+  <meta property="og:description" content="Literature connecting Graph Reals and the Graph–Field metric to graph limits, spectral graph theory, random graphs, and complex network dynamics." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://yourdomain.com/Graph_Reals_Network_Literature_Review.html" />
+  <meta property="og:image" content="https://yourdomain.com/images/graph-reals-network-literature-preview.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Graph Reals and Network Theory – Literature Review" />
+  <meta name="twitter:description" content="Scholarly context for the Graph Reals program inside graph limits, spectral methods, random graph models, and network science." />
+  <meta name="twitter:image" content="https://yourdomain.com/images/graph-reals-network-literature-preview.png" />
+  <meta name="twitter:url" content="https://yourdomain.com/Graph_Reals_Network_Literature_Review.html" />
+
+  <!-- Basic styling -->
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.6;
+    }
+    h1, h2, h3 {
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.2em;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    h3 {
+      margin-top: 2rem;
+    }
+    a {
+      color: #0b63a8;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      background: #f8f8f8;
+      padding: 0.15em 0.35em;
+      border-radius: 3px;
+      font-size: 0.9em;
+    }
+    pre {
+      background: #f8f8f8;
+      padding: 0.75em;
+      overflow-x: auto;
+      border-radius: 4px;
+      font-size: 0.85em;
+    }
+    .section-note {
+      background-color: #f0f8ff;
+      border-left: 4px solid #007acc;
+      padding: 1em;
+      margin: 1em 0;
+    }
+  </style>
+
+  <!-- MathJax (if needed) -->
+  <script id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+
+<body>
+
+  <h1>Graph Reals and Network Theory – Literature Review</h1>
+
+  <p>
+    This document collects key references that place the Graph Reals /
+    Graph&ndash;Field metric program within existing work in graph limits,
+    spectral graph theory, random graph models, and complex network science.
+    Each entry includes: (i) a brief summary, (ii) how it connects to Graph
+    Reals and network theory, and (iii) a BibTeX snippet for use in a LaTeX
+    paper.
+  </p>
+
+  <div class="section-note">
+    <strong>Outline.</strong>
+    The review is organized into:
+    <ul>
+      <li>Graph limits and operator kernels (mathematical backbone).</li>
+      <li>Spectral graph theory and network geometry.</li>
+      <li>Random graph models and statistical network theory.</li>
+      <li>Network science and community structure.</li>
+      <li>Dynamical processes on networks.</li>
+      <li>Network distances, inference, and hypothesis testing.</li>
+    </ul>
+  </div>
+
+  <!-- A. Graph limits -->
+
+  <h2>A. Graph Limits and Operator Kernels</h2>
+
+  <h3>A.1 László Lovász – <em>Large Networks and Graph Limits</em></h3>
+
+  <p><strong>Summary.</strong><br/>
+    Lovász develops the modern theory of graph limits for dense graphs, with
+    graphons as measurable symmetric kernels \(W(x,y)\) that encode
+    homomorphism densities and serve as continuum representatives of large
+    networks. The monograph connects graphs, graphons, and integral operators
+    on \(L^2([0,1])\), and introduces convergence via the cut metric and
+    related tools.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Graph Reals adopt a very similar passage from finite graphs to operator
+    kernels, then enhance it by completing a field of graph rationals in a
+    metric that controls both cut-like and operator-norm distances. Lovász
+    supplies the underlying language of graphons, homomorphism densities, and
+    limit operators that appears throughout the Graph&ndash;Field construction
+    and the network-theoretic applications of \( \mathbb{R}_G \).
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@book{Lovasz2012Large,
+  author    = {L{\'a}szl{\'o} Lov{\'a}sz},
+  title     = {Large Networks and Graph Limits},
+  year      = {2012},
+  publisher = {American Mathematical Society},
+  series    = {Colloquium Publications},
+  volume    = {60},
+  address   = {Providence, RI},
+  isbn      = {978-0-8218-9085-1}
+}</pre>
+
+  <h3>A.2 Diaconis &amp; Janson – “Graph Limits and Exchangeable Random Graphs”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Diaconis and Janson link graph limit theory to the Aldous–Hoover
+    representation of exchangeable arrays. Dense random graphs generated by
+    graphons appear as exchangeable models whose distribution is determined by
+    a symmetric kernel. This yields a probabilistic foundation for graphon
+    limits and for viewing graphs as samples from underlying random kernels.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    The probabilistic viewpoint in this paper aligns closely with interpreting
+    random networks as measures on \( \mathbb{R}_G \). Exchangeability and
+    graphons provide one slice of such measures; the Graph&ndash;Field metric
+    extends the ambient space so that operator data, counts, and ghost
+    directions share a common geometry for random network models.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{Diaconis2008GraphLimits,
+  author  = {Persi Diaconis and Svante Janson},
+  title   = {Graph Limits and Exchangeable Random Graphs},
+  journal = {Rendiconti di Matematica},
+  volume  = {28},
+  pages   = {33--61},
+  year    = {2008}
+}</pre>
+
+  <!-- B. Spectral graph theory -->
+
+  <h2>B. Spectral Graph Theory and Network Geometry</h2>
+
+  <h3>B.1 Fan R. K. Chung – <em>Spectral Graph Theory</em></h3>
+
+  <p><strong>Summary.</strong><br/>
+    Chung’s monograph develops spectral graph theory for finite graphs,
+    focusing on Laplacians, eigenvalues, and their connections to expansion,
+    random walks, and isoperimetric inequalities. Spectral quantities appear
+    as bridges between combinatorial properties and analytic estimates on
+    graphs.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    In the Graph Reals framework, adjacency and Laplacian operators for
+    networks enter through the operator map \( \Psi \). Chung’s results
+    motivate viewing spectral radii, gaps, and eigenvectors as continuous
+    functionals on \( \mathbb{R}_G \) with good Lipschitz control in the
+    Graph&ndash;Field metric, which becomes important for stability of
+    network dynamics and for spectral test statistics.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@book{Chung1997Spectral,
+  author    = {Fan R. K. Chung},
+  title     = {Spectral Graph Theory},
+  year      = {1997},
+  publisher = {American Mathematical Society},
+  series    = {CBMS Regional Conference Series in Mathematics},
+  volume    = {92},
+  address   = {Providence, RI}
+}</pre>
+
+  <h3>B.2 Ulrike von Luxburg – “A Tutorial on Spectral Clustering”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Von Luxburg provides a widely cited tutorial that explains spectral
+    clustering through graph Laplacians, relaxation of graph cuts, and random
+    walks. The paper unifies several algorithms in terms of eigenvectors of
+    suitably normalized Laplacians and discusses practical aspects of
+    implementation.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Spectral clustering relies on eigenstructure of network operators. In
+    \( \mathbb{R}_G \), such operators arise as \( \Psi(X) \) for Graph Reals
+    \( X \), and their spectra vary continuously in the Graph&ndash;Field
+    metric along suitable slices. This suggests a path to express spectral
+    clustering, and more general operator-based embeddings, as continuous
+    maps on Graph Real space, which in turn assists with studying limits of
+    clustering as networks converge in \( d_{\mathrm{GF}} \).
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{vonLuxburg2007SpectralClustering,
+  author  = {Ulrike von Luxburg},
+  title   = {A Tutorial on Spectral Clustering},
+  journal = {Statistics and Computing},
+  volume  = {17},
+  number  = {4},
+  pages   = {395--416},
+  year    = {2007}
+}</pre>
+
+  <!-- C. Random graphs -->
+
+  <h2>C. Random Graph Models and Statistical Network Theory</h2>
+
+  <h3>C.1 Erdős &amp; Rényi – “On the Evolution of Random Graphs”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Erdős and Rényi introduce the classical \(G(n,p)\) random graph model and
+    analyze phase transitions in connectivity, the emergence of a giant
+    component, and related threshold phenomena as \(n\) grows. This work
+    anchors the theory of random graphs and large network structure.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    In Graph Reals, sequences of \(G(n,p)\) graphs define random elements of
+    \( \mathbb{R}_G \) whose limits lie on the constant graphon slice. This
+    provides a simple example of probability measures on Graph Real space and
+    clarifies how classical thresholds appear as properties of random
+    trajectories in \( (\mathbb{R}_G,d_{\mathrm{GF}}) \).
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{Erdos1960Evolution,
+  author  = {Paul Erd{\H{o}}s and Alfr{\'e}d R{\'e}nyi},
+  title   = {On the Evolution of Random Graphs},
+  journal = {Publications of the Mathematical Institute of the Hungarian Academy of Sciences},
+  volume  = {5},
+  pages   = {17--61},
+  year    = {1960}
+}</pre>
+
+  <h3>C.2 Béla Bollobás – <em>Random Graphs</em></h3>
+
+  <p><strong>Summary.</strong><br/>
+    Bollobás’s book surveys the theory of random graphs, including
+    \(G(n,p)\), degree-driven models, subgraph counts, thresholds, and
+    limiting distributions. It supplies a detailed asymptotic picture for
+    many graph properties under random graph ensembles.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Random graph ensembles in this sense induce measures on \( \mathbb{R}_G \)
+    that go beyond a single parameter \(p\), especially once weighted or
+    structured variants are considered. The Graph&ndash;Field metric offers a
+    setting to study convergence in distribution for such ensembles, including
+    kernel limits, size parameters, and ghost components as in the broader
+    Graph Reals program.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@book{Bollobas2001RandomGraphs,
+  author    = {B{\'e}la Bollob{\'a}s},
+  title     = {Random Graphs},
+  edition   = {2},
+  publisher = {Cambridge University Press},
+  address   = {Cambridge},
+  year      = {2001}
+}</pre>
+
+  <h3>C.3 Bickel &amp; Chen – “A Nonparametric View of Network Models and Newman–Girvan and Other Modularities”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Bickel and Chen analyze stochastic block models and related community
+    models from a nonparametric standpoint, expressing them in a graphon
+    language and studying consistency of community detection criteria such as
+    modularity. The paper connects block models, graphon estimation, and
+    statistical risk.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Their graphon viewpoint resonates with interpreting network models as
+    distributions on operator kernels. In Graph Reals, these models sit inside
+    \( \mathbb{R}_G \) as families of random elements, and modularity-type
+    functionals become Graph&ndash;Field–Lipschitz statistics. This blends
+    nonparametric network models with the separation theorem for hypothesis
+    testing on \( \mathbb{R}_G \).
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{Bickel2009Nonparametric,
+  author  = {Peter J. Bickel and Aiyou Chen},
+  title   = {A Nonparametric View of Network Models and Newman--Girvan and Other Modularities},
+  journal = {Proceedings of the National Academy of Sciences},
+  volume  = {106},
+  number  = {50},
+  pages   = {21068--21073},
+  year    = {2009}
+}</pre>
+
+  <!-- D. Network science and community structure -->
+
+  <h2>D. Network Science and Community Structure</h2>
+
+  <h3>D.1 Mark E. J. Newman – <em>Networks: An Introduction</em></h3>
+
+  <p><strong>Summary.</strong><br/>
+    Newman’s textbook presents a broad introduction to network science: degree
+    distributions, clustering, assortativity, community detection, random
+    graphs, and dynamics. It ties together data-driven examples with
+    analytical models and serves as a standard reference for complex network
+    analysis.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    The Graph Reals framework can be regarded as a “continuous envelope” for
+    many structures featured in Newman’s book: configuration models, community
+    models, and dynamical processes yield trajectories in \( \mathbb{R}_G \).
+    This supports the idea that Graph Reals provide a unifying mathematical
+    stage on which diverse network phenomena live as paths, limits, or
+    probability measures.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@book{Newman2010Networks,
+  author    = {Mark E. J. Newman},
+  title     = {Networks: An Introduction},
+  publisher = {Oxford University Press},
+  address   = {Oxford},
+  year      = {2010}
+}</pre>
+
+  <h3>D.2 Santo Fortunato – “Community Detection in Graphs”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Fortunato reviews methods and challenges in community detection, including
+    modularity optimization, spectral approaches, statistical inference, and
+    benchmarks. The survey emphasizes detectability thresholds, resolution
+    limits, and the diversity of community structures in empirical networks.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Detectability thresholds and resolution phenomena can be reframed in terms
+    of geometric separation of model families in \( \mathbb{R}_G \). When
+    different planted-partition models occupy well-separated regions in the
+    Graph&ndash;Field metric, the Graph Reals separation theorem guarantees the
+    existence of Lipschitz statistics that discriminate these regions, giving a
+    geometric interpretation of detectability results and suggesting new
+    approaches to community inference.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{Fortunato2010CommunityDetection,
+  author  = {Santo Fortunato},
+  title   = {Community Detection in Graphs},
+  journal = {Physics Reports},
+  volume  = {486},
+  number  = {3--5},
+  pages   = {75--174},
+  year    = {2010}
+}</pre>
+
+  <!-- E. Dynamical processes -->
+
+  <h2>E. Dynamical Processes on Networks</h2>
+
+  <h3>E.1 Pastor-Satorras et al. – “Epidemic Processes in Complex Networks”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    This review article surveys models of epidemic spreading on networks,
+    including SIS and SIR processes, mean-field approximations, spectral
+    criteria for epidemic thresholds, and the impact of network heterogeneity.
+    It bridges mathematical approaches with applications in technological and
+    social systems.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Many epidemic thresholds depend on spectral radii or related operator
+    functionals of the adjacency or contact network. In Graph Reals, such
+    operators derive from \( \Psi(X) \) and vary continuously in the
+    Graph&ndash;Field metric, so epidemic observables can be regarded as
+    continuous functionals \( \Phi:\mathbb{R}_G\to\mathbb{R} \). This opens an
+    avenue for expressing universality of thresholds and scaling laws directly
+    in Graph Real space and for studying limits of epidemic behavior along
+    Cauchy sequences of networks.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{PastorSatorras2015Epidemic,
+  author  = {Romualdo Pastor-Satorras and Claudio Castellano and Piet {Van Mieghem} and Alessandro Vespignani},
+  title   = {Epidemic Processes in Complex Networks},
+  journal = {Reviews of Modern Physics},
+  volume  = {87},
+  number  = {3},
+  pages   = {925--979},
+  year    = {2015}
+}</pre>
+
+  <h3>E.2 Arenas et al. – “Synchronization in Complex Networks”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Arenas and collaborators review synchronization phenomena on complex
+    networks, covering Kuramoto-type oscillators, master-stability approaches,
+    and the role of network topology in promoting or hindering synchronous
+    behavior. The paper highlights how Laplacian spectra and modular structure
+    shape dynamical regimes.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Synchronization dynamics often depend smoothly on the spectrum of a
+    Laplacian or coupling operator. Graph Reals provide a field where such
+    operators, their eigenvalues, and the underlying connectivity all live in a
+    single metric geometry, allowing one to discuss continuous deformations of
+    networks and the associated changes in synchrony within \( \mathbb{R}_G \).
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{Arenas2008Synchronization,
+  author  = {Alex Arenas and Albert D{\'\i}az-Guilera and J{\"u}rgen Kurths and Yamir Moreno and Changsong Zhou},
+  title   = {Synchronization in Complex Networks},
+  journal = {Physics Reports},
+  volume  = {469},
+  number  = {3},
+  pages   = {93--153},
+  year    = {2008}
+}</pre>
+
+  <!-- F. Network distances, inference, testing -->
+
+  <h2>F. Network Distances, Inference, and Hypothesis Testing</h2>
+
+  <h3>F.1 Eric D. Kolaczyk – <em>Statistical Analysis of Network Data: Methods and Models</em></h3>
+
+  <p><strong>Summary.</strong><br/>
+    Kolaczyk’s book presents statistical models and methods for network data:
+    exponential random graph models, block models, network sampling,
+    uncertainty quantification, and hypothesis testing for network features.
+    It emphasizes statistical thinking about graphs as data objects.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Graph Reals provide a candidate ambient space for many of the models and
+    test statistics in Kolaczyk’s treatment. Networks become elements of
+    \( \mathbb{R}_G \), model classes become subsets, and test statistics
+    become functionals with regularity in the Graph&ndash;Field metric. This
+    interfaces directly with the Graph Reals separation theorem, which supplies
+    asymptotically powerful tests whenever Graph Real limit sets of competing
+    models are separated.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@book{Kolaczyk2009StatisticalNetworkAnalysis,
+  author    = {Eric D. Kolaczyk},
+  title     = {Statistical Analysis of Network Data: Methods and Models},
+  publisher = {Springer},
+  address   = {New York},
+  year      = {2009}
+}</pre>
+
+  <h3>F.2 Emmanuel Abbe – “Community Detection and Stochastic Block Models: Recent Developments”</h3>
+
+  <p><strong>Summary.</strong><br/>
+    Abbe surveys recent advances in stochastic block models and community
+    detection, covering information-theoretic thresholds, algorithmic
+    transitions, and connections to statistical physics and high-dimensional
+    statistics. The review organizes many results on when communities are
+    recoverable from network data.
+  </p>
+
+  <p><strong>Relation to Graph Reals and Network Theory.</strong><br/>
+    Stochastic block models form a central family of network distributions
+    whose detectability phase diagram can be reinterpreted within
+    \( \mathbb{R}_G \). When parameters lie in regimes that produce separated
+    Graph Real limit sets for different community structures, the Graph Reals
+    framework predicts the existence of bounded Lipschitz statistics that
+    achieve reliable discrimination, aligning the geometric picture with
+    information-theoretic thresholds.
+  </p>
+
+  <p><strong>BibTeX.</strong></p>
+  <pre>@article{Abbe2018CommunityDetection,
+  author  = {Emmanuel Abbe},
+  title   = {Community Detection and Stochastic Block Models: Recent Developments},
+  journal = {Journal of Machine Learning Research},
+  volume  = {18},
+  number  = {177},
+  pages   = {1--86},
+  year    = {2018}
+}</pre>
+
+  <!-- G. Closing remarks -->
+
+  <h2>G. Closing Remarks</h2>
+
+  <p>
+    Together, these references show that the Graph Reals and Graph&ndash;Field
+    metric program grows from well-established ideas in graph limits, spectral
+    graph theory, random graphs, and statistical network analysis. The unique
+    contribution of \( \mathbb{R}_G \) is to gather adjacency, graphon limits,
+    operator spectra, and additional ghost directions into a single completed
+    field equipped with a metric tuned to both kernel geometry and spectral
+    stability. Within that arena, classical constructions from network theory
+    become continuous paths, limit points, and probability measures, while
+    questions about community detection, dynamics, and hypothesis testing gain
+    a geometric formulation in terms of separation and structure inside
+    Graph Real space.
+  </p>
+
+</body>
+</html>
+
