@@ -15,14 +15,13 @@
 #   - induced_subgraph(adj, vertices) -> tuple[int]
 #   - disjoint_union_from_components(list_of_component_adj_bitsets) -> tuple[int]
 #
-# If some helpers have different names in your file, adjust the imports accordingly.
 
 from __future__ import annotations
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Dict, Tuple, Iterable, Optional, Any
 
-import canonical_graph as cg  # your existing module
+import canonical_graph as cg 
 
 # A connected component type key:
 # (n, enc) where enc is the canonical upper-triangle encoding tuple
