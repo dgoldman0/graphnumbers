@@ -1,0 +1,1 @@
+The first attempt failed miserably and probably ever future attempt is going to as well. It may just not be possible to do anything close to what at first glance seemed quite reasonable. But here's another attempt or two, or more so maybe just a focus on "Integer-like" Graph constructions.
