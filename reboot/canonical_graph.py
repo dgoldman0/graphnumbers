@@ -1,8 +1,25 @@
-import functools
+"""
+Grothendieck reduction for finite simple undirected graphs under disjoint union.
+
+Key idea:
+- Disjoint union monoid splits uniquely into connected components (up to isomorphism).
+- In the Grothendieck completion, you "cancel" matching component isomorphism-types
+  between (A, B) by multiset subtraction.
+
+This module provides:
+- Bitset graph representation (fast, hashable).
+- Connected-component extraction.
+- Canonical IDs for components (lex-min upper-triangle encoding under relabeling).
+- Pair reduction: (A, B) -> (A', B') with no cancellable component types remaining.
+
+Drop-in entrypoint:
+    reduce_grothendieck_pair(A, B)
+"""
+
 from functools import lru_cache
 
 # ============================================================
-# Bitset adjacency (fast + hashable)
+# Bitset adjacency utilities
 # ============================================================
 
 def matrix_to_bitsets(M):
@@ -10,8 +27,8 @@ def matrix_to_bitsets(M):
     n = len(M)
     adj = [0] * n
     for i in range(n):
-        row = M[i]
         bits = 0
+        row = M[i]
         for j in range(n):
             if int(row[j]) != 0:
                 bits |= 1 << j
@@ -23,13 +40,13 @@ def bitsets_to_matrix(adj):
     n = len(adj)
     M = [[0] * n for _ in range(n)]
     for i in range(n):
-        bits = adj[i]
+        b = adj[i]
         for j in range(n):
-            M[i][j] = 1 if ((bits >> j) & 1) else 0
+            M[i][j] = 1 if ((b >> j) & 1) else 0
     return M
 
 def inverse_perm(perm_new_to_old):
-    """perm_new_to_old: tuple/list where new i -> old perm[i]. Returns old -> new."""
+    """perm_new_to_old maps new label -> old vertex. Return old -> new."""
     n = len(perm_new_to_old)
     inv = [0] * n
     for new_i, old_v in enumerate(perm_new_to_old):
@@ -58,23 +75,117 @@ def permute_adj(adj, perm_new_to_old):
 
 def encoding_for_perm(adj, perm_new_to_old):
     """
-    Enc(P^T A P) in your row-major upper-triangle order (including diagonal),
+    Enc(P^T A P) in row-major upper-triangle order (including diagonal),
     where perm_new_to_old maps new label -> old vertex.
     """
     n = len(adj)
     out = []
     for i_new in range(n):
         u = perm_new_to_old[i_new]
-        # diagonal
-        out.append(1 if ((adj[u] >> u) & 1) else 0)
-        # upper triangle
+        out.append(1 if ((adj[u] >> u) & 1) else 0)  # diagonal
         for j_new in range(i_new + 1, n):
             v = perm_new_to_old[j_new]
             out.append(1 if ((adj[u] >> v) & 1) else 0)
     return tuple(out)
 
 # ============================================================
-# Automorphisms: utilities
+# Connected components + induced subgraphs
+# ============================================================
+
+def connected_components(adj):
+    """
+    Return list of components, each as a list of vertex indices (in the original graph).
+    Graph is treated as undirected.
+    """
+    n = len(adj)
+    unvisited = (1 << n) - 1
+    comps = []
+
+    while unvisited:
+        lsb = unvisited & -unvisited
+        start = lsb.bit_length() - 1
+
+        comp_mask = 0
+        frontier = 1 << start
+        unvisited ^= 1 << start
+        comp_mask |= 1 << start
+
+        while frontier:
+            lsb = frontier & -frontier
+            u = lsb.bit_length() - 1
+            frontier ^= lsb
+
+            nbrs = adj[u] & unvisited
+            if nbrs:
+                frontier |= nbrs
+                unvisited ^= nbrs
+                comp_mask |= nbrs
+
+        # decode mask to vertex list
+        vs = []
+        b = comp_mask
+        while b:
+            lsb = b & -b
+            v = lsb.bit_length() - 1
+            vs.append(v)
+            b -= lsb
+        comps.append(vs)
+
+    return comps
+
+def induced_subgraph(adj, vertices):
+    """
+    Induced subgraph on 'vertices' (list of old indices), relabeled to 0..k-1.
+    Returns bitset adjacency tuple of length k.
+    """
+    n = len(adj)
+    vs = list(vertices)
+    k = len(vs)
+    if k == 0:
+        return tuple()
+
+    old_to_new = [-1] * n
+    for i, v in enumerate(vs):
+        old_to_new[v] = i
+
+    set_mask = 0
+    for v in vs:
+        set_mask |= 1 << v
+
+    sub = [0] * k
+    for i_new, v_old in enumerate(vs):
+        b = adj[v_old] & set_mask
+        mapped = 0
+        while b:
+            lsb = b & -b
+            w_old = lsb.bit_length() - 1
+            j_new = old_to_new[w_old]
+            mapped |= 1 << j_new
+            b -= lsb
+        sub[i_new] = mapped
+
+    return tuple(sub)
+
+def disjoint_union_from_components(component_adjs):
+    """
+    Build disjoint union from a list of component adjacencies (each relabeled 0..k-1).
+    Returns bitset adjacency of the union (not canonicalized).
+    """
+    total_n = sum(len(c) for c in component_adjs)
+    if total_n == 0:
+        return tuple()
+
+    adj = [0] * total_n
+    offset = 0
+    for comp in component_adjs:
+        k = len(comp)
+        for i in range(k):
+            adj[offset + i] = comp[i] << offset
+        offset += k
+    return tuple(adj)
+
+# ============================================================
+# Automorphism-aided lex-min canonicalization (self-contained)
 # ============================================================
 
 def automorphism_from_equal_perms(p, q):
@@ -107,14 +218,10 @@ def is_automorphism(adj, sigma_old_to_old):
             return False
     return True
 
-# ============================================================
-# A tiny IR sweep to discover some automorphisms (seed)
-# ============================================================
-
 def _equitable_refine_ordered(adj, partition):
     """
-    Ordered equitable refinement used ONLY to find automorphisms quickly.
-    It splits cells by signature; cell order is deterministic.
+    Ordered equitable refinement (simple color refinement).
+    Used to quickly discover some automorphisms (seeding).
     """
     part = [tuple(sorted(cell)) for cell in partition]
     changed = True
@@ -146,7 +253,6 @@ def _equitable_refine_ordered(adj, partition):
                     new_part.append(tuple(sorted(buckets[sig])))
 
         part = new_part
-
     return part
 
 def _is_discrete(partition):
@@ -155,10 +261,9 @@ def _is_discrete(partition):
 def _perm_from_partition(partition):
     return tuple(c[0] for c in partition)
 
-def ir_find_automorphisms(adj, max_leaves=2000, verify=False):
+def ir_find_automorphisms(adj, max_leaves=1500, verify=False):
     """
-    Explore a limited number of refined leaves to harvest automorphisms.
-    These automorphisms are valid for the full lex-min search later.
+    Limited individualization-refinement sweep to harvest automorphisms.
     """
     n = len(adj)
     identity = tuple(range(n))
@@ -177,7 +282,6 @@ def ir_find_automorphisms(adj, max_leaves=2000, verify=False):
             perm = _perm_from_partition(part)
             enc = encoding_for_perm(adj, perm)
             leaves += 1
-
             if enc in rep_by_enc:
                 sigma = automorphism_from_equal_perms(perm, rep_by_enc[enc])
                 if sigma not in autos:
@@ -199,11 +303,7 @@ def ir_find_automorphisms(adj, max_leaves=2000, verify=False):
     dfs([tuple(range(n))])
     return autos
 
-# ============================================================
-# Orbit pruning under stabilizers (Option 1)
-# ============================================================
-
-class UnionFind:
+class _UnionFind:
     def __init__(self, items):
         self.parent = {x: x for x in items}
         self.rank = {x: 0 for x in items}
@@ -231,8 +331,8 @@ class UnionFind:
             g.setdefault(r, []).append(x)
         return list(g.values())
 
-def stabilizer_for_prefix(autos, fixed_vertices):
-    """Return automorphisms that fix all vertices in fixed_vertices pointwise."""
+def _stabilizer_for_prefix(autos, fixed_vertices):
+    """Automorphisms fixing all vertices in fixed_vertices pointwise."""
     if not fixed_vertices:
         return list(autos)
     out = []
@@ -246,54 +346,42 @@ def stabilizer_for_prefix(autos, fixed_vertices):
             out.append(sigma)
     return out
 
-def orbit_reps_under(vertices, generators):
+def _orbit_reps_under(vertices, generators):
     """
-    Orbit reps of 'vertices' under the group generated by 'generators'.
-    Uses undirected unions v ~ sigma(v) for each generator sigma.
+    Orbit reps of 'vertices' under generators (approx: union v~sigma(v) for each generator).
     """
     verts = tuple(vertices)
     if len(verts) <= 1 or not generators:
         return list(verts)
-
-    uf = UnionFind(verts)
+    uf = _UnionFind(verts)
     vset = set(verts)
-
     for sigma in generators:
         for v in verts:
             w = sigma[v]
             if w in vset:
                 uf.union(v, w)
-
     reps = [min(g) for g in uf.groups()]
     reps.sort()
     return reps
 
-def canonicalize_bitsets_lexmin(adj, seed_autos=True, seed_leaf_budget=2000, verify_autos=False):
+def canonicalize_bitsets_lexmin(adj, seed_leaf_budget=1500, verify_autos=False):
     """
     Correct lex-min canonicalization:
       min_{perm} Enc(P^T A P)
-    using automorphism-based orbit pruning under prefix stabilizers.
+    Uses orbit pruning under stabilizers, seeded by IR-found automorphisms.
     """
     n = len(adj)
     identity = tuple(range(n))
     degrees = [(adj[i] & ~(1 << i)).bit_count() for i in range(n)]
 
-    autos = {identity}
-    if seed_autos:
-        autos |= ir_find_automorphisms(adj, max_leaves=seed_leaf_budget, verify=verify_autos)
+    autos = {identity} | ir_find_automorphisms(adj, max_leaves=seed_leaf_budget, verify=verify_autos)
 
     best_enc = None
     best_perm = None
     best_adj = None
-
-    # Track repeated encodings to discover more automorphisms during search
-    rep_by_enc = {}
+    rep_by_enc = {}  # to discover additional automorphisms during search
 
     def candidate_key(prefix_perm, x):
-        """
-        Heuristic to find small encodings early:
-        compare adjacency bits to already-chosen labels in order.
-        """
         vec = tuple(1 if ((adj[u] >> x) & 1) else 0 for u in prefix_perm)
         return (vec, degrees[x], x)
 
@@ -304,7 +392,6 @@ def canonicalize_bitsets_lexmin(adj, seed_autos=True, seed_leaf_budget=2000, ver
             perm = tuple(prefix_perm)
             enc = encoding_for_perm(adj, perm)
 
-            # Discover automorphisms: equal enc => equal permuted matrix
             if enc in rep_by_enc:
                 sigma = automorphism_from_equal_perms(perm, rep_by_enc[enc])
                 if sigma not in autos:
@@ -320,12 +407,8 @@ def canonicalize_bitsets_lexmin(adj, seed_autos=True, seed_leaf_budget=2000, ver
             return
 
         fixed = set(prefix_perm)
-        stabs = stabilizer_for_prefix(autos, fixed)
-
-        # Orbit representatives among remaining vertices under current stabilizer
-        choices = orbit_reps_under(remaining, stabs)
-
-        # Try "promising" choices first
+        stabs = _stabilizer_for_prefix(autos, fixed)
+        choices = _orbit_reps_under(remaining, stabs)
         choices.sort(key=lambda x: candidate_key(prefix_perm, x))
 
         for x in choices:
@@ -335,137 +418,177 @@ def canonicalize_bitsets_lexmin(adj, seed_autos=True, seed_leaf_budget=2000, ver
     dfs([], tuple(range(n)))
     return best_adj, best_enc, best_perm
 
-# ============================================================
-# User-facing API
-# ============================================================
-
 @lru_cache(maxsize=None)
-def _canonicalize_labeled_cached(adj_tuple, seed_leaf_budget=2000):
-    best_adj, best_enc, best_perm = canonicalize_bitsets_lexmin(
+def _canonicalize_cached(adj_tuple, seed_leaf_budget=1500):
+    best_adj, best_enc, _ = canonicalize_bitsets_lexmin(
         adj_tuple,
-        seed_autos=True,
         seed_leaf_budget=seed_leaf_budget,
         verify_autos=False,
     )
     return best_adj, best_enc
 
-def canonicalize_matrix(M, seed_leaf_budget=2000):
-    """
-    Canonicalize an adjacency matrix under your Lex Order.
-    Returns (canonical_matrix, canonical_encoding).
-    """
+def canonicalize_matrix(M, seed_leaf_budget=1500):
+    """Return (canonical_matrix, canonical_encoding)."""
     adj = matrix_to_bitsets(M)
-    canon_adj, canon_enc = _canonicalize_labeled_cached(adj, seed_leaf_budget=seed_leaf_budget)
+    canon_adj, canon_enc = _canonicalize_cached(adj, seed_leaf_budget=seed_leaf_budget)
     return bitsets_to_matrix(canon_adj), canon_enc
+
+# ============================================================
+# CanonicalGraph wrapper (optional, but handy)
+# ============================================================
 
 class CanonicalGraph:
     """
-    Canonical graph wrapper:
-    - Always stores the lex-min canonical representative.
-    - Identity is the encoding (hash/equality are trivial).
+    Stores a graph in canonical form (lex-min under relabeling).
+    Use .adj (bitsets), .enc (canonical ID), .n.
     """
-    __slots__ = ("n", "_adj", "_enc")
+    __slots__ = ("n", "adj", "enc")
 
-    def __init__(self, M, seed_leaf_budget=2000):
-        adj = matrix_to_bitsets(M)
-        canon_adj, canon_enc = _canonicalize_labeled_cached(adj, seed_leaf_budget=seed_leaf_budget)
-        self.n = len(adj)
-        self._adj = canon_adj
-        self._enc = canon_enc
-
-    @classmethod
-    def from_edges(cls, n, edges, seed_leaf_budget=2000):
-        adj = [0] * n
-        for u, v in edges:
-            if u == v:
-                continue
-            adj[u] |= 1 << v
-            adj[v] |= 1 << u
-        obj = cls.__new__(cls)
-        canon_adj, canon_enc = _canonicalize_labeled_cached(tuple(adj), seed_leaf_budget=seed_leaf_budget)
-        obj.n = n
-        obj._adj = canon_adj
-        obj._enc = canon_enc
-        return obj
-
-    @property
-    def enc(self):
-        return self._enc
+    def __init__(self, M_or_adj, seed_leaf_budget=1500):
+        if isinstance(M_or_adj, tuple) and all(isinstance(x, int) for x in M_or_adj):
+            adj = M_or_adj
+        else:
+            adj = matrix_to_bitsets(M_or_adj)
+        canon_adj, canon_enc = _canonicalize_cached(adj, seed_leaf_budget=seed_leaf_budget)
+        self.n = len(canon_adj)
+        self.adj = canon_adj
+        self.enc = canon_enc
 
     def adjacency_matrix(self):
-        return bitsets_to_matrix(self._adj)
-
-    def edges(self):
-        out = []
-        for i in range(self.n):
-            b = self._adj[i] >> (i + 1)
-            j = i + 1
-            while b:
-                lsb = b & -b
-                k = lsb.bit_length() - 1
-                out.append((i, j + k))
-                b -= lsb
-        return out
+        return bitsets_to_matrix(self.adj)
 
     def __hash__(self):
-        return hash(self._enc)
+        return hash((self.n, self.enc))
 
     def __eq__(self, other):
-        return isinstance(other, CanonicalGraph) and self._enc == other._enc
+        return isinstance(other, CanonicalGraph) and self.n == other.n and self.enc == other.enc
 
     def __repr__(self):
-        return f"CanonicalGraph(n={self.n}, enc={self._enc})"
+        return f"CanonicalGraph(n={self.n}, enc={self.enc})"
 
 # ============================================================
-# Canonical-safe operations (re-canonicalize on output)
+# Grothendieck reduction machinery
 # ============================================================
 
-def add_edge(G, i, j, seed_leaf_budget=2000):
-    adj = list(G._adj)
-    adj[i] |= 1 << j
-    adj[j] |= 1 << i
-    return CanonicalGraph(bitsets_to_matrix(tuple(adj)), seed_leaf_budget=seed_leaf_budget)
+def component_multiset(adj, seed_leaf_budget=1500):
+    """
+    Decompose graph into connected components, canonicalize each component, and count types.
 
-def complement(G, seed_leaf_budget=2000):
-    n = G.n
-    all_mask = (1 << n) - 1
-    adj = []
-    for i in range(n):
-        # flip all bits, clear self-loop
-        adj.append((~G._adj[i]) & (all_mask ^ (1 << i)))
-    return CanonicalGraph(bitsets_to_matrix(tuple(adj)), seed_leaf_budget=seed_leaf_budget)
+    Returns:
+        counts: dict[key] = count
+        rep_adj: dict[key] = canonical component adjacency (bitsets, relabeled 0..k-1)
+    where key = (k, enc) ensures no size-collisions.
+    """
+    counts = {}
+    rep_adj = {}
 
-def disjoint_union(G1, G2, seed_leaf_budget=2000):
-    n1, n2 = G1.n, G2.n
-    adj = [0] * (n1 + n2)
-    for i in range(n1):
-        adj[i] = G1._adj[i]
-    for i in range(n2):
-        adj[n1 + i] = (G2._adj[i] << n1)
-    return CanonicalGraph(bitsets_to_matrix(tuple(adj)), seed_leaf_budget=seed_leaf_budget)
+    for vs in connected_components(adj):
+        sub = induced_subgraph(adj, vs)  # relabeled 0..k-1
+        canon_sub_adj, canon_sub_enc, _ = canonicalize_bitsets_lexmin(
+            sub,
+            seed_leaf_budget=seed_leaf_budget,
+            verify_autos=False,
+        )
+        k = len(canon_sub_adj)
+        key = (k, canon_sub_enc)
+        counts[key] = counts.get(key, 0) + 1
+        # keep a representative adjacency for reconstruction
+        rep_adj[key] = canon_sub_adj
+
+    return counts, rep_adj
+
+def cancel_component_multisets(countsA, countsB):
+    """
+    In-place cancellation of common keys between two multisets of components.
+    """
+    common = set(countsA.keys()) & set(countsB.keys())
+    for key in common:
+        k = min(countsA[key], countsB[key])
+        countsA[key] -= k
+        countsB[key] -= k
+        if countsA[key] == 0:
+            del countsA[key]
+        if countsB[key] == 0:
+            del countsB[key]
+
+def rebuild_from_multiset(counts, reps):
+    """
+    Build a (non-canonical) disjoint union graph from a component multiset.
+    Components are inserted in sorted key order for determinism.
+    Returns bitset adjacency of the union.
+    """
+    component_adjs = []
+    for key in sorted(counts.keys()):
+        comp_adj = reps[key]
+        c = counts[key]
+        for _ in range(c):
+            component_adjs.append(comp_adj)
+    return disjoint_union_from_components(component_adjs)
+
+def reduce_grothendieck_pair(A, B, seed_leaf_budget=1500, canonical_output=True):
+    """
+    Reduce a Grothendieck pair (A, B) under disjoint union:
+      (A, B) ~ (A', B') where common connected component types are cancelled.
+
+    Inputs:
+      A, B can be adjacency matrices (list-of-lists / numpy-like) OR bitset adj tuples
+      OR CanonicalGraph objects.
+
+    Output:
+      If canonical_output=True: returns (CanonicalGraph(A'), CanonicalGraph(B'))
+      else: returns (adj_bitsets_Aprime, adj_bitsets_Bprime)
+    """
+    def to_adj(x):
+        if isinstance(x, CanonicalGraph):
+            return x.adj
+        if isinstance(x, tuple) and all(isinstance(t, int) for t in x):
+            return x
+        return matrix_to_bitsets(x)
+
+    adjA = to_adj(A)
+    adjB = to_adj(B)
+
+    countsA, repsA = component_multiset(adjA, seed_leaf_budget=seed_leaf_budget)
+    countsB, repsB = component_multiset(adjB, seed_leaf_budget=seed_leaf_budget)
+
+    # Reps are keyed identically, so merge reps maps (they should agree on canonical adj)
+    reps = dict(repsA)
+    reps.update(repsB)
+
+    cancel_component_multisets(countsA, countsB)
+
+    Aprime_adj = rebuild_from_multiset(countsA, reps)
+    Bprime_adj = rebuild_from_multiset(countsB, reps)
+
+    if canonical_output:
+        return CanonicalGraph(Aprime_adj, seed_leaf_budget=seed_leaf_budget), CanonicalGraph(Bprime_adj, seed_leaf_budget=seed_leaf_budget)
+    return Aprime_adj, Bprime_adj
 
 # ============================================================
-# Example
+# Quick sanity check (optional)
 # ============================================================
 
 if __name__ == "__main__":
-    # Two isomorphic labelings of C4
-    M1 = [
-        [0,1,0,1],
-        [1,0,1,0],
-        [0,1,0,1],
-        [1,0,1,0],
+    # A = (triangle) ⊔ (path on 3)
+    tri = [
+        [0,1,1],
+        [1,0,1],
+        [1,1,0],
     ]
-    M2 = [
-        [0,1,1,0],
-        [1,0,0,1],
-        [1,0,0,1],
-        [0,1,1,0],
+    p3 = [
+        [0,1,0],
+        [1,0,1],
+        [0,1,0],
     ]
+    A = disjoint_union_from_components([matrix_to_bitsets(tri), matrix_to_bitsets(p3)])
 
-    G1 = CanonicalGraph(M1)
-    G2 = CanonicalGraph(M2)
+    # B = (triangle) ⊔ (edge)
+    edge = [
+        [0,1],
+        [1,0],
+    ]
+    B = disjoint_union_from_components([matrix_to_bitsets(tri), matrix_to_bitsets(edge)])
 
-    print(G1 == G2)          # True
-    print(G1.enc)            # canonical identity
-    print(G1.adjacency_matrix())
+    Ar, Br = reduce_grothendieck_pair(A, B, canonical_output=False)
+    # Expect: Ar ~ p3, Br ~ edge (up to canonicalization if enabled)
+    print("Reduced sizes:", len(Ar), len(Br))
