@@ -1,49 +1,33 @@
 # canonstar.py
 """
-Canon*(G): a canonical representative for finite simple undirected graphs that is
-coordinate-driven by the *Cartesian prime factorization*.
+Canon*(G): an injective canonical form that *honors Cartesian product structure*.
 
-Key idea (connected case):
-  1) Compute the finest product relation (edge partition) via Feder's theorem:
-       R = (Θ ∪ Φ)^*
-     where:
-       - Θ: for edges e=xy, f=uv, if d(x,u)+d(y,v) != d(x,v)+d(y,u)
-       - Φ: for incident edges yx and yv, if y is the only common neighbor of x and v
-  2) Each equivalence class corresponds to one prime factor direction.
-  3) For each class i, remove E_i and take components => coordinate values for axis i.
-     Build the quotient graph Q_i whose vertices are these components and edges are E_i.
-     Q_i is isomorphic to the corresponding prime factor.
-  4) Canonicalize each Q_i using canonical_graph.py (lex-min tie-breaker).
-  5) Order axes deterministically by (|V(Q_i)|, enc(Q_i)), with a deterministic tie-break
-     for identical keys using the global canonical order of G (rare, but important).
-  6) Order vertices by lexicographic coordinate tuples and relabel adjacency accordingly.
+Design goals:
+  1) If G is (nontrivially) a Cartesian product of connected graphs, Canon* labels
+     vertices in *tuple-lex order* of the canonical factors, so fibers/coordinates
+     are visible and "reverse-by-fiber" works.
+  2) If G does NOT admit a certified Cartesian factorization (or factor extraction
+     is ambiguous/too expensive), Canon* falls back to your original global lex-min
+     canonicalization from canonical_graph.py. This preserves injectivity.
+  3) Disconnected graphs: Canon* is block-diagonal disjoint union of Canon* of each
+     connected component, with components sorted by (n, enc).
 
-Disconnected case:
-  - Canon* each connected component
-  - sort components by (n, enc) and assemble block-diagonal.
-
-This file assumes your existing canonical_graph.py provides:
-  - class CanonicalGraph(bitrows) with a canonical vertex order attribute:
-      .order or .canonical_order or .perm/.perm_inv
-
-If your attribute name differs, adjust _cg_order_from_obj().
+This file assumes canonical_graph.py provides:
+  - CanonicalGraph(bitrows) -> object with .enc (upper-triangle encoding) AND some
+    vertex order attribute. We accept .order or .canonical_order or .perm/.perm_inv.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
-import itertools
 
 import canonical_graph as cg
 
-
-# ---------------------------
-# Bitrow graph utilities
-# ---------------------------
+# -------------------- bitset adjacency basics --------------------
 
 def to_bitrows(adj: Sequence[Sequence[int]] | Sequence[int]) -> List[int]:
-    """Accepts either 0/1 adjacency matrix or bitrows; returns bitrows."""
+    """Accept matrix (0/1) or bitrows; return bitrows list[int]."""
     if not adj:
         return []
     if isinstance(adj[0], int):
@@ -52,40 +36,48 @@ def to_bitrows(adj: Sequence[Sequence[int]] | Sequence[int]) -> List[int]:
     rows = [0] * n
     for i in range(n):
         r = 0
-        row = adj[i]
         for j in range(n):
-            if row[j]:
+            if adj[i][j]:
                 r |= (1 << j)
-        r &= ~(1 << i)
+        r &= ~(1 << i)  # no loops
         rows[i] = r
     return rows
 
 
-def encode_upper_triangle(adj_bitrows: Sequence[int]) -> Tuple[int, ...]:
+def n_vertices(bitrows: Sequence[int]) -> int:
+    return len(bitrows)
+
+
+def has_edge(bitrows: Sequence[int], u: int, v: int) -> bool:
+    return ((bitrows[u] >> v) & 1) == 1
+
+
+def encode_upper_triangle(bitrows: Sequence[int]) -> Tuple[int, ...]:
     """
-    Upper triangle row-major INCLUDING diagonal:
-    (0,0),(0,1),...,(0,n-1),(1,1),(1,2),...,(n-1,n-1)
+    Upper-triangle row-major including diagonal:
+      (0,0),(0,1),...,(0,n-1),(1,1),(1,2),...,(n-1,n-1)
     """
-    n = len(adj_bitrows)
-    bits: List[int] = []
+    n = len(bitrows)
+    out: List[int] = []
     for i in range(n):
-        bits.append(0)  # diagonal
-        row = adj_bitrows[i]
+        out.append(0)  # diagonal
+        row = bitrows[i]
         for j in range(i + 1, n):
-            bits.append(1 if ((row >> j) & 1) else 0)
-    return tuple(bits)
+            out.append(1 if ((row >> j) & 1) else 0)
+    return tuple(out)
 
 
-def apply_order(adj_bitrows: Sequence[int], order_new_to_old: Sequence[int]) -> List[int]:
-    """Relabel so new vertex i corresponds to old vertex order_new_to_old[i]."""
-    n = len(adj_bitrows)
+def apply_order(bitrows: Sequence[int], order: Sequence[int]) -> List[int]:
+    """Reorder vertices so new index i corresponds to old vertex order[i]."""
+    n = len(bitrows)
     inv = [0] * n
-    for new_i, old_i in enumerate(order_new_to_old):
+    for new_i, old_i in enumerate(order):
         inv[old_i] = new_i
+
     out = [0] * n
     for old_u in range(n):
         new_u = inv[old_u]
-        row = adj_bitrows[old_u]
+        row = bitrows[old_u]
         new_row = 0
         x = row
         while x:
@@ -99,33 +91,30 @@ def apply_order(adj_bitrows: Sequence[int], order_new_to_old: Sequence[int]) -> 
     return out
 
 
-def induced_subgraph(adj_bitrows: Sequence[int], verts: Sequence[int]) -> List[int]:
-    """Induced subgraph on verts, reindexed 0..k-1."""
+def induced_subgraph(bitrows: Sequence[int], verts: Sequence[int]) -> List[int]:
+    """Induced subgraph on verts, reindexed to 0..k-1, returned as bitrows."""
     idx = {v: i for i, v in enumerate(verts)}
     k = len(verts)
     out = [0] * k
     for i, v in enumerate(verts):
-        row = adj_bitrows[v]
-        rr = 0
+        row = bitrows[v]
+        nr = 0
         for w in verts:
-            if (row >> w) & 1:
-                rr |= (1 << idx[w])
-        rr &= ~(1 << i)
-        out[i] = rr
+            if ((row >> w) & 1) == 1:
+                nr |= (1 << idx[w])
+        nr &= ~(1 << i)
+        out[i] = nr
     return out
 
 
 def disjoint_union_bitrows(components: Sequence[Sequence[int]]) -> List[int]:
-    """Block-diagonal disjoint union of bitrow graphs."""
-    if not components:
+    """Block-diagonal disjoint union of bitrow components."""
+    total = sum(len(c) for c in components)
+    if total == 0:
         return []
-    offsets = []
-    total = 0
-    for comp in components:
-        offsets.append(total)
-        total += len(comp)
     out = [0] * total
-    for comp, off in zip(components, offsets):
+    off = 0
+    for comp in components:
         k = len(comp)
         for i in range(k):
             row = comp[i]
@@ -137,13 +126,16 @@ def disjoint_union_bitrows(components: Sequence[Sequence[int]]) -> List[int]:
                 x -= lsb
                 shifted |= (1 << (off + j))
             out[off + i] = shifted
+        off += k
     for i in range(total):
         out[i] &= ~(1 << i)
     return out
 
 
-def connected_components(adj_bitrows: Sequence[int]) -> List[List[int]]:
-    n = len(adj_bitrows)
+# -------------------- graph traversal --------------------
+
+def connected_components(bitrows: Sequence[int]) -> List[List[int]]:
+    n = len(bitrows)
     seen = [False] * n
     comps: List[List[int]] = []
     for s in range(n):
@@ -151,11 +143,11 @@ def connected_components(adj_bitrows: Sequence[int]) -> List[List[int]]:
             continue
         stack = [s]
         seen[s] = True
-        comp = []
+        comp: List[int] = []
         while stack:
             v = stack.pop()
             comp.append(v)
-            x = adj_bitrows[v]
+            x = bitrows[v]
             while x:
                 lsb = x & -x
                 w = lsb.bit_length() - 1
@@ -167,11 +159,11 @@ def connected_components(adj_bitrows: Sequence[int]) -> List[List[int]]:
     return comps
 
 
-def edge_list(adj_bitrows: Sequence[int]) -> List[Tuple[int, int]]:
-    n = len(adj_bitrows)
+def edge_list(bitrows: Sequence[int]) -> List[Tuple[int, int]]:
+    n = len(bitrows)
     edges: List[Tuple[int, int]] = []
     for u in range(n):
-        x = adj_bitrows[u] >> (u + 1)
+        x = bitrows[u] >> (u + 1)
         base = u + 1
         while x:
             lsb = x & -x
@@ -182,76 +174,43 @@ def edge_list(adj_bitrows: Sequence[int]) -> List[Tuple[int, int]]:
     return edges
 
 
-# ---------------------------
-# Canonical_graph interop
-# ---------------------------
+# -------------------- canonical_graph.py interop --------------------
 
-def _cg_order_from_obj(obj: object, n: int) -> List[int]:
-    if hasattr(obj, "order"):
-        order = list(getattr(obj, "order"))
-        if len(order) == n:
-            return order
-    if hasattr(obj, "canonical_order"):
-        order = list(getattr(obj, "canonical_order"))
-        if len(order) == n:
-            return order
-    if hasattr(obj, "perm_inv"):
-        order = list(getattr(obj, "perm_inv"))
-        if len(order) == n:
-            return order
-    if hasattr(obj, "perm"):
-        perm = list(getattr(obj, "perm"))
-        if len(perm) == n and sorted(perm) == list(range(n)):
-            # treat as new->old (most common in this style)
+def _cg_order(bitrows: Sequence[int]) -> List[int]:
+    """Try to extract canonical vertex order from cg.CanonicalGraph."""
+    G = cg.CanonicalGraph(list(bitrows))
+
+    if hasattr(G, "order"):
+        return list(getattr(G, "order"))
+    if hasattr(G, "canonical_order"):
+        return list(getattr(G, "canonical_order"))
+
+    # Some implementations expose perm / perm_inv. We accept either.
+    if hasattr(G, "perm"):
+        perm = list(getattr(G, "perm"))
+        n = len(bitrows)
+        if sorted(perm) == list(range(n)):
             return perm
+    if hasattr(G, "perm_inv"):
+        perm_inv = list(getattr(G, "perm_inv"))
+        n = len(bitrows)
+        if sorted(perm_inv) == list(range(n)):
+            return perm_inv
+
     raise AttributeError(
         "canonical_graph.CanonicalGraph must expose a canonical vertex order "
-        "(.order or .canonical_order or .perm_inv or .perm)."
+        "via .order or .canonical_order or .perm/.perm_inv"
     )
 
 
-def cg_canon_order(adj_bitrows: Sequence[int]) -> List[int]:
-    """Global canonical order (lex-min tie-breaker) from canonical_graph.py."""
-    n = len(adj_bitrows)
-    obj = cg.CanonicalGraph(list(adj_bitrows))
-    return _cg_order_from_obj(obj, n)
+def _global_lexmin(bitrows: Sequence[int]) -> Tuple[List[int], Tuple[int, ...]]:
+    """Return (bitrows in global-lex-min order, encoding)."""
+    order = _cg_order(bitrows)
+    re = apply_order(bitrows, order)
+    return re, encode_upper_triangle(re)
 
 
-def cg_canon_bitrows(adj_bitrows: Sequence[int]) -> Tuple[List[int], List[int]]:
-    """Return (canon_bitrows, order_new_to_old)."""
-    order = cg_canon_order(adj_bitrows)
-    return apply_order(adj_bitrows, order), order
-
-
-# ---------------------------
-# Distances (BFS) for Θ
-# ---------------------------
-
-def all_pairs_shortest_paths(adj_bitrows: Sequence[int]) -> List[List[int]]:
-    n = len(adj_bitrows)
-    dist = [[-1] * n for _ in range(n)]
-    for s in range(n):
-        q = [s]
-        dist[s][s] = 0
-        qi = 0
-        while qi < len(q):
-            v = q[qi]
-            qi += 1
-            dv = dist[s][v]
-            x = adj_bitrows[v]
-            while x:
-                lsb = x & -x
-                w = lsb.bit_length() - 1
-                x -= lsb
-                if dist[s][w] == -1:
-                    dist[s][w] = dv + 1
-                    q.append(w)
-    return dist
-
-
-# ---------------------------
-# DSU for edge relations
-# ---------------------------
+# -------------------- DSU --------------------
 
 class _DSU:
     def __init__(self, n: int) -> None:
@@ -275,143 +234,108 @@ class _DSU:
             self.r[ra] += 1
 
 
-def finest_product_relation_edge_classes(
-    adj_bitrows: Sequence[int],
-    *,
-    max_edges_for_theta: int = 6000,
-) -> Tuple[List[Tuple[int, int]], List[int], int]:
-    """
-    Computes the edge partition given by R = (Θ ∪ Φ)^* (Feder),
-    where Θ is the distance-inequality relation and Φ is the "only common neighbor" relation.
+# -------------------- Cartesian factor direction extraction (certified) --------------------
 
-    Returns:
-      edges: list of undirected edges (u,v) with u<v
-      cls_of_edge: list[int], class id per edge index
-      num_classes: number of classes
+def _edge_index_map(edges: List[Tuple[int, int]]) -> Dict[Tuple[int, int], int]:
+    m: Dict[Tuple[int, int], int] = {}
+    for i, (u, v) in enumerate(edges):
+        if u > v:
+            u, v = v, u
+        m[(u, v)] = i
+    return m
 
-    Note: Θ computation is O(m^2). If m is too large, we raise with instructions.
+
+def _neighbors(bitrows: Sequence[int], u: int) -> List[int]:
+    x = bitrows[u]
+    out: List[int] = []
+    while x:
+        lsb = x & -x
+        v = lsb.bit_length() - 1
+        x -= lsb
+        out.append(v)
+    return out
+
+
+def theta_star_classes_by_chordless_squares(bitrows: Sequence[int]) -> List[List[Tuple[int, int]]]:
     """
-    edges = edge_list(adj_bitrows)
+    Build Θ* classes (candidate factor directions) by unioning opposite edges
+    in chordless 4-cycles.
+
+    For a cartesian product graph, the transitive closure of "opposite in a
+    chordless square" groups edges by factor direction.
+
+    For non-products, this may produce classes that fail certification later.
+    """
+    edges = edge_list(bitrows)
     m = len(edges)
     if m == 0:
-        return edges, [], 0
-
-    if m > max_edges_for_theta:
-        raise RuntimeError(
-            f"Too many edges (m={m}) for the O(m^2) Θ computation.\n"
-            "Increase max_edges_for_theta or switch to the Imrich–Peterin linear algorithm if needed."
-        )
-
-    dist = all_pairs_shortest_paths(adj_bitrows)
-
+        return []
+    idx = _edge_index_map(edges)
     dsu = _DSU(m)
 
-    # Θ: for all pairs of edges
-    for i in range(m):
-        x, y = edges[i]
-        for j in range(i + 1, m):
-            u, v = edges[j]
-            s1 = dist[x][u] + dist[y][v]
-            s2 = dist[x][v] + dist[y][u]
-            if s1 != s2:
-                dsu.union(i, j)
+    n = len(bitrows)
+    nbr = [_neighbors(bitrows, u) for u in range(n)]
 
-    # Φ: for incident edges yx and yv where y is the only common neighbor of x and v
-    edge_to_idx: Dict[Tuple[int, int], int] = {e: i for i, e in enumerate(edges)}
-    n = len(adj_bitrows)
-    for y in range(n):
-        nbrs = []
-        x = adj_bitrows[y]
-        while x:
-            lsb = x & -x
-            u = lsb.bit_length() - 1
-            x -= lsb
-            nbrs.append(u)
-        # check all pairs of neighbors (x,v)
-        for a in range(len(nbrs)):
-            x1 = nbrs[a]
-            for b in range(a + 1, len(nbrs)):
-                x2 = nbrs[b]
-                common = adj_bitrows[x1] & adj_bitrows[x2]
-                if common == (1 << y):
-                    e1 = (x1, y) if x1 < y else (y, x1)
-                    e2 = (x2, y) if x2 < y else (y, x2)
-                    i1 = edge_to_idx.get(e1)
-                    i2 = edge_to_idx.get(e2)
-                    if i1 is not None and i2 is not None:
-                        dsu.union(i1, i2)
+    # For each edge (u,v), find chordless squares u-x-y-v-u:
+    # edges: (u,x), (x,y), (y,v), (v,u)
+    # opposite pairs: (v,u) opposite (x,y), and (u,x) opposite (v,y)
+    for (u, v) in edges:
+        # iterate x in N(u)\{v}, y in N(v)\{u}
+        for x in nbr[u]:
+            if x == v:
+                continue
+            # early prune: if u-x is not in idx due to ordering, normalize later
+            for y in nbr[v]:
+                if y == u or y == x:
+                    continue
+                # need x-y edge
+                if not has_edge(bitrows, x, y):
+                    continue
+                # chordless: no u-y and no v-x
+                if has_edge(bitrows, u, y) or has_edge(bitrows, v, x):
+                    continue
 
-    # Compress roots to class ids
-    root_to_class: Dict[int, int] = {}
-    cls_of_edge = [0] * m
-    for i in range(m):
+                # union opposite edges
+                a = idx[(u, v) if u < v else (v, u)]
+                b = idx[(x, y) if x < y else (y, x)]
+                dsu.union(a, b)
+
+                # other opposite pair: (u,x) with (v,y)
+                ex = idx[(u, x) if u < x else (x, u)]
+                ey = idx[(v, y) if v < y else (y, v)]
+                dsu.union(ex, ey)
+
+    buckets: Dict[int, List[Tuple[int, int]]] = {}
+    for i, e in enumerate(edges):
         r = dsu.find(i)
-        if r not in root_to_class:
-            root_to_class[r] = len(root_to_class)
-        cls_of_edge[i] = root_to_class[r]
-
-    return edges, cls_of_edge, len(root_to_class)
+        buckets.setdefault(r, []).append(e)
+    return list(buckets.values())
 
 
-def components_without_class(
-    adj_bitrows: Sequence[int],
-    edges: Sequence[Tuple[int, int]],
-    cls_of_edge: Sequence[int],
-    class_id: int,
-) -> List[int]:
+def quotient_graph_for_edgeclass(bitrows: Sequence[int], E: Sequence[Tuple[int, int]]) -> Tuple[List[int], List[int]]:
     """
-    Returns comp_of_vertex for graph with edges of class_id removed.
+    Quotient graph Q corresponding to an edge class E:
+      - Remove edges in E, compute connected components.
+      - Quotient vertices are components; quotient edges connect components
+        that were connected by an edge in E.
+    Returns (comp_of_vertex, quotient_bitrows).
     """
-    n = len(adj_bitrows)
-    # build adjacency with removed edges
-    g_minus = list(adj_bitrows)
-    for (u, v), c in zip(edges, cls_of_edge):
-        if c == class_id:
-            g_minus[u] &= ~(1 << v)
-            g_minus[v] &= ~(1 << u)
+    n = len(bitrows)
+    removed = set((u, v) if u < v else (v, u) for (u, v) in E)
+    g_minus = list(bitrows)
+    for (u, v) in removed:
+        g_minus[u] &= ~(1 << v)
+        g_minus[v] &= ~(1 << u)
 
+    comps = connected_components(g_minus)
     comp_of = [-1] * n
-    cid = 0
-    for s in range(n):
-        if comp_of[s] != -1:
-            continue
-        stack = [s]
-        comp_of[s] = cid
-        while stack:
-            v = stack.pop()
-            x = g_minus[v]
-            while x:
-                lsb = x & -x
-                w = lsb.bit_length() - 1
-                x -= lsb
-                if comp_of[w] == -1:
-                    comp_of[w] = cid
-                    stack.append(w)
-        cid += 1
-    return comp_of
+    for ci, comp in enumerate(comps):
+        for v in comp:
+            comp_of[v] = ci
 
-
-def quotient_graph_for_class(
-    adj_bitrows: Sequence[int],
-    edges: Sequence[Tuple[int, int]],
-    cls_of_edge: Sequence[int],
-    class_id: int,
-) -> Tuple[List[int], List[int]]:
-    """
-    Quotient graph Q_i:
-      - vertices are components of G - E_i
-      - edges connect components joined by an edge from E_i
-
-    Returns:
-      comp_of_vertex (length n)
-      quotient_adj_bitrows (length k)
-    """
-    comp_of = components_without_class(adj_bitrows, edges, cls_of_edge, class_id)
-    k = max(comp_of) + 1
+    k = len(comps)
     q = [0] * k
-    for (u, v), c in zip(edges, cls_of_edge):
-        if c != class_id:
-            continue
+    for (u, v) in removed:
         cu, cv = comp_of[u], comp_of[v]
         if cu != cv:
             q[cu] |= (1 << cv)
@@ -421,110 +345,169 @@ def quotient_graph_for_class(
     return comp_of, q
 
 
-# ---------------------------
-# Canon* data class
-# ---------------------------
+def cartesian_product_bitrows(factors: Sequence[Sequence[int]]) -> List[int]:
+    """
+    Cartesian product of factor graphs (bitrows). Vertex order is tuple-lex
+    with factor 0 most significant.
+    """
+    if not factors:
+        return []
+    # start with K1 as identity
+    cur = [0]  # K1
+    for B in factors:
+        A = cur
+        nA, nB = len(A), len(B)
+        N = nA * nB
+        out = [0] * N
+
+        nbrA = [_neighbors(A, i) for i in range(nA)]
+        nbrB = [_neighbors(B, j) for j in range(nB)]
+
+        for i in range(nA):
+            for j in range(nB):
+                idx = i * nB + j
+                row = 0
+                for ip in nbrA[i]:
+                    row |= (1 << (ip * nB + j))
+                for jp in nbrB[j]:
+                    row |= (1 << (i * nB + jp))
+                row &= ~(1 << idx)
+                out[idx] = row
+
+        cur = out
+    return cur
+
+
+# -------------------- Canon* object --------------------
 
 @dataclass(frozen=True)
 class CanonStarGraph:
     n: int
-    adj: Tuple[int, ...]                          # bitrows in Canon* labeling
-    enc: Tuple[int, ...]                          # upper-triangle encoding
-    component_keys: Tuple[Tuple[int, Tuple[int, ...]], ...]  # (n, enc) per connected comp, sorted
+    adj: Tuple[int, ...]   # bitrows in Canon* labeling
+    enc: Tuple[int, ...]   # upper-triangle encoding of adj
+    # For disconnected graphs: list of connected component keys in order
+    connected_component_keys: Tuple[Tuple[int, Tuple[int, ...]], ...]
 
 
-# ---------------------------
-# Canon* core
-# ---------------------------
+# -------------------- Canon*(connected) with certification --------------------
 
-def _canonstar_connected(
-    adj_bitrows: Sequence[int],
-    *,
-    max_edges_for_theta: int = 6000,
-) -> CanonStarGraph:
-    n = len(adj_bitrows)
+def _canonstar_connected(bitrows: Sequence[int]) -> CanonStarGraph:
+    n = len(bitrows)
     if n == 0:
         return CanonStarGraph(0, (), (), ())
     if n == 1:
-        enc = encode_upper_triangle(adj_bitrows)
+        enc = encode_upper_triangle(bitrows)
         return CanonStarGraph(1, (0,), enc, ((1, enc),))
 
-    # Compute edge partition into prime-factor directions
-    edges, cls_of_edge, num_classes = finest_product_relation_edge_classes(
-        adj_bitrows, max_edges_for_theta=max_edges_for_theta
-    )
+    # Candidate directions from chordless squares
+    classes = theta_star_classes_by_chordless_squares(bitrows)
 
-    # If graph has no edges (connected implies n=1, already handled), but keep safe:
-    if num_classes == 0:
-        canon, _ = cg_canon_bitrows(adj_bitrows)
-        enc = encode_upper_triangle(canon)
-        return CanonStarGraph(n, tuple(canon), enc, ((n, enc),))
+    # If no squares/relations, treat as prime: global lex-min fallback.
+    if len(classes) <= 1:
+        adj_g, enc_g = _global_lexmin(bitrows)
+        return CanonStarGraph(n, tuple(adj_g), enc_g, ((n, enc_g),))
 
-    # Prime case (only one class): Canon* agrees with your global canonicalization
-    if num_classes == 1:
-        canon, _ = cg_canon_bitrows(adj_bitrows)
-        enc = encode_upper_triangle(canon)
-        return CanonStarGraph(n, tuple(canon), enc, ((n, enc),))
+    # Build candidate factor quotient graphs for each class
+    factor_bitrows: List[List[int]] = []
+    factor_keys_for_sort: List[Tuple[int, Tuple[int, ...]]] = []
+    for E in classes:
+        _, q = quotient_graph_for_edgeclass(bitrows, E)
+        # canonicalize factor by global lex-min (tie-breaker inside factor)
+        q_can, q_enc = _global_lexmin(q)
+        factor_bitrows.append(q_can)
+        factor_keys_for_sort.append((len(q_can), q_enc))
 
-    # Global canonical order used only to break *axis* ties when factor keys match
-    global_order = cg_canon_order(adj_bitrows)
-    pos_in_global = [0] * n
-    for new_i, old_i in enumerate(global_order):
-        pos_in_global[old_i] = new_i
-    root = global_order[0]
+    # Sort factors deterministically by (n, enc)
+    perm = sorted(range(len(factor_bitrows)), key=lambda i: factor_keys_for_sort[i])
+    factor_bitrows = [factor_bitrows[i] for i in perm]
+    factor_keys_for_sort = [factor_keys_for_sort[i] for i in perm]
 
-    # Build axis info
-    axes: List[Tuple[Tuple[int, Tuple[int, ...]], int, List[int], int]] = []
-    # tuple: (factor_key, class_id, coords_per_vertex, tie_sig)
+    # Handle repeated identical factors: choose best coordinate ordering by searching
+    # permutations within each equal-key block (small factorial).
+    # If a block is large, fall back to global lex-min.
+    blocks: List[Tuple[int, int]] = []
+    i = 0
+    while i < len(factor_keys_for_sort):
+        j = i + 1
+        while j < len(factor_keys_for_sort) and factor_keys_for_sort[j] == factor_keys_for_sort[i]:
+            j += 1
+        blocks.append((i, j))
+        i = j
 
-    for c in range(num_classes):
-        comp_of, q_adj = quotient_graph_for_class(adj_bitrows, edges, cls_of_edge, c)
+    # Build a "best" factor order by permuting within identical blocks (if small).
+    best_factors = factor_bitrows
 
-        q_canon, q_order = cg_canon_bitrows(q_adj)
-        q_enc = encode_upper_triangle(q_canon)
-        factor_key = (len(q_canon), q_enc)
+    # Only do expensive tie-break if there is any nontrivial identical block.
+    need_tie = any((b1 - b0) > 1 for (b0, b1) in blocks)
+    if need_tie:
+        # If any block is too large, fallback
+        if any((b1 - b0) > 7 for (b0, b1) in blocks):
+            adj_g, enc_g = _global_lexmin(bitrows)
+            return CanonStarGraph(n, tuple(adj_g), enc_g, ((n, enc_g),))
 
-        inv_q = [0] * len(q_order)
-        for new_i, old_i in enumerate(q_order):
-            inv_q[old_i] = new_i
+        # Enumerate permutations within blocks via recursion
+        import itertools
 
-        coords = [inv_q[comp_of[v]] for v in range(n)]
+        choices: List[List[Tuple[int, ...]]] = []
+        block_factor_lists: List[List[List[int]]] = []
+        for (b0, b1) in blocks:
+            r = b1 - b0
+            if r == 1:
+                choices.append([(0,)])
+                block_factor_lists.append([factor_bitrows[b0]])
+            else:
+                perms = list(itertools.permutations(range(r)))
+                choices.append(perms)  # list of tuples
+                block_factor_lists.append([factor_bitrows[b0 + t] for t in range(r)])
 
-        # Tie signature: among edges of class c incident to canonical root, pick the smallest
-        # global-canonical position of the neighbor (stable, deterministic).
-        tie_candidates = []
-        for (u, v), cc in zip(edges, cls_of_edge):
-            if cc != c:
-                continue
-            if u == root:
-                tie_candidates.append(pos_in_global[v])
-            elif v == root:
-                tie_candidates.append(pos_in_global[u])
-        tie_sig = min(tie_candidates) if tie_candidates else (10**9)
+        best_enc: Optional[Tuple[int, ...]] = None
+        best_list: Optional[List[List[int]]] = None
 
-        axes.append((factor_key, c, coords, tie_sig))
+        def rec(block_idx: int, acc: List[List[int]]) -> None:
+            nonlocal best_enc, best_list
+            if block_idx == len(blocks):
+                prod = cartesian_product_bitrows(acc)
+                enc = encode_upper_triangle(prod)
+                if best_enc is None or enc < best_enc:
+                    best_enc = enc
+                    best_list = [list(x) for x in acc]
+                return
+            perms = choices[block_idx]
+            flist = block_factor_lists[block_idx]
+            for p in perms:
+                new_acc = acc + [flist[t] for t in p]
+                rec(block_idx + 1, new_acc)
 
-    # Sort axes by factor_key, then tie_sig, then class_id
-    axes.sort(key=lambda t: (t[0][0], t[0][1], t[3], t[1]))
+        rec(0, [])
+        assert best_list is not None
+        best_factors = best_list
 
-    # Build coordinate tuples
-    coord_tuples = [tuple(ax[2][v] for ax in axes) for v in range(n)]
+    # Build tuple-lex product adjacency from (tie-broken) factor order
+    prod = cartesian_product_bitrows(best_factors)
 
-    # Order vertices lex by coordinate tuple
-    v_order = sorted(range(n), key=lambda v: coord_tuples[v])
+    # CERTIFY: product we built must be isomorphic to original.
+    # Use your original global canonicalizer as the oracle for isomorphism here.
+    _, enc_orig = _global_lexmin(bitrows)
+    _, enc_prod = _global_lexmin(prod)
+    if enc_orig != enc_prod:
+        # Not a valid product decomposition; fall back to global lex-min
+        adj_g, enc_g = _global_lexmin(bitrows)
+        return CanonStarGraph(n, tuple(adj_g), enc_g, ((n, enc_g),))
 
-    canon = apply_order(adj_bitrows, v_order)
-    enc = encode_upper_triangle(canon)
-    return CanonStarGraph(n, tuple(canon), enc, ((n, enc),))
+    # Accept: Canon* is tuple-lex product labeling
+    enc_star = encode_upper_triangle(prod)
+    return CanonStarGraph(n, tuple(prod), enc_star, ((n, enc_star),))
 
 
-def canonstar(
-    adj: Sequence[Sequence[int]] | Sequence[int],
-    *,
-    max_edges_for_theta: int = 6000,
-) -> CanonStarGraph:
+# -------------------- Canon*(general) --------------------
+
+def canonstar(adj: Sequence[Sequence[int]] | Sequence[int]) -> CanonStarGraph:
     """
-    Canon*(G) for arbitrary graphs (possibly disconnected).
+    Canon*(G):
+      - Decompose G into connected components.
+      - Canon* each component (connected).
+      - Sort components by (n, enc).
+      - Assemble block-diagonal union in that order.
     """
     bitrows = to_bitrows(adj)
     n = len(bitrows)
@@ -532,21 +515,15 @@ def canonstar(
         return CanonStarGraph(0, (), (), ())
 
     comps = connected_components(bitrows)
-    if len(comps) == 1:
-        return _canonstar_connected(bitrows, max_edges_for_theta=max_edges_for_theta)
-
-    comp_graphs: List[CanonStarGraph] = []
+    comp_canon: List[CanonStarGraph] = []
     for comp in comps:
         sub = induced_subgraph(bitrows, comp)
-        comp_graphs.append(_canonstar_connected(sub, max_edges_for_theta=max_edges_for_theta))
+        comp_canon.append(_canonstar_connected(sub))
 
-    # sort components by their canonical key (n, enc)
-    comp_graphs.sort(key=lambda g: (g.n, g.enc))
-
-    blocks = [g.adj for g in comp_graphs]
-    union_adj = disjoint_union_bitrows(blocks)
-    union_enc = encode_upper_triangle(union_adj)
-    comp_keys = tuple((g.n, g.enc) for g in comp_graphs)
-
-    return CanonStarGraph(len(union_adj), tuple(union_adj), union_enc, comp_keys)
+    comp_canon.sort(key=lambda g: (g.n, g.enc))
+    blocks = [list(g.adj) for g in comp_canon]
+    union = disjoint_union_bitrows(blocks)
+    enc = encode_upper_triangle(union)
+    keys = tuple((g.n, g.enc) for g in comp_canon)
+    return CanonStarGraph(len(union), tuple(union), enc, keys)
 
