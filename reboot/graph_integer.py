@@ -15,13 +15,14 @@
 #   - induced_subgraph(adj, vertices) -> tuple[int]
 #   - disjoint_union_from_components(list_of_component_adj_bitsets) -> tuple[int]
 #
+# If some helpers have different names in your file, adjust the imports accordingly.
 
 from __future__ import annotations
 from dataclasses import dataclass
 from functools import lru_cache
 from typing import Dict, Tuple, Iterable, Optional, Any
 
-import canonical_graph as cg 
+import canonical_graph as cg  # your existing module
 
 # A connected component type key:
 # (n, enc) where enc is the canonical upper-triangle encoding tuple
@@ -175,67 +176,6 @@ def _scale_counts(a: Dict[CompKey, int], factor: int) -> Dict[CompKey, int]:
         return {}
     return {k: c * factor for k, c in a.items()}
 
-# == Norm Helpers ==
-from functools import lru_cache
-
-def _counts_signature(counts: dict) -> tuple:
-    # Stable, hashable signature for memoization
-    # counts: {CompKey: int}, where CompKey = (n, enc_tuple)
-    return tuple(sorted(counts.items()))
-
-@lru_cache(maxsize=None)
-def _global_canon_from_signature(sig: tuple, seed_leaf_budget: int):
-    """
-    sig: tuple of (CompKey, count) sorted.
-    Returns (n, enc_tuple) for the globally-canonical representative of the disjoint union.
-    """
-    if not sig:
-        return 0, ()
-
-    # Rebuild disjoint union adjacency (bitsets) deterministically
-    comps = []
-    for key, c in sig:
-        rep = _COMPONENT_REP_ADJ[key]  # from your module-level registry
-        for _ in range(c):
-            comps.append(rep)
-    adj = cg.disjoint_union_from_components(comps)
-
-    # Global canonicalization (your lex-min canonical form)
-    G = cg.CanonicalGraph(adj, seed_leaf_budget=seed_leaf_budget)
-    return G.n, G.enc
-
-
-def _weighted_bit_l1(encA: tuple, encB: tuple) -> float:
-    """
-    Sum_{n>=1} 2^{-n} |a_n - b_n| where enc tuples are the finite prefixes (0/1),
-    and the sequences are zero-padded forever.
-    """
-    la, lb = len(encA), len(encB)
-    L = la if la > lb else lb
-
-    w = 0.5  # 2^{-1}
-    s = 0.0
-
-    m = la if la < lb else lb
-    for i in range(m):
-        if encA[i] ^ encB[i]:
-            s += w
-        w *= 0.5
-
-    # remaining tail vs zeros
-    if la > lb:
-        for i in range(lb, la):
-            if encA[i]:
-                s += w
-            w *= 0.5
-    elif lb > la:
-        for i in range(la, lb):
-            if encB[i]:
-                s += w
-            w *= 0.5
-
-    return s
-
 
 @dataclass(frozen=True)
 class GraphInteger:
@@ -252,24 +192,22 @@ class GraphInteger:
     # -----------------------------
 
     @staticmethod
-    def from_graphs(pos_graph: Any = None, neg_graph: Any = None, *, seed_leaf_budget: int = 1500) -> "GraphInteger":
+    def from_graph(adj: Sequence[Sequence[int]] | Sequence[int]) -> "GraphInteger":
         """
-        Build a GraphInteger from a pair (A, B) representing A - B.
-        Inputs can be CanonicalGraph, adjacency matrix, or bitset adjacency.
+        Construct the graph integer (G, 0) from an adjacency matrix or bitrows.
+        Stores G as a multiset of Canon* connected components.
         """
-        if pos_graph is None:
-            pos_counts = {}
-        else:
-            pos_counts = _decompose_to_component_multiset(pos_graph, seed_leaf_budget=seed_leaf_budget)
+        bitrows = cs.to_bitrows(adj)
+        comps = cs.connected_components(bitrows)
 
-        if neg_graph is None:
-            neg_counts = {}
-        else:
-            neg_counts = _decompose_to_component_multiset(neg_graph, seed_leaf_budget=seed_leaf_budget)
+        counts: Dict[CompKey, int] = {}
+        for comp in comps:
+            sub = cs.induced_subgraph(bitrows, comp)   # connected induced subgraph
+            sub_cs = cs.canonstar(sub)                 # Canon* for that component (connected)
+            key = _register_component(sub_cs)          # saves representative adjacency
+            counts[key] = counts.get(key, 0) + 1
 
-        # reduce
-        _cancel_counts(pos_counts, neg_counts)
-        return GraphInteger(pos_counts, neg_counts, seed_leaf_budget=seed_leaf_budget)
+        return GraphInteger(pos=counts, neg={})  # already reduced (no negatives)
 
     @staticmethod
     def zero(*, seed_leaf_budget: int = 1500) -> "GraphInteger":
@@ -388,28 +326,6 @@ class GraphInteger:
 
         return self._normalized(pos_out, neg_out)
 
-    # -----------------------------
-    # Calculate Graph Integer Norm
-    # -----------------------------
-    
-    def norm(self) -> float:
-        """
-        Global-canonical norm:
-          |v(a) - v(b)| + sum_{n>=1} 2^{-n} |a_n - b_n|
-        where (a_n), (b_n) are the infinite zero-padded bitstrings coming from the
-        *global* canonical adjacency matrices of a and b.
-        """
-        sigA = _counts_signature(self.pos)
-        sigB = _counts_signature(self.neg)
-    
-        nA, encA = _global_canon_from_signature(sigA, self.seed_leaf_budget)
-        nB, encB = _global_canon_from_signature(sigB, self.seed_leaf_budget)
-    
-        vertex_term = abs(nA - nB)
-        bit_term = _weighted_bit_l1(encA, encB)
-    
-        return float(vertex_term) + bit_term
-    
     # -----------------------------
     # Optional: scalar multiply
     # -----------------------------
