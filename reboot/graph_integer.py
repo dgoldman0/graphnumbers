@@ -175,6 +175,67 @@ def _scale_counts(a: Dict[CompKey, int], factor: int) -> Dict[CompKey, int]:
         return {}
     return {k: c * factor for k, c in a.items()}
 
+# == Norm Helpers ==
+from functools import lru_cache
+
+def _counts_signature(counts: dict) -> tuple:
+    # Stable, hashable signature for memoization
+    # counts: {CompKey: int}, where CompKey = (n, enc_tuple)
+    return tuple(sorted(counts.items()))
+
+@lru_cache(maxsize=None)
+def _global_canon_from_signature(sig: tuple, seed_leaf_budget: int):
+    """
+    sig: tuple of (CompKey, count) sorted.
+    Returns (n, enc_tuple) for the globally-canonical representative of the disjoint union.
+    """
+    if not sig:
+        return 0, ()
+
+    # Rebuild disjoint union adjacency (bitsets) deterministically
+    comps = []
+    for key, c in sig:
+        rep = _COMPONENT_REP_ADJ[key]  # from your module-level registry
+        for _ in range(c):
+            comps.append(rep)
+    adj = cg.disjoint_union_from_components(comps)
+
+    # Global canonicalization (your lex-min canonical form)
+    G = cg.CanonicalGraph(adj, seed_leaf_budget=seed_leaf_budget)
+    return G.n, G.enc
+
+
+def _weighted_bit_l1(encA: tuple, encB: tuple) -> float:
+    """
+    Sum_{n>=1} 2^{-n} |a_n - b_n| where enc tuples are the finite prefixes (0/1),
+    and the sequences are zero-padded forever.
+    """
+    la, lb = len(encA), len(encB)
+    L = la if la > lb else lb
+
+    w = 0.5  # 2^{-1}
+    s = 0.0
+
+    m = la if la < lb else lb
+    for i in range(m):
+        if encA[i] ^ encB[i]:
+            s += w
+        w *= 0.5
+
+    # remaining tail vs zeros
+    if la > lb:
+        for i in range(lb, la):
+            if encA[i]:
+                s += w
+            w *= 0.5
+    elif lb > la:
+        for i in range(la, lb):
+            if encB[i]:
+                s += w
+            w *= 0.5
+
+    return s
+
 
 @dataclass(frozen=True)
 class GraphInteger:
@@ -327,6 +388,28 @@ class GraphInteger:
 
         return self._normalized(pos_out, neg_out)
 
+    # -----------------------------
+    # Calculate Graph Integer Norm
+    # -----------------------------
+    
+    def norm(self) -> float:
+        """
+        Global-canonical norm:
+          |v(a) - v(b)| + sum_{n>=1} 2^{-n} |a_n - b_n|
+        where (a_n), (b_n) are the infinite zero-padded bitstrings coming from the
+        *global* canonical adjacency matrices of a and b.
+        """
+        sigA = _counts_signature(self.pos)
+        sigB = _counts_signature(self.neg)
+    
+        nA, encA = _global_canon_from_signature(sigA, self.seed_leaf_budget)
+        nB, encB = _global_canon_from_signature(sigB, self.seed_leaf_budget)
+    
+        vertex_term = abs(nA - nB)
+        bit_term = _weighted_bit_l1(encA, encB)
+    
+        return float(vertex_term) + bit_term
+    
     # -----------------------------
     # Optional: scalar multiply
     # -----------------------------
