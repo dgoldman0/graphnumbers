@@ -388,9 +388,12 @@ finite-measure model would miss some of its elements.
 
 ## 6. Scope, verification, and remaining work
 
-The argument answers the stated membership question. It leaves the
-multiplicative character space, general unit classification, efficient
-approximation, and useful analytic applications for further work.
+The argument answers the stated membership question. The subsequent
+[multiplication and units note](MULTIPLICATION_AND_UNITS.md) proves that the
+completion is a domain and supplies an exact recursive unit criterion,
+using this representation theorem to establish balance of the reciprocal.
+The multiplicative character space, more tractable unit tests, efficient
+approximation, and useful analytic applications remain subjects for further work.
 The local transport principle and the combinatorial/functional-analytic
 methods have substantial prior literature. Whether the exact representation
 theorem or its signed formulation has appeared elsewhere requires a focused

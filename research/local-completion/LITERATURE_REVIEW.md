@@ -264,6 +264,29 @@ completion was not found in this search; its originality has not been
 established.** The arithmetic, real-scalar extension, local-limit perspective,
 and basic calculus should be credited to their existing frameworks.
 
+## Multiplication follow-up
+
+The later [multiplication and units note](MULTIPLICATION_AND_UNITS.md)
+establishes a domain theorem, a necessary-and-sufficient recursive unit
+criterion, and a complemented analytic function subalgebra. It also proves
+that nonunits are dense in this topology. These characterize additional
+properties of the fixed construction; they do not establish priority or
+a graph-theoretic application.
+
+The proof uses cumulants to turn Cartesian multiplication into addition
+of local invariants. Convolution logarithms and moment-cumulant relations
+are established methods; see Ebrahimi-Fard and Patras,
+[*Cumulants, free cumulants and half-shuffles*](https://arxiv.org/abs/1409.5664),
+Sections 4, 7–8. The relation between Cartesian adjacency operators and
+tensor independence is already discussed in [19]. The follow-up note
+explicitly constructs its rooted edge-coloring coalgebra and proves the
+ordering and reciprocal-balance arguments, rather than attributing those
+particular results to these general references.
+
+Whether these exact theorems or an equivalent completion already appear in
+the literature remains unresolved. The targeted follow-up search is
+recorded in SEARCH_LOG.md.
+
 ## Sources and locations checked
 
 Numbered references are stable links, not claims that every proof in every

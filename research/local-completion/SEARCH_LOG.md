@@ -180,3 +180,38 @@ This focused follow-up does not establish whether the exact graph
 representation theorem has previously appeared. An explicit existing
 theorem about the signed linear span of finite rooted-graph laws remains
 the most useful bibliographic target.
+
+## Multiplication follow-up, later on 30 September 2026
+
+Investigated cancellation and units for the exact truncated rooted
+Cartesian convolution, rather than selecting a different graph product.
+Query families included rooted Cartesian factorization and cancellation,
+partial star products, local product recognition, Cartesian homomorphism
+counts and edge-coloring quotients, graph-product cumulants, convolution
+logarithms, and weighted semigroup algebras.
+
+Located Hellmuth–Imrich–Kupka, *Partial Star Products: A Local Covering
+Approach for the Recognition of Approximate Cartesian Product Graphs*
+(2013), https://arxiv.org/abs/1303.6803, and *Fast Recognition of Partial
+Star Products and Quasi Cartesian Products* (2013),
+https://arxiv.org/abs/1308.2101. Their abstract-level descriptions concern
+local factor relations and recognition. They were not used to assert
+unique factorization or cancellation for our truncated ball monoid.
+The completed proof does not require such a factorization theorem.
+
+Re-read the introduction of Accardi–Lenczewski–Sałapata,
+*Decompositions of the free product of graphs*,
+https://arxiv.org/abs/math/0609329, for the established Cartesian/tensor
+independence connection and adjacency-operator decomposition.
+Read the primary arXiv PDF of Ebrahimi-Fard–Patras,
+*Cumulants, free cumulants and half-shuffles*,
+https://arxiv.org/abs/1409.5664, especially its convolution, classical
+cumulant, and exponential/logarithm discussions. The PMC mirror presented
+a browser challenge; the arXiv PDF supplied the relevant text.
+
+The [multiplication note](MULTIPLICATION_AND_UNITS.md) gives self-contained
+proofs for the particular rooted homomorphism coalgebra, multiplicative
+well-order, local reciprocal criterion, and cycle obstruction. No primary
+source asserting precisely those results for this completion was located
+in this targeted search. That limited negative result does not establish
+novelty; the general cumulant and semigroup-algebra machinery is prior art.

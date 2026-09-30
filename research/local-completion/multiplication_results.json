@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "arithmetic": "exact integers and fractions",
+  "total_checks": 21697,
+  "checks": {
+    "all_degree_characters_miss_obstruction": 6,
+    "axis_embedding_size_bound": 545,
+    "character_phase_is_real_in_example": 18,
+    "closed_walk_cumulant_additivity": 545,
+    "closed_walk_locality": 12,
+    "coproduct_edge_grading": 60,
+    "formal_reciprocal_product": 2,
+    "formal_reciprocal_recursion": 2,
+    "hom_cartesian_coproduct": 9554,
+    "hom_cumulant_additivity": 9554,
+    "hypercube_ball_size": 24,
+    "hypercube_polynomial_bound": 24,
+    "leading_coefficient": 39,
+    "log_exp_reconstruction": 654,
+    "nonunit_character_vanishes": 6,
+    "nonunits_eventually_equal_identity_locally": 21,
+    "odd_cycle_cumulants": 6,
+    "open_walk_cumulant_additivity": 545,
+    "small_ball_separation": 3,
+    "symbolic_coassociativity": 19,
+    "symbolic_cocommutativity": 19,
+    "walk_size_bound": 39
+  },
+  "small_connected_rooted_types": 16,
+  "multigraph_patterns": 19,
+  "radius_cases": [
+    {
+      "radius": 1,
+      "ball_types": 8,
+      "source_patterns": 10
+    },
+    {
+      "radius": 2,
+      "ball_types": 15,
+      "source_patterns": 18
+    },
+    {
+      "radius": 3,
+      "ball_types": 16,
+      "source_patterns": 19
+    }
+  ],
+  "odd_cycle_nonunits": [
+    {
+      "odd_length": 3,
+      "detecting_radius": 1,
+      "short_cumulant": 2,
+      "long_cumulant": 0
+    },
+    {
+      "odd_length": 5,
+      "detecting_radius": 2,
+      "short_cumulant": 2,
+      "long_cumulant": 0
+    },
+    {
+      "odd_length": 7,
+      "detecting_radius": 3,
+      "short_cumulant": 2,
+      "long_cumulant": 0
+    },
+    {
+      "odd_length": 9,
+      "detecting_radius": 4,
+      "short_cumulant": 2,
+      "long_cumulant": 0
+    },
+    {
+      "odd_length": 11,
+      "detecting_radius": 5,
+      "short_cumulant": 2,
+      "long_cumulant": 0
+    },
+    {
+      "odd_length": 13,
+      "detecting_radius": 6,
+      "short_cumulant": 2,
+      "long_cumulant": 0
+    }
+  ],
+  "scope": "Finite regressions support, and do not replace, the universal proofs in MULTIPLICATION_AND_UNITS.md."
+}

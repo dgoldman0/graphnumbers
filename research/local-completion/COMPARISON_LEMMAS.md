@@ -164,6 +164,13 @@ degree generating function can be evaluated continuously at every real z on
 every completed element. Polynomial moment control alone does not supply
 arbitrary exponential degree moments.
 
+The later [multiplication note, Section 5](MULTIPLICATION_AND_UNITS.md#5-a-retract-onto-a-familiar-analytic-function-algebra)
+does extend the full degree generating function continuously to the closed
+complex unit disk, including all derivatives there. It identifies its
+range with the real-coefficient smooth holomorphic disk algebra and gives
+a continuous algebra section using normalized hypercubes. This conclusion
+still makes no claim about evaluation outside the closed disk.
+
 ## 5. Distinguishing the topology from Banach and universal completions
 
 For a finite combination x=sum_C c_C C, the connected-component vertex norm is
