@@ -1,0 +1,305 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.82in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,mathtools,booktabs,array,enumitem}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[colorlinks=true,linkcolor=MidnightBlue,urlcolor=MidnightBlue,citecolor=MidnightBlue]{hyperref}
+\usepackage{fancyhdr,microtype}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.42em}
+\setlist{nosep,leftmargin=1.6em}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Graph Reals research}
+\fancyhead[R]{\small Candidate v0.1}
+\fancyfoot[L]{\small 30 September 2026}
+\fancyfoot[R]{\small\thepage}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\A}{\mathcal A}
+\newcommand{\B}{\mathcal B}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\sq}{\mathbin{\square}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\homc}{\operatorname{hom}}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\degroot}{deg}
+\hypersetup{pdftitle={A local completion of Cartesian graph arithmetic},pdfsubject={Candidate construction, proofs, and regression examples}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries A local completion of Cartesian graph arithmetic}\par
+\vspace{0.35em}
+{\large Candidate construction, proofs, and regression examples}\par
+\vspace{0.3em}
+Working research note \;|\; 30 September 2026 \;|\; Version 0.1
+\end{center}
+
+\textbf{Purpose.} Construct and examine one complete real algebra that preserves exact finite-graph arithmetic and admits nontrivial normalized graph limits. The project goal remains a balance between real-like analysis and graph structure. This note proves properties of a particular candidate; adoption as the project's final Graph Reals construction remains a separate decision. All graphs here are finite, simple, undirected and unweighted unless an infinite local limit is explicitly named. Scalar coefficients weight formal graph terms, rather than individual edges.
+
+\textbf{Result.} The construction below yields a faithful commutative unital Fr\'echet algebra containing the ordinary reals, with continuous Cartesian multiplication, vertex and edge observables, and every fixed finite connected pattern count. Normalized cycles converge to a nonzero element whose powers describe lattice neighborhoods. Exponential series, real-parameter differentiation and integration are available. Arbitrary graph division and continuous component count are sacrificed. The topology is not induced by a single norm.
+
+\textbf{Refinement of the initial proposal.} The previously proposed seminorms weighted a neighborhood by its number of vertices. They support the algebra and the cycle benchmark, but do not make triangle count continuous. Section~\ref{sec:limits} gives an exact counterexample. We therefore retain that baseline and add all positive integer powers of neighborhood size. The additional seminorms preserve the same finite arithmetic and lattice benchmarks while controlling every fixed connected motif. No claim of novelty is made; comparison with existing graph-limit algebras remains open. The accompanying code is fresh and independent of the historical repository.
+
+\section{The finite algebra and its local observations}
+
+Let $\mathcal C$ be the isomorphism classes of nonempty connected finite graphs, including $K_1$. Define the real vector space
+\[
+ \A_0=\bigoplus_{C\in\mathcal C}\R[C],\qquad
+ [C][D]=[C\sq D],\qquad \one=[K_1].
+\]
+Extend multiplication bilinearly. A Cartesian product of connected graphs is connected; graph-product associativity and commutativity, up to isomorphism, give a commutative unital algebra. Represent an arbitrary finite graph by the sum of its connected components with multiplicities. The empty graph represents zero. Unique connected-component decomposition makes this representation faithful, and distributivity of Cartesian product over disjoint union preserves the original graph operations. No assertion about prime factorization is needed.
+
+For a vertex $o$ of $G$, let $B_r(G,o)$ be the \emph{induced} rooted subgraph on vertices at distance at most the nonnegative integer $r$ from $o$. The root is part of the isomorphism type. Let $\B_r$ consist of finite nonempty rooted graphs in which every vertex is within distance $r$ of the root. Define
+\[
+ a_r^G(B)=\#\{o\in V(G): B_r(G,o)\cong B\},\qquad
+ T_r(G)=\sum_{B\in\B_r}a_r^G(B)\delta_B.
+\]
+These counts are additive over components, so $T_r$ extends linearly to $\A_0$. In particular, $T_0(x)=v(x)\delta_{K_1}$, where $v$ is the linear vertex-count extension. For a nonempty graph, $T_r(G/v(G))$ is its uniform-root neighborhood distribution. This is the local perspective underlying Benjamini--Schramm convergence~\cite{BS}; the linear algebra and weighted completion below are specified separately.
+
+For $r\ge0$ and integer $k\ge1$, define
+\begin{equation}\label{eq:p}
+ p_{r,k}(x)=\sum_{B\in\B_r}\abs{V(B)}^k\abs{a_r^x(B)}.
+\end{equation}
+The original candidate was $p_{r,1}$. Each expression is a seminorm because $T_r$ is linear and the weighted $\ell^1$ norm satisfies the triangle inequality.
+
+\section{The multiplication estimate and separation}
+
+For rooted types $B,D\in\B_r$, set
+\[
+ B\star_r D=B_r(B\sq D,(o_B,o_D)).
+\]
+
+\begin{lemma}[Product-ball identity]\label{lem:ball}
+For any graphs $G,H$, roots $g,h$, and $r\ge0$,
+\[
+ B_r(G\sq H,(g,h))\cong B_r(G,g)\star_r B_r(H,h).
+\]
+Moreover, $\star_r$ is associative and commutative, has identity $K_1$, and
+\[
+ \abs{V(B\star_r D)}\le \abs{V(B)}\abs{V(D)}.
+\]
+\end{lemma}
+\begin{proof}
+Distance from $(g,h)$ to $(u,w)$ in a Cartesian product is the sum of the two factor distances. A vertex in the product ball therefore lies in both factor balls. Taking an induced ball preserves distance from its root: every shortest root-to-vertex path stays inside that ball. Consequently truncating the factors first retains exactly the eligible product vertices and all edges between them. Repeating this argument for three factors proves associativity; commutativity and the unit follow from those of Cartesian product. The vertex-set inclusion in $V(B)\times V(D)$ proves the size bound.
+\end{proof}
+
+\begin{proposition}[Submultiplicativity and compatibility]\label{prop:sub}
+For every $x,y\in\A_0$,
+\[
+ T_r(xy)=T_r(x)*_rT_r(y),\qquad
+ p_{r,k}(xy)\le p_{r,k}(x)p_{r,k}(y),
+\]
+where $*_r$ is convolution under $\star_r$. Also
+$p_{s,j}(x)\le p_{r,k}(x)$ whenever $s\le r$ and $j\le k$.
+\end{proposition}
+\begin{proof}
+For actual graphs, roots of a product are pairs of roots; Lemma~\ref{lem:ball} gives the convolution identity. Bilinearity gives it for signed real combinations. Thus
+\begin{align*}
+ p_{r,k}(xy)
+ &\le \sum_{B,D}\abs{a_r^x(B)}\abs{a_r^y(D)}
+          \abs{V(B\star_rD)}^k\\
+ &\le \sum_{B,D}\abs{a_r^x(B)}\abs{V(B)}^k
+                    \abs{a_r^y(D)}\abs{V(D)}^k.
+\end{align*}
+The last expression is the product of the two seminorms. Truncation sends $B$ to its induced $s$-ball, decreases its size, and aggregates signed coefficients. Applying the triangle inequality after this aggregation proves the final assertion.
+\end{proof}
+
+\begin{lemma}[Separation]\label{lem:sep}
+If $p_{r,k}(x)=0$ for all $r,k$, then $x=0$.
+\end{lemma}
+\begin{proof}
+Write $x=\sum_{i=1}^m c_i[C_i]$ using distinct connected graph types and nonzero coefficients. Choose $r$ at least the largest diameter of these graphs. Every rooted $r$-ball is then the entire rooted component. Rooted types belonging to different $C_i$ cannot coincide, and each $C_i$ contributes a positive number of roots to at least one such type. Its coefficient in $T_r(x)$ is a positive integer times $c_i$, so $T_r(x)\ne0$ whenever $x\ne0$.
+\end{proof}
+
+\section{A faithful complete real algebra}
+
+\begin{theorem}[Existence of the local completion]\label{thm:completion}
+The topology generated by all $p_{r,k}$ is Hausdorff and metrizable. Its completion $\A_{\mathrm{loc}}$ is a commutative unital real Fr\'echet algebra. The embedding $\A_0\to\A_{\mathrm{loc}}$ is faithful and has dense image, and multiplication extends jointly continuously. The scalar-rational span $\bigoplus_{C\in\mathcal C}\Q[C]$ is also dense.
+\end{theorem}
+\begin{proof}
+For every $(r,k)$, let $E_{r,k}$ be the weighted Banach space
+\[
+ \ell^1(\B_r,w_{r,k}),\qquad w_{r,k}(B)=\abs{V(B)}^k,
+\]
+with convolution under $\star_r$. The weight inequality in Lemma~\ref{lem:ball} and absolute summability show that convolution is well defined and submultiplicative on $E_{r,k}$. Hence it is a unital Banach algebra. The map
+\[
+ T:\A_0\longrightarrow\prod_{r\ge0,\,k\ge1}E_{r,k},
+ \qquad T(x)=(T_r(x))_{r,k}
+\]
+is an injective unital algebra homomorphism by Proposition~\ref{prop:sub} and Lemma~\ref{lem:sep}. Its induced topology is exactly the seminorm topology. Define $\A_{\mathrm{loc}}$ as the closure of $T(\A_0)$ in this countable product. The product is a complete metrizable locally convex space with jointly continuous coordinatewise multiplication. The closure is a complete unital subalgebra. This proves existence, completeness, faithfulness and continuity without assuming that an arbitrary continuous operation extends to a completion.
+
+Approximating the finitely many real coefficients of a fixed element of $\A_0$ by rationals converges in every defining seminorm. The rational span is therefore dense in $\A_0$ and hence in its completion.
+\end{proof}
+
+This is the standard separating-submultiplicative-seminorm framework for locally multiplicatively convex algebras~\cite{Infusino}, applied to the specific graph observations proved above. The theorem does \emph{not} identify the closure with the entire ambient product or with every compatible local family. Truncation compatibility and compatibility between the different weighted spaces pass to the closure, but extra constraints inherited from uniformly rooted finite graphs may remain.
+
+\textbf{Scalar topology and a quantitative metric.} Since $p_{r,k}(a\one)=|a|$ for all $r,k$, the embedded real line has its ordinary topology and is closed. Enumerate the defining seminorms as $(q_j)_{j\ge1}$. A complete compatible translation-invariant metric is
+\begin{equation}\label{eq:metric}
+ d(x,y)=|v(x-y)|+\sum_{j\ge1}2^{-j}\min\{1,q_j(x-y)\}.
+\end{equation}
+Its Cauchy sequences are exactly those Cauchy in each defining seminorm. On scalars,
+\[
+ d(a\one,b\one)=|a-b|+\min\{1,|a-b|\},\qquad
+ |a-b|\le d(a\one,b\one)\le2|a-b|.
+\]
+Thus this metric gives global Lipschitz equivalence to the ordinary real metric. The completion concerns the scalar-rational graph algebra, not the full field of graph fractions.
+
+\section{Continuous observables and connected patterns}
+
+\begin{proposition}[Vertices, edges and isolated vertices]\label{prop:obs}
+The usual finite-graph vertex count $v$, edge count $e$, and isolated-vertex count $i$ extend uniquely to continuous real-linear functionals on $\A_{\mathrm{loc}}$. For all $x,y$,
+\begin{align*}
+ v(xy)&=v(x)v(y),& i(xy)&=i(x)i(y),\\
+ e(xy)&=e(x)v(y)+v(x)e(y).
+\end{align*}
+\end{proposition}
+\begin{proof}
+The local formulas and bounds are
+\begin{align*}
+ |v(x)|&=p_{0,1}(x),\\
+ e(x)&=\tfrac12\sum_{B\in\B_1}\degroot_B(o_B)a_1^x(B),
+ & |e(x)|&\le\tfrac12p_{1,1}(x),\\
+ i(x)&=a_1^x(K_1),& |i(x)|&\le p_{1,1}(x).
+\end{align*}
+Here $\degroot_B(o_B)=|V(B)|-1$ for a radius-one ball. These estimates give continuous extensions to the completion. Vertex numbers multiply in Cartesian products; root degrees add; and a product root is isolated exactly when both factor roots are isolated. These facts prove the identities for actual graphs, bilinearity proves them on $\A_0$, and continuity proves them on the completion. In particular, $e$ satisfies a Leibniz rule relative to $v$ rather than being a ring homomorphism.
+\end{proof}
+
+\begin{proposition}[Every fixed connected pattern]\label{prop:motifs}
+For every finite nonempty connected graph $F$, its homomorphism count into a finite graph, its injective homomorphism count, and its induced embedding count extend to continuous real-linear functionals on $\A_{\mathrm{loc}}$. Unlabelled connected copy counts obtained by dividing embedding counts by $|\operatorname{Aut}(F)|$ are continuous as well.
+\end{proposition}
+\begin{proof}
+Fix a vertex $o_F$, let $q=|V(F)|$ and $s=\diam(F)$. For $B\in\B_s$, let $f_F(B)$ count the homomorphisms $F\to B$ taking $o_F$ to the root. An image of a connected $F$ with that root lies entirely inside its radius-$s$ neighborhood. Consequently
+\[
+ \homc(F,G)=\sum_{B\in\B_s}f_F(B)a_s^G(B),\qquad
+ 0\le f_F(B)\le |V(B)|^{q-1}.
+\]
+Because a connected image lies in one component, this graph count agrees with its linear extension on $\A_0$. Its absolute value is bounded by $p_{s,\max\{1,q-1\}}$. Injectivity and induced-edge constraints only reduce the number of maps and are determined inside the induced ball. The same bound applies. The case $q=1$ is vertex count.
+\end{proof}
+
+More generally, a rooted radius-$r$ observable $f(B)$ with polynomial growth $|f(B)|\le C|V(B)|^k$ gives a continuous linear functional. This includes bounded neighborhood indicators and every polynomial moment of root degree. Connectedness in Proposition~\ref{prop:motifs} is essential for linear additivity over disjoint unions; disconnected homomorphism counts instead extend as products of the connected ones.
+
+\section{The cycle and Cartesian-product benchmarks}
+
+\begin{theorem}[Normalized cycles and lattices]\label{thm:cycles}
+For $n\ge3$, set $x_n=C_n/n$. There exists $L\in\A_{\mathrm{loc}}$ with $x_n\to L$, $v(L)=1$ and $e(L)=1$. For every fixed integer $d\ge1$,
+\[
+ \frac{C_{n_1}\sq\cdots\sq C_{n_d}}{n_1\cdots n_d}
+ \longrightarrow L^d\quad\text{as }\min_jn_j\to\infty,
+ \qquad v(L^d)=1,\quad e(L^d)=d.
+\]
+Its radius-$r$ coordinate is the point mass at the radius-$r$ ball of the rooted lattice $(\Z^d,0)$.
+\end{theorem}
+\begin{proof}
+If $n>2r+1$, every radius-$r$ cycle ball is the path on $2r+1$ vertices with its central root. Normalization makes $T_r(x_n)$ exactly the point mass at this type. Thus each coordinate is eventually constant in every weighted norm, and $(x_n)$ is Cauchy. Completeness gives $L$; continuous counts give $v(L)=e(L)=1$, so $L\ne0$.
+
+Repeated use of Lemma~\ref{lem:ball} shows that when every $n_j>2r+1$, the normalized product coordinate is exactly the rooted $\Z^d$ ball. Continuous multiplication identifies the limit with $L^d$. The count formulas follow either from the finite products or from Proposition~\ref{prop:obs} by induction.
+\end{proof}
+
+The sizes of these neighborhoods are
+\[
+ N_d(r)=\sum_{j=0}^{\min(d,r)}2^j\binom dj\binom rj,
+ \qquad p_{r,k}(L^d)=N_d(r)^k.
+\]
+Indeed, choose the $j$ nonzero coordinates and their signs, then positive integer magnitudes whose sum is at most $r$. In particular, $N_1(r)=2r+1$ and $N_2(r)=1+2r(r+1)$.
+
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Local limit & $v$ & $e$ & radius 1 size & radius 2 size\\
+\midrule
+$\one$ & 1 & 0 & 1 & 1\\
+$L$ (line neighborhoods) & 1 & 1 & 3 & 5\\
+$L^2$ (square-lattice neighborhoods) & 1 & 2 & 5 & 13\\
+$L^3$ (cubic-lattice neighborhoods) & 1 & 3 & 7 & 25\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The finite-valued observables describe normalized mass, not the literal cardinalities of infinite lattices. Edge lengths have not been introduced, so these are local combinatorial limits. A geometric circle or continuum manifold would require additional geometric data and a separate limiting argument. For normalized graphs with one common degree bound, the topology on their local distributions agrees with the usual local weak convergence: for each radius there are only finitely many possible ball types with bounded size. For unbounded degrees, our topology additionally controls all polynomial neighborhood-size moments.
+
+\section{Calculus and explicit inversion statements}
+
+\begin{proposition}[Exponentials and real-parameter calculus]
+For every $x\in\A_{\mathrm{loc}}$, the series $\exp(x)=\sum_{m\ge0}x^m/m!$ converges. It is a unit with inverse $\exp(-x)$. The map $t\mapsto\exp(tx)$ is differentiable in every defining seminorm and has derivative $x\exp(tx)$. Continuous paths on compact real intervals possess Riemann integrals in the completion.
+\end{proposition}
+\begin{proof}
+For each defining seminorm $p$,
+\[
+ \sum_{m\ge0}p(x^m/m!)\le\sum_{m\ge0}p(x)^m/m!=\exp(p(x)).
+\]
+Partial sums are therefore Cauchy in every seminorm and converge by completeness. Absolute convergence in each coordinate permits the Cauchy-product computation $\exp(x)\exp(-x)=\one$. The differentiated scalar-parameter series converges uniformly on each compact $t$-interval in every seminorm, which proves the derivative formula.
+
+For a continuous $f:[a,b]\to\A_{\mathrm{loc}}$, uniform continuity in each seminorm makes tagged Riemann sums Cauchy as mesh tends to zero. Completeness supplies their common limit and
+\[
+ p\left(\int_a^bf(t)\,dt\right)\le\int_a^bp(f(t))\,dt.
+\]
+The same estimate applied to difference quotients proves the fundamental theorem of calculus for the integral of a continuous path.
+\end{proof}
+
+Differentiation also makes sense in algebra directions: for each $x,h$, the directional derivative of the exponential is $D\exp(x)[h]=\exp(x)h$. Commutativity and the estimate
+\[
+ p\bigl(\exp(x+h)-\exp(x)-\exp(x)h\bigr)
+ \le e^{p(x)}\bigl(e^{p(h)}-1-p(h)\bigr)
+\]
+prove this in every seminorm; the derivative depends jointly continuously on $(x,h)$. Polynomial differentiation is obtained by the product rule. These statements establish specific calculus operations. General nonlinear differential-equation existence and uniqueness in this Fr\'echet space require separate hypotheses.
+
+\textbf{Division has a precise boundary.} Every nonzero scalar is a unit, and all exponentials are units. Every connected finite graph with more than one vertex is a nonunit: its isolated-vertex character $i$ is zero, whereas $i(\one)=1$. The same applies to $L$. The nonzero graph integer $K_2-2K_1$ also has $v=0$ and therefore cannot be a unit. Accordingly, the full graph-fraction field cannot embed while extending this graph embedding. A complete classification of the units, and whether their group is open, are left unresolved.
+
+\section{Counterexamples, trade-offs and the research decision}\label{sec:limits}
+
+\textbf{Why the additional powers are needed.} In the baseline topology using only $p_{r,1}$, take $y_n=K_n/n^3$. Then
+\[
+ p_{0,1}(y_n)=n^{-2},\qquad
+ p_{r,1}(y_n)=n^{-1}\ (r\ge1),\qquad
+ \#\triangle(y_n)=\binom n3/n^3\longrightarrow\tfrac16.
+\]
+Thus $y_n\to0$ while triangle count fails to approach zero. In the refined topology, $p_{1,2}(y_n)=1$, so that false continuity implication is prevented. Proposition~\ref{prop:motifs} supplies the general repair.
+
+\textbf{Component count remains discontinuous.} Put $z_n=C_{2n}-2C_n$. For each fixed $r$, once $n>2r+1$ the signed local histograms cancel exactly, so every $p_{r,k}(z_n)$ is zero. Hence $z_n\to0$ in the refined topology. Yet the linear component count is always $1-2=-1$. Each $z_n$ is a nonzero finite graph integer; faithfulness is preserved while the sequence converges to zero. This distinguishes finite equality from limiting approximation.
+
+\textbf{The topology is not normable.} Suppose a norm induced this topology. Its continuity and the directedness of the seminorm family would give $\|x\|\le C p_{R,K}(x)$ for some $R,K,C$. Choose $n>2R+1$. Then $z_n\ne0$ but $p_{R,K}(z_n)=0$, a contradiction. Thus this candidate intrinsically uses a family of scales, and its topology cannot be replaced by an equivalent Banach norm.
+
+\textbf{Ordinary finite graphs remain discrete under convergent sequences.} If an ordinary finite-graph sequence converges, its continuous integer-valued vertex counts eventually stabilize. Only finitely many isomorphism classes have that size. A convergent sequence in this finite Hausdorff subset must eventually be constant. The nontrivial approximants here are normalized or signed graph combinations, and the dense substructure is their scalar-rational span.
+
+\textbf{Measure representation remains unclassified.} The construction identifies a limit with its compatible signed local histograms in weighted $\ell^1$ spaces. A representation by one finite signed measure on the space of rooted graphs would require, in particular, a uniform bound on the total variations of all radius marginals. The defining seminorms control each radius separately and do not supply such a uniform bound. No general measure-representation theorem or classification of the entire closure is asserted.
+
+\begin{center}\small
+\begin{tabular}{p{0.30\linewidth}p{0.61\linewidth}}
+\toprule
+Requirement & Result for this candidate\\
+\midrule
+Finite graph distinctions & Preserved up to isomorphism; no spectral quotient.\\
+Original graph operations & Disjoint union and Cartesian product preserved exactly.\\
+Ordinary real slice & Closed unital copy; metric~\eqref{eq:metric} is globally bi-Lipschitz on it.\\
+Completeness and arithmetic & Complete Fr\'echet algebra with jointly continuous multiplication.\\
+Graph approximation & Normalized cycles, their products, and degree-bounded local weak limits.\\
+Continuous graph quantities & Vertices, edges and all fixed connected pattern counts.\\
+Analysis & Exponentials, algebra-direction derivatives, real-parameter calculus and integration.\\
+Global component count & Discontinuous, by the explicit $z_n$ sequence.\\
+Full graph division & Excluded; scalar inverses and exponential inverses survive.\\
+Dense graphon compatibility & Unestablished; no cut-metric slice or Lipschitz claim.\\
+\bottomrule
+\end{tabular}\end{center}
+
+\textbf{Decision supported by this note.} The refined local completion is a viable candidate for the complete-algebra branch. It passes the cycle and Cartesian-product benchmarks and retains a substantial collection of graph observables. It does not settle the balance for the whole project. The next useful tests are additional approximation families that distinguish local geometry from global structure, followed by a characterization of the completed elements and units. Any requirement for continuous component count, arbitrary graph inverses, or a particular dense-graphon slice must be evaluated against the explicit obstructions above.
+
+\section{Computational checks and provenance}
+
+The standard-library verifier \texttt{verify\_local\_algebra.py} uses exact rational arithmetic and exact isomorphism backtracking. All 3,606 recorded checks passed. They cover relabeling, product balls, signed convolution, seminorm inequalities, scalar behavior, observable formulas, and the cycle/grid and counterexample formulas. Separation was checked for all 19 graph types on at most four vertices. The JSON output records the case counts and values. Finite checks verify the implementation and examples; the universal results are proved above.
+
+The cospectral regression pair $C_4\sqcup2K_1$ and $K_{1,4}\sqcup K_1$ shares the polynomial $\lambda^4(\lambda^2-4)$ and the same vertex and edge counts. Its radius-one observations differ. The checks also cover repeated components, the empty graph and $K_1$.
+
+This note develops the September 30 handoff and the normalized-cycle benchmark. The references provide background on local convergence and the general seminorm framework.
+
+\begingroup\small
+\begin{thebibliography}{9}
+\bibitem{BS} I. Benjamini and O. Schramm, \emph{Recurrence of Distributional Limits of Finite Planar Graphs}, Electronic Journal of Probability 6 (2001), paper 23, 1--13. Section 1.2 supplies the rooted local topology. \url{https://arxiv.org/abs/math/0011019}.
+\bibitem{Infusino} M. Infusino, \emph{Topological Algebras}, lecture notes, 2018, Lecture 6, Sections 2.2--2.3 (seminorms and Hausdorff locally multiplicatively convex algebras). \url{https://www.math.uni-konstanz.de/~infusino/TA-SS18/Lect6.pdf}.
+\end{thebibliography}
+\endgroup
+\end{document}
