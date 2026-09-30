@@ -1,0 +1,328 @@
+{
+  "success": true,
+  "checks": 3780,
+  "rooted_cartesian_pairs": 882,
+  "monomial_fixtures": [
+    {
+      "radius": 2,
+      "power": 0,
+      "types": 1,
+      "variation": "1"
+    },
+    {
+      "radius": 2,
+      "power": 1,
+      "types": 3,
+      "variation": "8"
+    },
+    {
+      "radius": 2,
+      "power": 2,
+      "types": 6,
+      "variation": "64"
+    },
+    {
+      "radius": 2,
+      "power": 3,
+      "types": 10,
+      "variation": "512"
+    },
+    {
+      "radius": 3,
+      "power": 0,
+      "types": 1,
+      "variation": "1"
+    },
+    {
+      "radius": 3,
+      "power": 1,
+      "types": 4,
+      "variation": "12"
+    },
+    {
+      "radius": 3,
+      "power": 2,
+      "types": 10,
+      "variation": "144"
+    }
+  ],
+  "phase_witnesses": [
+    {
+      "radius": 2,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 0,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 1,
+      "value_real": "4",
+      "value_imaginary": "-4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 2,
+      "value_real": "8",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 3,
+      "value_real": "4",
+      "value_imaginary": "4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 0,
+      "value_real": "-4",
+      "value_imaginary": "4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 1,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 2,
+      "value_real": "4",
+      "value_imaginary": "4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 3,
+      "value_real": "0",
+      "value_imaginary": "8"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 0,
+      "value_real": "-8",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 1,
+      "value_real": "-4",
+      "value_imaginary": "-4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 2,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 3,
+      "value_real": "-4",
+      "value_imaginary": "4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 0,
+      "value_real": "-4",
+      "value_imaginary": "-4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 1,
+      "value_real": "0",
+      "value_imaginary": "-8"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 2,
+      "value_real": "4",
+      "value_imaginary": "-4"
+    },
+    {
+      "radius": 2,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 3,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 0,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 1,
+      "value_real": "6",
+      "value_imaginary": "-6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 2,
+      "value_real": "12",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 0,
+      "line_quarter_turns": 3,
+      "value_real": "6",
+      "value_imaginary": "6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 0,
+      "value_real": "-6",
+      "value_imaginary": "6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 1,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 2,
+      "value_real": "6",
+      "value_imaginary": "6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 1,
+      "line_quarter_turns": 3,
+      "value_real": "0",
+      "value_imaginary": "12"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 0,
+      "value_real": "-12",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 1,
+      "value_real": "-6",
+      "value_imaginary": "-6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 2,
+      "value_real": "0",
+      "value_imaginary": "0"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 2,
+      "line_quarter_turns": 3,
+      "value_real": "-6",
+      "value_imaginary": "6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 0,
+      "value_real": "-6",
+      "value_imaginary": "-6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 1,
+      "value_real": "0",
+      "value_imaginary": "-12"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 2,
+      "value_real": "6",
+      "value_imaginary": "-6"
+    },
+    {
+      "radius": 3,
+      "atom_quarter_turns": 3,
+      "line_quarter_turns": 3,
+      "value_real": "0",
+      "value_imaginary": "0"
+    }
+  ],
+  "truncated_exponentials": [
+    {
+      "radius": 2,
+      "time": "-1/4",
+      "cutoff": 3,
+      "variation": "19/3"
+    },
+    {
+      "radius": 2,
+      "time": "1/4",
+      "cutoff": 3,
+      "variation": "19/3"
+    },
+    {
+      "radius": 3,
+      "time": "-1/4",
+      "cutoff": 2,
+      "variation": "17/2"
+    },
+    {
+      "radius": 3,
+      "time": "1/4",
+      "cutoff": 2,
+      "variation": "17/2"
+    }
+  ],
+  "weighted_tail_fixtures": [
+    {
+      "radius": 2,
+      "weight": 1,
+      "time": "1/4",
+      "cutoff": 8,
+      "bound": "130321/64449",
+      "finite_terms_checked": 40
+    },
+    {
+      "radius": 3,
+      "weight": 1,
+      "time": "1/4",
+      "cutoff": 10,
+      "bound": "323754489243/1017724400",
+      "finite_terms_checked": 40
+    },
+    {
+      "radius": 2,
+      "weight": 2,
+      "time": "-1/4",
+      "cutoff": 12,
+      "bound": "41841412812/5385390725",
+      "finite_terms_checked": 40
+    }
+  ],
+  "scope": "Exact finite witnesses; infinite spectrum, entire-function identification, and convergence rely on proofs."
+}

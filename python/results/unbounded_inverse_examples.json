@@ -1,0 +1,124 @@
+{
+  "method": "exact rational certificates and finite rooted-histogram comparisons",
+  "proof_scope": "The entire cut-line calculus proves exp(tE)*exp(-tE)=1 globally and unbounded variation for nonzero t. A proved local character supplies the larger-radius resolvent obstruction. The computations check specified local consequences, not those universal assertions.",
+  "requested_weighted_error": "1/10000",
+  "exponential_unit": {
+    "parameter": "1/1000",
+    "exact_variation_formula_for_radius_at_least_two": "exp(4*r*abs(parameter))",
+    "global_finite_variation_certificate": null,
+    "forward": {
+      "radius": 2,
+      "weight": 1,
+      "parameter": "1/1000",
+      "poisson_parameter": "1/125",
+      "truncation_degree": 2,
+      "tail_bound": "4802/381546875",
+      "tail_ratio": "81/24500",
+      "unweighted_tail_bound": "2/23390625",
+      "error_bound": "4802/381546875",
+      "local_types": 10
+    },
+    "inverse": {
+      "radius": 2,
+      "weight": 1,
+      "parameter": "-1/1000",
+      "poisson_parameter": "1/125",
+      "truncation_degree": 2,
+      "tail_bound": "4802/381546875",
+      "tail_ratio": "81/24500",
+      "unweighted_tail_bound": "2/23390625",
+      "error_bound": "4802/381546875",
+      "local_types": 10
+    },
+    "inverse_identity": {
+      "observed_weighted_defect": "259/7812500000",
+      "certified_error_bound": "30321812769843/1164624142578125000",
+      "contained": true
+    },
+    "initial_local_candidate": {
+      "scope": "inverse of the specified weighted local marginal only",
+      "radius": 2,
+      "weight": 1,
+      "error_bound": "16776139/471603861",
+      "inverse_norm_bound": "488380000/471603861",
+      "source_error": "4802/381546875",
+      "residual_norm": "17169/500000",
+      "residual_bound": "16776139/488380000",
+      "candidate_norm": "1",
+      "initial_residual_bound": "16776139/488380000",
+      "truncation_degree": 0,
+      "stability_bound": "0",
+      "tail_bound": "16776139/471603861"
+    },
+    "refined_local_inverse": {
+      "scope": "inverse of the specified weighted local marginal only",
+      "radius": 2,
+      "weight": 1,
+      "error_bound": "6534584153319979/117900965250000000000",
+      "inverse_norm_bound": "488380000/471603861",
+      "source_error": "4802/381546875",
+      "residual_norm": "17169/500000",
+      "residual_bound": "16776139/488380000",
+      "candidate_norm": "1",
+      "initial_residual_bound": "16776139/488380000",
+      "truncation_degree": 2,
+      "stability_bound": "3073280000/227704963810491",
+      "tail_bound": "5060984437809/120707750000000000"
+    },
+    "agreement_with_specialized_inverse": {
+      "observed_weighted_difference": "80009/7812500000",
+      "combined_error_bound": "195802278288272567201/2879023670439750000000000",
+      "contained": true
+    }
+  },
+  "local_success_without_global_invertibility": {
+    "source": "1-E/16",
+    "radius_one": {
+      "certificate": {
+        "scope": "inverse of the specified weighted local marginal only",
+        "radius": 1,
+        "weight": 1,
+        "error_bound": "5/3",
+        "inverse_norm_bound": "8/3",
+        "source_error": "0",
+        "residual_norm": "5/8",
+        "residual_bound": "5/8",
+        "candidate_norm": "1",
+        "initial_residual_bound": "5/8",
+        "truncation_degree": 0,
+        "stability_bound": "0",
+        "tail_bound": "5/3"
+      },
+      "refinement": {
+        "scope": "inverse of the specified weighted local marginal only",
+        "radius": 1,
+        "weight": 1,
+        "error_bound": "59604644775390625/1770887431076116955136",
+        "inverse_norm_bound": "8/3",
+        "source_error": "0",
+        "residual_norm": "5/8",
+        "residual_bound": "5/8",
+        "candidate_norm": "1",
+        "initial_residual_bound": "5/8",
+        "truncation_degree": 23,
+        "stability_bound": "0",
+        "tail_bound": "59604644775390625/1770887431076116955136"
+      },
+      "scope": "Only the radius-one weighted local inverse is certified."
+    },
+    "radius_four": {
+      "unweighted_defect_variation": "1",
+      "weighted_candidate_residual": "31/4",
+      "residual_test_rejection": "The sufficient local inverse test requires residual_bound < 1; failure does not prove local or global noninvertibility",
+      "proved_character_atom_values": {
+        "half_line": "1",
+        "line": "-1"
+      },
+      "character_value_of_E": "16",
+      "character_value_of_source": "0",
+      "conclusion_from_character_theorem": "The radius-four marginal is a nonunit, hence the source has no inverse in the full graph algebra.",
+      "distinction": "Residual-test failure alone is inconclusive; the character proves the obstruction."
+    }
+  },
+  "all_checks_passed": true
+}

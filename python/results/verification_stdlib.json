@@ -1,11 +1,11 @@
 {
   "python": "3.12.14",
-  "tests_run": 99,
+  "tests_run": 115,
   "failures": 0,
   "errors": 0,
   "skipped": 9,
   "success": true,
-  "seconds": 5.453737110001384,
+  "seconds": 11.31026206399838,
   "coverage": [
     "160 independent brute-force isomorphism comparisons",
     "300 exact local/full Cartesian histogram comparisons",
@@ -31,6 +31,9 @@
     "Neumann inverse coefficients, weighted tails and inexact source stability",
     "joint local laws, higher moment jets, cumulants and formal reciprocal identities",
     "certified jet extraction and incompatible custom statistic identity rejection",
+    "3780 exact cut-line coordinate, phase, power norm and entire-calculus checks",
+    "unbounded-variation exponential units, weighted Poisson tails and inverse identity",
+    "local inverse residuals, inexact refinement and local/global invertibility separation",
     "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"
   ]
 }

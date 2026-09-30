@@ -21,12 +21,15 @@ from .local import (EDGES, ISOLATED, VERTICES, Interval, LocalApproximation,
                     LocalHistogram, LocalObservable, walk_observable)
 from .reconstruction import OutOfSpan, Reconstruction, catalog, reconstruct
 from .inverse import InverseCertificate, NeumannInverse
+from .local_inverse import (LocalInverseCertificate, UncertifiedLocalInverse,
+                            local_inverse_certificate, refine_local_inverse)
+from .defect_exponential import CutLineExponential, DefectExponentialCertificate
 from .nonspectral import (ROOT_DEGREE, JetCertificate, JointDistribution,
                           MomentJet, RootStatistic, certified_jet,
                           joint_distribution, link_components, multi_indices,
                           rooted_cliques)
 
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 __all__ = [
     "Element", "ExactLocalUnavailable", "Finite", "Line", "exp", "exp_derivative",
     "polynomial", "polynomial_derivative", "BudgetExceeded", "Graph", "ball",
@@ -47,4 +50,7 @@ __all__ = [
     "InverseCertificate", "NeumannInverse", "ROOT_DEGREE", "JetCertificate",
     "JointDistribution", "MomentJet", "RootStatistic", "certified_jet",
     "joint_distribution", "link_components", "multi_indices", "rooted_cliques",
+    "LocalInverseCertificate", "UncertifiedLocalInverse",
+    "local_inverse_certificate", "refine_local_inverse",
+    "CutLineExponential", "DefectExponentialCertificate",
 ]

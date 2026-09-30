@@ -41,6 +41,9 @@ report = {
                  "Neumann inverse coefficients, weighted tails and inexact source stability",
                  "joint local laws, higher moment jets, cumulants and formal reciprocal identities",
                  "certified jet extraction and incompatible custom statistic identity rejection",
+                 "3780 exact cut-line coordinate, phase, power norm and entire-calculus checks",
+                 "unbounded-variation exponential units, weighted Poisson tails and inverse identity",
+                 "local inverse residuals, inexact refinement and local/global invertibility separation",
                  "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }
 if args.output:
