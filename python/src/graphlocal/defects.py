@@ -140,26 +140,10 @@ class RelativeHeatCertificate:
         return result
 
 
-def relative_heat(value, time, epsilon="1e-8", max_steps=256):
-    """Certified heat-trace difference for a uniformly bounded edit class.
-
-    Finite signed inputs and suitable beyond-measure limits are supported.
-    The edit/degree bounds and mass zero are explicit mathematical contracts.
-    This does not continuously extend heat return to the whole completion.
-    """
-    time, epsilon = rational(time), rational(epsilon)
-    integer(max_steps, "max_steps")
-    if time < 0 or epsilon <= 0:
-        raise ValueError("time must be nonnegative and epsilon positive")
-    if value.degree_bound is None or value.edit_bound is None or value.mass != 0:
-        raise ValueError("Relative heat requires degree/edit certificates and mass zero")
-    degree, q = integer(value.degree_bound, "degree_bound"), rational(value.edit_bound)
-    if q < 0:
-        raise ValueError("Weighted edit bound must be nonnegative")
+def _relative_plan(time, degree, q, epsilon, max_steps):
+    """Select a rational tail budget, independent of the local geometry."""
     if not q or not time or not degree:
-        return RelativeHeatCertificate(Interval(0, 0), time, degree, q, 0, 0,
-                                       Q(1), Q(0), Q(0), Q(0),
-                                       LocalApproximation(LocalHistogram(0), 1), (Q(0),))
+        return 0, Q(1), Q(1), Q(0)
     lam, beta = time * degree, 2 * q * time
     term, partial = Q(1), Q(1)
     for steps in range(max_steps + 1):
@@ -172,14 +156,30 @@ def relative_heat(value, time, epsilon="1e-8", max_steps=256):
         partial += term
     else:
         raise BudgetExceeded("Relative heat truncation exceeds max_steps")
-    radius = (steps + 1) // 2
-    local = value.approximate(radius, 1, epsilon / 2)
-    if local.histogram.radius != radius or local.k < 1 or local.error > epsilon / 2:
-        raise ValueError("Element returned an invalid approximation contract")
+    return steps, term, partial, tail
+
+
+def _relative_moments(local, degree, steps):
     moments = [Q(0)] * (steps + 1)
     for key, coefficient in local.histogram.values.items():
         for j, prob in enumerate(lazy_returns(key.graph, degree, steps)):
             moments[j] += coefficient * prob
+    return tuple(moments)
+
+
+def _relative_from_moments(time, degree, q, epsilon, plan, local, moments):
+    """Shared interval arithmetic after exact or certified moment preparation."""
+    steps, term, partial, tail = plan
+    if not q or not time or not degree:
+        return RelativeHeatCertificate(Interval(0, 0), time, degree, q, 0, 0,
+                                       Q(1), Q(0), Q(0), Q(0),
+                                       LocalApproximation(LocalHistogram(0), 1), (Q(0),))
+    if local.histogram.radius < (steps + 1) // 2 or local.k < 1 or local.error > epsilon / 2:
+        raise ValueError("Element returned an invalid approximation contract")
+    if len(moments) < steps + 1:
+        raise ValueError("Insufficient prepared return moments")
+    moments = tuple(moments[:steps + 1])
+    lam, beta = time * degree, 2 * q * time
     coefficient, numerator = Q(1), Q(0)
     for j, moment in enumerate(moments):
         if j:
@@ -199,5 +199,38 @@ def relative_heat(value, time, epsilon="1e-8", max_steps=256):
     interval = Interval(lower, upper)
     if interval.radius > epsilon:
         raise ArithmeticError("Internal relative heat error budget failure")
-    return RelativeHeatCertificate(interval, time, degree, q, steps, radius, partial,
+    return RelativeHeatCertificate(interval, time, degree, q, steps, local.histogram.radius, partial,
                                    tail, defect_tail, numerator, local, tuple(moments))
+
+
+def _relative_contract(value, time, epsilon, max_steps):
+    time, epsilon = rational(time), rational(epsilon)
+    integer(max_steps, "max_steps")
+    if time < 0 or epsilon <= 0:
+        raise ValueError("time must be nonnegative and epsilon positive")
+    if value.degree_bound is None or value.edit_bound is None or value.mass != 0:
+        raise ValueError("Relative heat requires degree/edit certificates and mass zero")
+    degree, q = integer(value.degree_bound, "degree_bound"), rational(value.edit_bound)
+    if q < 0:
+        raise ValueError("Weighted edit bound must be nonnegative")
+    return time, epsilon, degree, q
+
+
+def relative_heat(value, time, epsilon="1e-8", max_steps=256):
+    """Certified heat-trace difference for a uniformly bounded edit class.
+
+    Finite signed inputs and suitable beyond-measure limits are supported.
+    The edit/degree bounds and mass zero are explicit mathematical contracts.
+    This does not continuously extend heat return to the whole completion.
+    """
+    time, epsilon, degree, q = _relative_contract(value, time, epsilon, max_steps)
+    plan = _relative_plan(time, degree, q, epsilon, max_steps)
+    radius = (plan[0] + 1) // 2
+    if not q or not time or not degree:
+        local, moments = LocalApproximation(LocalHistogram(0), 1), (Q(0),)
+    else:
+        local = value.approximate(radius, 1, epsilon / 2)
+        if local.histogram.radius != radius or local.k < 1 or local.error > epsilon / 2:
+            raise ValueError("Element returned an invalid approximation contract")
+        moments = _relative_moments(local, degree, plan[0])
+    return _relative_from_moments(time, degree, q, epsilon, plan, local, moments)

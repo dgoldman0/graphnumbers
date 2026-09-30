@@ -1,11 +1,11 @@
 {
   "python": "3.12.14",
-  "tests_run": 39,
+  "tests_run": 54,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
   "success": true,
-  "seconds": 0.6075818160024937,
+  "seconds": 1.001292550994549,
   "coverage": [
     "160 independent brute-force isomorphism comparisons",
     "300 exact local/full Cartesian histogram comparisons",
@@ -16,6 +16,10 @@
     "258 sparse-edit local/full histogram comparisons",
     "cut-line limit, variation growth, and exact lazy-return moments",
     "relative heat, signed Cartesian propagation, separated/nearby defects",
+    "prepared geometry/moment reuse, including inexact source oracles",
+    "line-cut inclusion-exclusion versus finite subset sums through five cuts",
+    "interaction support, binomial moments, and positive image series",
+    "674 exact cospectral geometry checks and independent motif comparators",
     "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"
   ]
 }

@@ -26,6 +26,10 @@ report = {
                  "258 sparse-edit local/full histogram comparisons",
                  "cut-line limit, variation growth, and exact lazy-return moments",
                  "relative heat, signed Cartesian propagation, separated/nearby defects",
+                 "prepared geometry/moment reuse, including inexact source oracles",
+                 "line-cut inclusion-exclusion versus finite subset sums through five cuts",
+                 "interaction support, binomial moments, and positive image series",
+                 "674 exact cospectral geometry checks and independent motif comparators",
                  "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }
 if args.output:

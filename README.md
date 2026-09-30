@@ -68,7 +68,7 @@ reflection remains unresolved.
 ## Research library and first application
 
 The independent [Python library](python/README.md), `graphnumbers-local`
-version 0.2.0, implements exact rational graph arithmetic, lazy Cartesian
+version 0.3.0, implements exact rational graph arithmetic, lazy Cartesian
 products, computable local limits, certified local approximation, algebra
 exponentials and derivatives, and finite-catalog reconstruction. The core
 has no third-party runtime dependencies.
@@ -92,3 +92,12 @@ established block Krylov updates. The
 [focused literature review](research/local-completion/SPARSE_DEFECT_COMPARISON.md)
 distinguishes the completed defect representation from classical relative
 trace and matrix-function methods.
+
+The [interacting-cut results](research/local-completion/DEFECT_INTERACTIONS.md)
+prove exact local support, positive heat/resolvent interactions, and a
+reduction of every higher line-cut inclusion-exclusion sum to one signed
+two-cut interaction. The [geometry comparison](research/local-completion/GEOMETRY_VERSUS_SPECTRUM.md)
+shows a classical cospectral distinction retained by local data and
+transported through Cartesian backgrounds. Version 0.3.0 adds prepared
+geometry and moment reuse; measured comparisons still favor conventional
+methods for the tested numerical workloads.

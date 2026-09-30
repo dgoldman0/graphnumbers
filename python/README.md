@@ -1,4 +1,4 @@
-# graphnumbers-local 0.2.0
+# graphnumbers-local 0.3.0
 
 A research library for exact graph arithmetic and certified local
 approximations, imported as `graphlocal`. Python 3.10 or later; the core
@@ -23,6 +23,7 @@ The benchmark additionally needs NumPy and SciPy:
 python3 -m pip install '.[benchmark]'
 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 examples/heat_benchmark.py --output results/heat_benchmark.json
 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 examples/defect_benchmark.py --output results/defect_benchmark.json
+PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 examples/reuse_benchmark.py --output results/reuse_benchmark.json
 ```
 
 ## Exact arithmetic and local limits
@@ -211,6 +212,79 @@ point roundoff; their values are checked against our exact intervals.
 Every comparison uses unnormalized corrections and fixed absolute accuracy.
 See the [recorded results](results/defect_benchmark.json).
 
+## Reusing geometry and handling interacting cuts
+
+```python
+from graphlocal import (CutInteraction, LineCutDefect, PreparedLocal,
+                       PreparedRelativeHeat, connected_cut_interaction)
+
+cuts = LineCutDefect([0, 2, 7])
+geometry = PreparedLocal(cuts, radius=16)
+responses = PreparedRelativeHeat(geometry, max_time=2, epsilon="1e-8")
+for t in ("1/4", "1/2", "1", "2"):
+    print(t, responses.evaluate(t).interval.to_data())
+
+# The full three-cut inclusion-exclusion interaction is -I_7.
+connected = connected_cut_interaction([0, 2, 7])
+assert connected.local(4) == (-CutInteraction(7)).local(4)
+```
+
+`PreparedLocal` retains the source element and caches exact geometry at
+one radius and its truncations. Larger-radius requests raise
+`BudgetExceeded`; arbitrary standalone arrays are not accepted as global
+elements. `PreparedRelativeHeat` computes one local approximation and one
+return-moment vector, then reuses prefixes for each time in `[0,max_time]`.
+Every result preserves the rational error contract. Its reported radius
+is the stored radius, which can exceed a particular query's minimum.
+
+`TwoCutLineDefect(ell)` describes two deleted edges enclosing ell vertices.
+`CutInteraction(ell)` subtracts their two separate responses. With E the
+single cut and L the normalized line, the interaction is
+
+$$I_\ell=P_\ell-\ell L-E.$$
+
+Its local histogram vanishes exactly through radius `floor(ell/2)` and
+first becomes nonzero at the next radius. Its heat interaction is strictly
+positive for t>0 and begins with `t**(2*ell)/(2*ell-1)!`. For r>=ell its
+unweighted local variation is 4r, so these are further explicit elements
+beyond finite signed measures.
+
+`LineCutDefect(positions)` accepts distinct integer edge positions,
+including negative positions; order and translation do not matter. For
+k cuts it has edit budget k. Its combined response is k*E plus the sum
+of I_ell over consecutive gaps. The full connected inclusion-exclusion
+interaction for k>=2 has the stronger exact reduction
+
+$$\sum_{S\subseteq\{1,\ldots,k\}}(-1)^{k-|S|}D_S
+  =(-1)^k I_{x_k-x_1}.$$
+
+`connected_cut_interaction` applies this identity without enumerating
+subsets. The result holds for graph elements before choosing an observable.
+It is specific to line cuts. The [proof](../research/local-completion/DEFECT_INTERACTIONS.md)
+also gives an explicit finite signed spectral measure and positive
+resolvent formula for I_ell. A graph measure of finite variation and a
+spectral measure of finite variation are different requirements.
+
+Two dependency-free examples record these consequences:
+
+```sh
+PYTHONPATH=src python3 examples/interaction_analysis.py --output results/interaction_analysis.json
+PYTHONPATH=src python3 examples/cospectral_geometry.py > results/cospectral_geometry.json
+```
+
+The interaction example computes rational heat and specialized resolvent
+enclosures, and reduces the formal 2**32 subset terms of a 32-cut
+interaction to one element. This is an exact identity, not a measured
+advantage over a conventional implementation using the same identity.
+
+The [cospectral example](examples/cospectral_geometry.py) gives 674 exact
+checks for the classical rook/Shrikhande pair. All scalar spectral traces
+agree, while their normalized four-clique counts differ by 1/2. The local
+representation retains that distinction under every mass-one Cartesian
+background. Ordinary graph motif algorithms retain it too; the comparison
+concerns information lost by scalar spectral compression. See the
+[geometry proof and sources](../research/local-completion/GEOMETRY_VERSUS_SPECTRUM.md).
+
 ## Measured first application
 
 [Recorded results](results/heat_benchmark.json), with t=1/2 and requested
@@ -291,6 +365,46 @@ observable. A speed advantage over established low-rank methods has not
 been demonstrated. Reuse across many observables and interacting defects
 is a more discriminating next experiment than another single heat trace.
 
+## Measured reuse application
+
+The [reuse benchmark](examples/reuse_benchmark.py) and its
+[results](results/reuse_benchmark.json) cover seven finite defect cases,
+224 heat queries and 49 motif queries. It allows every comparator to reuse
+geometry, cancel identical labeled balls, memoize local evaluations, and
+retain its moment vector or Krylov compression. The three exact routes
+produce identical moments and motif values. Every floating Krylov estimate
+falls inside the rational interval, with its numerical errors still
+uncertified. Timings are medians of three samples with one BLAS thread.
+
+| Defect case, 32 heat times | Exact labeled-ball reuse, ms | Exact isomorphism grouping, ms | Reused Krylov, ms |
+| --- | ---: | ---: | ---: |
+| Cycle cut, 128 vertices | 14.09 | 18.71 | 0.85 |
+| Chord insertion, 128 vertices | 28.78 | 63.31 | 1.00 |
+| Mixed edits, irregular 128 vertices | 51.90 | 100.00 | 1.38 |
+| Mixed edits, clique chain on 128 vertices | 80.25 | 105.71 | 1.18 |
+
+The exact totals add independently measured extraction, aggregation,
+moment preparation and shared rational query stages. The JSON also records
+whole production preparation separately. Shared input graph construction
+is excluded and reported; Krylov includes its matrix and spectral setup.
+
+Isomorphism grouping reduces some moment work but does not recover its
+preprocessing cost in these cases. After both exact methods have cached
+the same return moments, further heat times cost the same and cannot
+amortize an earlier grouping disadvantage. None of the seven-observable
+motif suites reaches break-even either. The fixture with cliques detects
+loss of one four-clique and two triangles. Extrapolated query counts in
+the JSON concern new observables of comparable cost and are too dependent
+on tiny timings to establish a practical crossover.
+
+These results favor continuing the construction as an analytic language
+for coherent local limits and defect identities. They provide no basis
+for preferring its current generic histogram implementation as a faster
+numerical engine. The higher interaction identity is a concrete reusable
+result; investigating which analogous reductions survive branching or
+higher-dimensional backgrounds is a stronger next target than more heat
+time sweeps on the same simple examples.
+
 ## Verification and provenance
 
 [Tests](tests/test_graphlocal.py) use standard-library `unittest`, exact
@@ -306,8 +420,11 @@ growing cut-line variation, closed-form moments and relative heat,
 normalization, signed products, and separated versus interacting cuts.
 The optional [baseline tests](tests/test_defect_baselines.py) check Krylov
 polynomial trace exactness and compare numerical methods independently.
-All 39 tests passed with NumPy/SciPy; running with site packages disabled
-passes the 33 core tests and skips the six optional baseline tests.
+The prepared-query and interaction tests compare with independent finite
+subset sums, exact binomial moments, and 80-digit positive series. The
+cospectral and reuse comparator tests add independent matrix/motif checks.
+All 54 tests passed with NumPy/SciPy; running with site packages disabled
+passes the 45 core tests and skips the nine optional baseline tests.
 
 Graph isomorphism and catalog reconstruction are adapted from the existing
 research verifiers, which remain unchanged. The runtime package imports

@@ -1,0 +1,150 @@
+{
+  "success": true,
+  "exact_checks": 674,
+  "arithmetic": "integer and rational; no numerical eigensolver",
+  "checked_moment_orders": [
+    0,
+    12
+  ],
+  "graphs": {
+    "rook": {
+      "vertices": 16,
+      "edges": 48,
+      "degree": 6,
+      "strongly_regular_parameters": [
+        16,
+        6,
+        2,
+        2
+      ],
+      "matrix_identity": "A^2 = 4I + 2J",
+      "induced_neighborhood": "2 K3",
+      "K4_count": 8,
+      "K4_count_per_vertex": "1/2",
+      "adjacency_trace_moments": [
+        16,
+        0,
+        96,
+        192,
+        1536,
+        7680,
+        47616,
+        279552,
+        1683456,
+        10076160,
+        60481536,
+        362790912,
+        2176843776
+      ],
+      "laplacian_trace_moments": [
+        16,
+        96,
+        672,
+        4992,
+        38400,
+        301056,
+        2383872,
+        18972672,
+        151388160,
+        1209532416,
+        9669967872,
+        77334577152,
+        618575953920
+      ]
+    },
+    "shrikhande": {
+      "vertices": 16,
+      "edges": 48,
+      "degree": 6,
+      "strongly_regular_parameters": [
+        16,
+        6,
+        2,
+        2
+      ],
+      "matrix_identity": "A^2 = 4I + 2J",
+      "induced_neighborhood": "C6",
+      "K4_count": 0,
+      "K4_count_per_vertex": "0",
+      "adjacency_trace_moments": [
+        16,
+        0,
+        96,
+        192,
+        1536,
+        7680,
+        47616,
+        279552,
+        1683456,
+        10076160,
+        60481536,
+        362790912,
+        2176843776
+      ],
+      "laplacian_trace_moments": [
+        16,
+        96,
+        672,
+        4992,
+        38400,
+        301056,
+        2383872,
+        18972672,
+        151388160,
+        1209532416,
+        9669967872,
+        77334577152,
+        618575953920
+      ]
+    }
+  },
+  "common_adjacency_spectrum": [
+    [
+      6,
+      1
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      -2,
+      9
+    ]
+  ],
+  "common_laplacian_spectrum": [
+    [
+      0,
+      1
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      8,
+      9
+    ]
+  ],
+  "spectra_certified_by": "symmetry, regularity, A^2=4I+2J, dimension, trace",
+  "common_normalized_heat_trace": "(1 + 6 exp(-4t) + 9 exp(-8t)) / 16",
+  "normalized_difference": {
+    "radius_zero_norm": "0",
+    "radius_one_total_variation": "2",
+    "radius_one_p_1_1": "14",
+    "radius_one_p_1_2": "98",
+    "K4_per_vertex_difference": "1/2"
+  },
+  "cartesian_product_check": {
+    "factor": "K2",
+    "product_vertices": 32,
+    "product_K4_counts": {
+      "rook": 16,
+      "shrikhande": 0
+    },
+    "normalized_K4_difference": "1/2",
+    "general_identity": "Q4(G square H) = |H| Q4(G) + |G| Q4(H)"
+  },
+  "interpretation": "Local graph coordinates distinguish these cospectral graphs; scalar adjacency and Laplacian spectral traces do not.",
+  "scope": "Representation demonstration; no computational speed or novelty claim."
+}

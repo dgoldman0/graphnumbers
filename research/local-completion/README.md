@@ -24,6 +24,14 @@ element and its Cartesian products with lattice limits. The
 relative-trace and low-rank update methods. Implementations and reproducible
 benchmarks are in the [Python library](../../python/README.md).
 
+The [interacting-cut extension](DEFECT_INTERACTIONS.md) identifies whole
+signed interaction elements, proves their locality thresholds and heat
+and resolvent formulas, and reduces higher line-cut inclusion-exclusion
+to the extreme separation. The [geometry comparison](GEOMETRY_VERSUS_SPECTRUM.md)
+demonstrates information retained beyond scalar spectra. Fair reuse
+benchmarks in library version 0.3.0 show no current speed advantage from
+isomorphism grouping, while the algebraic identities apply across observables.
+
 The [identification follow-up](FOLLOWUP_IDENTIFICATION.md) uses the later
 structural theorems to identify the formal local algebras as generalized
 power-series rings and the weighted pieces as standard convolution
