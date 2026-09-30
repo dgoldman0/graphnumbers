@@ -4,6 +4,12 @@ This supplement records the clarification following the v0.1 proof note on
 30 September 2026. The notation and completion are those of
 [the note](local_graph_completion.pdf).
 
+The subsequent [literature review](LITERATURE_REVIEW.md) places this calculus
+within established locally convex algebra theory. In particular, the
+edge-count identity below is a point-derivation identity; the
+[dual-number and degree-polynomial calculation](COMPARISON_LEMMAS.md#4-the-edge-observable-is-a-point-derivation)
+explains this directly. These formulas do not constitute a novelty claim.
+
 ## Finite graphs and the scalar line
 
 Every finite simple undirected graph enters as the sum of its connected

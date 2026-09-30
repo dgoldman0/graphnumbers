@@ -1,0 +1,148 @@
+# Literature search record
+
+Search date: 30 September 2026.
+Target: the local completion candidate at commit
+`09c6fef0c830d468ed4d9fffa985f34ee122d556`.
+
+## Scope and method
+
+The search compared definitions, multiplication, normalization, topology,
+completed objects, and observable calculus. It covered public scholarly search,
+arXiv records and full text, author-hosted manuscripts, and publisher or
+institutional copies. Two search engines were used. Search snippets and
+aggregators supplied leads; the substantive comparisons use primary research
+papers or author-written mathematical treatments.
+
+The [review](LITERATURE_REVIEW.md) contains 24 references. Relevant definitions,
+statements, and nearby arguments were read in accessible full text; this was
+not a line-by-line audit of all proofs in all papers. The original Razborov
+paper was indexed but its full text could not be retrieved, so Austin's
+explicit mathematical treatment supplied the flag-algebra comparison.
+
+Reference tracing included Knill's 2021 references back to his 2017 and 2019
+papers; the Cartesian-prime and polynomial-ring literature; Kurauskas's
+moment criterion and cited Sidorenko bound; the 2025 monoid-algebra paper; and
+Vrana's September 2026 completion paper back to the asymptotic-spectrum-distance
+paper. The last was checked in its June 2026 revision.
+
+## Query families used
+
+The following representative strings record the search vocabulary and scope.
+They are not a claim that a query with no close result proves absence.
+
+### Finite graph arithmetic and analytic completions
+
+- `Knill arithmetic graphs Cartesian weak ring 2017 2019`
+- `"Cartesian" "graph ring" completion`
+- `"graph ring" "Cartesian" polynomial Sabidussi`
+- `"Factors of disconnected graphs" polynomials`
+- `"graph multiplication" Sabidussi 1960 polynomial ring`
+- `"More on Numbers and Graphs" Knill pdf`
+- `"graph" "semiring" "local convergence"`
+- `"graph semiring" completion power series`
+- `"Monoid algebras and graph products" Imrich Klep Smertnig`
+
+### The exact local and weighted structure
+
+- `"Benjamini-Schramm" "Cartesian" algebra completion`
+- `"rooted graphs" "convolution algebra"`
+- `"rooted graphs" "Cartesian product" "convolution"`
+- `"empirical neighborhood" convolution Cartesian product`
+- `"local convergence" "graphs" "Banach algebra"`
+- `"graphs" "completion" "Cartesian product" seminorm`
+- `"local weak" "graph" "seminorm"`
+- `"local convergence" "signed" graphs algebra`
+- `"Benjamini-Schramm" "weighted" "total variation"`
+- `"graph ring" "local topology"`
+- `"graph algebra" "local weak convergence"`
+- `"graph arithmetic" "Fréchet"`
+
+These searches located closely related general frameworks and adjacent graph
+algebras, but no source defining exactly the full signed Cartesian algebra with
+the family p_(r,k) in the candidate note.
+
+### Moments, observables, and functional algebra
+
+- `Kurauskas local weak limit subgraph counts sparse random graphs moments`
+- `"local weak convergence" "moment" topology neighborhood`
+- `"Large deviations of empirical neighborhood distribution" arxiv`
+- `"degree polynomial" "Cartesian product"`
+- `"On the degree polynomial of graphs" authors`
+- `"weighted semigroup algebras" site:arxiv.org`
+- `"weighted" "semigroup" "Fréchet algebra" convolution`
+- `"Arens-Michael" envelope all submultiplicative seminorms Pirkovskii`
+- `"point derivation" "character" "dual numbers" algebra`
+- `"bounded point derivation" "character" definition algebra arxiv`
+
+The point-derivation interpretation was also checked directly by the
+dual-number calculation, so it does not depend on a secondary description.
+
+### Adjacent graph-limit theories and recent developments
+
+- `Freedman Lovasz Schrijver reflection positivity graph homomorphism quantum graphs pdf`
+- `Razborov Flag algebras 2007 pdf definition multiplication`
+- `Cebron Dahlqvist Male universal constructions spaces traffics arxiv`
+- `Lovasz Szegedy limits of dense graph sequences 2006 arxiv`
+- `"Decompositions of the free product of graphs" arxiv`
+- `"asymptotic spectrum distance" graphs limits de Boer Buys Zuiddam`
+- `"Asymptotic completions of preordered semirings"`
+- `"Aldous-Lyons" conjecture counterexample Bowen Chapman Lubotzky Vidick`
+
+The very recent Vrana result was additionally checked with a recency-filtered
+search and its primary arXiv full text. The negative Aldous–Lyons resolution was
+checked in both companion papers' statements; the approximately 200-page
+complexity proof in Part II was not independently verified.
+
+## Terminology and false-positive controls
+
+- A product having vertex set V(G) x V(H) need not be the Cartesian graph
+  product. The edge definition was checked for each close graph-arithmetic
+  source.
+- Strong/Shannon, Cartesian/weak, direct/tensor, disjunctive, and labeled-gluing
+  products were distinguished.
+- A graph ring with signed component coefficients differs from a vector space
+  freely generated by all graph types. In the former, disjoint union is
+  addition; in many quantum-graph treatments it is a product.
+- Algebraic spectra of graph invariants and adjacency eigenvalue spectra are
+  different objects.
+- Graph C*-algebras, knowledge-graph completion, metric/quantum graphs carrying
+  differential operators, and Fréchet distances between embedded curves
+  generated many unrelated hits. They were not counted as exact matches.
+- Degree-polynomial searches include several different polynomials. Only the
+  explicitly verified sum of z^degree was used for the calculus comparison.
+- A social post bearing the Graph Reals project title appeared in results.
+  It was not treated as independent scholarly corroboration or prior art.
+
+## Access and coverage limits
+
+Several arXiv HTML versions and initial PDF requests failed. Where possible,
+the abstract-page PDF link, another version, the author's copy, or the publisher
+copy supplied the relevant full text. Such recovery succeeded for the main
+graph-ring, Knill, local-limit, moment, semigroup, traffic, and recent completion
+comparisons. The flag-algebra access limitation is explicitly recorded above.
+
+The search was public-source based. It did not include a systematic subscription
+MathSciNet/zbMATH review, every dissertation, non-indexed manuscripts, or direct
+correspondence with specialists. Exact keyword searches have particular blind
+spots when authors use a different vocabulary. No correspondence was sent.
+
+The strongest established finding is positive: direct prior constructions exist
+for the finite ring, and substantial prior work covers its proposed analytic
+ingredients. The negative finding is deliberately limited: no exact match for
+the signed weighted local completion was located in the sources examined.
+
+## Most valuable remaining bibliographic questions
+
+1. Has the local marginal topology on signed unimodular counting measures been
+   completed as a convolution algebra for rooted Cartesian multiplication?
+2. Does a known theorem on projective systems of weighted measure algebras
+   identify this exact closure, including its finite-graph approximation
+   constraints?
+3. Has local weak convergence with all polynomial degree moments been given
+   an algebra structure on signed measures that yields the same completion?
+4. Is there already a universal-property characterization that determines
+   the seminorm family, rather than merely allowing it?
+
+Answers to these questions could reduce the remaining variant to a named
+existing construction. Until they are resolved, absence of an exact search hit
+is insufficient grounds for a novelty claim.

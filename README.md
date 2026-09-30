@@ -14,3 +14,9 @@ The candidate preserves finite graphs up to isomorphism and the ordinary real
 line, and admits normalized cycle and lattice limits. Its limitations, including
 noninvertible graph elements and discontinuous component count, are documented.
 Adoption as the project's final construction remains open.
+
+The [prior-art review](research/local-completion/LITERATURE_REVIEW.md) identifies
+the classical graph ring underlying this candidate and compares its topology
+with graph Banach algebras, local weak convergence, and other graph-limit
+completions. The exact signed weighted local variant has not been identified
+in the sources examined; no novelty claim is established.

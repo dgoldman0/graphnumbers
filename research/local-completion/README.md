@@ -8,6 +8,14 @@ and useful calculus. This directory specifies one candidate and records its
 proofs and limitations. Its adoption as the final Graph Reals construction
 remains open.
 
+The [literature review](LITERATURE_REVIEW.md) identifies direct prior art for
+the finite graph ring and substantial prior art for graph-number completions,
+local convergence, moment control, and calculus. The exact signed weighted
+local completion was not located in the sources examined; its originality is
+unestablished. Read this candidate as an application of existing frameworks
+with a particular topology, subject to the comparisons and open questions in
+that review.
+
 ## What the candidate contains
 
 Every finite simple undirected graph is included up to isomorphism. Addition of
@@ -35,6 +43,9 @@ supplement explains the resulting connections to ordinary real analysis.
 | [local_graph_completion.pdf](local_graph_completion.pdf) | Seven-page definition-and-proof note, including explicit counterexamples. |
 | [local_graph_completion.tex](local_graph_completion.tex) | Editable source for the note. |
 | [ANALYSIS.md](ANALYSIS.md) | Finite-graph and real embeddings, graph directions, and observable compatibility with calculus. |
+| [LITERATURE_REVIEW.md](LITERATURE_REVIEW.md) | Prior-art assessment, 24 references, and boundaries on possible novelty. |
+| [COMPARISON_LEMMAS.md](COMPARISON_LEMMAS.md) | Explicit identifications and examples distinguishing the candidate from nearby constructions. |
+| [SEARCH_LOG.md](SEARCH_LOG.md) | Search scope, source access, query families, and remaining gaps. |
 | [verify_local_algebra.py](verify_local_algebra.py) | Exact finite checks using only Python's standard library. |
 | [verification_results.json](verification_results.json) | Recorded output: all 3,606 checks passed. |
 
