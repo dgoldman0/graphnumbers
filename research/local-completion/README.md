@@ -46,6 +46,7 @@ supplement explains the resulting connections to ordinary real analysis.
 | [LITERATURE_REVIEW.md](LITERATURE_REVIEW.md) | Prior-art assessment, 24 references, and boundaries on possible novelty. |
 | [COMPARISON_LEMMAS.md](COMPARISON_LEMMAS.md) | Explicit identifications and examples distinguishing the candidate from nearby constructions. |
 | [SEARCH_LOG.md](SEARCH_LOG.md) | Search scope, source access, query families, and remaining gaps. |
+| [REPRESENTATION_PROBLEM.md](REPRESENTATION_PROBLEM.md) | Agreed question and proof standards for characterizing this specific completion. |
 | [verify_local_algebra.py](verify_local_algebra.py) | Exact finite checks using only Python's standard library. |
 | [verification_results.json](verification_results.json) | Recorded output: all 3,606 checks passed. |
 
