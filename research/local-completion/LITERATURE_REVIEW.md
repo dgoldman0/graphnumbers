@@ -4,6 +4,11 @@ Research assessment, 30 September 2026. Scope: the v0.1 construction in this
 directory, recorded in commit `09c6fef0c830d468ed4d9fffa985f34ee122d556`.
 This review postdates the original proof note.
 
+**Subsequent work:** the [representation theorem](REPRESENTATION_THEOREM.md)
+answers the completed-space and finite-signed-measure questions identified
+below. It supplies its own proof and does not establish an originality claim.
+The numbered bibliography here remains the original 24-reference review.
+
 ## Assessment
 
 **Most of the mathematical ingredients already have established names and
@@ -154,10 +159,12 @@ reformulation is proved in [Lemma 1](COMPARISON_LEMMAS.md#1-counting-measures-an
 It explains why standard weighted semigroup algebras [10] and locally m-convex
 algebras [11] supply the completion theorem.
 
-It does **not** identify the completion with all finite signed measures on
-rooted graphs, or with all compatible arrays. A bound at each radius does not
-give a uniform total-variation bound over all radii. Describing which completed
-elements admit global signed-measure representations remains a concrete issue.
+That counting-measure calculation alone does not identify the completed
+space. A bound at each radius does not give a uniform total-variation bound
+over all radii. The subsequent [representation theorem](REPRESENTATION_THEOREM.md)
+identifies the compatible arrays that belong to the completion and proves
+that a global finite signed measure exists exactly when the local total
+variations are uniformly bounded. An explicit cycle series fails that bound.
 
 ## Why the calculus is standard
 
@@ -219,6 +226,11 @@ positive elements obtainable as limits of arbitrary signed combinations in our
 larger algebra. Those are different questions. No such identification is claimed
 in the v0.1 note.
 
+The later representation proof does identify the positive mass-one elements
+of the signed completion with unimodular laws having all polynomial
+neighborhood-size moments finite. Its approximants are signed combinations;
+it makes no positive-approximation assertion.
+
 The loss of global information is also familiar in local-limit theory.
 Local-global convergence and graphings [24] provide a relevant comparison if
 the project needs colored-neighborhood or global partition information.
@@ -230,11 +242,13 @@ would require a new argument.
 The candidate currently provides a documented assembly of established ideas,
 with a specific topology and worked obstructions. A changed presentation or a
 different list of seminorms would not by itself make a meaningful contribution.
-The most useful next results would be:
+The review identified the following research directions. The first now has
+a proof in the representation follow-up:
 
 1. **Identify the completed space.** Characterize the allowed signed local
    marginals and give necessary and sufficient conditions for representation by
-   a countably additive signed measure.
+   a countably additive finite signed measure. Addressed in
+   [REPRESENTATION_THEOREM.md](REPRESENTATION_THEOREM.md).
 2. **Establish a universal or minimality property.** Determine whether the chosen
    topology is forced by Cartesian continuity and a specified class of
    observables, or whether substantially weaker choices do the same work.

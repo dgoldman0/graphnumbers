@@ -2,6 +2,12 @@
 
 Research direction agreed on 30 September 2026, after the prior-art review.
 
+**Follow-up:** [REPRESENTATION_THEOREM.md](REPRESENTATION_THEOREM.md) answers this
+membership question with local mass-transport balance, supplies the
+finite-signed-measure criterion, and exhibits completed elements beyond that
+measure class. This file retains the question and standards that preceded
+the argument.
+
 ## Fixed object and research status
 
 The object under investigation is candidate v0.1: the real span A0 of connected

@@ -36,6 +36,14 @@ continuously. Exponentials, polynomial differentiation, and real-parameter
 differentiation and integration are established in the note. The analysis
 supplement explains the resulting connections to ordinary real analysis.
 
+The subsequent [representation theorem](REPRESENTATION_THEOREM.md) identifies
+the completed elements intrinsically: compatible signed neighborhood arrays
+with every polynomial size moment finite and local mass-transport balance.
+It gives a finite signed reconstruction at each bounded degree and radius,
+an exact criterion for global finite signed measures, and a closed complemented
+copy of the space of all real sequences. Some completed elements are therefore
+outside the finite signed-measure class.
+
 ## Files
 
 | File | Purpose |
@@ -47,8 +55,11 @@ supplement explains the resulting connections to ordinary real analysis.
 | [COMPARISON_LEMMAS.md](COMPARISON_LEMMAS.md) | Explicit identifications and examples distinguishing the candidate from nearby constructions. |
 | [SEARCH_LOG.md](SEARCH_LOG.md) | Search scope, source access, query families, and remaining gaps. |
 | [REPRESENTATION_PROBLEM.md](REPRESENTATION_PROBLEM.md) | Agreed question and proof standards for characterizing this specific completion. |
+| [REPRESENTATION_THEOREM.md](REPRESENTATION_THEOREM.md) | Intrinsic characterization, full proof, measure criterion, and sequence-space example. |
 | [verify_local_algebra.py](verify_local_algebra.py) | Exact finite checks using only Python's standard library. |
 | [verification_results.json](verification_results.json) | Recorded output: all 3,606 checks passed. |
+| [verify_representation.py](verify_representation.py) | Exact checks of indicator expansions, degree filtering, balance, and cycle formulas. |
+| [representation_results.json](representation_results.json) | Recorded output: all 13,758 representation checks passed. |
 
 ## Reproduce the checks
 
@@ -57,6 +68,7 @@ From the repository root, with Python 3.10 or later:
 ```sh
 cd research/local-completion
 python3 verify_local_algebra.py --output verification_results.json
+python3 verify_representation.py --output representation_results.json
 ```
 
 The verifier uses exact rational arithmetic and exact isomorphism backtracking.
@@ -66,6 +78,12 @@ four vertices, a cospectral pair, and cycle/grid and counterexample formulas.
 These finite checks verify examples and implementation. The universal claims
 have separate proofs in the note. Run Python without optimization flags so that
 its assertions remain enabled.
+
+The representation verifier additionally checks rooted indicator expansions
+against independent injective-embedding enumeration, the finite triangular
+count matrix, degree-cutoff locality and signed tail estimates, transport
+balance, and the cycle series used in the measure obstruction. Its universal
+claims have separate proofs in REPRESENTATION_THEOREM.md.
 
 To rebuild the PDF from this directory with a standard LaTeX installation:
 
@@ -88,6 +106,8 @@ The committed PDF was rendered and all seven pages were visually inspected.
 - The graph limits describe local combinatorial neighborhoods. Additional
   requirements involving global geometry or a dense-graphon metric remain open.
 
-The historical software is independent of this verifier. General unit
-classification, the structure of all completed elements, and the range of
-geometrically useful graph variations remain research questions.
+The historical software is independent of these verifiers. General unit and
+character classification, efficient reconstruction and coefficient bounds,
+and the range of geometrically useful graph variations remain research
+questions. The v0.1 PDF and TeX remain the original checkpoint; the later
+representation theorem is supplied as a separate note.

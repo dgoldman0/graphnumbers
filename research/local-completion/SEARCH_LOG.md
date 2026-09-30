@@ -146,3 +146,37 @@ the signed weighted local completion was located in the sources examined.
 Answers to these questions could reduce the remaining variant to a named
 existing construction. Until they are resolved, absence of an exact search hit
 is insufficient grounds for a novelty claim.
+
+## Representation follow-up, later on 30 September 2026
+
+The [representation note](REPRESENTATION_THEOREM.md) supplies a direct
+local mass-transport characterization of the specific completion. The proof
+uses bounded-degree neighborhood-indicator expansions, injective-count
+independence, degree filtering, and signed finite linear reconstruction.
+Its mathematical argument and its priority assessment are separate.
+
+Focused follow-up searches included combinations of `unimodular`, `signed
+measures`, `linear combinations`, `finite graphs`, `local identities`, and
+`projective limit signed measures uniformly bounded total variation`.
+Several returned unrelated results about signed edges or unimodular matrices;
+those were not treated as evidence about this theorem.
+
+Re-read Aldous–Lyons, Definition 2.1 and Proposition 2.2, for the standard
+mass-transport framework. Examined Artemenko,
+*On Weak Limits and Unimodular Measures* (2013),
+https://arxiv.org/abs/1309.0847, as a neighboring account of rooted laws.
+Neither was used as a source asserting the signed approximation theorem.
+
+Located Albeverio–Mazzucchi,
+*A unified approach to infinite dimensional integration* (2014 preprint;
+2016 publication), https://arxiv.org/abs/1411.2853.
+Section 5.1, Theorems 4–5, explicitly treats the uniform-total-variation
+obstruction and general signed projective extensions. The representation note
+proves the sufficient condition directly for the countable discrete
+neighborhood system. This establishes that the general measure-extension
+issue has prior literature.
+
+This focused follow-up does not establish whether the exact graph
+representation theorem has previously appeared. An explicit existing
+theorem about the signed linear span of finite rooted-graph laws remains
+the most useful bibliographic target.

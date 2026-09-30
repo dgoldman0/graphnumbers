@@ -20,3 +20,11 @@ the classical graph ring underlying this candidate and compares its topology
 with graph Banach algebras, local weak convergence, and other graph-limit
 completions. The exact signed weighted local variant has not been identified
 in the sources examined; no novelty claim is established.
+
+The subsequent
+[representation theorem](research/local-completion/REPRESENTATION_THEOREM.md)
+characterizes the completed elements by compatible weighted local data and
+mass-transport balance. It also characterizes which elements define finite
+signed measures and constructs a closed sequence-space family beyond them.
+The proof and 13,758 accompanying exact finite checks are preserved separately
+from the original candidate and historical software.

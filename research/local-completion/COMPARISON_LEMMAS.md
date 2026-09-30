@@ -43,6 +43,11 @@ seminorms. Its completion is still defined as the closure of the graph-derived
 diagonal image. The calculation does not assert that every compatible signed
 family belongs to this closure or defines a finite signed measure on G_*.
 
+The later [representation theorem](REPRESENTATION_THEOREM.md) supplies those
+additional results: membership is equivalent to local mass-transport balance
+within the compatible weighted arrays, and finite signed-measure
+representability is equivalent to uniformly bounded local total variation.
+
 For normalized positive graphs, mu_G/|V(G)| is precisely the empirical
 neighborhood distribution U(G) of
 [Bordenave–Caputo, Section 1.1](https://arxiv.org/abs/1308.5725v2).

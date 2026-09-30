@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "arithmetic": "exact integers and fractions",
+  "scope": "finite checks of the separate universal proofs",
+  "labelled_nonempty_graphs_up_to_four_vertices": 75,
+  "additional_graph_fixtures": 10,
+  "connected_unlabelled_triangular_matrix_size": 10,
+  "indicator_expansion_cases": [
+    {
+      "degree_bound": 1,
+      "radius": 0,
+      "ball_types": 1,
+      "nonzero_labelled_pattern_terms": 1
+    },
+    {
+      "degree_bound": 1,
+      "radius": 1,
+      "ball_types": 2,
+      "nonzero_labelled_pattern_terms": 3
+    },
+    {
+      "degree_bound": 1,
+      "radius": 2,
+      "ball_types": 2,
+      "nonzero_labelled_pattern_terms": 3
+    },
+    {
+      "degree_bound": 2,
+      "radius": 1,
+      "ball_types": 4,
+      "nonzero_labelled_pattern_terms": 8
+    },
+    {
+      "degree_bound": 2,
+      "radius": 2,
+      "ball_types": 9,
+      "nonzero_labelled_pattern_terms": 27
+    },
+    {
+      "degree_bound": 2,
+      "radius": 3,
+      "ball_types": 15,
+      "nonzero_labelled_pattern_terms": 53
+    },
+    {
+      "degree_bound": 3,
+      "radius": 1,
+      "ball_types": 8,
+      "nonzero_labelled_pattern_terms": 28
+    }
+  ],
+  "checks": {
+    "cycle_coefficient_recovery": 6,
+    "cycle_pair_local_cancellation": 21,
+    "cycle_root_transitivity": 16,
+    "cycle_total_variation_growth": 6,
+    "cycle_weighted_norms": 18,
+    "degree_cutoff_locality": 3132,
+    "expansion_pattern_bounds": 123,
+    "finite_graph_transport_balance": 85,
+    "injective_matrix_triangularity": 100,
+    "nonmember_endpoint_path": 1,
+    "rooted_indicator_expansions": 9841,
+    "signed_cutoff_pushforward": 15,
+    "signed_weighted_cutoff_tail_bound": 45,
+    "transport_locality": 348,
+    "uniform_root_path_balance": 1
+  },
+  "total_checks": 13758
+}
