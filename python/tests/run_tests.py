@@ -32,6 +32,10 @@ report = {
                  "942 tree cut-set identities, 3763 local identities, and exact branching/cycle moments",
                  "buffered square-lattice pair geometry and leading coupling formula",
                  "crossing-cut products, compositional profiles and inexact controlled heat certificates",
+                 "cyclic incidence moments versus full integer subset matrices, with repeated defects",
+                 "249 exhaustive tree cut leading terms and exact order-five/six cancellation fixtures",
+                 "rationally certified time-dependent interaction sign reversal",
+                 "support-distance decay, geometric profiles, larger degree caps and Cartesian products",
                  "674 exact cospectral geometry checks and independent motif comparators",
                  "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }

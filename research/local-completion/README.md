@@ -41,6 +41,15 @@ unital algebra of degree-bounded elements with finite moment profiles.
 Library version 0.4.0 implements the bridge reduction and certified heat
 on that larger controlled domain.
 
+The [higher-interaction geometry](HIGHER_INTERACTION_GEOMETRY.md) connects
+all mixed moments to cyclic incidence couplings, proves exact leading
+terms on trees, and identifies cancellations that delay the onset on
+graphs with cycles. The [interaction decay analysis](INTERACTION_DECAY.md)
+turns support distances into spatial suppression and geometric moment
+profiles. These profiles propagate through Cartesian arithmetic in
+library version 0.5.0. Exact finite examples include a change of heat
+interaction sign with time and 249 tree-cut leading-term checks.
+
 The [identification follow-up](FOLLOWUP_IDENTIFICATION.md) uses the later
 structural theorems to identify the formal local algebras as generalized
 power-series rings and the weighted pieces as standard convolution
@@ -115,6 +124,8 @@ extension question remains open.
 
 | File | Purpose |
 | --- | --- |
+| [HIGHER_INTERACTION_GEOMETRY.md](HIGHER_INTERACTION_GEOMETRY.md) | Covering cyclic couplings, repeated defects, cancellation, exact tree onset and branching amplitudes. |
+| [INTERACTION_DECAY.md](INTERACTION_DECAY.md) | Spatial vanishing, cyclic support-distance bounds, factorial separation decay and geometric moment profiles. |
 | [BRANCHING_DEFECTS.md](BRANCHING_DEFECTS.md) | Selected-bridge leaf reduction, infinite relative limits, sign changes, and cyclic obstruction. |
 | [PLANAR_DEFECTS.md](PLANAR_DEFECTS.md) | Planar pair coupling, crossing-cut products, exact variation, trace-class heat and compositional moment profiles. |
 | [local_graph_completion.pdf](local_graph_completion.pdf) | Seven-page definition-and-proof note, including explicit counterexamples. |

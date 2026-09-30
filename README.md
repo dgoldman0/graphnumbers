@@ -68,7 +68,7 @@ reflection remains unresolved.
 ## Research library and first application
 
 The independent [Python library](python/README.md), `graphnumbers-local`
-version 0.4.0, implements exact rational graph arithmetic, lazy Cartesian
+version 0.5.0, implements exact rational graph arithmetic, lazy Cartesian
 products, computable local limits, certified local approximation, algebra
 exponentials and derivatives, and finite-catalog reconstruction. The core
 has no third-party runtime dependencies.
@@ -111,3 +111,14 @@ identifies orientation-sensitive finite-edge interactions and proves exact
 local variation and heat formulas for complete crossing cuts E squared.
 Version 0.4.0 adds finite edge interactions and compositional moment
 profiles, making certified heat available on products of defects.
+
+The [higher-interaction theorem](research/local-completion/HIGHER_INTERACTION_GEOMETRY.md)
+expresses every mixed heat moment through cyclic incidence couplings,
+including repeated defects and exact cancellations. On a tree, the minimal
+subtree spanning the cuts determines the first nonzero heat order and
+coefficient explicitly. The [decay theorem](research/local-completion/INTERACTION_DECAY.md)
+converts distances between defect supports into vanishing orders,
+Poisson-tail interaction bounds and compositional moment profiles.
+Version 0.5.0 implements these calculations, with exact cancellation
+fixtures, a certified time-dependent sign reversal, and exhaustive leading
+coefficient checks on 249 tree cut sets.

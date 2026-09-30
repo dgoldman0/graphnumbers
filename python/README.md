@@ -1,4 +1,4 @@
-# graphnumbers-local 0.4.0
+# graphnumbers-local 0.5.0
 
 A research library for exact graph arithmetic and certified local
 approximations, imported as `graphlocal`. Python 3.10 or later; the core
@@ -358,6 +358,98 @@ These results concern structural identities and analytic certificates.
 They make no additional runtime claim; standard matrix methods can also
 use the same inclusion-exclusion and Cartesian identities.
 
+## Geometry-sensitive interaction analysis
+
+Version 0.5.0 connects the arrangement of finite edits to their mixed
+Laplacian moments, leading heat terms and certified separation bounds.
+
+```python
+from graphlocal import (EdgeInteraction, GeometricInteraction, controlled_heat,
+                       cycle, graph, interaction_geometry, interaction_heat_bound,
+                       interaction_moments, tree_interaction_leading)
+
+# A binary branching tree with its four terminal edges selected.
+tree = graph(6, [(0, 1), (0, 2), (0, 3), (3, 4), (3, 5)])
+x = EdgeInteraction(tree, [(0, 1, -1), (0, 2, -1), (3, 4, -1), (3, 5, -1)])
+leading = tree_interaction_leading(x)
+assert leading.order == 6
+assert str(leading.heat_coefficient) == "1/30"
+assert interaction_moments(x, 6).laplacian[6] == 24
+
+# Three well-separated cuts: certify a small response from geometry alone.
+y = EdgeInteraction(cycle(30), [(0, 1, -1), (10, 11, -1), (20, 21, -1)])
+geometry = interaction_geometry(y)
+assert geometry.vanishing_order == 30
+bound = interaction_heat_bound(geometry, "1/2")
+print(float(bound.magnitude_bound))  # approximately 2.26e-31
+certificate = controlled_heat(GeometricInteraction(y), "1/2", "1e-10")
+assert certificate.steps == 0
+```
+
+For k selected tree edges, let T be their minimal spanning subtree, s its
+number of edges, ell its terminal-edge count, and
+`p = product(factorial(degree_T(v)-1))` over internal vertices. For k>=2,
+the exact leading heat term is
+
+$$(-1)^{k-\ell}\frac{p}{(2s-\ell-1)!}t^{2s-\ell}.$$
+
+`tree_interaction_leading` returns these quantities and the normalized
+coefficient when requested. It uses tree geometry alone, requires a
+nonempty deletion set on an ambient tree, and handles a single cut by
+its separate leading term 2t. Extra branches outside T do not affect the
+coefficient. This is a small-time result; later signs can differ.
+
+`interaction_moments(X, order)` computes exact mixed Laplacian and
+uniformized moments from incidence couplings `b_i.T * L**a * b_j`.
+The dynamic program sums cyclic words that visit every selected defect,
+including repeated visits. It avoids rooted isomorphism and explicit
+edited-subset matrices. Worst-case work remains exponential in the
+active defect count; `max_work` limits the calculation. A zero prefix
+is recorded as having no first nonzero order **in the computed range**.
+
+Repeated defects and signs are essential: a three-defect example has
+order-six contributions -24 and +24, so its first response is delayed
+to order seven. A four-defect example cancels at both orders five and six.
+The [geometry proof](../research/local-completion/HIGHER_INTERACTION_GEOMETRY.md)
+gives the exact general formula and examples. Rational heat certificates
+also establish an interaction positive at t=1 and negative at t=3.
+
+`interaction_geometry` calculates endpoint-support distances in the graph
+containing every edge present at any stage of the edits. For each cyclic
+order of the k active defects, let tau be the sum of successive distances.
+All moments below `k + min(tau)` vanish. The API reports this lower bound
+as `vanishing_order`; cancellation can delay the actual onset further.
+It counts `(k-1)!` orders and has an explicit `max_cycles` budget.
+
+`interaction_heat_bound` bounds the absolute response with a sum of
+Poisson tails determined by these tour distances. It constructs no local
+histogram. `after_step=M` instead bounds the omitted uniformization tail.
+Its `epsilon` controls enclosure of the analytic bound, or permits an
+early stop when the whole magnitude is below epsilon. **The returned
+interval need not have radius epsilon for a general interaction.** Use
+`controlled_heat` when a value enclosure with that radius is required.
+
+`GeometricInteraction(X)` represents the same source with an alternative
+moment profile carrying its separation data. That profile propagates
+through sums and Cartesian products. It can improve small-time bounds
+and can be coarser at large times; the original profile remains available
+on X. The [decay proof](../research/local-completion/INTERACTION_DECAY.md)
+covers mixed edits, separated groups and locally stabilized infinite
+finite-edit limits. Runtime geometry constructors currently take finite
+explicit graphs.
+
+```sh
+PYTHONPATH=src python3 examples/higher_interaction_verification.py --output results/higher_interaction_verification.json
+PYTHONPATH=src python3 examples/geometry_bound_examples.py --output results/geometry_bound_examples.json
+```
+
+The geometry-bound example uses the same degree and edit count throughout.
+For cycle lengths 18, 30 and 48 at t=1/2, the old profile gives magnitude
+bound one; geometry gives 2/17!, 2/29! and 2/47!, respectively. The
+geometric profile needs only the zeroth moment at tolerance 1e-10, whereas
+the generic certificate retains through order 16. These are exact analytic
+and truncation comparisons; no runtime advantage is claimed.
+
 ## Measured first application
 
 [Recorded results](results/heat_benchmark.json), with t=1/2 and requested
@@ -498,9 +590,12 @@ subset sums, exact binomial moments, and 80-digit positive series. The
 cospectral and reuse comparator tests add independent matrix/motif checks.
 Branching tests cover 942 tree cut sets and 3,763 rooted identities, plus
 buffered planar moments and leading coefficients. Controlled-heat tests
-include crossing products and inexact local approximations. All 66 tests
-passed with NumPy/SciPy; running with site packages disabled passes the 57
-core tests and skips the nine optional baseline tests.
+include crossing products and inexact local approximations. Higher
+interaction tests add 249 exhaustive tree leading terms, independent
+integer subset matrices, repeated-word and cancellation examples,
+certified sign reversal, and geometry-sensitive profiles and tails.
+All 83 tests passed with NumPy/SciPy; running with site packages disabled
+passes the 74 core tests and skips the nine optional baseline tests.
 
 Graph isomorphism and catalog reconstruction are adapted from the existing
 research verifiers, which remain unchanged. The runtime package imports

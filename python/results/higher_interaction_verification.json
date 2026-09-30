@@ -1,0 +1,413 @@
+{
+  "scope": "Five explicit finite graph fixtures; exact integer/rational verification.",
+  "fixtures": [
+    {
+      "case": "repeated_defect_triple",
+      "vertices": 4,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "oriented_cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        4,
+        40,
+        252,
+        1288,
+        5852
+      ],
+      "first_nonzero_order_in_computed_range": 4,
+      "leading_heat_coefficient": "1/6",
+      "rank_one_runtime_agrees": true,
+      "runtime_work_units": 2707,
+      "cyclic_contributions_by_defect_letter_count": {
+        "4": {
+          "3": "0",
+          "4": "4"
+        }
+      }
+    },
+    {
+      "case": "cancelled_triple",
+      "vertices": 6,
+      "edges": [
+        [
+          0,
+          5
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          1,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "oriented_cut_edges": [
+        [
+          3,
+          5
+        ],
+        [
+          2,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -56,
+        -1288
+      ],
+      "first_nonzero_order_in_computed_range": 7,
+      "leading_heat_coefficient": "1/90",
+      "rank_one_runtime_agrees": true,
+      "runtime_work_units": 2365,
+      "cyclic_contributions_by_defect_letter_count": {
+        "6": {
+          "3": "-24",
+          "4": "24",
+          "5": "0",
+          "6": "0"
+        }
+      }
+    },
+    {
+      "case": "cancelled_quadruple",
+      "vertices": 5,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "oriented_cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        28,
+        520
+      ],
+      "first_nonzero_order_in_computed_range": 7,
+      "leading_heat_coefficient": "-1/180",
+      "rank_one_runtime_agrees": true,
+      "runtime_work_units": 9413,
+      "cyclic_contributions_by_defect_letter_count": {
+        "5": {
+          "4": "10",
+          "5": "-10"
+        },
+        "6": {
+          "4": "264",
+          "5": "-408",
+          "6": "144"
+        }
+      }
+    },
+    {
+      "case": "time_sign_reversal",
+      "vertices": 5,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "oriented_cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        -6,
+        -84,
+        -740,
+        -5316,
+        -34146,
+        -204732
+      ],
+      "first_nonzero_order_in_computed_range": 3,
+      "leading_heat_coefficient": "1",
+      "rank_one_runtime_agrees": true,
+      "runtime_work_units": 3745
+    },
+    {
+      "case": "binary_quartet_tree",
+      "vertices": 6,
+      "edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "oriented_cut_edges": [
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          4
+        ],
+        [
+          1,
+          5
+        ]
+      ],
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        24,
+        448,
+        4944
+      ],
+      "first_nonzero_order_in_computed_range": 6,
+      "leading_heat_coefficient": "1/30",
+      "rank_one_runtime_agrees": true,
+      "runtime_work_units": 6704,
+      "cyclic_contributions_by_defect_letter_count": {
+        "6": {
+          "4": "24",
+          "5": "0",
+          "6": "0"
+        }
+      }
+    }
+  ],
+  "exhaustive_tree_leading_terms": {
+    "tree_counts": [
+      {
+        "vertices": 1,
+        "unlabeled_trees": 1
+      },
+      {
+        "vertices": 2,
+        "unlabeled_trees": 1
+      },
+      {
+        "vertices": 3,
+        "unlabeled_trees": 1
+      },
+      {
+        "vertices": 4,
+        "unlabeled_trees": 2
+      },
+      {
+        "vertices": 5,
+        "unlabeled_trees": 3
+      },
+      {
+        "vertices": 6,
+        "unlabeled_trees": 6
+      }
+    ],
+    "nonempty_cut_sets_verified": 249,
+    "leading_order_counts": {
+      "1": 51,
+      "2": 56,
+      "4": 51,
+      "3": 24,
+      "6": 28,
+      "5": 23,
+      "8": 8,
+      "7": 8
+    },
+    "positive_leading_coefficients": 194,
+    "negative_leading_coefficients": 55,
+    "verification": "Independent integer subset traces and path-union spanning trees."
+  },
+  "time_sign_reversal_certificates": [
+    {
+      "time": "1",
+      "rational_interval": {
+        "lower": "445195526208363834513823169027/17339937065070143092101486739456",
+        "upper": "31551616179548465924724499834678865246604455612190391/1228905067800488573001783029258307473915239079994195968",
+        "midpoint": "31551616164120044250848301996139451654725952187862711/1228905067800488573001783029258307473915239079994195968",
+        "error_bound": "334402033933210326076408160640510720/26635800010518346548119090454324970980454338247"
+      },
+      "decimal_interval_for_display": [
+        0.02567457566528157,
+        0.025674575690390788
+      ],
+      "truncation_order": 27,
+      "moment_profile": [
+        "0",
+        "0",
+        "0",
+        "8"
+      ]
+    },
+    {
+      "time": "3",
+      "rational_interval": {
+        "lower": "-528868812334774378369576769873709087934847253397796909519363229095850327401131049979583070908855599/13710706158407165013812184483230749995577210786904394042324017237878269694828048446818331825742544896",
+        "upper": "-578033209285906251438720016372843294648368008591547573501/14985272913258101496046671028816557924308247804405660778496",
+        "midpoint": "-528868812140345350560073499356300859698215729160471761206511650831698168974589265734732153088259375/13710706158407165013812184483230749995577210786904394042324017237878269694828048446818331825742544896",
+        "error_bound": "11052010666475284240130362618210229143035414171711839700501068274806003969664/779363413039798445755206130526786978156065446620709397070869342648977049909038239935531"
+      },
+      "decimal_interval_for_display": [
+        -0.038573418919818456,
+        -0.03857341889145682
+      ],
+      "truncation_order": 48,
+      "moment_profile": [
+        "0",
+        "0",
+        "0",
+        "8"
+      ]
+    }
+  ],
+  "sign_reversal_conclusion": "The analytic heat interaction has a zero between t=1 and t=3."
+}

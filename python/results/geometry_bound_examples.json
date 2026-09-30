@@ -1,0 +1,582 @@
+{
+  "arithmetic": "Exact rational bounds and certificates; no floating point used.",
+  "interpretation": "Same three edits and degree cap two. Separation improves analytic bounds and reduces required moment order. No timing or algorithmic superiority claim.",
+  "cases": [
+    {
+      "cycle_size": 18,
+      "cut_spacing": 6,
+      "time": "1/2",
+      "generic_profile_magnitude_bound": "1",
+      "geometry_bound": {
+        "interval": {
+          "lower": "-1/177843714048000",
+          "upper": "1/177843714048000",
+          "midpoint": "0",
+          "error_bound": "1/177843714048000"
+        },
+        "time": "1/2",
+        "geometry": {
+          "edit_count": 3,
+          "degree_bound": 2,
+          "scale": "1",
+          "support_distances": [
+            [
+              0,
+              5,
+              5
+            ],
+            [
+              5,
+              0,
+              5
+            ],
+            [
+              5,
+              5,
+              0
+            ]
+          ],
+          "tour_costs": [
+            {
+              "cost": 15,
+              "count": 2
+            }
+          ],
+          "moment_profile": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "16/10854718875"
+          ],
+          "vanishing_order": 18,
+          "identically_zero": false,
+          "bridge_reduction_applies": false
+        },
+        "steps": 0,
+        "exp_partial_sum": "1",
+        "exp_tail_bound": "2",
+        "poisson_bounds": [
+          {
+            "threshold": 15,
+            "lower": "0",
+            "upper": "2/3"
+          }
+        ],
+        "bound_enclosure_error": "2/3",
+        "after_step": null
+      },
+      "geometric_profile_heat": {
+        "interval": {
+          "lower": "-1/177843714048000",
+          "upper": "1/177843714048000",
+          "midpoint": "0",
+          "error_bound": "1/177843714048000"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "moment_profile": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "16/10854718875"
+        ],
+        "steps": 0,
+        "radius": 0,
+        "exp_partial_sum": "1",
+        "exp_tail_bound": "2",
+        "moment_tail_bound": "1/177843714048000",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "0"
+        ],
+        "local_types": 0,
+        "local_variation": "0"
+      },
+      "generic_profile_heat": {
+        "interval": {
+          "lower": "-10613/2348085347268533",
+          "upper": "10613/2348085347268533",
+          "midpoint": "0",
+          "error_bound": "10613/2348085347268533"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "moment_profile": [
+          "0",
+          "0",
+          "0",
+          "8"
+        ],
+        "steps": 16,
+        "radius": 8,
+        "exp_partial_sum": "56874039553217/20922789888000",
+        "exp_tail_bound": "1/335927015424000",
+        "moment_tail_bound": "10613/2348085347268533",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "local_types": 7,
+        "local_variation": "48"
+      }
+    },
+    {
+      "cycle_size": 30,
+      "cut_spacing": 10,
+      "time": "1/2",
+      "generic_profile_magnitude_bound": "1",
+      "geometry_bound": {
+        "interval": {
+          "lower": "-1/4420880996869850977271808000000",
+          "upper": "1/4420880996869850977271808000000",
+          "midpoint": "0",
+          "error_bound": "1/4420880996869850977271808000000"
+        },
+        "time": "1/2",
+        "geometry": {
+          "edit_count": 3,
+          "degree_bound": 2,
+          "scale": "1",
+          "support_distances": [
+            [
+              0,
+              9,
+              9
+            ],
+            [
+              9,
+              0,
+              9
+            ],
+            [
+              9,
+              9,
+              0
+            ]
+          ],
+          "tour_costs": [
+            {
+              "cost": 27,
+              "count": 2
+            }
+          ],
+          "moment_profile": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "64/263505041412702261046875"
+          ],
+          "vanishing_order": 30,
+          "identically_zero": false,
+          "bridge_reduction_applies": false
+        },
+        "steps": 0,
+        "exp_partial_sum": "1",
+        "exp_tail_bound": "2",
+        "poisson_bounds": [
+          {
+            "threshold": 27,
+            "lower": "0",
+            "upper": "2/3"
+          }
+        ],
+        "bound_enclosure_error": "2/3",
+        "after_step": null
+      },
+      "geometric_profile_heat": {
+        "interval": {
+          "lower": "-1/4420880996869850977271808000000",
+          "upper": "1/4420880996869850977271808000000",
+          "midpoint": "0",
+          "error_bound": "1/4420880996869850977271808000000"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "moment_profile": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "64/263505041412702261046875"
+        ],
+        "steps": 0,
+        "radius": 0,
+        "exp_partial_sum": "1",
+        "exp_tail_bound": "2",
+        "moment_tail_bound": "1/4420880996869850977271808000000",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "0"
+        ],
+        "local_types": 0,
+        "local_variation": "0"
+      },
+      "generic_profile_heat": {
+        "interval": {
+          "lower": "-10613/2348085347268533",
+          "upper": "10613/2348085347268533",
+          "midpoint": "0",
+          "error_bound": "10613/2348085347268533"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "moment_profile": [
+          "0",
+          "0",
+          "0",
+          "8"
+        ],
+        "steps": 16,
+        "radius": 8,
+        "exp_partial_sum": "56874039553217/20922789888000",
+        "exp_tail_bound": "1/335927015424000",
+        "moment_tail_bound": "10613/2348085347268533",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "local_types": 0,
+        "local_variation": "0"
+      }
+    },
+    {
+      "cycle_size": 48,
+      "cut_spacing": 16,
+      "time": "1/2",
+      "generic_profile_magnitude_bound": "1",
+      "geometry_bound": {
+        "interval": {
+          "lower": "-1/129311620755584090321482177576805989984598816194560000000000",
+          "upper": "1/129311620755584090321482177576805989984598816194560000000000",
+          "midpoint": "0",
+          "error_bound": "1/129311620755584090321482177576805989984598816194560000000000"
+        },
+        "time": "1/2",
+        "geometry": {
+          "edit_count": 3,
+          "degree_bound": 2,
+          "scale": "1",
+          "support_distances": [
+            [
+              0,
+              15,
+              15
+            ],
+            [
+              15,
+              0,
+              15
+            ],
+            [
+              15,
+              15,
+              0
+            ]
+          ],
+          "tour_costs": [
+            {
+              "cost": 45,
+              "count": 2
+            }
+          ],
+          "moment_profile": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "128/58804116977436974739922415018011629392548828125"
+          ],
+          "vanishing_order": 48,
+          "identically_zero": false,
+          "bridge_reduction_applies": false
+        },
+        "steps": 0,
+        "exp_partial_sum": "1",
+        "exp_tail_bound": "2",
+        "poisson_bounds": [
+          {
+            "threshold": 45,
+            "lower": "0",
+            "upper": "2/3"
+          }
+        ],
+        "bound_enclosure_error": "2/3",
+        "after_step": null
+      },
+      "geometric_profile_heat": {
+        "interval": {
+          "lower": "-1/129311620755584090321482177576805989984598816194560000000000",
+          "upper": "1/129311620755584090321482177576805989984598816194560000000000",
+          "midpoint": "0",
+          "error_bound": "1/129311620755584090321482177576805989984598816194560000000000"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "moment_profile": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "128/58804116977436974739922415018011629392548828125"
+        ],
+        "steps": 0,
+        "radius": 0,
+        "exp_partial_sum": "1",
+        "exp_tail_bound": "2",
+        "moment_tail_bound": "1/129311620755584090321482177576805989984598816194560000000000",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "0"
+        ],
+        "local_types": 0,
+        "local_variation": "0"
+      },
+      "generic_profile_heat": {
+        "interval": {
+          "lower": "-10613/2348085347268533",
+          "upper": "10613/2348085347268533",
+          "midpoint": "0",
+          "error_bound": "10613/2348085347268533"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "moment_profile": [
+          "0",
+          "0",
+          "0",
+          "8"
+        ],
+        "steps": 16,
+        "radius": 8,
+        "exp_partial_sum": "56874039553217/20922789888000",
+        "exp_tail_bound": "1/335927015424000",
+        "moment_tail_bound": "10613/2348085347268533",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "local_types": 0,
+        "local_variation": "0"
+      }
+    }
+  ]
+}

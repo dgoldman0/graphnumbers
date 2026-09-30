@@ -1,11 +1,11 @@
 {
   "python": "3.12.14",
-  "tests_run": 66,
+  "tests_run": 83,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
   "success": true,
-  "seconds": 5.210062742997252,
+  "seconds": 5.356670653003675,
   "coverage": [
     "160 independent brute-force isomorphism comparisons",
     "300 exact local/full Cartesian histogram comparisons",
@@ -22,6 +22,10 @@
     "942 tree cut-set identities, 3763 local identities, and exact branching/cycle moments",
     "buffered square-lattice pair geometry and leading coupling formula",
     "crossing-cut products, compositional profiles and inexact controlled heat certificates",
+    "cyclic incidence moments versus full integer subset matrices, with repeated defects",
+    "249 exhaustive tree cut leading terms and exact order-five/six cancellation fixtures",
+    "rationally certified time-dependent interaction sign reversal",
+    "support-distance decay, geometric profiles, larger degree caps and Cartesian products",
     "674 exact cospectral geometry checks and independent motif comparators",
     "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"
   ]

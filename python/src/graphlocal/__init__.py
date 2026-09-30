@@ -5,6 +5,11 @@ from .defects import (CutLineDefect, RelativeHeatCertificate, SparseEdgeDifferen
                       apply_edge_edits, relative_heat)
 from .controlled import ControlledHeatCertificate, controlled_heat
 from .edge_interactions import EdgeInteraction, bridge_cut_reduction
+from .interaction_bounds import (GeometricInteraction, InteractionGeometry,
+                                 InteractionHeatBound, interaction_geometry,
+                                 interaction_heat_bound)
+from .interaction_moments import (InteractionMoments, TreeInteractionLeading,
+                                  interaction_moments, tree_interaction_leading)
 from .elements import moment_profile
 from .graphs import (BudgetExceeded, Graph, ball, cartesian, complete, cycle,
                      disjoint_union, from_networkx, graph, isomorphic, path, star)
@@ -16,7 +21,7 @@ from .local import (EDGES, ISOLATED, VERTICES, Interval, LocalApproximation,
                     LocalHistogram, LocalObservable, walk_observable)
 from .reconstruction import OutOfSpan, Reconstruction, catalog, reconstruct
 
-__version__ = "0.4.0"
+__version__ = "0.5.0"
 __all__ = [
     "Element", "ExactLocalUnavailable", "Finite", "Line", "exp", "exp_derivative",
     "polynomial", "polynomial_derivative", "BudgetExceeded", "Graph", "ball",
@@ -31,4 +36,7 @@ __all__ = [
     "LineCutDefect", "connected_cut_interaction",
     "ControlledHeatCertificate", "controlled_heat", "moment_profile",
     "EdgeInteraction", "bridge_cut_reduction",
+    "GeometricInteraction", "InteractionGeometry", "InteractionHeatBound",
+    "interaction_geometry", "interaction_heat_bound", "InteractionMoments",
+    "TreeInteractionLeading", "interaction_moments", "tree_interaction_leading",
 ]
