@@ -1,0 +1,1512 @@
+{
+  "arithmetic": "Exact Python integers and Fractions; rooted and unrooted isomorphism use exact backtracking.",
+  "interaction_convention": "C_F(G)=sum_(S subset F) (-1)^(|F|-|S|) (G-S). Heat is the same linear combination of unnormalized traces exp(-tL).",
+  "tree_verification": {
+    "tree_counts": [
+      {
+        "vertices": 1,
+        "unlabeled_trees": 1
+      },
+      {
+        "vertices": 2,
+        "unlabeled_trees": 1
+      },
+      {
+        "vertices": 3,
+        "unlabeled_trees": 1
+      },
+      {
+        "vertices": 4,
+        "unlabeled_trees": 2
+      },
+      {
+        "vertices": 5,
+        "unlabeled_trees": 3
+      },
+      {
+        "vertices": 6,
+        "unlabeled_trees": 6
+      },
+      {
+        "vertices": 7,
+        "unlabeled_trees": 11
+      }
+    ],
+    "cut_sets": 942,
+    "component_basis_equalities": 942,
+    "rooted_histogram_equalities": 3763,
+    "proper_internal_cut_reductions": 370,
+    "identity": "C_F(G)=(-1)^(|F|-|L|) C_L(G), L the pendant edges of the contracted tree quotient.",
+    "scope": "Finite exhaustive verification through the stated order; the general identity still requires proof."
+  },
+  "star_interactions": [
+    {
+      "case": "star_2_all_leaf_cuts",
+      "vertices": 3,
+      "edges": 2,
+      "cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "cut_count": 2,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        2,
+        12,
+        50,
+        180,
+        602,
+        1932,
+        6050
+      ],
+      "first_nonzero_order": 2,
+      "leading_heat_coefficient": "1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "1",
+        "-2",
+        "25/12",
+        "-3/2",
+        "301/360",
+        "-23/60",
+        "605/4032"
+      ]
+    },
+    {
+      "case": "star_3_all_leaf_cuts",
+      "vertices": 4,
+      "edges": 3,
+      "cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        -6,
+        -60,
+        -390,
+        -2100,
+        -10206,
+        -46620
+      ],
+      "first_nonzero_order": 3,
+      "leading_heat_coefficient": "1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "-5/2",
+        "13/4",
+        "-35/12",
+        "81/40",
+        "-37/32"
+      ]
+    },
+    {
+      "case": "star_4_all_leaf_cuts",
+      "vertices": 5,
+      "edges": 4,
+      "cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "cut_count": 4,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        24,
+        360,
+        3360,
+        25200,
+        166824
+      ],
+      "first_nonzero_order": 4,
+      "leading_heat_coefficient": "1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "-3",
+        "14/3",
+        "-5",
+        "331/80"
+      ]
+    }
+  ],
+  "spider_interactions": [
+    {
+      "case": "spider_2_2_2",
+      "vertices": 7,
+      "edges": 6,
+      "cut_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 12,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -18,
+        -420,
+        -5610,
+        -56508
+      ],
+      "first_nonzero_order": 9,
+      "leading_heat_coefficient": "1/20160",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/20160",
+        "-1/8640",
+        "17/120960",
+        "-4709/39916800"
+      ],
+      "arm_lengths": [
+        2,
+        2,
+        2
+      ],
+      "full_cut_count": 6,
+      "leaf_cut_count": 3,
+      "full_to_leaf_sign": -1,
+      "full_component_identity_verified": true
+    },
+    {
+      "case": "spider_3_2_1",
+      "vertices": 7,
+      "edges": 6,
+      "cut_edges": [
+        [
+          2,
+          3
+        ],
+        [
+          4,
+          5
+        ],
+        [
+          0,
+          6
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 12,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        -18,
+        -410,
+        -5324,
+        -51948
+      ],
+      "first_nonzero_order": 9,
+      "leading_heat_coefficient": "1/20160",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/20160",
+        "-41/362880",
+        "121/907200",
+        "-481/4435200"
+      ],
+      "arm_lengths": [
+        3,
+        2,
+        1
+      ],
+      "full_cut_count": 6,
+      "leaf_cut_count": 3,
+      "full_to_leaf_sign": -1,
+      "full_component_identity_verified": true
+    },
+    {
+      "case": "spider_2_2_2_2",
+      "vertices": 9,
+      "edges": 8,
+      "cut_edges": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          5,
+          6
+        ],
+        [
+          7,
+          8
+        ]
+      ],
+      "cut_count": 4,
+      "max_moment_order": 12,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        72
+      ],
+      "first_nonzero_order": 12,
+      "leading_heat_coefficient": "1/6652800",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/6652800"
+      ],
+      "arm_lengths": [
+        2,
+        2,
+        2,
+        2
+      ],
+      "full_cut_count": 8,
+      "leaf_cut_count": 4,
+      "full_to_leaf_sign": 1,
+      "full_component_identity_verified": true
+    }
+  ],
+  "planar_fixtures": [
+    {
+      "case": "triangle_all_three_edges",
+      "vertices": 3,
+      "edges": 3,
+      "cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        6,
+        36,
+        150,
+        540,
+        1806,
+        5796
+      ],
+      "first_nonzero_order": 3,
+      "leading_heat_coefficient": "-1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "-1",
+        "3/2",
+        "-5/4",
+        "3/4",
+        "-43/120",
+        "23/160"
+      ]
+    },
+    {
+      "case": "square_all_four_edges",
+      "vertices": 4,
+      "edges": 4,
+      "cut_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "cut_count": 4,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        8,
+        80,
+        552,
+        3248,
+        17416
+      ],
+      "first_nonzero_order": 4,
+      "leading_heat_coefficient": "1/3",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/3",
+        "-2/3",
+        "23/30",
+        "-29/45",
+        "311/720"
+      ]
+    },
+    {
+      "case": "finite_square_3_Y3",
+      "vertices": 9,
+      "edges": 12,
+      "cut_edges": [
+        [
+          4,
+          1
+        ],
+        [
+          4,
+          3
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        -6,
+        -84,
+        -830,
+        -7116,
+        -56336,
+        -422948
+      ],
+      "first_nonzero_order": 3,
+      "leading_heat_coefficient": "1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "-7/2",
+        "83/12",
+        "-593/60",
+        "503/45",
+        "-105737/10080"
+      ]
+    },
+    {
+      "case": "finite_square_13_Y3",
+      "vertices": 169,
+      "edges": 312,
+      "cut_edges": [
+        [
+          84,
+          71
+        ],
+        [
+          84,
+          83
+        ],
+        [
+          84,
+          85
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        -6,
+        -84,
+        -860,
+        -7932,
+        -69888,
+        -600916
+      ],
+      "first_nonzero_order": 3,
+      "leading_heat_coefficient": "1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "-7/2",
+        "43/6",
+        "-661/60",
+        "208/15",
+        "-150229/10080"
+      ]
+    },
+    {
+      "case": "finite_square_17_Y3",
+      "vertices": 289,
+      "edges": 544,
+      "cut_edges": [
+        [
+          144,
+          127
+        ],
+        [
+          144,
+          143
+        ],
+        [
+          144,
+          145
+        ]
+      ],
+      "cut_count": 3,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        -6,
+        -84,
+        -860,
+        -7932,
+        -69888,
+        -600916
+      ],
+      "first_nonzero_order": 3,
+      "leading_heat_coefficient": "1",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "1",
+        "-7/2",
+        "43/6",
+        "-661/60",
+        "208/15",
+        "-150229/10080"
+      ]
+    },
+    {
+      "case": "finite_square_3_plaquette4",
+      "vertices": 9,
+      "edges": 12,
+      "cut_edges": [
+        [
+          4,
+          5
+        ],
+        [
+          5,
+          8
+        ],
+        [
+          8,
+          7
+        ],
+        [
+          7,
+          4
+        ]
+      ],
+      "cut_count": 4,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        8,
+        120,
+        1212,
+        10388,
+        81624
+      ],
+      "first_nonzero_order": 4,
+      "leading_heat_coefficient": "1/3",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/3",
+        "-1",
+        "101/60",
+        "-371/180",
+        "3401/1680"
+      ]
+    },
+    {
+      "case": "finite_square_13_plaquette4",
+      "vertices": 169,
+      "edges": 312,
+      "cut_edges": [
+        [
+          84,
+          85
+        ],
+        [
+          85,
+          98
+        ],
+        [
+          98,
+          97
+        ],
+        [
+          97,
+          84
+        ]
+      ],
+      "cut_count": 4,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        8,
+        160,
+        2088,
+        22736,
+        225032
+      ],
+      "first_nonzero_order": 4,
+      "leading_heat_coefficient": "1/3",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/3",
+        "-4/3",
+        "29/10",
+        "-203/45",
+        "28129/5040"
+      ]
+    },
+    {
+      "case": "finite_square_17_plaquette4",
+      "vertices": 289,
+      "edges": 544,
+      "cut_edges": [
+        [
+          144,
+          145
+        ],
+        [
+          145,
+          162
+        ],
+        [
+          162,
+          161
+        ],
+        [
+          161,
+          144
+        ]
+      ],
+      "cut_count": 4,
+      "max_moment_order": 8,
+      "mixed_laplacian_moments": [
+        0,
+        0,
+        0,
+        0,
+        8,
+        160,
+        2088,
+        22736,
+        225032
+      ],
+      "first_nonzero_order": 4,
+      "leading_heat_coefficient": "1/3",
+      "heat_coefficients": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "1/3",
+        "-4/3",
+        "29/10",
+        "-203/45",
+        "28129/5040"
+      ]
+    }
+  ],
+  "planar_two_edge_interactions": [
+    {
+      "case": "perpendicular_adjacent",
+      "first_edge_coordinates": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "second_edge_coordinates": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ]
+      ],
+      "draft_moments_I2_through_I6": [
+        2,
+        24,
+        226,
+        1980,
+        16826
+      ],
+      "finite_square_verifications": [
+        {
+          "case": "finite_square_17_perpendicular_adjacent",
+          "vertices": 289,
+          "edges": 544,
+          "cut_edges": [
+            [
+              144,
+              145
+            ],
+            [
+              144,
+              161
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            2,
+            24,
+            226,
+            1980,
+            16826,
+            140644,
+            1163330
+          ],
+          "first_nonzero_order": 2,
+          "leading_heat_coefficient": "1",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "1",
+            "-4",
+            "113/12",
+            "-33/2",
+            "8413/360",
+            "-5023/180",
+            "16619/576"
+          ],
+          "grid_side": 17,
+          "incidence_cross_moments": [
+            1,
+            6,
+            38,
+            250,
+            1692
+          ],
+          "first_nonzero_cross_order": 0,
+          "first_nonzero_cross_value": 1,
+          "leading_order_formula_verified": true
+        },
+        {
+          "case": "finite_square_21_perpendicular_adjacent",
+          "vertices": 441,
+          "edges": 840,
+          "cut_edges": [
+            [
+              220,
+              221
+            ],
+            [
+              220,
+              241
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            2,
+            24,
+            226,
+            1980,
+            16826,
+            140644,
+            1163330
+          ],
+          "first_nonzero_order": 2,
+          "leading_heat_coefficient": "1",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "1",
+            "-4",
+            "113/12",
+            "-33/2",
+            "8413/360",
+            "-5023/180",
+            "16619/576"
+          ],
+          "grid_side": 21,
+          "incidence_cross_moments": [
+            1,
+            6,
+            38,
+            250,
+            1692
+          ],
+          "first_nonzero_cross_order": 0,
+          "first_nonzero_cross_value": 1,
+          "leading_order_formula_verified": true
+        }
+      ],
+      "buffered_moments_stabilized": true
+    },
+    {
+      "case": "collinear_adjacent",
+      "first_edge_coordinates": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "second_edge_coordinates": [
+        [
+          1,
+          0
+        ],
+        [
+          2,
+          0
+        ]
+      ],
+      "draft_moments_I2_through_I6": [
+        2,
+        24,
+        218,
+        1840,
+        15212
+      ],
+      "finite_square_verifications": [
+        {
+          "case": "finite_square_17_collinear_adjacent",
+          "vertices": 289,
+          "edges": 544,
+          "cut_edges": [
+            [
+              144,
+              145
+            ],
+            [
+              145,
+              146
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            2,
+            24,
+            218,
+            1840,
+            15212,
+            124992,
+            1024314
+          ],
+          "first_nonzero_order": 2,
+          "leading_heat_coefficient": "1",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "1",
+            "-4",
+            "109/12",
+            "-46/3",
+            "3803/180",
+            "-124/5",
+            "170719/6720"
+          ],
+          "grid_side": 17,
+          "incidence_cross_moments": [
+            -1,
+            -6,
+            -37,
+            -238,
+            -1588
+          ],
+          "first_nonzero_cross_order": 0,
+          "first_nonzero_cross_value": -1,
+          "leading_order_formula_verified": true
+        },
+        {
+          "case": "finite_square_21_collinear_adjacent",
+          "vertices": 441,
+          "edges": 840,
+          "cut_edges": [
+            [
+              220,
+              221
+            ],
+            [
+              221,
+              222
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            2,
+            24,
+            218,
+            1840,
+            15212,
+            124992,
+            1024314
+          ],
+          "first_nonzero_order": 2,
+          "leading_heat_coefficient": "1",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "1",
+            "-4",
+            "109/12",
+            "-46/3",
+            "3803/180",
+            "-124/5",
+            "170719/6720"
+          ],
+          "grid_side": 21,
+          "incidence_cross_moments": [
+            -1,
+            -6,
+            -37,
+            -238,
+            -1588
+          ],
+          "first_nonzero_cross_order": 0,
+          "first_nonzero_cross_value": -1,
+          "leading_order_formula_verified": true
+        }
+      ],
+      "buffered_moments_stabilized": true
+    },
+    {
+      "case": "opposite_square_sides",
+      "first_edge_coordinates": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "second_edge_coordinates": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "draft_moments_I2_through_I6": [
+        0,
+        0,
+        16,
+        320,
+        4176
+      ],
+      "finite_square_verifications": [
+        {
+          "case": "finite_square_17_opposite_square_sides",
+          "vertices": 289,
+          "edges": 544,
+          "cut_edges": [
+            [
+              144,
+              145
+            ],
+            [
+              161,
+              162
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            0,
+            0,
+            16,
+            320,
+            4176,
+            45360,
+            446560
+          ],
+          "first_nonzero_order": 4,
+          "leading_heat_coefficient": "2/3",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "2/3",
+            "-8/3",
+            "29/5",
+            "-9",
+            "2791/252"
+          ],
+          "grid_side": 17,
+          "incidence_cross_moments": [
+            0,
+            -2,
+            -20,
+            -162,
+            -1232
+          ],
+          "first_nonzero_cross_order": 1,
+          "first_nonzero_cross_value": -2,
+          "leading_order_formula_verified": true
+        },
+        {
+          "case": "finite_square_21_opposite_square_sides",
+          "vertices": 441,
+          "edges": 840,
+          "cut_edges": [
+            [
+              220,
+              221
+            ],
+            [
+              241,
+              242
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            0,
+            0,
+            16,
+            320,
+            4176,
+            45360,
+            446560
+          ],
+          "first_nonzero_order": 4,
+          "leading_heat_coefficient": "2/3",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "2/3",
+            "-8/3",
+            "29/5",
+            "-9",
+            "2791/252"
+          ],
+          "grid_side": 21,
+          "incidence_cross_moments": [
+            0,
+            -2,
+            -20,
+            -162,
+            -1232
+          ],
+          "first_nonzero_cross_order": 1,
+          "first_nonzero_cross_value": -2,
+          "leading_order_formula_verified": true
+        }
+      ],
+      "buffered_moments_stabilized": true
+    },
+    {
+      "case": "parallel_distance_two",
+      "first_edge_coordinates": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "second_edge_coordinates": [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "draft_moments_I2_through_I6": [
+        0,
+        0,
+        0,
+        0,
+        24
+      ],
+      "finite_square_verifications": [
+        {
+          "case": "finite_square_17_parallel_distance_two",
+          "vertices": 289,
+          "edges": 544,
+          "cut_edges": [
+            [
+              144,
+              145
+            ],
+            [
+              178,
+              179
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            24,
+            728,
+            13344
+          ],
+          "first_nonzero_order": 6,
+          "leading_heat_coefficient": "1/30",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/30",
+            "-13/90",
+            "139/420"
+          ],
+          "grid_side": 17,
+          "incidence_cross_moments": [
+            0,
+            0,
+            2,
+            30,
+            320
+          ],
+          "first_nonzero_cross_order": 2,
+          "first_nonzero_cross_value": 2,
+          "leading_order_formula_verified": true
+        },
+        {
+          "case": "finite_square_21_parallel_distance_two",
+          "vertices": 441,
+          "edges": 840,
+          "cut_edges": [
+            [
+              220,
+              221
+            ],
+            [
+              262,
+              263
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            24,
+            728,
+            13344
+          ],
+          "first_nonzero_order": 6,
+          "leading_heat_coefficient": "1/30",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/30",
+            "-13/90",
+            "139/420"
+          ],
+          "grid_side": 21,
+          "incidence_cross_moments": [
+            0,
+            0,
+            2,
+            30,
+            320
+          ],
+          "first_nonzero_cross_order": 2,
+          "first_nonzero_cross_value": 2,
+          "leading_order_formula_verified": true
+        }
+      ],
+      "buffered_moments_stabilized": true
+    },
+    {
+      "case": "separated_collinear",
+      "first_edge_coordinates": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ]
+      ],
+      "second_edge_coordinates": [
+        [
+          3,
+          0
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "draft_moments_I2_through_I6": [
+        0,
+        0,
+        0,
+        0,
+        6
+      ],
+      "finite_square_verifications": [
+        {
+          "case": "finite_square_17_separated_collinear",
+          "vertices": 289,
+          "edges": 544,
+          "cut_edges": [
+            [
+              144,
+              145
+            ],
+            [
+              147,
+              148
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            168,
+            2928
+          ],
+          "first_nonzero_order": 6,
+          "leading_heat_coefficient": "1/120",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/120",
+            "-1/30",
+            "61/840"
+          ],
+          "grid_side": 17,
+          "incidence_cross_moments": [
+            0,
+            0,
+            -1,
+            -14,
+            -145
+          ],
+          "first_nonzero_cross_order": 2,
+          "first_nonzero_cross_value": -1,
+          "leading_order_formula_verified": true
+        },
+        {
+          "case": "finite_square_21_separated_collinear",
+          "vertices": 441,
+          "edges": 840,
+          "cut_edges": [
+            [
+              220,
+              221
+            ],
+            [
+              223,
+              224
+            ]
+          ],
+          "cut_count": 2,
+          "max_moment_order": 8,
+          "mixed_laplacian_moments": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            168,
+            2928
+          ],
+          "first_nonzero_order": 6,
+          "leading_heat_coefficient": "1/120",
+          "heat_coefficients": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "1/120",
+            "-1/30",
+            "61/840"
+          ],
+          "grid_side": 21,
+          "incidence_cross_moments": [
+            0,
+            0,
+            -1,
+            -14,
+            -145
+          ],
+          "first_nonzero_cross_order": 2,
+          "first_nonzero_cross_value": -1,
+          "leading_order_formula_verified": true
+        }
+      ],
+      "buffered_moments_stabilized": true
+    }
+  ],
+  "Y_cannot_equal_positive_or_negative_of_any_cut_pair": [
+    {
+      "pair": [
+        [
+          84,
+          71
+        ],
+        [
+          84,
+          83
+        ]
+      ],
+      "second_mixed_laplacian_moment": 2,
+      "three_cut_second_moment": 0
+    },
+    {
+      "pair": [
+        [
+          84,
+          71
+        ],
+        [
+          84,
+          85
+        ]
+      ],
+      "second_mixed_laplacian_moment": 2,
+      "three_cut_second_moment": 0
+    },
+    {
+      "pair": [
+        [
+          84,
+          83
+        ],
+        [
+          84,
+          85
+        ]
+      ],
+      "second_mixed_laplacian_moment": 2,
+      "three_cut_second_moment": 0
+    }
+  ],
+  "triangle_tree_formula_rejected": true,
+  "buffered_grid_stabilization": {
+    "sides": [
+      13,
+      17
+    ],
+    "moment_orders": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "fixtures": [
+      "Y3",
+      "plaquette4"
+    ],
+    "exactly_equal": true,
+    "scope": "These are exact finite-square equalities. Infinite-lattice conclusions additionally use finite-propagation reasoning in the mathematical note."
+  },
+  "conclusions_supported_by_finite_checks": [
+    "Internal tree cuts reduce to the leaf-cut interaction with the predicted parity in all tested trees.",
+    "Stars have genuine three- and four-cut responses: leading heat terms t^3 and t^4.",
+    "A triangular cycle has leading heat term -t^3, so tree-like positive leading signs do not extend to all planar cuts.",
+    "The centered square-grid Y has leading term t^3 and cannot equal either sign of any selected-edge pair interaction.",
+    "The square plaquette four-cut interaction starts at t^4/3."
+  ]
+}

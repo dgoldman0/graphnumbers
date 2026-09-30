@@ -32,6 +32,15 @@ demonstrates information retained beyond scalar spectra. Fair reuse
 benchmarks in library version 0.3.0 show no current speed advantage from
 isomorphism grouping, while the algebraic identities apply across observables.
 
+The [branching extension](BRANCHING_DEFECTS.md) proves a leaf-edge
+reduction for selected bridge sets and supplies explicit sign changes
+between line, star and cyclic interactions. The
+[planar extension](PLANAR_DEFECTS.md) distinguishes finite square-lattice
+edge arrangements, quantifies crossing-cut geometry, and constructs a
+unital algebra of degree-bounded elements with finite moment profiles.
+Library version 0.4.0 implements the bridge reduction and certified heat
+on that larger controlled domain.
+
 The [identification follow-up](FOLLOWUP_IDENTIFICATION.md) uses the later
 structural theorems to identify the formal local algebras as generalized
 power-series rings and the weighted pieces as standard convolution
@@ -106,6 +115,8 @@ extension question remains open.
 
 | File | Purpose |
 | --- | --- |
+| [BRANCHING_DEFECTS.md](BRANCHING_DEFECTS.md) | Selected-bridge leaf reduction, infinite relative limits, sign changes, and cyclic obstruction. |
+| [PLANAR_DEFECTS.md](PLANAR_DEFECTS.md) | Planar pair coupling, crossing-cut products, exact variation, trace-class heat and compositional moment profiles. |
 | [local_graph_completion.pdf](local_graph_completion.pdf) | Seven-page definition-and-proof note, including explicit counterexamples. |
 | [local_graph_completion.tex](local_graph_completion.tex) | Editable source for the note. |
 | [ANALYSIS.md](ANALYSIS.md) | Finite-graph and real embeddings, graph directions, and observable compatibility with calculus. |

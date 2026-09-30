@@ -29,6 +29,9 @@ report = {
                  "prepared geometry/moment reuse, including inexact source oracles",
                  "line-cut inclusion-exclusion versus finite subset sums through five cuts",
                  "interaction support, binomial moments, and positive image series",
+                 "942 tree cut-set identities, 3763 local identities, and exact branching/cycle moments",
+                 "buffered square-lattice pair geometry and leading coupling formula",
+                 "crossing-cut products, compositional profiles and inexact controlled heat certificates",
                  "674 exact cospectral geometry checks and independent motif comparators",
                  "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }

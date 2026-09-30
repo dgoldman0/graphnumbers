@@ -21,7 +21,7 @@ class PreparedLocal(Element):
         if self.histogram.radius != self.radius:
             raise ValueError("Source returned the wrong local radius")
         self._locals = {self.radius: self.histogram}
-        for field in ("degree_bound", "variation_bound", "edit_bound", "mass", "positive"):
+        for field in ("degree_bound", "variation_bound", "edit_bound", "moment_profile", "mass", "positive"):
             setattr(self, field, getattr(value, field))
 
     def local(self, radius):

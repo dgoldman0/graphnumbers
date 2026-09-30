@@ -1,4 +1,4 @@
-# graphnumbers-local 0.3.0
+# graphnumbers-local 0.4.0
 
 A research library for exact graph arithmetic and certified local
 approximations, imported as `graphlocal`. Python 3.10 or later; the core
@@ -187,7 +187,8 @@ rational arithmetic and accounts for input approximation error.
 Sums and scalar multiples propagate edit bounds. Multiplication by a
 bounded-degree element of finite variation C propagates q to q*C.
 Arbitrary products of defects need not have this certificate: E*E is
-a valid algebra element but is currently rejected by `relative_heat`.
+a valid algebra element and is rejected by `relative_heat`; the new
+`controlled_heat` routine accepts it using a second-order moment profile.
 Generic `Finite` expressions do not automatically infer an edit pairing;
 use `SparseEdgeDifference` when that structure is known.
 
@@ -260,7 +261,8 @@ $$\sum_{S\subseteq\{1,\ldots,k\}}(-1)^{k-|S|}D_S
 
 `connected_cut_interaction` applies this identity without enumerating
 subsets. The result holds for graph elements before choosing an observable.
-It is specific to line cuts. The [proof](../research/local-completion/DEFECT_INTERACTIONS.md)
+The two-extreme-cut form is specific to a path quotient; the bridge
+theorem below extends it to branching. The [proof](../research/local-completion/DEFECT_INTERACTIONS.md)
 also gives an explicit finite signed spectral measure and positive
 resolvent formula for I_ell. A graph measure of finite variation and a
 spectral measure of finite variation are different requirements.
@@ -284,6 +286,77 @@ representation retains that distinction under every mass-one Cartesian
 background. Ordinary graph motif algorithms retain it too; the comparison
 concerns information lost by scalar spectral compression. See the
 [geometry proof and sources](../research/local-completion/GEOMETRY_VERSUS_SPECTRUM.md).
+
+## Branching, planar interactions and compositional heat
+
+```python
+from graphlocal import (CutLineDefect, EdgeInteraction, controlled_heat,
+                       moment_profile, path)
+
+# Eight selected bridge cuts reduce exactly to the two leaf cuts.
+interaction = EdgeInteraction(path(9), [(i, i + 1, -1) for i in range(8)],
+                              max_edits=2)
+assert len(interaction.active_edits) == 2
+assert interaction.edit_bound == 4
+
+# Complete perpendicular cuts of the square lattice.
+crossing = CutLineDefect() ** 2
+assert moment_profile(crossing) == (0, 0, 4)
+certificate = controlled_heat(crossing, "1/2", "1e-10")
+print(float(certificate.interval.midpoint))  # approximately 0.1869112681
+```
+
+`EdgeInteraction(G, edits)` constructs the full alternating interaction
+of distinct finite edits. If all selected edges are bridges of a connected
+G, contract the components after deleting them. This quotient is a tree.
+For k selected edges and ell edges incident to its leaves, the exact identity
+is `C_F = (-1)**(k-ell) * C_leaf`. The constructor applies this reduction
+before its `max_edits` subset budget. Cycles within uncut blocks are allowed.
+Mixed insertions/deletions and cyclic cut sets use the full alternating
+sum. `normalize=True` divides by the original vertex count; no edits means
+zero. `bridge_cut_reduction` also exposes the reduction directly.
+
+The [branching proof](../research/local-completion/BRANCHING_DEFECTS.md)
+extends the identity to locally stabilized infinite bridge-cut limits.
+Three cuts on a star have positive heat interaction, whereas three ordered
+line cuts have negative interaction. The selected-bridge hypothesis is
+essential: cutting all edges of a triangle gives a nonzero interaction
+despite having no quotient leaves.
+
+The [planar proof](../research/local-completion/PLANAR_DEFECTS.md) shows that
+adjacent perpendicular and collinear square-lattice cuts first differ at
+fourth heat order. Complete coordinate cuts instead factor as E squared,
+with local variation `16*r*r` and heat `((1-exp(-4*t))/2)**2`.
+
+`controlled_heat` accepts a finite nonnegative `moment_profile` A satisfying
+`abs(d_j(X; D)) <= sum(A[r] * (j)_r / D**r)` for all admissible positive
+degree caps D. Here `(j)_r` is the falling factorial, zero when r>j.
+Finite variation C supplies `(C,)`; edit budget q supplies `(0,2*q)`.
+Sums add profiles, scalars scale their absolute bounds, and Cartesian
+products convolve them. Thus k defect factors have a pure order-k bound.
+`EdgeInteraction` has the same order bound without assuming factorization.
+Custom profiles are mathematical guarantees supplied by the caller.
+
+The heat tail after order M is at most
+`sum(A[r]*t**r*Pr[Poisson(t*D) >= M+1-r])`. Rational arithmetic encloses
+both this tail and the exponential normalization, with any local input
+error included. Higher-degree noise in an inexact local approximation is
+projected away without increasing its error. The returned interval has
+radius at most epsilon; `to_data()` exports the certificate parameters.
+The routine defines heat on a unital controlled subalgebra, with continuity
+on classes of fixed degree and profile. The obstruction to a continuous
+heat extension on the whole completion still applies.
+
+Reproduce the exact geometry checks and five independent heat enclosures:
+
+```sh
+PYTHONPATH=src python3 examples/branch_planar_verification.py --output results/branch_planar_verification.json
+PYTHONPATH=src python3 examples/controlled_heat_examples.py --output results/controlled_heat_examples.json
+```
+
+These results concern structural identities and analytic certificates.
+They make no additional runtime claim; standard matrix methods can also
+use the same inclusion-exclusion and Cartesian identities.
 
 ## Measured first application
 
@@ -401,9 +474,9 @@ These results favor continuing the construction as an analytic language
 for coherent local limits and defect identities. They provide no basis
 for preferring its current generic histogram implementation as a faster
 numerical engine. The higher interaction identity is a concrete reusable
-result; investigating which analogous reductions survive branching or
-higher-dimensional backgrounds is a stronger next target than more heat
-time sweeps on the same simple examples.
+result. The branching and planar results above extend that investigation
+to a larger controlled domain and identify explicit failures of the
+line-only rules.
 
 ## Verification and provenance
 
@@ -423,8 +496,11 @@ polynomial trace exactness and compare numerical methods independently.
 The prepared-query and interaction tests compare with independent finite
 subset sums, exact binomial moments, and 80-digit positive series. The
 cospectral and reuse comparator tests add independent matrix/motif checks.
-All 54 tests passed with NumPy/SciPy; running with site packages disabled
-passes the 45 core tests and skips the nine optional baseline tests.
+Branching tests cover 942 tree cut sets and 3,763 rooted identities, plus
+buffered planar moments and leading coefficients. Controlled-heat tests
+include crossing products and inexact local approximations. All 66 tests
+passed with NumPy/SciPy; running with site packages disabled passes the 57
+core tests and skips the nine optional baseline tests.
 
 Graph isomorphism and catalog reconstruction are adapted from the existing
 research verifiers, which remain unchanged. The runtime package imports

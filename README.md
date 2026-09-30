@@ -68,7 +68,7 @@ reflection remains unresolved.
 ## Research library and first application
 
 The independent [Python library](python/README.md), `graphnumbers-local`
-version 0.3.0, implements exact rational graph arithmetic, lazy Cartesian
+version 0.4.0, implements exact rational graph arithmetic, lazy Cartesian
 products, computable local limits, certified local approximation, algebra
 exponentials and derivatives, and finite-catalog reconstruction. The core
 has no third-party runtime dependencies.
@@ -101,3 +101,13 @@ shows a classical cospectral distinction retained by local data and
 transported through Cartesian backgrounds. Version 0.3.0 adds prepared
 geometry and moment reuse; measured comparisons still favor conventional
 methods for the tested numerical workloads.
+
+The [branching theorem](research/local-completion/BRANCHING_DEFECTS.md)
+extends the line identity to selected bridge cuts: their full interaction
+equals the interaction of the quotient tree's leaf edges, with a parity
+sign. Branching and cycles invalidate a universal sign rule based only
+on the cut count. The [planar study](research/local-completion/PLANAR_DEFECTS.md)
+identifies orientation-sensitive finite-edge interactions and proves exact
+local variation and heat formulas for complete crossing cuts E squared.
+Version 0.4.0 adds finite edge interactions and compositional moment
+profiles, making certified heat available on products of defects.

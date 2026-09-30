@@ -12,6 +12,48 @@ class ExactLocalUnavailable(ValueError):
     pass
 
 
+def moment_profile(value):
+    """Return certified falling-factorial bounds on relative return moments.
+
+    Coefficient A[r] means |d_j| <= sum_r A[r]*(j)_r/D**r for every
+    admissible positive degree bound D. At degree zero, |mass| <= A[0].
+    These bounds concern spectral moments, not global graph-measure variation.
+    """
+    profile = value.moment_profile
+    if profile is None:
+        if value.edit_bound is not None:
+            profile = (Q(0), 2 * rational(value.edit_bound))
+        elif value.variation_bound is not None:
+            profile = (rational(value.variation_bound),)
+        else:
+            return None
+    profile = tuple(rational(a) for a in profile)
+    if not profile or any(a < 0 for a in profile):
+        raise ValueError("Moment profile must contain nonnegative rational bounds")
+    while len(profile) > 1 and not profile[-1]:
+        profile = profile[:-1]
+    return profile
+
+
+def _profile_add(left, right):
+    a, b = moment_profile(left), moment_profile(right)
+    if a is None or b is None:
+        return None
+    return tuple((a[i] if i < len(a) else Q(0)) + (b[i] if i < len(b) else Q(0))
+                 for i in range(max(len(a), len(b))))
+
+
+def _profile_product(left, right):
+    a, b = moment_profile(left), moment_profile(right)
+    if a is None or b is None:
+        return None
+    result = [Q(0)] * (len(a) + len(b) - 1)
+    for i, x in enumerate(a):
+        for j, y in enumerate(b):
+            result[i + j] += x * y
+    return tuple(result)
+
+
 def _request(radius, k, epsilon):
     integer(radius, "radius")
     integer(k, "weight exponent", 1)
@@ -50,6 +92,7 @@ class Element:
     degree_bound = None
     variation_bound = None
     edit_bound = None
+    moment_profile = None
     positive = False
     mass = None
 
@@ -189,6 +232,7 @@ class Sum(Element):
         self.positive = left.positive and right.positive
         self.edit_bound = (None if None in (left.edit_bound, right.edit_bound)
                            else left.edit_bound + right.edit_bound)
+        self.moment_profile = _profile_add(left, right)
 
     def local(self, radius):
         return self.left.local(radius) + self.right.local(radius)
@@ -214,6 +258,9 @@ class Scale(Element):
         self.positive = not c or (c > 0 and value.positive)
         self.edit_bound = (abs(c) * value.edit_bound if value.edit_bound is not None
                            else (Q(0) if not c else None))
+        profile = moment_profile(value)
+        self.moment_profile = ((Q(0),) if not c else
+                               None if profile is None else tuple(abs(c) * a for a in profile))
 
     def local(self, radius):
         return self.value.local(radius).scale(self.coefficient) if self.coefficient else LocalHistogram(radius)
@@ -250,6 +297,7 @@ class Product(Element):
         if right.edit_bound is not None and left.variation_bound is not None:
             edit_bounds.append(right.edit_bound * left.variation_bound)
         self.edit_bound = min(edit_bounds) if edit_bounds else None
+        self.moment_profile = _profile_product(left, right)
 
     def local(self, radius):
         return self.left.local(radius).multiply(self.right.local(radius))

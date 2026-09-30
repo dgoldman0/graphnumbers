@@ -3,9 +3,9 @@
   "tests_run": 66,
   "failures": 0,
   "errors": 0,
-  "skipped": 0,
+  "skipped": 9,
   "success": true,
-  "seconds": 5.210062742997252,
+  "seconds": 4.916041762000532,
   "coverage": [
     "160 independent brute-force isomorphism comparisons",
     "300 exact local/full Cartesian histogram comparisons",
