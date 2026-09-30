@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "graphnumbers-local"
-version = "0.5.0"
-description = "Exact graph arithmetic and certified local approximations"
+version = "0.6.0"
+description = "Local Cartesian graph arithmetic and certified approximations"
 readme = "README.md"
 requires-python = ">=3.10"
 authors = [{name = "Daniel Goldman"}]

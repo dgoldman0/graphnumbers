@@ -1,0 +1,143 @@
+{
+  "success": true,
+  "exact_checks": 36,
+  "arithmetic": "rational coefficients, bounds, moments, and intervals",
+  "cospectral_inverse": {
+    "element": "(1 + t(U(rook)-U(Shrikhande)))^(-1)",
+    "t": "1/1024",
+    "epsilon": "1/100000",
+    "certificate": {
+      "radius": 1,
+      "weight": 1,
+      "error_bound": "9715/34225651712",
+      "truncation_degree": 2,
+      "source_variation_bound": "1/512",
+      "approximant_variation": "1/512",
+      "source_error": "0",
+      "stability_bound": "0",
+      "tail_bound": "9715/34225651712",
+      "local_types": 6
+    },
+    "exact_weighted_tail": "9715/68451303424",
+    "exact_variation": "512/511",
+    "exact_radius_one_weighted_norm": "264704/261121",
+    "multinomial_coefficients": [
+      {
+        "rook_power": 0,
+        "shrikhande_power": 0,
+        "coefficient": "1"
+      },
+      {
+        "rook_power": 0,
+        "shrikhande_power": 1,
+        "coefficient": "1/1024"
+      },
+      {
+        "rook_power": 1,
+        "shrikhande_power": 0,
+        "coefficient": "-1/1024"
+      },
+      {
+        "rook_power": 0,
+        "shrikhande_power": 2,
+        "coefficient": "1/1048576"
+      },
+      {
+        "rook_power": 1,
+        "shrikhande_power": 1,
+        "coefficient": "-1/524288"
+      },
+      {
+        "rook_power": 2,
+        "shrikhande_power": 0,
+        "coefficient": "1/1048576"
+      }
+    ],
+    "rooted_K4_reciprocal_jet": {
+      "axes": [
+        "rooted_cliques_4"
+      ],
+      "order": 3,
+      "coefficients": [
+        {
+          "alpha": [
+            0
+          ],
+          "value": "1"
+        },
+        {
+          "alpha": [
+            1
+          ],
+          "value": "-1/512"
+        },
+        {
+          "alpha": [
+            2
+          ],
+          "value": "-511/262144"
+        },
+        {
+          "alpha": [
+            3
+          ],
+          "value": "-521219/402653184"
+        }
+      ]
+    },
+    "rooted_K4_raw_moments": [
+      "1",
+      "-1/512",
+      "-511/131072",
+      "-521219/67108864"
+    ]
+  },
+  "certified_degree_jet": {
+    "element": "(1-H/4)^(-1), H=K2/2",
+    "coefficient_convention": "M_j/j!",
+    "expected_coefficients": [
+      "4/3",
+      "4/9",
+      "10/27"
+    ],
+    "certificate": {
+      "axes": [
+        "degree"
+      ],
+      "order": 2,
+      "radius": 1,
+      "k": 2,
+      "source_error": "265/56623104",
+      "coefficients": [
+        {
+          "alpha": [
+            0
+          ],
+          "lower": "2415910615/1811939328",
+          "upper": "2415927575/1811939328",
+          "midpoint": "89478485/67108864",
+          "error_bound": "265/56623104"
+        },
+        {
+          "alpha": [
+            1
+          ],
+          "lower": "805297759/1811939328",
+          "upper": "805314719/1811939328",
+          "midpoint": "29826157/67108864",
+          "error_bound": "265/56623104"
+        },
+        {
+          "alpha": [
+            2
+          ],
+          "lower": "1342166947/3623878656",
+          "upper": "1342183907/3623878656",
+          "midpoint": "49710201/134217728",
+          "error_bound": "265/113246208"
+        }
+      ]
+    }
+  },
+  "scope": "End-to-end certificate checks, not a numerical speed benchmark. The graph inverse is established independently of reciprocal moment jets."
+}

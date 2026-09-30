@@ -20,8 +20,13 @@ from .prepared import PreparedLocal, PreparedRelativeHeat
 from .local import (EDGES, ISOLATED, VERTICES, Interval, LocalApproximation,
                     LocalHistogram, LocalObservable, walk_observable)
 from .reconstruction import OutOfSpan, Reconstruction, catalog, reconstruct
+from .inverse import InverseCertificate, NeumannInverse
+from .nonspectral import (ROOT_DEGREE, JetCertificate, JointDistribution,
+                          MomentJet, RootStatistic, certified_jet,
+                          joint_distribution, link_components, multi_indices,
+                          rooted_cliques)
 
-__version__ = "0.5.0"
+__version__ = "0.6.0"
 __all__ = [
     "Element", "ExactLocalUnavailable", "Finite", "Line", "exp", "exp_derivative",
     "polynomial", "polynomial_derivative", "BudgetExceeded", "Graph", "ball",
@@ -39,4 +44,7 @@ __all__ = [
     "GeometricInteraction", "InteractionGeometry", "InteractionHeatBound",
     "interaction_geometry", "interaction_heat_bound", "InteractionMoments",
     "TreeInteractionLeading", "interaction_moments", "tree_interaction_leading",
+    "InverseCertificate", "NeumannInverse", "ROOT_DEGREE", "JetCertificate",
+    "JointDistribution", "MomentJet", "RootStatistic", "certified_jet",
+    "joint_distribution", "link_components", "multi_indices", "rooted_cliques",
 ]

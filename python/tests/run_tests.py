@@ -37,6 +37,10 @@ report = {
                  "rationally certified time-dependent interaction sign reversal",
                  "support-distance decay, geometric profiles, larger degree caps and Cartesian products",
                  "674 exact cospectral geometry checks and independent motif comparators",
+                 "1671 exact arithmetic geometry checks, joint correlations and link characters",
+                 "Neumann inverse coefficients, weighted tails and inexact source stability",
+                 "joint local laws, higher moment jets, cumulants and formal reciprocal identities",
+                 "certified jet extraction and incompatible custom statistic identity rejection",
                  "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }
 if args.output:

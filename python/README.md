@@ -1,9 +1,11 @@
-# graphnumbers-local 0.5.0
+# graphnumbers-local 0.6.0
 
-A research library for exact graph arithmetic and certified local
+A research library for local Cartesian graph arithmetic and certified local
 approximations, imported as `graphlocal`. Python 3.10 or later; the core
 has no third-party runtime dependencies. The mathematical object is the
-[local completion](../research/local-completion/README.md).
+[local Cartesian graph completion](../research/local-completion/README.md),
+$\mathcal A_{\mathrm{loc}}$. "Local Cartesian graph numbers" refers to its
+elements; "graph numbers" names the broader family of constructions.
 
 This package is independent of the historical `reboot/` software.
 
@@ -90,6 +92,8 @@ claim to evaluate an arbitrary infinite array from finitely many inputs.
 | `a.truncate(r, k)` | Preserve the bound at weaker radius/weight |
 | `VERTICES`, `EDGES`, `ISOLATED`, `walk_observable(n)` | Evaluate to rational intervals |
 | `polynomial`, `polynomial_derivative`, `exp`, `exp_derivative` | Algebraic calculus with local error control |
+| `NeumannInverse(X)` | Certified local approximations to `(1-X)**(-1)` on its constructive domain |
+| `joint_distribution`, `certified_jet` | Joint local statistics and rational moment-coefficient enclosures |
 | `reconstruct(histogram, catalog)` | Exact representative and catalog-optimal coefficient-mass certificate |
 | `catalog(max_vertices, max_degree)` | Complete small graph catalog, subject to a work limit |
 
@@ -107,8 +111,163 @@ Exponential and reconstruction routines have explicit term/search budgets.
 `BudgetExceeded` means the implementation stopped without a result.
 `OutOfSpan` supplies a dual witness against the specified catalog only.
 
-No general inverse operation or test of equality of arbitrary limits is
-provided. Scalar division is exact rational division.
+`NeumannInverse` supplies actual inverses under the sufficient hypotheses
+below. General invertibility and equality of arbitrary limits remain
+outside the implemented decision procedures. Scalar division is exact
+rational division.
+
+## Geometric control of actual inverses
+
+`NeumannInverse(X)` represents **`(1-X)**(-1)`**, using the convergent
+graph-arithmetic series `1 + X + X**2 + ...`. The source must certify a
+finite maximum degree D and a global signed variation bound `0 <= q < 1`.
+The degree of the nth Cartesian power is at most nD. At a fixed radius
+and weight its neighborhood-size bound therefore grows polynomially in
+n, while q**n decays geometrically. This proves convergence in every
+defining seminorm, even when a particular local weighted norm of X
+exceeds one.
+
+```python
+from fractions import Fraction
+from graphlocal import Finite, NeumannInverse, ROOT_DEGREE, certified_jet, path
+
+H = Finite.from_graph(path(2), normalize=True)
+inverse = NeumannInverse(H / 4)        # (1 - H/4)^(-1)
+assert inverse.mass == Fraction(4, 3)
+assert inverse.variation_bound == Fraction(4, 3)
+assert inverse.degree_bound is None
+
+certificate = inverse.approximation_certificate(radius=1, k=2, epsilon="1e-8")
+assert certificate.approximation.error <= Fraction("1e-8")
+print(certificate.to_data())          # rational stability and truncation bounds
+
+# The coefficient of t^j is the degree moment divided by j!.
+moments = certified_jet(inverse, (ROOT_DEGREE,), order=2, epsilon="1e-8")
+assert moments.interval((1,)).contains(Fraction(4, 9))
+assert moments.interval((2,)).contains(Fraction(10, 27))
+```
+
+Here the degree distribution of the inverse has coefficient `(1/4)**n`
+at degree n: the nth term is a normalized n-dimensional hypercube.
+The inverse thus has unbounded degree despite its finite variation and
+certified local approximations. Its missing degree cap prevents passing
+it directly to the bounded-degree heat routines.
+
+`inverse.approximate(r, k, epsilon)` returns the usual
+`LocalApproximation`; `approximation_certificate` additionally records
+the retained series degree, source error, inverse stability bound and
+tail bound. Every bound uses exact rational arithmetic. Inexact source
+oracles are supported, with their error included in the certificate.
+`max_terms` and `max_vertices` provide explicit work budgets. A bound
+q>=1 or a missing source certificate causes construction to fail; this
+does not decide whether some other inverse construction exists.
+
+The [arithmetic proof](../research/local-completion/GEOMETRIC_ARITHMETIC.md)
+also studies geometric character obstructions and exact inverse domains.
+The runtime constructor implements the sufficient degree-and-variation
+criterion above.
+
+## Joint local geometry and nonspectral moment calculus
+
+Rooted statistics that add under Cartesian multiplication give a joint
+signed-distribution map. For an element with exact local data,
+`joint_distribution(X, statistics)` pushes its rooted histogram onto
+the ordered tuple of statistic values. Graph addition becomes addition
+of laws; graph multiplication becomes convolution. Normalized positive
+inputs give probability laws, and signed inputs remain supported.
+
+```python
+from fractions import Fraction
+from graphlocal import (Finite, ROOT_DEGREE, graph, joint_distribution,
+                       path, rooted_cliques)
+
+paw = graph(4, [(0, 1), (1, 2), (2, 0), (0, 3)])
+X = Finite.from_graph(paw, normalize=True)
+Y = Finite.from_graph(path(3), normalize=True)
+axes = (ROOT_DEGREE, rooted_cliques(3))
+law = joint_distribution(X, axes)
+other = joint_distribution(Y, axes)
+assert dict(law.values) == {(1, 0): Fraction(1, 4),
+                            (2, 1): Fraction(1, 2),
+                            (3, 1): Fraction(1, 4)}
+assert law.moment((1, 1)) == Fraction(7, 4)
+assert joint_distribution(X * Y, axes) == law.convolve(other)
+
+jet = law.jet(order=3)
+assert joint_distribution(X * Y, axes).jet(3) == jet * other.jet(3)
+assert jet.log().moment((1, 1)) == Fraction(1, 4)   # degree/triangle covariance
+assert (jet * other.jet(3)).log() == jet.log() + other.jet(3).log()
+assert jet * jet.reciprocal() == jet.constant(1)
+assert jet.log().exp() == jet
+```
+
+The built-in radius-one axes are `ROOT_DEGREE`, `rooted_cliques(size)` for
+size>=3, and `link_components(pattern, name=None)`. The last counts
+connected components of the induced neighbor graph that are isomorphic
+to a supplied nonempty connected pattern. Rooted clique counts count
+cliques containing the root, without dividing by clique size. These
+statistics add because the neighbor link of a Cartesian product is the
+disjoint union of its factor links.
+
+`RootStatistic(name, radius, growth_degree, function)` allows custom axes.
+Its caller certifies rooted-isomorphism invariance, Cartesian additivity,
+nonnegative integer values and the global bound
+`function(B) <= |B|**growth_degree`. The implementation checks values and
+growth bounds on encountered balls; it cannot establish these global
+properties for an arbitrary callable. Axes retain the supplied tuple
+order, must have distinct names, and should be reused across compatible
+distributions and jets.
+
+`JointDistribution` stores a finite signed rational law from an exact
+finite local histogram. `.moment(alpha)` gives a raw joint moment.
+`.jet(N)` returns a `MomentJet` containing coefficients
+`M_alpha / product(factorial(alpha_i))` through total order N. Its exact
+truncated polynomial arithmetic implements the joint binomial moment
+rule. `.log()` requires constant coefficient one and gives cumulant
+coefficients; divide by a nonzero mass first when needed. `.exp()`
+requires constant coefficient zero and gives the finite formal
+exponential. These operations assert finite formal identities without
+assuming convergence of an infinite moment-generating series.
+
+A jet with nonzero constant coefficient always has a formal
+`.reciprocal()`. This alone does not establish invertibility of the
+source graph element. The `NeumannInverse` constructor above supplies an
+actual inverse under its separate analytic hypotheses.
+
+For an effective element with approximate local data, use
+`certified_jet(X, axes, N, epsilon, max_coefficients=10000)`. It requests
+radius `max(axis.radius)` and weight
+`max(1, N * max(axis.growth_degree))`. A weighted source error delta
+gives an enclosure of radius `delta / product(factorial(alpha_i))` for
+coefficient alpha. The returned `JetCertificate` exposes `.jet`, `.local`,
+`.interval(alpha)` and `.to_data()`. The coefficient budget is checked
+before asking the source for an approximation.
+
+The certificate's `.jet` is its rational center. Applying reciprocal,
+log, exp or another nonlinear operation to that center does **not**
+propagate its error intervals. Exact finite jets and certified extraction
+are the currently supported guarantees.
+
+Joint laws retain correlations that separate marginal distributions
+lose. Even all polynomial moments need not separate arbitrary completed
+elements; the [nonspectral proof](../research/local-completion/NONSPECTRAL_CALCULUS.md)
+gives an explicit nonzero element with all selected moments zero and
+also proves finite reconstruction under suitable degree bounds. A chosen
+finite collection of statistics likewise need not recover every rooted
+graph type.
+
+Reproduce the independent exact checks of graph arithmetic, joint
+geometry and inverse obstructions:
+
+```sh
+PYTHONPATH=src python3 examples/arithmetic_geometry_verification.py --output results/arithmetic_geometry_verification.json
+PYTHONPATH=src python3 examples/certified_arithmetic.py --output results/certified_arithmetic.json
+```
+
+The first example records 1,671 exact finite checks. The second adds 36
+end-to-end checks of actual inverse certificates and moment extraction.
+It uses a small rook–Shrikhande parameter to keep the required Cartesian
+truncation within the generic exact-isomorphism budget.
 
 ## Heat return and its domain
 
@@ -594,8 +753,11 @@ include crossing products and inexact local approximations. Higher
 interaction tests add 249 exhaustive tree leading terms, independent
 integer subset matrices, repeated-word and cancellation examples,
 certified sign reversal, and geometry-sensitive profiles and tails.
-All 83 tests passed with NumPy/SciPy; running with site packages disabled
-passes the 74 core tests and skips the nine optional baseline tests.
+Inverse and nonspectral tests check rational inverse tails, inexact source
+stability, joint correlations, moment/cumulant identities and certified
+coefficient intervals, including custom statistic identity validation.
+All 99 tests passed with NumPy/SciPy; running with site packages disabled
+passes the 90 core tests and skips the nine optional baseline tests.
 
 Graph isomorphism and catalog reconstruction are adapted from the existing
 research verifiers, which remain unchanged. The runtime package imports
