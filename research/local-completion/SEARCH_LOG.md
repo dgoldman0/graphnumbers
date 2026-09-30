@@ -333,3 +333,27 @@ uses moment tails, integer minors, finite linear-program duality, and
 explicit path/cycle calculations. These are applications of established
 methods. This focused source check supplies context, not a new exhaustive
 priority search or an originality claim for the resulting graph statements.
+
+## Intrinsic graph structure and automorphism restrictions
+
+Later on 30 September 2026, the intrinsic-structure investigation used
+focused searches combining Cartesian graph algebras, continuous
+automorphisms, local convergence, prime generators, and rigidity.
+Both search engines were checked after broad results mostly returned
+graph C*-algebras, graph-product groups, or geometric framework rigidity.
+Those objects were not used as substitutes for this commutative algebra
+of graph isomorphism classes. Search coverage was uneven; this was not
+a further exhaustive literature review.
+
+The author manuscript of Imrich–Klep–Smertnig,
+https://math.smertnig.at/paper/graphproduct.pdf, was revisited for the
+Cartesian product definition, connected prime factorization, and its
+attribution to Sabidussi and Vizing. No external classification of
+automorphisms of our completion was found and applied. The local
+perturbation bounds, diagonal rigidity, and obstruction to changing
+finitely many prime generators are proved directly in
+[INTRINSIC_GRAPH_STRUCTURE.md](INTRINSIC_GRAPH_STRUCTURE.md).
+
+The topological kernel argument is standard locally convex reasoning.
+The new note makes no priority claim, and it leaves the full automorphism
+and intrinsic-reconstruction questions open.

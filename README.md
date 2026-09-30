@@ -49,3 +49,11 @@ unit criterion to unweighted local inverses. The independent
 provide explicit bounds, an exact finite-catalog reconstruction tool, and
 certified examples showing the tradeoff between graph size and signed
 cancellation. All 335 accompanying finite checks passed.
+
+The [intrinsic-structure investigation](research/local-completion/INTRINSIC_GRAPH_STRUCTURE.md)
+proves that continuous injective rescalings of connected graph elements
+are trivial, as are continuous endomorphisms fixing all but finitely many
+Cartesian-prime generators. It recovers the neighborhood-kernel filtration
+up to cofinal refinement and supplies 256 exact finite checks. Whether the
+bare topological algebra determines the finite graphs and positive cones
+remains open.

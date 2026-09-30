@@ -68,6 +68,14 @@ tool with exact optimality certificates, and sharp size/cancellation
 tradeoffs for the infinite line. It also proves that elements beyond
 the finite-measure model force diverging coefficient mass in approximants.
 
+The [intrinsic-structure note](INTRINSIC_GRAPH_STRUCTURE.md) proves partial
+rigidity: every continuous injective diagonal graph rescaling is the
+identity, and every continuous endomorphism fixing all but finitely many
+Cartesian-prime generators is the identity. The topology recovers the
+neighborhood-kernel filtration up to cofinal refinement. These restrictions
+do not yet prove intrinsic recovery of finite graphs or either positive
+cone; the note distinguishes those open questions explicitly.
+
 ## Files
 
 | File | Purpose |
@@ -84,6 +92,9 @@ the finite-measure model force diverging coefficient mass in approximants.
 | [MULTIPLICATION_AND_UNITS.md](MULTIPLICATION_AND_UNITS.md) | Domain proof, recursive unit criterion, analytic retract, and nonopen unit group. |
 | [CHARACTERS_AND_INVERSION.md](CHARACTERS_AND_INVERSION.md) | Separating characters, semisimplicity, local spectral invariance, and the unweighted unit criterion. |
 | [QUANTITATIVE_APPROXIMATION.md](QUANTITATIVE_APPROXIMATION.md) | Explicit approximation bounds, optimal finite-catalog reconstruction, and cancellation costs. |
+| [INTRINSIC_GRAPH_STRUCTURE.md](INTRINSIC_GRAPH_STRUCTURE.md) | Diagonal and finite-prime-substitution rigidity, intrinsic cofinal locality, and the remaining reconstruction question. |
+| [verify_intrinsic_structure.py](verify_intrinsic_structure.py) | Exact sparse-change, mixture, sign-substitution, filtration, and positivity checks. |
+| [intrinsic_structure_results.json](intrinsic_structure_results.json) | Recorded output: all 256 intrinsic-structure checks passed. |
 | [reconstruct_local.py](reconstruct_local.py) | Standard-library rational reconstruction with primal-dual optimality certificates. |
 | [reconstruction_example.json](reconstruction_example.json) | Radius-two infinite-line target on a five-vertex, degree-two catalog. |
 | [reconstruction_example_result.json](reconstruction_example_result.json) | Complete exact certificate: coefficient mass 9 and negative mass 4. |
@@ -106,6 +117,7 @@ python3 verify_local_algebra.py --output verification_results.json
 python3 verify_representation.py --output representation_results.json
 python3 verify_multiplication.py --output multiplication_results.json
 python3 verify_spectral_approximation.py --output spectral_approximation_results.json
+python3 verify_intrinsic_structure.py --output intrinsic_structure_results.json
 python3 reconstruct_local.py --input reconstruction_example.json --output reconstruction_example_result.json
 ```
 
@@ -137,6 +149,13 @@ The reconstruction tool accepts a finite rational target and explicit
 catalog bounds. Budget exhaustion and an infeasible specified catalog
 are reported separately. The general size bounds are theoretical and
 typically much larger than the implementation can enumerate.
+
+The intrinsic-structure verifier directly constructs the sparse changes
+and connected mixtures used in the rigidity proofs. It checks their weighted
+error bounds, an exact sequence witnessing discontinuity of a prime sign
+change, strict neighborhood kernels, and obstructions to defining graph
+positivity by squares or root-degree twists. The universal automorphism
+restrictions have separate proofs in INTRINSIC_GRAPH_STRUCTURE.md.
 
 To rebuild the PDF from this directory with a standard LaTeX installation:
 
@@ -170,5 +189,7 @@ The historical software is independent of these verifiers. Full character
 classification, effective unit certificates, efficient general reconstruction,
 sharper coefficient bounds, and geometrically useful graph variations remain
 research questions. Two-generator subalgebras and intrinsic derivations are
-deferred. The v0.1 PDF and TeX remain the original checkpoint; later results
+deferred. Full intrinsic recovery of the finite graphs, positive cones,
+and individual neighborhood coordinates also remains open after the partial
+rigidity results. The v0.1 PDF and TeX remain the original checkpoint; later results
 are in separate notes.

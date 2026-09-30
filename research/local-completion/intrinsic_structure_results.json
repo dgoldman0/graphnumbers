@@ -1,0 +1,56 @@
+{
+  "status": "passed",
+  "total_checks": 256,
+  "checks": {
+    "degree_twist_balance_obstruction": 7,
+    "degree_twist_transport_formula": 7,
+    "exact_sign_change_input_error": 9,
+    "leaf_change_locality": 30,
+    "leaf_edge_not_on_square": 15,
+    "mixture_edge_observable": 8,
+    "mixture_equal_part_sizes": 8,
+    "mixture_graph_connected": 8,
+    "new_leaf_edge_is_bridge": 15,
+    "nontrivial_product_edges_on_squares": 16,
+    "pendant_graph_connected": 15,
+    "positive_edge_outside_closed_sums_of_squares": 1,
+    "product_and_line_observables_independent": 8,
+    "sign_change_separated_by_vertex_character": 3,
+    "square_degree_character_identity": 5,
+    "square_outside_local_positive_cone": 1,
+    "strict_filtration_visible_next_radius": 4,
+    "strict_filtration_zero_at_radius": 4,
+    "weighted_bridge_mixture_bound": 32,
+    "weighted_leaf_change_bound": 60
+  },
+  "sign_change_witnesses": [
+    {
+      "cycle_length": 7,
+      "errors": {
+        "1": "1",
+        "2": "61/15",
+        "3": "87/5"
+      },
+      "image_vertex_value": "2"
+    },
+    {
+      "cycle_length": 11,
+      "errors": {
+        "1": "15/23",
+        "2": "61/23",
+        "3": "261/23"
+      },
+      "image_vertex_value": "2"
+    },
+    {
+      "cycle_length": 17,
+      "errors": {
+        "1": "3/7",
+        "2": "61/35",
+        "3": "261/35"
+      },
+      "image_vertex_value": "2"
+    }
+  ],
+  "scope": "Exact finite examples and estimates; universal rigidity is proved in INTRINSIC_GRAPH_STRUCTURE.md."
+}
