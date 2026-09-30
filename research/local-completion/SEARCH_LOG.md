@@ -215,3 +215,85 @@ well-order, local reciprocal criterion, and cycle obstruction. No primary
 source asserting precisely those results for this completion was located
 in this targeted search. That limited negative result does not establish
 novelty; the general cumulant and semigroup-algebra machinery is prior art.
+
+## Identification follow-up after the structural theorems, 30 September 2026
+
+Target: the complete construction and results at
+`0eaa1d600298013af53849381863b1f219da4a58`.
+The [follow-up assessment](FOLLOWUP_IDENTIFICATION.md) records the resulting
+identifications and comparison deductions. This search bootstrapped from
+the existing bibliography and used the new characterization, ordered local
+monoids, reciprocal criterion, analytic retract, and unit-group behavior
+as additional identifying information.
+
+### Query families and reference tracing
+
+- Rooted and unimodular graphs with signed measures, convolution algebras,
+  linear spans of finite laws, and local marginal completions.
+- Cartesian products with rooted homomorphisms, coalgebras, bialgebras,
+  edge-coloring contractions, and graph cumulants.
+- Weighted semigroup Fréchet algebras, Beurling–Fréchet algebras,
+  projective limits, and smooth holomorphic disk algebras.
+- Strictly ordered monoids, generalized power series, Ribenboim,
+  zero divisors, units, and formal-versus-analytic inversion.
+- Exact-title and author searches following references from the existing
+  monoid-algebra, weighted-convolution, and signed-projective-measure sources.
+- Recent arXiv searches combining graph algebras, local convergence,
+  unimodularity, and Cartesian products, including a two-year recency filter.
+
+Both search engines were used. Narrow quoted searches sometimes returned
+unrelated material or nothing useful; broader terminology and reference
+tracing recovered the closest primary texts. These queries do not provide
+an exhaustive index search or a proof of absence.
+
+### Primary texts and precise scope of reading
+
+| Source | Material examined |
+| --- | --- |
+| Imrich–Klep–Smertnig, already reference [2] | Definition 3.4, Propositions 3.7–3.8, and Section 3.1 in the author PDF; the generic ordered-series argument now receives explicit attribution in the proof note. The special free-product hypothesis of Theorem 3.16 was not assumed for truncated balls. |
+| Blute–Cockett–Jacqmin–Scott, arXiv:1805.09836 | Section 2, including support conditions and the finite-convolution construction. |
+| Abolghasemi–Rejali–Vishki, already reference [10] | Section 2's definition of weighted semigroup convolution. |
+| Bhatt–Patel, *On Fréchet algebras of power series* (2002) | Examples 1.2 and 1.5, especially the smooth boundary Fourier-series algebra; Theorem 2.1 was also inspected. Institutional and publisher PDFs were available. |
+| Pedersen, arXiv:0909.2749 | Introduction and the definition of the intersection of weighted convolution algebras. |
+| Kaimanovich, arXiv:1512.08479 | Theorem 50, Corollary 52, and Remark 53, checking the distinction between unimodularity and rerooting invariance. |
+| Albeverio–Mazzucchi, arXiv:1411.2853 | Section 5.1, Theorems 4–5, revisited for the signed projective-extension comparison. |
+| Bravo-Hermsdorff et al., JMLR 24 (2023) | Sections 5.1–5.2.2 and equation (2), comparing edge-partition graph cumulants with our contraction coproduct. |
+| Foissy, arXiv:2301.09449 | Abstract and relevant definitions in Sections 1.2 and 2.2–2.3, comparing products and coproducts. |
+
+The follow-up report provides links and a separate F1–F9 bibliography.
+Reading was focused on relevant definitions and statements, not an
+independent audit of every proof in these papers.
+
+Additional neighboring power-series papers were screened: Dales–Patel–Read,
+*Fréchet algebras of power series* (2010), and Patel, arXiv:1410.1695.
+No classification theorem from them is used to identify or exclude our
+full algebra. The continuous-norm obstruction in the report is proved
+directly and is explicitly limited to strictly positive weights.
+
+Ribenboim's *Rings of generalized power series II: Units and zero-divisors*
+(1994), DOI 10.1006/jabr.1994.1221, was located bibliographically; the full
+text request failed. The report relies on the accessible primary sources
+above for the construction and domain argument, not an unchecked theorem
+from that paper.
+
+The indexed abstract of Zhipeng Lu, *Punctured adjacency-degree algebras of
+Cartesian products*, arXiv:2609.06747 (September 2026), was screened as a
+recent hit. It concerns matrix algebras associated with a graph after
+vertex deletion. Direct abstract-page retrieval failed; no full-text
+comparison or theorem from it is used here.
+
+### Controls, limits, and outcome
+
+Unimodular groups and lattices, signed-edge graphs, graph neural
+convolutions, and graph C*-algebras again generated unrelated hits.
+The Cartesian edge rule, coefficient objects, completion topology, and
+status of disjoint union were checked when a source was close enough
+to warrant comparison.
+
+No systematic subscription MathSciNet/zbMATH search or author
+correspondence was performed. An exact source for the full signed
+balanced completion remains unlocated. The positive findings concern
+specific standard ambient algebras and a standard analytic subalgebra;
+they narrow the remaining identification question without settling
+priority. The new topological and algebraic obstructions exclude only
+the explicit identifications stated in the report.

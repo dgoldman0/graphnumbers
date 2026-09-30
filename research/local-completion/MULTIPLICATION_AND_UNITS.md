@@ -258,6 +258,13 @@ ball has positive root degree.
 **Local domain theorem.** The formal convolution algebra on $\mathcal B_r$
 is a domain for every $r\ge1$.
 
+Once the multiplicative well-order is established, this is the standard
+generalized-series argument; see
+[Imrich–Klep–Smertnig, Definition 3.4 and Propositions 3.7–3.8](https://math.smertnig.at/paper/graphproduct.pdf).
+Those propositions apply directly over $\mathbb R$. The coefficient proof
+below also applies over $\mathbb C$. The graph-specific input is the
+well-order constructed above, not the general leading-term argument.
+
 **Proof.** Let $a,b$ be nonzero formal arrays and let $A,B$ be the least
 elements of their nonzero supports. In the coefficient of $A\star_r B$,
 the pair $(A,B)$ is the only contributing pair. Every other support pair
@@ -438,6 +445,11 @@ faster than every power by repeated integration by parts in the Fourier
 coefficient formula. Two extra powers make every sum in (23) finite.
 The same estimates identify the usual Fréchet topologies.
 Over the reals take the subalgebra of functions with real Taylor coefficients.
+
+This classical Fréchet algebra and its weighted Fourier-coefficient
+description appear explicitly in
+[Bhatt–Patel, *On Fréchet algebras of power series*, Example 1.5](https://repository.ias.ac.in/59672/1/9_PUB.pdf).
+Here the graph-specific identification sends $H$ to the coordinate function.
 
 For a general completed element define its degree generating function by
 
@@ -627,11 +639,14 @@ The Cartesian product's connection to tensor independence and additive
 adjacency operators is discussed by
 [Accardi, Lenczewski and Sałapata, *Decompositions of the free product of
 graphs*](https://arxiv.org/abs/math/0609329).
-These sources contextualize the methods; neither is cited as containing
-the particular domain or unit theorem proved here. The edge-coloring
-coalgebra, ordering, and balance argument have therefore been given
-explicitly. The [search log](SEARCH_LOG.md) records the limited follow-up
-search, and originality remains unestablished.
+These sources contextualize the cumulant methods. The ordered-series
+argument and classical smooth disk algebra have the more direct sources
+cited in Sections 3 and 5. The edge-coloring coalgebra, graph-specific
+ordering, and reciprocal balance argument are given explicitly.
+The [identification follow-up](FOLLOWUP_IDENTIFICATION.md) distinguishes
+these exact standard constructions from the full balanced completion.
+The [search log](SEARCH_LOG.md) records the coverage limits, and originality
+remains unestablished.
 
 The next structural questions include a description of all continuous
 characters and maximal ideals, tractable sufficient conditions for (17)

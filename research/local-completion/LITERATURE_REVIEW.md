@@ -9,6 +9,12 @@ answers the completed-space and finite-signed-measure questions identified
 below. It supplies its own proof and does not establish an originality claim.
 The numbered bibliography here remains the original 24-reference review.
 
+The later [identification follow-up](FOLLOWUP_IDENTIFICATION.md) compares the
+domain and unit theorems with generalized-series and Fréchet power-series
+literature. It supplies exact identifications of the formal local algebras
+and the normalized-edge subalgebra, sharpens the attribution of the domain
+argument, and tests possible identifications of the whole completion.
+
 ## Assessment
 
 **Most of the mathematical ingredients already have established names and

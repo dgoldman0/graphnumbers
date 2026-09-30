@@ -16,6 +16,12 @@ unestablished. Read this candidate as an application of existing frameworks
 with a particular topology, subject to the comparisons and open questions in
 that review.
 
+The [identification follow-up](FOLLOWUP_IDENTIFICATION.md) uses the later
+structural theorems to identify the formal local algebras as generalized
+power-series rings and the weighted pieces as standard convolution
+Fréchet algebras. It gives concrete obstructions to identifying the full
+completion with the closest formal-series and function-algebra models.
+
 ## What the candidate contains
 
 Every finite simple undirected graph is included up to isomorphism. Addition of
@@ -60,6 +66,7 @@ not open, although inversion is continuous on the unit group itself.
 | [local_graph_completion.tex](local_graph_completion.tex) | Editable source for the note. |
 | [ANALYSIS.md](ANALYSIS.md) | Finite-graph and real embeddings, graph directions, and observable compatibility with calculus. |
 | [LITERATURE_REVIEW.md](LITERATURE_REVIEW.md) | Prior-art assessment, primary-source bibliography, and boundaries on possible novelty. |
+| [FOLLOWUP_IDENTIFICATION.md](FOLLOWUP_IDENTIFICATION.md) | Exact standard identifications after the structural theorems, with obstructions and revised source attribution. |
 | [COMPARISON_LEMMAS.md](COMPARISON_LEMMAS.md) | Explicit identifications and examples distinguishing the candidate from nearby constructions. |
 | [SEARCH_LOG.md](SEARCH_LOG.md) | Search scope, source access, query families, and remaining gaps. |
 | [REPRESENTATION_PROBLEM.md](REPRESENTATION_PROBLEM.md) | Agreed question and proof standards for characterizing this specific completion. |
@@ -125,7 +132,8 @@ The committed PDF was rendered and all seven pages were visually inspected.
   all-weight summability.
 - Component count is discontinuous: C_(2n) - 2 C_n tends to zero locally while
   its linear component count remains -1.
-- No single norm induces this topology.
+- There is no continuous norm on the full completion; in particular, no
+  single norm induces its topology. See the identification follow-up.
 - A convergent sequence of ordinary finite graphs is eventually constant.
   Nontrivial approximation uses normalized or signed graph combinations.
 - The graph limits describe local combinatorial neighborhoods. Additional
