@@ -44,9 +44,12 @@ class Element:
     Subclasses supply rigorous norm/approximation bounds. Optional degree,
     variation, positivity and mass metadata are mathematical certificates.
     They are inherited conservatively by the built-in expression operations.
+    An optional edit_bound additionally certifies the relative-heat moment
+    and rank bounds documented in defects.py and the sparse-defect proof note.
     """
     degree_bound = None
     variation_bound = None
+    edit_bound = None
     positive = False
     mass = None
 
@@ -122,6 +125,7 @@ class Finite(Element):
         self.variation_bound = sum((abs(c) * g.n for c, g in self.terms), Q(0))
         self.mass = sum((c * g.n for c, g in self.terms), Q(0))
         self.positive = all(c >= 0 for c, _ in self.terms)
+        self.edit_bound = Q(0) if not self.terms else None
 
     @classmethod
     def from_graph(cls, value, normalize=False):
@@ -183,6 +187,8 @@ class Sum(Element):
                                 else left.variation_bound + right.variation_bound)
         self.mass = None if None in (left.mass, right.mass) else left.mass + right.mass
         self.positive = left.positive and right.positive
+        self.edit_bound = (None if None in (left.edit_bound, right.edit_bound)
+                           else left.edit_bound + right.edit_bound)
 
     def local(self, radius):
         return self.left.local(radius) + self.right.local(radius)
@@ -206,6 +212,8 @@ class Scale(Element):
         self.variation_bound = abs(c) * value.variation_bound if value.variation_bound is not None else (Q(0) if not c else None)
         self.mass = c * value.mass if value.mass is not None else (Q(0) if not c else None)
         self.positive = not c or (c > 0 and value.positive)
+        self.edit_bound = (abs(c) * value.edit_bound if value.edit_bound is not None
+                           else (Q(0) if not c else None))
 
     def local(self, radius):
         return self.value.local(radius).scale(self.coefficient) if self.coefficient else LocalHistogram(radius)
@@ -236,6 +244,12 @@ class Product(Element):
                                 else left.variation_bound * right.variation_bound)
         self.mass = None if None in (left.mass, right.mass) else left.mass * right.mass
         self.positive = left.positive and right.positive
+        edit_bounds = []
+        if left.edit_bound is not None and right.variation_bound is not None:
+            edit_bounds.append(left.edit_bound * right.variation_bound)
+        if right.edit_bound is not None and left.variation_bound is not None:
+            edit_bounds.append(right.edit_bound * left.variation_bound)
+        self.edit_bound = min(edit_bounds) if edit_bounds else None
 
     def local(self, radius):
         return self.left.local(radius).multiply(self.right.local(radius))

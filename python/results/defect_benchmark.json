@@ -1,0 +1,2510 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "requested_absolute_error": "1/100000000",
+  "normalization": "All finite differences use unnormalized heat traces; no shrinking 1/n signal.",
+  "repeats": 3,
+  "timing_policy": "Median of independent samples; graphlocal caches cleared per sample. Shared Graph construction/defect metadata reported separately. Matrix construction included in numerical totals. Backend warmed once. Both times reuse the same input Graph objects.",
+  "accuracy_policy": "Rational interval radius <= requested error for certified outputs. Krylov uses m=ceil(M/2), matching the certificate's polynomial moment degree. Its dimension-free exact-arithmetic tail bound is conservatively twice the certificate defect tail; numerical SVD deflation and floating roundoff are excluded. Dense comparisons and analytic values are floating diagnostics. Sparse powers use a combined theoretical Poisson tail <=epsilon/4; roundoff remains outside that bound.",
+  "scope": "Synthetic fixed edge changes and their cut-line limits. Classical Krylov, finite-rank trace identities, uniformization, and Cartesian heat factorization are established techniques. Measurements establish neither a new algorithm nor a general advantage over existing approaches.",
+  "finite_cases": [
+    {
+      "case": "cut_cycle_32",
+      "vertices": 32,
+      "before_edges": 32,
+      "after_edges": 31,
+      "edits": [
+        [
+          0,
+          31,
+          -1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 4.072999581694603e-05,
+        "after_graph_and_defect_metadata_seconds": 4.8993002565111965e-05,
+        "total_seconds": 8.9722998382058e-05,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.002442131000861991,
+        "sample_seconds": [
+          0.002361450999160297,
+          0.002442131000861991,
+          0.002846732997568324
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.43233235833607575,
+        "absolute_error_bound": 8.453883515471393e-10,
+        "affected_roots": 14,
+        "certificate": {
+          "interval": {
+            "lower": "31711343135/73349455773",
+            "upper": "41290114255593075841/95505491038810394685",
+            "midpoint": "13763371391617948736/31835163679603464895",
+            "error_bound": "4749366449/5617970061106493805"
+          },
+          "time": "1/2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 12,
+          "radius": 6,
+          "exp_partial_sum": "260412269/95800320",
+          "exp_tail_bound": "1/5782233600",
+          "defect_tail_bound": "61/73349455773",
+          "retained_numerator": "15636757/13305600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 7,
+          "local_variation": "24",
+          "largest_ball": 13
+        },
+        "absolute_difference_from_dense": 4.561717670270582e-11
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 32,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 6,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 6,
+        "moment_exact_through_degree": 12,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 11,
+        "sparse_nonzeros": 96,
+        "estimated_sparse_scalar_products": 1056,
+        "basis_bytes": 1536,
+        "basis_orthogonality_error": 6.377745716588144e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.0001237339965882711,
+        "krylov_seconds": 0.00029036100022494793,
+        "projection_seconds": 3.357999958097935e-05,
+        "projection_total_seconds": 0.0004476749963941984,
+        "normalized": false,
+        "unnormalized_estimate": 0.4323323583815022,
+        "normalized_estimate": 0.013510386199421943,
+        "eigensolve_seconds": 4.727000487037003e-05,
+        "total_seconds": 0.0005012660039938055,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.00044779599556932226,
+          0.0005012660039938055,
+          0.0006295560015132651
+        ],
+        "value": 0.4323323583815022,
+        "exact_arithmetic_krylov_tail_bound": 1.663270691163169e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 4.542644038707522e-11,
+        "absolute_difference_from_dense": 1.907363156306019e-13
+      },
+      "dense": {
+        "value": 0.4323323583816929,
+        "before_value": 14.904307442996494,
+        "after_value": 15.336639801378187,
+        "matrix_seconds": 0.000274167992756702,
+        "eigensolve_seconds": 0.00011225700291106477,
+        "total_seconds": 0.0003864249956677668,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0002929049951490015,
+          0.0003864249956677668,
+          0.0004958270001225173
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.4323323583814105,
+        "steps": 13,
+        "matrix_seconds": 0.0003822680009761825,
+        "powers_seconds": 0.0010025209994637407,
+        "total_seconds": 0.0013847890004399233,
+        "peak_power_nonzeros": 448,
+        "combined_truncation_bound": 2.892705630057678e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0012587010060087778,
+          0.0013847890004399233,
+          0.0014047090007807128
+        ],
+        "absolute_difference_from_dense": 2.824407374646398e-13
+      },
+      "analytic_infinite_cut": {
+        "value": 0.43233235838169365,
+        "difference_from_certified_midpoint": 4.5617898347671826e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_32",
+      "vertices": 32,
+      "before_edges": 32,
+      "after_edges": 31,
+      "edits": [
+        [
+          0,
+          31,
+          -1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 4.072999581694603e-05,
+        "after_graph_and_defect_metadata_seconds": 4.8993002565111965e-05,
+        "total_seconds": 8.9722998382058e-05,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.010861331000342034,
+        "sample_seconds": [
+          0.010672058997442946,
+          0.010861331000342034,
+          0.011766726995119825
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.49983226864973873,
+        "absolute_error_bound": 1.4009163662510402e-09,
+        "affected_roots": 24,
+        "certificate": {
+          "interval": {
+            "lower": "6728166524452130148/13460848699275291373",
+            "upper": "787537670534237505566854988358630172/1575603892990793012739572379707094451",
+            "midpoint": "787537668326948225147200599891786524/1575603892990793012739572379707094451",
+            "error_bound": "2207289280419654388466843648/1575603892990793012739572379707094451"
+          },
+          "time": "2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 22,
+          "radius": 11,
+          "exp_partial_sum": "117050858247565087/2143861251406875",
+          "exp_tail_bound": "268435456/82181347970596875",
+          "defect_tail_bound": "18656264192/13460848699275291373",
+          "retained_numerator": "483518975429996/17717861581875",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 12,
+          "local_variation": "44",
+          "largest_ball": 23
+        },
+        "absolute_difference_from_dense": 3.6309399931155895e-11
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 32,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 11,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 11,
+        "moment_exact_through_degree": 22,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 21,
+        "sparse_nonzeros": 96,
+        "estimated_sparse_scalar_products": 2016,
+        "basis_bytes": 2816,
+        "basis_orthogonality_error": 8.08254562088053e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.0001344600023003295,
+        "krylov_seconds": 0.0003217589983250946,
+        "projection_seconds": 3.5552999179344624e-05,
+        "projection_total_seconds": 0.0004917719998047687,
+        "normalized": false,
+        "unnormalized_estimate": 0.4998322686860477,
+        "normalized_estimate": 0.01561975839643899,
+        "eigensolve_seconds": 5.588299973169342e-05,
+        "total_seconds": 0.0005539139965549111,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0005456009967019781,
+          0.0005539139965549111,
+          0.0009023210004670545
+        ],
+        "value": 0.4998322686860477,
+        "exact_arithmetic_krylov_tail_bound": 2.77192985506247e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 3.6308955841946045e-11,
+        "absolute_difference_from_dense": 4.440892098500626e-16
+      },
+      "dense": {
+        "value": 0.49983226868604813,
+        "before_value": 6.624061479167574,
+        "after_value": 7.123893747853622,
+        "matrix_seconds": 0.0002161210068152286,
+        "eigensolve_seconds": 9.885700274026021e-05,
+        "total_seconds": 0.0003149780095554888,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0002670079920790158,
+          0.0003149780095554888,
+          0.00033184399944730103
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.49983226868468744,
+        "steps": 23,
+        "matrix_seconds": 0.00029468799039022997,
+        "powers_seconds": 0.0016156830024556257,
+        "total_seconds": 0.0019103709928458557,
+        "peak_power_nonzeros": 768,
+        "combined_truncation_bound": 6.322211861006288e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0018413480065646581,
+          0.0019103709928458557,
+          0.0019767789999605156
+        ],
+        "absolute_difference_from_dense": 1.3606893389805919e-12
+      },
+      "analytic_infinite_cut": {
+        "value": 0.49983226868604874,
+        "difference_from_certified_midpoint": 3.631001055381944e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_128",
+      "vertices": 128,
+      "before_edges": 128,
+      "after_edges": 127,
+      "edits": [
+        [
+          0,
+          127,
+          -1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00012737000361084938,
+        "after_graph_and_defect_metadata_seconds": 0.00010104000102728605,
+        "total_seconds": 0.00022841000463813543,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.002391315996646881,
+        "sample_seconds": [
+          0.0023531090046162717,
+          0.002391315996646881,
+          0.002423302998067811
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.43233235833607575,
+        "absolute_error_bound": 8.453883515471393e-10,
+        "affected_roots": 14,
+        "certificate": {
+          "interval": {
+            "lower": "31711343135/73349455773",
+            "upper": "41290114255593075841/95505491038810394685",
+            "midpoint": "13763371391617948736/31835163679603464895",
+            "error_bound": "4749366449/5617970061106493805"
+          },
+          "time": "1/2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 12,
+          "radius": 6,
+          "exp_partial_sum": "260412269/95800320",
+          "exp_tail_bound": "1/5782233600",
+          "defect_tail_bound": "61/73349455773",
+          "retained_numerator": "15636757/13305600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 7,
+          "local_variation": "24",
+          "largest_ball": 13
+        },
+        "absolute_difference_from_dense": 4.561007127534822e-11
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 128,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 6,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 6,
+        "moment_exact_through_degree": 12,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 11,
+        "sparse_nonzeros": 384,
+        "estimated_sparse_scalar_products": 4224,
+        "basis_bytes": 6144,
+        "basis_orthogonality_error": 6.377745716588144e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.00024078799469862133,
+        "krylov_seconds": 0.00024060800205916166,
+        "projection_seconds": 3.517200093483552e-05,
+        "projection_total_seconds": 0.0005165679976926185,
+        "normalized": false,
+        "unnormalized_estimate": 0.4323323583815022,
+        "normalized_estimate": 0.003377596549855486,
+        "eigensolve_seconds": 4.685999738285318e-05,
+        "total_seconds": 0.0005699469984392636,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0004911799987894483,
+          0.0005699469984392636,
+          0.0007118590001482517
+        ],
+        "value": 0.4323323583815022,
+        "exact_arithmetic_krylov_tail_bound": 1.663270691163169e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 4.542644038707522e-11,
+        "absolute_difference_from_dense": 1.836308882730009e-13
+      },
+      "dense": {
+        "value": 0.4323323583816858,
+        "before_value": 59.61722977198598,
+        "after_value": 60.04956213036767,
+        "matrix_seconds": 0.0004636290032067336,
+        "eigensolve_seconds": 0.0010200370015809312,
+        "total_seconds": 0.0014836660047876649,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0014438670041272417,
+          0.0014836660047876649,
+          0.0017211689919349737
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.4323323583814087,
+        "steps": 13,
+        "matrix_seconds": 0.0005545550011447631,
+        "powers_seconds": 0.001093605998903513,
+        "total_seconds": 0.001648161000048276,
+        "peak_power_nonzeros": 1792,
+        "combined_truncation_bound": 1.1570822520230712e-09,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0015987369988579303,
+          0.001648161000048276,
+          0.0016519059936399572
+        ],
+        "absolute_difference_from_dense": 2.7711166694643907e-13
+      },
+      "analytic_infinite_cut": {
+        "value": 0.43233235838169365,
+        "difference_from_certified_midpoint": 4.5617898347671826e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_128",
+      "vertices": 128,
+      "before_edges": 128,
+      "after_edges": 127,
+      "edits": [
+        [
+          0,
+          127,
+          -1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00012737000361084938,
+        "after_graph_and_defect_metadata_seconds": 0.00010104000102728605,
+        "total_seconds": 0.00022841000463813543,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.010402196996437851,
+        "sample_seconds": [
+          0.010384632005298045,
+          0.010402196996437851,
+          0.01057376300013857
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.49983226864973873,
+        "absolute_error_bound": 1.4009163662510402e-09,
+        "affected_roots": 24,
+        "certificate": {
+          "interval": {
+            "lower": "6728166524452130148/13460848699275291373",
+            "upper": "787537670534237505566854988358630172/1575603892990793012739572379707094451",
+            "midpoint": "787537668326948225147200599891786524/1575603892990793012739572379707094451",
+            "error_bound": "2207289280419654388466843648/1575603892990793012739572379707094451"
+          },
+          "time": "2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 22,
+          "radius": 11,
+          "exp_partial_sum": "117050858247565087/2143861251406875",
+          "exp_tail_bound": "268435456/82181347970596875",
+          "defect_tail_bound": "18656264192/13460848699275291373",
+          "retained_numerator": "483518975429996/17717861581875",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 12,
+          "local_variation": "44",
+          "largest_ball": 23
+        },
+        "absolute_difference_from_dense": 3.6306735395896794e-11
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 128,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 11,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 11,
+        "moment_exact_through_degree": 22,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 21,
+        "sparse_nonzeros": 384,
+        "estimated_sparse_scalar_products": 8064,
+        "basis_bytes": 11264,
+        "basis_orthogonality_error": 8.08254562088053e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.00027358700026525185,
+        "krylov_seconds": 0.00034797699481714517,
+        "projection_seconds": 4.4216001697350293e-05,
+        "projection_total_seconds": 0.0006657799967797473,
+        "normalized": false,
+        "unnormalized_estimate": 0.4998322686860477,
+        "normalized_estimate": 0.0039049395991097476,
+        "eigensolve_seconds": 5.7997000112663954e-05,
+        "total_seconds": 0.000731177999114152,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0006996299998718314,
+          0.000731177999114152,
+          0.0009947389989974909
+        ],
+        "value": 0.4998322686860477,
+        "exact_arithmetic_krylov_tail_bound": 2.77192985506247e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 3.6308955841946045e-11,
+        "absolute_difference_from_dense": 2.220446049250313e-15
+      },
+      "dense": {
+        "value": 0.49983226868604547,
+        "before_value": 26.496245916670297,
+        "after_value": 26.996078185356343,
+        "matrix_seconds": 0.0004540959998848848,
+        "eigensolve_seconds": 0.0010579829977359623,
+        "total_seconds": 0.001512078997620847,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0015100559976417571,
+          0.001512078997620847,
+          0.001616062996617984
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.49983226868468833,
+        "steps": 24,
+        "matrix_seconds": 0.00054472000192618,
+        "powers_seconds": 0.0021467819969984703,
+        "total_seconds": 0.0026915019989246503,
+        "peak_power_nonzeros": 3200,
+        "combined_truncation_bound": 4.017443280474411e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0026395550012239255,
+          0.0026915019989246503,
+          0.0031175959957181476
+        ],
+        "absolute_difference_from_dense": 1.3571366253017914e-12
+      },
+      "analytic_infinite_cut": {
+        "value": 0.49983226868604874,
+        "difference_from_certified_midpoint": 3.631001055381944e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_512",
+      "vertices": 512,
+      "before_edges": 512,
+      "after_edges": 511,
+      "edits": [
+        [
+          0,
+          511,
+          -1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.0005362779993447475,
+        "after_graph_and_defect_metadata_seconds": 0.00038571299955947325,
+        "total_seconds": 0.0009219909989042208,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.002648188004968688,
+        "sample_seconds": [
+          0.002537813998060301,
+          0.002648188004968688,
+          0.002835065999533981
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.43233235833607575,
+        "absolute_error_bound": 8.453883515471393e-10,
+        "affected_roots": 14,
+        "certificate": {
+          "interval": {
+            "lower": "31711343135/73349455773",
+            "upper": "41290114255593075841/95505491038810394685",
+            "midpoint": "13763371391617948736/31835163679603464895",
+            "error_bound": "4749366449/5617970061106493805"
+          },
+          "time": "1/2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 12,
+          "radius": 6,
+          "exp_partial_sum": "260412269/95800320",
+          "exp_tail_bound": "1/5782233600",
+          "defect_tail_bound": "61/73349455773",
+          "retained_numerator": "15636757/13305600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 7,
+          "local_variation": "24",
+          "largest_ball": 13
+        },
+        "absolute_difference_from_dense": 4.562428213006342e-11
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 512,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 6,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 6,
+        "moment_exact_through_degree": 12,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 11,
+        "sparse_nonzeros": 1536,
+        "estimated_sparse_scalar_products": 16896,
+        "basis_bytes": 24576,
+        "basis_orthogonality_error": 4.577566798522237e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.0006994899958954193,
+        "krylov_seconds": 0.0002518839974072762,
+        "projection_seconds": 4.5868000597693026e-05,
+        "projection_total_seconds": 0.0009972419939003885,
+        "normalized": false,
+        "unnormalized_estimate": 0.4323323583815022,
+        "normalized_estimate": 0.0008443991374638715,
+        "eigensolve_seconds": 7.233799988171086e-05,
+        "total_seconds": 0.0010760599980130792,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0010599059969536029,
+          0.0010760599980130792,
+          0.001207916000566911
+        ],
+        "value": 0.4323323583815022,
+        "exact_arithmetic_krylov_tail_bound": 1.663270691163169e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 4.542644038707522e-11,
+        "absolute_difference_from_dense": 1.978417429882029e-13
+      },
+      "dense": {
+        "value": 0.43233235838170003,
+        "before_value": 238.4689190879439,
+        "after_value": 238.9012514463256,
+        "matrix_seconds": 0.002729148000071291,
+        "eigensolve_seconds": 0.024229107999417465,
+        "total_seconds": 0.026958255999488756,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.02677945900359191,
+          0.026958255999488756,
+          0.03233554199687205
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.4323323583814158,
+        "steps": 14,
+        "matrix_seconds": 0.0014957439998397604,
+        "powers_seconds": 0.0020541539997793734,
+        "total_seconds": 0.0035498979996191338,
+        "peak_power_nonzeros": 7680,
+        "combined_truncation_bound": 3.0720109225218025e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0034805750037776306,
+          0.0035498979996191338,
+          0.0036437070011743344
+        ],
+        "absolute_difference_from_dense": 2.8421709430404007e-13
+      },
+      "analytic_infinite_cut": {
+        "value": 0.43233235838169365,
+        "difference_from_certified_midpoint": 4.5617898347671826e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_512",
+      "vertices": 512,
+      "before_edges": 512,
+      "after_edges": 511,
+      "edits": [
+        [
+          0,
+          511,
+          -1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.0005362779993447475,
+        "after_graph_and_defect_metadata_seconds": 0.00038571299955947325,
+        "total_seconds": 0.0009219909989042208,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.011123049996967893,
+        "sample_seconds": [
+          0.010994428994308691,
+          0.011123049996967893,
+          0.013839168001140933
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.49983226864973873,
+        "absolute_error_bound": 1.4009163662510402e-09,
+        "affected_roots": 24,
+        "certificate": {
+          "interval": {
+            "lower": "6728166524452130148/13460848699275291373",
+            "upper": "787537670534237505566854988358630172/1575603892990793012739572379707094451",
+            "midpoint": "787537668326948225147200599891786524/1575603892990793012739572379707094451",
+            "error_bound": "2207289280419654388466843648/1575603892990793012739572379707094451"
+          },
+          "time": "2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 22,
+          "radius": 11,
+          "exp_partial_sum": "117050858247565087/2143861251406875",
+          "exp_tail_bound": "268435456/82181347970596875",
+          "defect_tail_bound": "18656264192/13460848699275291373",
+          "retained_numerator": "483518975429996/17717861581875",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 12,
+          "local_variation": "44",
+          "largest_ball": 23
+        },
+        "absolute_difference_from_dense": 3.6310288109575595e-11
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 512,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 11,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 11,
+        "moment_exact_through_degree": 22,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 21,
+        "sparse_nonzeros": 1536,
+        "estimated_sparse_scalar_products": 32256,
+        "basis_bytes": 45056,
+        "basis_orthogonality_error": 4.577566798522237e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.0008359729981748387,
+        "krylov_seconds": 0.0004575909988489002,
+        "projection_seconds": 6.15009994362481e-05,
+        "projection_total_seconds": 0.001355064996459987,
+        "normalized": false,
+        "unnormalized_estimate": 0.4998322686860477,
+        "normalized_estimate": 0.0009762348997774369,
+        "eigensolve_seconds": 6.231199949979782e-05,
+        "total_seconds": 0.0014239070005714893,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0013450800033751875,
+          0.0014239070005714893,
+          0.0018881079959101044
+        ],
+        "value": 0.4998322686860477,
+        "exact_arithmetic_krylov_tail_bound": 2.77192985506247e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 3.6308955841946045e-11,
+        "absolute_difference_from_dense": 1.3322676295501878e-15
+      },
+      "dense": {
+        "value": 0.499832268686049,
+        "before_value": 105.98498366668119,
+        "after_value": 106.48481593536724,
+        "matrix_seconds": 0.002726355000049807,
+        "eigensolve_seconds": 0.023968620000232477,
+        "total_seconds": 0.026694975000282284,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.025961834013287444,
+          0.026694975000282284,
+          0.026720542002294678
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.4998322686846848,
+        "steps": 24,
+        "matrix_seconds": 0.0016371530073229223,
+        "powers_seconds": 0.0042188239967799746,
+        "total_seconds": 0.005855977004102897,
+        "peak_power_nonzeros": 12800,
+        "combined_truncation_bound": 1.6069773121897644e-09,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.005732633006118704,
+          0.005855977004102897,
+          0.0061589780016220175
+        ],
+        "absolute_difference_from_dense": 1.3642420526593924e-12
+      },
+      "analytic_infinite_cut": {
+        "value": 0.49983226868604874,
+        "difference_from_certified_midpoint": 3.631001055381944e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_4096",
+      "vertices": 4096,
+      "before_edges": 4096,
+      "after_edges": 4095,
+      "edits": [
+        [
+          0,
+          4095,
+          -1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.006010637996951118,
+        "after_graph_and_defect_metadata_seconds": 0.004997161006031092,
+        "total_seconds": 0.01100779900298221,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.01254035699821543,
+        "sample_seconds": [
+          0.012525546000688337,
+          0.01254035699821543,
+          0.01316358400072204
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.43233235833607575,
+        "absolute_error_bound": 8.453883515471393e-10,
+        "affected_roots": 14,
+        "certificate": {
+          "interval": {
+            "lower": "31711343135/73349455773",
+            "upper": "41290114255593075841/95505491038810394685",
+            "midpoint": "13763371391617948736/31835163679603464895",
+            "error_bound": "4749366449/5617970061106493805"
+          },
+          "time": "1/2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 12,
+          "radius": 6,
+          "exp_partial_sum": "260412269/95800320",
+          "exp_tail_bound": "1/5782233600",
+          "defect_tail_bound": "61/73349455773",
+          "retained_numerator": "15636757/13305600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 7,
+          "local_variation": "24",
+          "largest_ball": 13
+        }
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 4096,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 6,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 6,
+        "moment_exact_through_degree": 12,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 11,
+        "sparse_nonzeros": 12288,
+        "estimated_sparse_scalar_products": 135168,
+        "basis_bytes": 196608,
+        "basis_orthogonality_error": 4.577566798522237e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.0061477620038203895,
+        "krylov_seconds": 0.0008236649955506437,
+        "projection_seconds": 0.00016909099940676242,
+        "projection_total_seconds": 0.007140517998777796,
+        "normalized": false,
+        "unnormalized_estimate": 0.4323323583815022,
+        "normalized_estimate": 0.00010554989218298393,
+        "eigensolve_seconds": 6.600799679290503e-05,
+        "total_seconds": 0.007215288998850156,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.007094118001987226,
+          0.007215288998850156,
+          0.008968094996816944
+        ],
+        "value": 0.4323323583815022,
+        "exact_arithmetic_krylov_tail_bound": 1.663270691163169e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 4.542644038707522e-11
+      },
+      "analytic_infinite_cut": {
+        "value": 0.43233235838169365,
+        "difference_from_certified_midpoint": 4.5617898347671826e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "cut_cycle_4096",
+      "vertices": 4096,
+      "before_edges": 4096,
+      "after_edges": 4095,
+      "edits": [
+        [
+          0,
+          4095,
+          -1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.006010637996951118,
+        "after_graph_and_defect_metadata_seconds": 0.004997161006031092,
+        "total_seconds": 0.01100779900298221,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.027430468995589763,
+        "sample_seconds": [
+          0.027422926999861374,
+          0.027430468995589763,
+          0.0280424779994064
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.49983226864973873,
+        "absolute_error_bound": 1.4009163662510402e-09,
+        "affected_roots": 24,
+        "certificate": {
+          "interval": {
+            "lower": "6728166524452130148/13460848699275291373",
+            "upper": "787537670534237505566854988358630172/1575603892990793012739572379707094451",
+            "midpoint": "787537668326948225147200599891786524/1575603892990793012739572379707094451",
+            "error_bound": "2207289280419654388466843648/1575603892990793012739572379707094451"
+          },
+          "time": "2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 22,
+          "radius": 11,
+          "exp_partial_sum": "117050858247565087/2143861251406875",
+          "exp_tail_bound": "268435456/82181347970596875",
+          "defect_tail_bound": "18656264192/13460848699275291373",
+          "retained_numerator": "483518975429996/17717861581875",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 12,
+          "local_variation": "44",
+          "largest_ball": 23
+        }
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 4096,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 11,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 11,
+        "moment_exact_through_degree": 22,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 21,
+        "sparse_nonzeros": 12288,
+        "estimated_sparse_scalar_products": 258048,
+        "basis_bytes": 360448,
+        "basis_orthogonality_error": 4.577566798522237e-16,
+        "invariant_residual": 1.0,
+        "matrix_seconds": 0.006417111995688174,
+        "krylov_seconds": 0.001360503003525082,
+        "projection_seconds": 0.0002853139958460815,
+        "projection_total_seconds": 0.008062928995059337,
+        "normalized": false,
+        "unnormalized_estimate": 0.4998322686860477,
+        "normalized_estimate": 0.00012202936247217961,
+        "eigensolve_seconds": 8.517700189258903e-05,
+        "total_seconds": 0.00816026499524014,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.007928469000034966,
+          0.00816026499524014,
+          0.00861590100248577
+        ],
+        "value": 0.4998322686860477,
+        "exact_arithmetic_krylov_tail_bound": 2.77192985506247e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 3.6308955841946045e-11
+      },
+      "analytic_infinite_cut": {
+        "value": 0.49983226868604874,
+        "difference_from_certified_midpoint": 3.631001055381944e-11,
+        "status": "Floating evaluation of the infinite-size limit, not a finite-graph certificate."
+      }
+    },
+    {
+      "case": "chord_insertion_128",
+      "vertices": 128,
+      "before_edges": 128,
+      "after_edges": 129,
+      "edits": [
+        [
+          0,
+          4,
+          1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00012553599663078785,
+        "after_graph_and_defect_metadata_seconds": 0.00010028899851022288,
+        "total_seconds": 0.00022582499514101073,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.007615283000632189,
+        "sample_seconds": [
+          0.0074954660012735985,
+          0.007615283000632189,
+          0.007986644995980896
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": -0.3039945837782982,
+        "absolute_error_bound": 8.42163723115254e-10,
+        "affected_roots": 19,
+        "certificate": {
+          "interval": {
+            "lower": "-1061865630427680177409147679621/3493041271618119074655719309829",
+            "upper": "-40309352420204693/132598916832255507",
+            "midpoint": "-1061865627485967535107991299596/3493041271618119074655719309829",
+            "error_bound": "12105813342803112675/14374655438757691665249873703"
+          },
+          "time": "1/2",
+          "degree_bound": 3,
+          "edit_bound": "1",
+          "steps": 14,
+          "radius": 7,
+          "exp_partial_sum": "26342909543047/5877897625600",
+          "exp_tail_bound": "19683/53268447232000",
+          "defect_tail_bound": "452709/545674554865249",
+          "retained_numerator": "-69498883672781/51011754393600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "-2/3",
+            "0",
+            "-14/27",
+            "-16/81",
+            "-92/243",
+            "-20/81",
+            "-220/729",
+            "-1616/6561",
+            "-5090/19683",
+            "-4580/19683",
+            "-13670/59049",
+            "-115528/531441",
+            "-338782/1594323",
+            "-973028/4782969"
+          ],
+          "local_types": 10,
+          "local_variation": "34",
+          "largest_ball": 18
+        },
+        "absolute_difference_from_dense": 3.744393684002034e-12
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 128,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 7,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 7,
+        "moment_exact_through_degree": 14,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 13,
+        "sparse_nonzeros": 384,
+        "estimated_sparse_scalar_products": 4992,
+        "basis_bytes": 7168,
+        "basis_orthogonality_error": 5.763621153266921e-16,
+        "invariant_residual": 1.118033988749895,
+        "matrix_seconds": 0.0002309829942532815,
+        "krylov_seconds": 0.00029988599999342114,
+        "projection_seconds": 3.815700620179996e-05,
+        "projection_total_seconds": 0.0005690260004485026,
+        "normalized": false,
+        "unnormalized_estimate": -0.30399458378204053,
+        "normalized_estimate": -0.0023749576857971916,
+        "eigensolve_seconds": 4.951399751007557e-05,
+        "total_seconds": 0.0006246489938348532,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0006189300038386136,
+          0.0006246489938348532,
+          0.0009923449979396537
+        ],
+        "value": -0.30399458378204053,
+        "exact_arithmetic_krylov_tail_bound": 1.6592637349996783e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 3.742339771406478e-12,
+        "absolute_difference_from_dense": 2.0539125955565396e-15
+      },
+      "dense": {
+        "value": -0.3039945837820426,
+        "before_value": 59.61722977198598,
+        "after_value": 59.31323518820394,
+        "matrix_seconds": 0.00043768100294983014,
+        "eigensolve_seconds": 0.0010369820010964759,
+        "total_seconds": 0.001474663004046306,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0014466809952864423,
+          0.001474663004046306,
+          0.0015708559949416667
+        ]
+      },
+      "sparse_uniformization": {
+        "value": -0.30399458378057176,
+        "steps": 15,
+        "matrix_seconds": 0.0005192019962123595,
+        "powers_seconds": 0.0015982769982656464,
+        "total_seconds": 0.002117478994478006,
+        "peak_power_nonzeros": 4056,
+        "combined_truncation_bound": 1.9657793718426533e-09,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0020700780005427077,
+          0.002117478994478006,
+          0.0021607329981634393
+        ],
+        "absolute_difference_from_dense": 1.4708234630234074e-12
+      }
+    },
+    {
+      "case": "chord_insertion_128",
+      "vertices": 128,
+      "before_edges": 128,
+      "after_edges": 129,
+      "edits": [
+        [
+          0,
+          4,
+          1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00012553599663078785,
+        "after_graph_and_defect_metadata_seconds": 0.00010028899851022288,
+        "total_seconds": 0.00022582499514101073,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.053687482002715115,
+        "sample_seconds": [
+          0.05365716599771986,
+          0.053687482002715115,
+          0.056028762002824806
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": -0.28698571521141386,
+        "absolute_error_bound": 1.1927870368632695e-09,
+        "affected_roots": 33,
+        "certificate": {
+          "interval": {
+            "lower": "-7947479398924963511082001270155212515820476/27692944089703235624648797584570373095348075",
+            "upper": "-24196131520387015635211708/84311275225416155527674627",
+            "midpoint": "-7947479365893178788304689014368808806941388/27692944089703235624648797584570373095348075",
+            "error_bound": "20718376842570365136667039056/17369719993817586288756291908584630025"
+          },
+          "time": "2",
+          "degree_bound": 3,
+          "edit_bound": "1",
+          "steps": 27,
+          "radius": 14,
+          "exp_partial_sum": "571236074491463/1415952663125",
+          "exp_tail_bound": "3328946424/131081817788796875",
+          "defect_tail_bound": "62599498272/52882179599376133649",
+          "retained_numerator": "-21469504543203935686532/185436341599368234375",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "-2/3",
+            "0",
+            "-14/27",
+            "-16/81",
+            "-92/243",
+            "-20/81",
+            "-220/729",
+            "-1616/6561",
+            "-5090/19683",
+            "-4580/19683",
+            "-13670/59049",
+            "-115528/531441",
+            "-338782/1594323",
+            "-973028/4782969",
+            "-2840894/14348907",
+            "-8237792/43046721",
+            "-24057382/129140163",
+            "-2597560/14348907",
+            "-205158962/1162261467",
+            "-200054032/1162261467",
+            "-586340944/3486784401",
+            "-5158614956/31381059609",
+            "-15147225968/94143178827",
+            "-44508644720/282429536481",
+            "-130904426542/847288609443",
+            "-128423316944/847288609443",
+            "-1134739509386/7625597484987"
+          ],
+          "local_types": 17,
+          "local_variation": "62",
+          "largest_ball": 32
+        },
+        "absolute_difference_from_dense": 1.1485257189747244e-13
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 128,
+        "edited_edges": 1,
+        "initial_block_rank": 1,
+        "requested_steps": 14,
+        "block_dimensions": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "subspace_dimension": 14,
+        "moment_exact_through_degree": 28,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 27,
+        "sparse_nonzeros": 384,
+        "estimated_sparse_scalar_products": 10368,
+        "basis_bytes": 14336,
+        "basis_orthogonality_error": 7.179195508592338e-16,
+        "invariant_residual": 0.9354143466934853,
+        "matrix_seconds": 0.000231533995247446,
+        "krylov_seconds": 0.00040418100252281874,
+        "projection_seconds": 4.9303002015221864e-05,
+        "projection_total_seconds": 0.0006850179997854866,
+        "normalized": false,
+        "unnormalized_estimate": -0.2869857152115614,
+        "normalized_estimate": -0.0022420759000903235,
+        "eigensolve_seconds": 0.00018783900304697454,
+        "total_seconds": 0.0008812710002530366,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0008314160004374571,
+          0.0008812710002530366,
+          0.0013113200038787909
+        ],
+        "value": -0.2869857152115614,
+        "exact_arithmetic_krylov_tail_bound": 2.367508251219604e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 1.475486399726833e-13,
+        "absolute_difference_from_dense": 3.269606807521086e-14
+      },
+      "dense": {
+        "value": -0.2869857152115287,
+        "before_value": 26.496245916670297,
+        "after_value": 26.20926020145877,
+        "matrix_seconds": 0.00046198700147215277,
+        "eigensolve_seconds": 0.0010541669980739243,
+        "total_seconds": 0.001516153999546077,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0014409729992621578,
+          0.001516153999546077,
+          0.0015406299935420975
+        ]
+      },
+      "sparse_uniformization": {
+        "value": -0.2869857152112054,
+        "steps": 29,
+        "matrix_seconds": 0.0005703689967049286,
+        "powers_seconds": 0.004259994995663874,
+        "total_seconds": 0.004830363992368802,
+        "peak_power_nonzeros": 7724,
+        "combined_truncation_bound": 6.546591502066521e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.004657235003833193,
+          0.004830363992368802,
+          0.004846455994993448
+        ],
+        "absolute_difference_from_dense": 3.232969447708456e-13
+      }
+    },
+    {
+      "case": "irregular_mixed_128",
+      "vertices": 128,
+      "before_edges": 138,
+      "after_edges": 138,
+      "edits": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          4,
+          1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00014503599959425628,
+        "after_graph_and_defect_metadata_seconds": 0.00010589800513116643,
+        "total_seconds": 0.0002509340047254227,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.012310735997743905,
+        "sample_seconds": [
+          0.01190894799947273,
+          0.012310735997743905,
+          0.012389994000841398
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.06253025021829117,
+        "absolute_error_bound": 1.661841478516e-09,
+        "affected_roots": 23,
+        "certificate": {
+          "interval": {
+            "lower": "2149633429439206/34377496956510687",
+            "upper": "8089657427480734176046073362/129371898948819224987248863327",
+            "midpoint": "56627600487396024439624507108/905603292641734574910742043289",
+            "error_bound": "167218790532522000714/100622588071303841656749115921"
+          },
+          "time": "1/2",
+          "degree_bound": 3,
+          "edit_bound": "2",
+          "steps": 14,
+          "radius": 7,
+          "exp_partial_sum": "26342909543047/5877897625600",
+          "exp_tail_bound": "19683/53268447232000",
+          "defect_tail_bound": "905418/545674554865249",
+          "retained_numerator": "3706264631863/13225269657600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "0",
+            "2/9",
+            "0",
+            "10/81",
+            "10/243",
+            "62/729",
+            "14/243",
+            "482/6561",
+            "136/2187",
+            "3982/59049",
+            "10802/177147",
+            "32674/531441",
+            "90142/1594323",
+            "87188/1594323"
+          ],
+          "local_types": 28,
+          "local_variation": "40",
+          "largest_ball": 22
+        },
+        "absolute_difference_from_dense": 1.538325022920617e-12
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 128,
+        "edited_edges": 2,
+        "initial_block_rank": 2,
+        "requested_steps": 7,
+        "block_dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "subspace_dimension": 14,
+        "moment_exact_through_degree": 14,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 26,
+        "sparse_nonzeros": 404,
+        "estimated_sparse_scalar_products": 10504,
+        "basis_bytes": 14336,
+        "basis_orthogonality_error": 1.838534847265404e-15,
+        "invariant_residual": 1.2480781846787405,
+        "matrix_seconds": 0.00026616599643602967,
+        "krylov_seconds": 0.0003237810014979914,
+        "projection_seconds": 4.4455999159254134e-05,
+        "projection_total_seconds": 0.0006344029970932752,
+        "normalized": false,
+        "unnormalized_estimate": 0.06253025021982726,
+        "normalized_estimate": 0.0004885175798424005,
+        "eigensolve_seconds": 9.855599637376145e-05,
+        "total_seconds": 0.0007403709969366901,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0006260709997150116,
+          0.0007403709969366901,
+          0.0011219980005989783
+        ],
+        "value": 0.06253025021982726,
+        "exact_arithmetic_krylov_tail_bound": 3.3185274699993567e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 1.5360906990835588e-12,
+        "absolute_difference_from_dense": 2.2343238370581275e-15
+      },
+      "dense": {
+        "value": 0.0625302502198295,
+        "before_value": 56.63364100465377,
+        "after_value": 56.6961712548736,
+        "matrix_seconds": 0.00047257299593184143,
+        "eigensolve_seconds": 0.001173655007733032,
+        "total_seconds": 0.0016462280036648735,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.0016027839956223033,
+          0.0016462280036648735,
+          0.0017751189952832647
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.06253025021947423,
+        "steps": 15,
+        "matrix_seconds": 0.0005772779986727983,
+        "powers_seconds": 0.0016998579958453774,
+        "total_seconds": 0.0022771359945181757,
+        "peak_power_nonzeros": 4732,
+        "combined_truncation_bound": 1.9657793718426533e-09,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0022754130040993914,
+          0.0022771359945181757,
+          0.002410765999229625
+        ],
+        "absolute_difference_from_dense": 3.552713678800501e-13
+      }
+    },
+    {
+      "case": "irregular_mixed_128",
+      "vertices": 128,
+      "before_edges": 138,
+      "after_edges": 138,
+      "edits": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          4,
+          1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00014503599959425628,
+        "after_graph_and_defect_metadata_seconds": 0.00010589800513116643,
+        "total_seconds": 0.0002509340047254227,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.09132691999548115,
+        "sample_seconds": [
+          0.08889708700007759,
+          0.09132691999548115,
+          0.10229315600008704
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.07184437822631627,
+        "absolute_error_bound": 2.369769562003316e-09,
+        "affected_roots": 39,
+        "certificate": {
+          "interval": {
+            "lower": "673032327359950295704496/9367919469490683947519403",
+            "upper": "221064712778529426453295791746953324233776/3076993787744803958294310842730041455038675",
+            "midpoint": "221064705486763205782367996641351943440688/3076993787744803958294310842730041455038675",
+            "error_bound": "41162233741869338995893813504/17369719993817586288756291908584630025"
+          },
+          "time": "2",
+          "degree_bound": 3,
+          "edit_bound": "2",
+          "steps": 27,
+          "radius": 14,
+          "exp_partial_sum": "571236074491463/1415952663125",
+          "exp_tail_bound": "3328946424/131081817788796875",
+          "defect_tail_bound": "125198996544/52882179599376133649",
+          "retained_numerator": "4180325152413521344624/144228265688397515625",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "0",
+            "2/9",
+            "0",
+            "10/81",
+            "10/243",
+            "62/729",
+            "14/243",
+            "482/6561",
+            "136/2187",
+            "3982/59049",
+            "10802/177147",
+            "32674/531441",
+            "90142/1594323",
+            "87188/1594323",
+            "720700/14348907",
+            "2030402/43046721",
+            "1845044/43046721",
+            "15187454/387420489",
+            "40635262/1162261467",
+            "108218410/3486784401",
+            "93669352/3486784401",
+            "79725656/3486784401",
+            "589557620/31381059609",
+            "4187980610/282429536481",
+            "9216544060/847288609443",
+            "17866528942/2541865828329",
+            "2740252456/847288609443"
+          ],
+          "local_types": 52,
+          "local_variation": "68",
+          "largest_ball": 38
+        },
+        "absolute_difference_from_dense": 2.3196861098639943e-12
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 128,
+        "edited_edges": 2,
+        "initial_block_rank": 2,
+        "requested_steps": 14,
+        "block_dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "subspace_dimension": 28,
+        "moment_exact_through_degree": 28,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 54,
+        "sparse_nonzeros": 404,
+        "estimated_sparse_scalar_products": 21816,
+        "basis_bytes": 28672,
+        "basis_orthogonality_error": 2.242991809292107e-15,
+        "invariant_residual": 1.6875769000433019,
+        "matrix_seconds": 0.00041217200487153605,
+        "krylov_seconds": 0.0005333029985195026,
+        "projection_seconds": 5.850700108567253e-05,
+        "projection_total_seconds": 0.0010039820044767112,
+        "normalized": false,
+        "unnormalized_estimate": 0.07184437822397644,
+        "normalized_estimate": 0.0005612842048748159,
+        "eigensolve_seconds": 0.00010995400225510821,
+        "total_seconds": 0.0011203960020793602,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0009747489966684952,
+          0.0011203960020793602,
+          0.001435444995877333
+        ],
+        "value": 0.07184437822397644,
+        "exact_arithmetic_krylov_tail_bound": 4.735016502439208e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 2.339836657760941e-12,
+        "absolute_difference_from_dense": 2.015054789694659e-14
+      },
+      "dense": {
+        "value": 0.07184437822399659,
+        "before_value": 24.250875448103873,
+        "after_value": 24.32271982632787,
+        "matrix_seconds": 0.00044804700155509636,
+        "eigensolve_seconds": 0.0014180389989633113,
+        "total_seconds": 0.0018660860005184077,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.001601490999746602,
+          0.0018660860005184077,
+          0.001965323004696984
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.07184437822400014,
+        "steps": 29,
+        "matrix_seconds": 0.0005807639972772449,
+        "powers_seconds": 0.004548844000964891,
+        "total_seconds": 0.005129607998242136,
+        "peak_power_nonzeros": 9090,
+        "combined_truncation_bound": 6.546591502066521e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.005092032006359659,
+          0.005129607998242136,
+          0.005550853995373473
+        ],
+        "absolute_difference_from_dense": 3.552713678800501e-15
+      }
+    },
+    {
+      "case": "irregular_mixed_256",
+      "vertices": 256,
+      "before_edges": 275,
+      "after_edges": 275,
+      "edits": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          4,
+          1
+        ]
+      ],
+      "time": "1/2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00026260999584337696,
+        "after_graph_and_defect_metadata_seconds": 0.00018875100067816675,
+        "total_seconds": 0.0004513609965215437,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.010164293998968787,
+        "sample_seconds": [
+          0.009856234995822888,
+          0.010164293998968787,
+          0.010480354001629166
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.06249390225830643,
+        "absolute_error_bound": 1.661839980109743e-09,
+        "affected_roots": 21,
+        "certificate": {
+          "interval": {
+            "lower": "58006364693998682/928192417825788549",
+            "upper": "218293785617608768129281013118/3493041271618119074655719309829",
+            "midpoint": "1528056458689131915466403677940/24451288901326833522590035168803",
+            "error_bound": "167218639759006433802/100622588071303841656749115921"
+          },
+          "time": "1/2",
+          "degree_bound": 3,
+          "edit_bound": "2",
+          "steps": 14,
+          "radius": 7,
+          "exp_partial_sum": "26342909543047/5877897625600",
+          "exp_tail_bound": "19683/53268447232000",
+          "defect_tail_bound": "905418/545674554865249",
+          "retained_numerator": "20002195253143/71416456151040",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "0",
+            "2/9",
+            "0",
+            "10/81",
+            "10/243",
+            "56/729",
+            "112/2187",
+            "386/6561",
+            "4/81",
+            "2902/59049",
+            "2596/59049",
+            "22036/531441",
+            "59644/1594323",
+            "163676/4782969"
+          ],
+          "local_types": 25,
+          "local_variation": "34",
+          "largest_ball": 20
+        },
+        "absolute_difference_from_dense": 1.2368578383714635e-13
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 256,
+        "edited_edges": 2,
+        "initial_block_rank": 2,
+        "requested_steps": 7,
+        "block_dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "subspace_dimension": 14,
+        "moment_exact_through_degree": 14,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 26,
+        "sparse_nonzeros": 806,
+        "estimated_sparse_scalar_products": 20956,
+        "basis_bytes": 28672,
+        "basis_orthogonality_error": 1.9518783708497164e-15,
+        "invariant_residual": 1.4412355917623962,
+        "matrix_seconds": 0.00042207799560856074,
+        "krylov_seconds": 0.0003071160026593134,
+        "projection_seconds": 5.01649992656894e-05,
+        "projection_total_seconds": 0.0007793589975335635,
+        "normalized": false,
+        "unnormalized_estimate": 0.06249390225822118,
+        "normalized_estimate": 0.00024411680569617647,
+        "eigensolve_seconds": 6.374500662786886e-05,
+        "total_seconds": 0.000849904005008284,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0008244759956141934,
+          0.000849904005008284,
+          0.0011326640014885925
+        ],
+        "value": 0.06249390225822118,
+        "exact_arithmetic_krylov_tail_bound": 3.3185274699993567e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 8.525125050340421e-14,
+        "absolute_difference_from_dense": 3.843453333374214e-14
+      },
+      "dense": {
+        "value": 0.06249390225818274,
+        "before_value": 113.56564088604078,
+        "after_value": 113.62813478829896,
+        "matrix_seconds": 0.0008498229944962077,
+        "eigensolve_seconds": 0.004486312005610671,
+        "total_seconds": 0.005336135000106879,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.005253171999356709,
+          0.005336135000106879,
+          0.005562882004596759
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.062493902258196954,
+        "steps": 16,
+        "matrix_seconds": 0.0009088020015042275,
+        "powers_seconds": 0.00286378799501108,
+        "total_seconds": 0.0037725899965153076,
+        "peak_power_nonzeros": 9874,
+        "combined_truncation_bound": 3.4507563946222675e-10,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.0036972380039514974,
+          0.0037725899965153076,
+          0.003951405000407249
+        ],
+        "absolute_difference_from_dense": 1.4210854715202004e-14
+      }
+    },
+    {
+      "case": "irregular_mixed_256",
+      "vertices": 256,
+      "before_edges": 275,
+      "after_edges": 275,
+      "edits": [
+        [
+          0,
+          1,
+          -1
+        ],
+        [
+          0,
+          4,
+          1
+        ]
+      ],
+      "time": "2",
+      "normalization": "Unnormalized trace(after)-trace(before).",
+      "shared_setup": {
+        "before_graph_seconds": 0.00026260999584337696,
+        "after_graph_and_defect_metadata_seconds": 0.00018875100067816675,
+        "total_seconds": 0.0004513609965215437,
+        "policy": "Shared graph setup, performed once per graph and reused at both times."
+      },
+      "certified": {
+        "seconds": 0.08783879400289152,
+        "sample_seconds": [
+          0.08355155900062528,
+          0.08783879400289152,
+          0.08792318899941165
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "value": 0.06571196069424395,
+        "absolute_error_bound": 2.3695765433950705e-09,
+        "affected_roots": 37,
+        "certificate": {
+          "interval": {
+            "lower": "205194777922670770346872/3122639823163561315839801",
+            "upper": "67398434042630567105709624041246447160952/1025664595914934652764770280910013818346225",
+            "midpoint": "67398431612239799234897105247533140279576/1025664595914934652764770280910013818346225",
+            "error_bound": "41158881062690520056118025824/17369719993817586288756291908584630025"
+          },
+          "time": "2",
+          "degree_bound": 3,
+          "edit_bound": "2",
+          "steps": 27,
+          "radius": 14,
+          "exp_partial_sum": "571236074491463/1415952663125",
+          "exp_tail_bound": "3328946424/131081817788796875",
+          "defect_tail_bound": "125198996544/52882179599376133649",
+          "retained_numerator": "98038597857403878296/3698160658676859375",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "0",
+            "2/9",
+            "0",
+            "10/81",
+            "10/243",
+            "56/729",
+            "112/2187",
+            "386/6561",
+            "4/81",
+            "2902/59049",
+            "2596/59049",
+            "22036/531441",
+            "59644/1594323",
+            "163676/4782969",
+            "437740/14348907",
+            "1167586/43046721",
+            "3044122/129140163",
+            "7820192/387420489",
+            "6497164/387420489",
+            "15651890/1162261467",
+            "106664530/10460353203",
+            "220369624/31381059609",
+            "368188048/94143178827",
+            "251444516/282429536481",
+            "-579770080/282429536481",
+            "-12470160272/2541865828329",
+            "-2167581326/282429536481"
+          ],
+          "local_types": 52,
+          "local_variation": "64",
+          "largest_ball": 36
+        },
+        "absolute_difference_from_dense": 2.7990387785337134e-12
+      },
+      "krylov": {
+        "method": "defect_seeded_common_subspace_block_krylov",
+        "vertices": 256,
+        "edited_edges": 2,
+        "initial_block_rank": 2,
+        "requested_steps": 14,
+        "block_dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "subspace_dimension": 28,
+        "moment_exact_through_degree": 28,
+        "moment_exactness_qualification": "Exact arithmetic; numerical rank truncation may alter the space.",
+        "numerical_breakdown": false,
+        "rank_tolerance": 1e-12,
+        "matvec_columns": 54,
+        "sparse_nonzeros": 806,
+        "estimated_sparse_scalar_products": 43524,
+        "basis_bytes": 57344,
+        "basis_orthogonality_error": 2.383248520849884e-15,
+        "invariant_residual": 1.9522066438009362,
+        "matrix_seconds": 0.0005512299976544455,
+        "krylov_seconds": 0.0007268510016729124,
+        "projection_seconds": 7.890699635026976e-05,
+        "projection_total_seconds": 0.0013569879956776276,
+        "normalized": false,
+        "unnormalized_estimate": 0.06571196069149764,
+        "normalized_estimate": 0.00025668734645116264,
+        "eigensolve_seconds": 0.00011223700130358338,
+        "total_seconds": 0.00147611500142375,
+        "error_status": "Projection and floating-point errors are not certified.",
+        "sample_seconds": [
+          0.0012934830010635778,
+          0.00147611500142375,
+          0.0020317910020821728
+        ],
+        "value": 0.06571196069149764,
+        "exact_arithmetic_krylov_tail_bound": 4.735016502439208e-09,
+        "tail_bound_qualification": "Assumes the exact Krylov space and polynomial trace exactness; excludes floating-point roundoff and SVD rank truncation.",
+        "difference_from_certified_midpoint": 2.7463170626518263e-12,
+        "absolute_difference_from_dense": 5.272171588188712e-14
+      },
+      "dense": {
+        "value": 0.06571196069144492,
+        "before_value": 48.726287943042976,
+        "after_value": 48.79199990373442,
+        "matrix_seconds": 0.000875632009410765,
+        "eigensolve_seconds": 0.004451748995052185,
+        "total_seconds": 0.00532738100446295,
+        "error_status": "Independent dense reference; floating error and subtraction are uncertified.",
+        "sample_seconds": [
+          0.005193652999878395,
+          0.00532738100446295,
+          0.005461321001348551
+        ]
+      },
+      "sparse_uniformization": {
+        "value": 0.06571196069153018,
+        "steps": 29,
+        "matrix_seconds": 0.0009767219962668605,
+        "powers_seconds": 0.0072498700028518215,
+        "total_seconds": 0.008226591999118682,
+        "peak_power_nonzeros": 17782,
+        "combined_truncation_bound": 1.3093183004133042e-09,
+        "error_status": "Poisson truncation bound excludes floating roundoff and subtraction error.",
+        "sample_seconds": [
+          0.008186352992197499,
+          0.008226591999118682,
+          0.008272561004559975
+        ],
+        "absolute_difference_from_dense": 8.526512829121202e-14
+      }
+    }
+  ],
+  "infinite_cases": [
+    {
+      "case": "cut_line",
+      "time": "1/2",
+      "finite_graph_materialized": false,
+      "global_variation_bound": null,
+      "certified": {
+        "seconds": 0.0009293219991377555,
+        "sample_seconds": [
+          0.0009266479974030517,
+          0.0009293219991377555,
+          0.001049600999976974
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "certificate": {
+          "interval": {
+            "lower": "31711343135/73349455773",
+            "upper": "41290114255593075841/95505491038810394685",
+            "midpoint": "13763371391617948736/31835163679603464895",
+            "error_bound": "4749366449/5617970061106493805"
+          },
+          "time": "1/2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 12,
+          "radius": 6,
+          "exp_partial_sum": "260412269/95800320",
+          "exp_tail_bound": "1/5782233600",
+          "defect_tail_bound": "61/73349455773",
+          "retained_numerator": "15636757/13305600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 7,
+          "local_variation": "24",
+          "largest_ball": 13
+        },
+        "value": 0.43233235833607575,
+        "absolute_error_bound": 8.453883515471393e-10
+      },
+      "analytic": {
+        "value": 0.43233235838169365,
+        "formula": "(1-exp(-4t))/2",
+        "status": "Independent floating evaluation of the analytic formula."
+      }
+    },
+    {
+      "case": "cut_line",
+      "time": "2",
+      "finite_graph_materialized": false,
+      "global_variation_bound": null,
+      "certified": {
+        "seconds": 0.0034162189986091107,
+        "sample_seconds": [
+          0.0033952480007428676,
+          0.0034162189986091107,
+          0.003423371003009379
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "certificate": {
+          "interval": {
+            "lower": "6728166524452130148/13460848699275291373",
+            "upper": "787537670534237505566854988358630172/1575603892990793012739572379707094451",
+            "midpoint": "787537668326948225147200599891786524/1575603892990793012739572379707094451",
+            "error_bound": "2207289280419654388466843648/1575603892990793012739572379707094451"
+          },
+          "time": "2",
+          "degree_bound": 2,
+          "edit_bound": "1",
+          "steps": 22,
+          "radius": 11,
+          "exp_partial_sum": "117050858247565087/2143861251406875",
+          "exp_tail_bound": "268435456/82181347970596875",
+          "defect_tail_bound": "18656264192/13460848699275291373",
+          "retained_numerator": "483518975429996/17717861581875",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          "local_types": 12,
+          "local_variation": "44",
+          "largest_ball": 23
+        },
+        "value": 0.49983226864973873,
+        "absolute_error_bound": 1.4009163662510402e-09
+      },
+      "analytic": {
+        "value": 0.49983226868604874,
+        "formula": "(1-exp(-4t))/2",
+        "status": "Independent floating evaluation of the analytic formula."
+      }
+    },
+    {
+      "case": "cut_line_times_line",
+      "time": "1/2",
+      "finite_graph_materialized": false,
+      "global_variation_bound": null,
+      "certified": {
+        "seconds": 0.01710185900446959,
+        "sample_seconds": [
+          0.016983925001113676,
+          0.01710185900446959,
+          0.017278091996558942
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "certificate": {
+          "interval": {
+            "lower": "59770837632964679/296831362998992896",
+            "upper": "281999268284558249668141231/1400452582319734188824068096",
+            "midpoint": "140999631397349202102491115/700226291159867094412034048",
+            "error_bound": "5489859845463159001/1400452582319734188824068096"
+          },
+          "time": "1/2",
+          "degree_bound": 4,
+          "edit_bound": "1",
+          "steps": 15,
+          "radius": 8,
+          "exp_partial_sum": "4718007451/638512875",
+          "exp_tail_bound": "34/9577693125",
+          "defect_tail_bound": "274/70770111799",
+          "retained_numerator": "265648172365351/178541140377600",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1/2",
+            "0",
+            "5/16",
+            "0",
+            "63/256",
+            "0",
+            "429/2048",
+            "0",
+            "12155/65536",
+            "0",
+            "88179/524288",
+            "0",
+            "1300075/8388608",
+            "0",
+            "9694845/67108864"
+          ],
+          "local_types": 9,
+          "local_variation": "32",
+          "largest_ball": 145
+        },
+        "value": 0.2013629496313184,
+        "absolute_error_bound": 3.920061210762066e-09
+      },
+      "analytic": {
+        "value": 0.20136294958989076,
+        "formula": "(1-exp(-4t))*exp(-2t)*I_0(2t)/2",
+        "status": "Independent floating evaluation of the analytic formula."
+      },
+      "factorized_certified": {
+        "seconds": 0.0012386819944367744,
+        "sample_seconds": [
+          0.0012294280022615567,
+          0.0012386819944367744,
+          0.0012867330005974509
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "interval": {
+          "lower": "15984429990237305145/79381187362013796848",
+          "upper": "961547134119291014328253967309/4775193911993767703939820193872",
+          "midpoint": "120193391422529349343632394529/596899238999220962992477524234",
+          "error_bound": "2739056219579194811077/4775193911993767703939820193872"
+        },
+        "value": 0.20136294967312937,
+        "absolute_error_bound": 5.736010453312811e-10,
+        "left_steps": 12,
+        "right_steps": 11,
+        "basis": "Cartesian heat trace multiplicativity, with exact interval endpoint products."
+      }
+    },
+    {
+      "case": "cut_line_times_line",
+      "time": "2",
+      "finite_graph_materialized": false,
+      "global_variation_bound": null,
+      "certified": {
+        "seconds": 0.24391689600452082,
+        "sample_seconds": [
+          0.24146905599627644,
+          0.24391689600452082,
+          0.24778643900208408
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "certificate": {
+          "interval": {
+            "lower": "944792425711737810967503282476/9131407947218627287400101741131",
+            "upper": "115030472307553939269053088325713702361485490952345986115884/1111768147832135353460424452199910019907157111140586151543883",
+            "midpoint": "115030469910216012795634812863953373814129829780158802405676/1111768147832135353460424452199910019907157111140586151543883",
+            "error_bound": "2397337926473418275461760328547355661172187183710208/1111768147832135353460424452199910019907157111140586151543883"
+          },
+          "time": "2",
+          "degree_bound": 4,
+          "edit_bound": "1",
+          "steps": 31,
+          "radius": 16,
+          "exp_partial_sum": "501037473031612739562977851/168079347403163993671875",
+          "exp_tail_bound": "36893488147419103232/92825639588565569232421875",
+          "defect_tail_bound": "19627335694426962919424/9131407947218627287400101741131",
+          "retained_numerator": "5398813973366134316539806868/17504263465272364483828125",
+          "local_error_bound": "0",
+          "retained_returns": [
+            "0",
+            "1/2",
+            "0",
+            "5/16",
+            "0",
+            "63/256",
+            "0",
+            "429/2048",
+            "0",
+            "12155/65536",
+            "0",
+            "88179/524288",
+            "0",
+            "1300075/8388608",
+            "0",
+            "9694845/67108864",
+            "0",
+            "583401555/4294967296",
+            "0",
+            "4418157975/34359738368",
+            "0",
+            "67282234305/549755813888",
+            "0",
+            "514589420475/4398046511104",
+            "0",
+            "15801325804719/140737488355328",
+            "0",
+            "121683714103007/1125899906842624",
+            "0",
+            "1879204156221315/18014398509481984",
+            "0",
+            "14544636039226909/144115188075855872"
+          ],
+          "local_types": 17,
+          "local_variation": "64",
+          "largest_ball": 545
+        },
+        "value": 0.10346623991208673,
+        "absolute_error_bound": 2.156329025209121e-09
+      },
+      "analytic": {
+        "value": 0.10346623990775602,
+        "formula": "(1-exp(-4t))*exp(-2t)*I_0(2t)/2",
+        "status": "Independent floating evaluation of the analytic formula."
+      },
+      "factorized_certified": {
+        "seconds": 0.004858314001467079,
+        "sample_seconds": [
+          0.004764515004353598,
+          0.004858314001467079,
+          0.005104550000396557
+        ],
+        "cache_policy": "Graphlocal caches cleared before every sample.",
+        "interval": {
+          "lower": "32555385436394022387853319655444/314647420153673399470389462237973",
+          "upper": "10032102987831266711114753419884845907035764606643492/96960157254758051598316073835631193471032038224838041",
+          "midpoint": "10032102936289381618390519034674739299501230497738020/96960157254758051598316073835631193471032038224838041",
+          "error_bound": "51541885092724234385210106607534534108905472/96960157254758051598316073835631193471032038224838041"
+        },
+        "value": 0.10346624036438518,
+        "absolute_error_bound": 5.315779857627547e-10,
+        "left_steps": 23,
+        "right_steps": 20,
+        "basis": "Cartesian heat trace multiplicativity, with exact interval endpoint products."
+      }
+    }
+  ],
+  "summary": {
+    "finite_comparisons": 14,
+    "infinite_comparisons": 4,
+    "dense_comparisons": 12,
+    "all_numerical_references_inside_exact_rational_intervals": true,
+    "max_krylov_dense_absolute_difference": 1.978417429882029e-13,
+    "median_local_over_krylov_time": 12.075321563464977
+  }
+}

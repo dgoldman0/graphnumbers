@@ -1,17 +1,21 @@
 {
   "python": "3.12.14",
-  "tests_run": 24,
+  "tests_run": 39,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
   "success": true,
-  "seconds": 0.25471019399992656,
+  "seconds": 0.6075818160024937,
   "coverage": [
     "160 independent brute-force isomorphism comparisons",
     "300 exact local/full Cartesian histogram comparisons",
     "rational full-matrix checks of the 2R locality boundary",
     "70-digit independent heat and exponential closed forms",
     "deliberately inexact oracle error propagation",
-    "reconstruction duals and infeasibility witnesses"
+    "reconstruction duals and infeasibility witnesses",
+    "258 sparse-edit local/full histogram comparisons",
+    "cut-line limit, variation growth, and exact lazy-return moments",
+    "relative heat, signed Cartesian propagation, separated/nearby defects",
+    "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"
   ]
 }

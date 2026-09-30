@@ -5,6 +5,12 @@ package [graphnumbers-local](../../python/README.md), imported as `graphlocal`.
 It packages a computable part of the existing completion and develops one
 application with explicit accuracy contracts.
 
+The subsequent [sparse-defect note](SPARSE_DEFECTS_AND_RELATIVE_HEAT.md)
+gives another controlled domain: an edit budget can replace global
+variation for relative heat. This includes the cut-line defect beyond
+finite signed measures. It does not change the obstruction to a continuous
+heat functional on the unrestricted completion proved below.
+
 ## 1. What a finite computation represents
 
 For an effective element X, `approximate(r, k, epsilon)` returns a finite

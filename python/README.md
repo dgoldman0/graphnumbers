@@ -1,4 +1,4 @@
-# graphnumbers-local 0.1.0
+# graphnumbers-local 0.2.0
 
 A research library for exact graph arithmetic and certified local
 approximations, imported as `graphlocal`. Python 3.10 or later; the core
@@ -22,6 +22,7 @@ The benchmark additionally needs NumPy and SciPy:
 ```sh
 python3 -m pip install '.[benchmark]'
 PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 examples/heat_benchmark.py --output results/heat_benchmark.json
+PYTHONPATH=src OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python3 examples/defect_benchmark.py --output results/defect_benchmark.json
 ```
 
 ## Exact arithmetic and local limits
@@ -140,6 +141,76 @@ has no continuous linear extension to the full signed completion.
 It is uniformly continuous on classes with fixed degree and total-variation
 bounds. The global bound is therefore part of the mathematical contract.
 
+## Sparse defects and relative heat
+
+`relative_heat(X, time, epsilon)` uses a uniform edit bound in place of
+global total variation. It computes the **unnormalized** heat-trace
+correction by default, preserving the signal of a fixed defect as the
+graph grows. Its output is a rational interval of radius at most epsilon.
+
+```python
+from graphlocal import CutLineDefect, Line, SparseEdgeDifference, cycle, relative_heat
+
+cut_cycle = SparseEdgeDifference(cycle(128), [(0, 127, -1)])
+finite_response = relative_heat(cut_cycle, "1/2")
+
+E = CutLineDefect()                # limit of P_n - C_n, without normalization
+assert E.local(5).norm(0) == 20
+response = relative_heat(E, "1/2")
+print(float(response.interval.midpoint))   # approximately 0.4323323584
+
+surface = E * Line()               # planar cut, per transverse volume
+surface_response = relative_heat(surface, "1/2")
+```
+
+`SparseEdgeDifference` takes distinct `(u, v, sign)` edge edits, with
+sign +1 for insertion and -1 for deletion. Its local calculation visits
+only roots near edited endpoints, then combines rooted types exactly.
+`normalize=True` divides both the difference and its edit budget by the
+common vertex count. Construction still validates the explicit graph;
+the locality statement concerns the subsequent correction calculation.
+
+The cut-line element E satisfies `||T_r E||_1 = 4r`, so it has no finite
+global signed-measure representation. A degree bound of two and a
+uniform one-edge edit budget nevertheless give
+
+$$\mathcal H_t(E)=\frac{1-e^{-4t}}2,\qquad
+\mathcal H_t(E L^d)=\frac{1-e^{-4t}}2\,h_{\rm line}(t)^d.$$
+
+For a degree bound D and weighted edit budget q, retaining moments
+through M leaves absolute error at most
+`2*q*t*Pr[Poisson(t*D) >= M]`. This bound is independent of graph volume.
+The implementation also encloses the exponential normalization using
+rational arithmetic and accounts for input approximation error.
+
+Sums and scalar multiples propagate edit bounds. Multiplication by a
+bounded-degree element of finite variation C propagates q to q*C.
+Arbitrary products of defects need not have this certificate: E*E is
+a valid algebra element but is currently rejected by `relative_heat`.
+Generic `Finite` expressions do not automatically infer an edit pairing;
+use `SparseEdgeDifference` when that structure is known.
+
+Custom elements supplying `edit_bound` must certify both the lazy-return
+moment bound `abs(d_j) <= 2*q*j/D` and the whole-response bound
+`abs(H_t) <= q*min(1, 2*t)`, as well as degree and zero vertex mass.
+These follow for the implemented constructors from finite edits and
+the proved product extension. The metadata is additional analytic
+information, not a property guaranteed for every element of the completion.
+
+The [proof](../research/local-completion/SPARSE_DEFECTS_AND_RELATIVE_HEAT.md)
+establishes the controlled domain, exact cut formula, and Cartesian
+propagation. It is compatible with the earlier obstruction: heat still
+has no continuous linear extension to the unrestricted signed completion.
+The [literature comparison](../research/local-completion/SPARSE_DEFECT_COMPARISON.md)
+credits relative heat, uniformization, and low-rank matrix updates.
+
+The [defect experiment](examples/defect_benchmark.py) compares rational
+certificates to shared-subspace block Krylov updates, sparse polynomial
+traces, and dense eigensolves. Numerical baselines do not certify floating
+point roundoff; their values are checked against our exact intervals.
+Every comparison uses unnormalized corrections and fixed absolute accuracy.
+See the [recorded results](results/defect_benchmark.json).
+
 ## Measured first application
 
 [Recorded results](results/heat_benchmark.json), with t=1/2 and requested
@@ -176,6 +247,50 @@ The first demonstrated use is retaining algebraic structure and known
 limits through a certified computation. Rooted isomorphism and repeated
 neighborhood extraction are the clearest performance targets.
 
+## Measured defect application
+
+The [defect results](results/defect_benchmark.json) contain 14 finite cases
+and four infinite cases at t=1/2 and t=2, requesting absolute error 1e-8.
+Each reported runtime is the median of three samples with one BLAS thread.
+Local caches start cold. Shared explicit graph construction is recorded
+separately; numerical method times include matrix construction.
+
+| Unnormalized correction | Time t | Exact local certificate, ms | Block Krylov, ms | Dense reference, ms |
+| --- | ---: | ---: | ---: | ---: |
+| One cut in C512 | 0.5 | 2.65 | 1.08 | 26.96 |
+| One cut in C4096 | 0.5 | 12.54 | 7.22 | — |
+| One cut in C4096 | 2 | 27.43 | 8.16 | — |
+| Two mixed edits, irregular graph on 128 vertices | 2 | 91.33 | 1.12 | 1.87 |
+
+Block Krylov is faster in all 14 finite cases; the median local/Krylov
+runtime ratio is about 12.1. All computed Krylov, dense, and sparse
+references lie inside the rational intervals, without an added containment
+allowance. The largest observed Krylov/dense discrepancy is 1.98e-13.
+This is observed agreement, not a proof of the floating methods' accuracy.
+The Krylov comparison also receives a dimension-independent analytic
+truncation bound; roundoff and numerical rank deflation remain uncertified.
+
+For the infinite product E*L, direct local certificates take 17.10 ms
+at t=1/2 and 243.92 ms at t=2. Applying the proved heat factorization to
+separately certified E and L intervals takes 1.24 ms and 4.86 ms,
+respectively. Both routes use no finite volume approximation and satisfy
+the requested tolerance. Conventional methods also have access to this
+Cartesian factorization; these internal speedups establish no exclusive
+algorithmic advantage.
+
+For one cut the affected-root count is 14 at t=1/2 and 24 at t=2 for
+every tested cycle size. Actual finite-input runtime still grows with n;
+the current representation and whole-graph cache keys introduce overhead.
+The mathematical certificate has volume-independent degree and radius
+requirements, but the current implementation is not constant-time in n.
+
+The result is a useful extension of what this algebra can represent and
+evaluate: full signed local defect geometry, beyond finite measures, can
+be combined with background factors and passed to a controlled spectral
+observable. A speed advantage over established low-rank methods has not
+been demonstrated. Reuse across many observables and interacting defects
+is a more discriminating next experiment than another single heat trace.
+
 ## Verification and provenance
 
 [Tests](tests/test_graphlocal.py) use standard-library `unittest`, exact
@@ -185,6 +300,14 @@ oracles with valid bounds, so error propagation is exercised. The
 [result record](results/verification.json) gives the current test count.
 These tests accompany the mathematical proofs and are not formal proof
 verification.
+
+The [defect tests](tests/test_defects.py) check exact sparse cancellation,
+growing cut-line variation, closed-form moments and relative heat,
+normalization, signed products, and separated versus interacting cuts.
+The optional [baseline tests](tests/test_defect_baselines.py) check Krylov
+polynomial trace exactness and compare numerical methods independently.
+All 39 tests passed with NumPy/SciPy; running with site packages disabled
+passes the 33 core tests and skips the six optional baseline tests.
 
 Graph isomorphism and catalog reconstruction are adapted from the existing
 research verifiers, which remain unchanged. The runtime package imports

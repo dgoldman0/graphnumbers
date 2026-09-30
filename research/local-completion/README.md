@@ -16,6 +16,14 @@ unestablished. Read this candidate as an application of existing frameworks
 with a particular topology, subject to the comparisons and open questions in
 that review.
 
+The latest [application investigation](SPARSE_DEFECTS_AND_RELATIVE_HEAT.md)
+constructs an explicit cut-line defect beyond finite signed measures and
+proves that uniform edit control permits certified relative heat on this
+element and its Cartesian products with lattice limits. The
+[focused comparison](SPARSE_DEFECT_COMPARISON.md) examines established
+relative-trace and low-rank update methods. Implementations and reproducible
+benchmarks are in the [Python library](../../python/README.md).
+
 The [identification follow-up](FOLLOWUP_IDENTIFICATION.md) uses the later
 structural theorems to identify the formal local algebras as generalized
 power-series rings and the weighted pieces as standard convolution

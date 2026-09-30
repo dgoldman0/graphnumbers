@@ -68,7 +68,7 @@ reflection remains unresolved.
 ## Research library and first application
 
 The independent [Python library](python/README.md), `graphnumbers-local`
-version 0.1.0, implements exact rational graph arithmetic, lazy Cartesian
+version 0.2.0, implements exact rational graph arithmetic, lazy Cartesian
 products, computable local limits, certified local approximation, algebra
 exponentials and derivatives, and finite-catalog reconstruction. The core
 has no third-party runtime dependencies.
@@ -82,3 +82,13 @@ extension to the entire signed completion. Tests, an executable example,
 and comparisons with dense eigensolves are included. The measurements
 demonstrate the value of retaining Cartesian factorizations and limits,
 while documenting current neighborhood-extraction costs.
+
+The [sparse-defect investigation](research/local-completion/SPARSE_DEFECTS_AND_RELATIVE_HEAT.md)
+constructs the unnormalized cut-line limit of P_n-C_n. Its local variation
+grows as 4r, putting it beyond finite signed measures, but a uniform edit
+budget yields certified relative heat and Cartesian lattice responses.
+The library implements these calculations and compares them with
+established block Krylov updates. The
+[focused literature review](research/local-completion/SPARSE_DEFECT_COMPARISON.md)
+distinguishes the completed defect representation from classical relative
+trace and matrix-function methods.

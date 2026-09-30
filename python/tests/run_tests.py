@@ -22,7 +22,11 @@ report = {
                  "rational full-matrix checks of the 2R locality boundary",
                  "70-digit independent heat and exponential closed forms",
                  "deliberately inexact oracle error propagation",
-                 "reconstruction duals and infeasibility witnesses"],
+                 "reconstruction duals and infeasibility witnesses",
+                 "258 sparse-edit local/full histogram comparisons",
+                 "cut-line limit, variation growth, and exact lazy-return moments",
+                 "relative heat, signed Cartesian propagation, separated/nearby defects",
+                 "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }
 if args.output:
     args.output.parent.mkdir(parents=True, exist_ok=True)
