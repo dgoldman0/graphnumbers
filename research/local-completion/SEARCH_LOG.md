@@ -377,3 +377,32 @@ a nonzero kernel. The note also gives a proper-subalgebra reflection,
 a universal mixed-sign image constraint on injective extensions, and a
 discontinuous algebraic involution that changes infinitely many primes.
 These results leave the full automorphism existence question open.
+
+## Effective library and heat application
+
+The next task paired a small research library with a certified graph
+heat-return calculation. Read Bordenave–Lelarge, *Resolvent of Large
+Random Graphs*, https://arxiv.org/abs/0801.0155 and the full manuscript,
+for the established connection between local graph convergence and
+adjacency/Laplacian spectral distributions. Its integrability hypotheses
+were retained in interpreting this as application context.
+
+Uniformization searches located Rao–Teh, *Fast MCMC Sampling for Markov
+Jump Processes and Extensions*, JMLR 14 (2013), pp. 3295–3320,
+https://jmlr.org/papers/volume14/rao13a/rao13a.pdf. Section 3.1 describes
+the Poisson/discrete-chain representation used here. The paper's MCMC
+sampler is not part of this implementation. Jensen's original 1953
+article was identified bibliographically, but its DOI endpoint was
+inaccessible; no unread original theorem is quoted. Uniformization
+and its use in continuous-time chains are established methods.
+
+Official NetworkX Cartesian-product documentation and the SciPy `eigh`
+documentation were checked for implementation context. The delivered
+runtime core is standard-library-only; NumPy/SciPy are optional benchmark
+dependencies. The NetworkX adapter is duck-typed and optional.
+
+The direct proofs in [EFFECTIVE_ANALYSIS_AND_HEAT.md](EFFECTIVE_ANALYSIS_AND_HEAT.md)
+establish the precise 2R locality bound, rational signed-error enclosures,
+continuity under fixed degree/variation bounds, and the obstruction to
+extending heat return continuously to all of A. This focused source
+check is not a further exhaustive literature review or a priority claim.

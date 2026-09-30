@@ -213,3 +213,26 @@ deferred. Full intrinsic recovery of the finite graphs, positive cones,
 and individual neighborhood coordinates also remains open after the partial
 rigidity results. The v0.1 PDF and TeX remain the original checkpoint; later results
 are in separate notes.
+
+## Effective calculations and heat return
+
+The separate [Python package](../../python/README.md) provides a usable
+interface to finite rational combinations, lazy products, the line and
+its products, local approximation certificates, algebra exponentials and
+directional derivatives, and finite-catalog reconstruction. It does not
+import the proof verifiers or modify the historical software.
+
+[EFFECTIVE_ANALYSIS_AND_HEAT.md](EFFECTIVE_ANALYSIS_AND_HEAT.md) proves
+the implemented error propagation and a rational uniformization enclosure
+for average heat return. Terms through order 2R are determined by the
+induced R-ball, with a precise boundary-degree argument. Heat return is
+uniformly continuous on sets with fixed degree and global variation
+bounds, but has no continuous linear extension to the full completion
+for positive time. The latter is witnessed by locally identical cycles
+with different heat values.
+
+The package includes independent exact tests, a quickstart and a
+six-case synthetic benchmark against dense matrix calculations. The
+benchmark also checks Cartesian factorizations and infinite limits and
+records the specialized cycle-spectrum baseline. Its measurements are
+implementation evidence, with no general speedup or novelty claim.

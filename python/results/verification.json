@@ -1,0 +1,17 @@
+{
+  "python": "3.12.14",
+  "tests_run": 24,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "success": true,
+  "seconds": 0.25471019399992656,
+  "coverage": [
+    "160 independent brute-force isomorphism comparisons",
+    "300 exact local/full Cartesian histogram comparisons",
+    "rational full-matrix checks of the 2R locality boundary",
+    "70-digit independent heat and exponential closed forms",
+    "deliberately inexact oracle error propagation",
+    "reconstruction duals and infeasibility witnesses"
+  ]
+}

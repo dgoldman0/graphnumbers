@@ -1,0 +1,373 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "numpy": "2.3.5",
+  "scipy": "1.17.0",
+  "threads": {
+    "OPENBLAS_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "time": "1/2",
+  "requested_error": "1e-8",
+  "cases": [
+    {
+      "case": "cycle_64",
+      "vertices": 64,
+      "edges": 64,
+      "local_seconds": 0.0024579899982200004,
+      "dense": {
+        "value": 0.46575960759364043,
+        "matrix_seconds": 5.685399810317904e-05,
+        "eigensolve_seconds": 0.000248759999522008,
+        "total_seconds": 0.00030561399762518704,
+        "matrix_bytes": 32768
+      },
+      "midpoint": 0.4657596078353193,
+      "absolute_error_bound": 4.1600702510064873e-10,
+      "observed_difference": 2.4167884360437597e-10,
+      "certificate": {
+        "interval": {
+          "lower": "16633990791/35713682608",
+          "upper": "116437935745/249995778256",
+          "midpoint": "116437935641/249995778256",
+          "error_bound": "13/31249472282"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "steps": 11,
+        "radius": 6,
+        "variation_bound": "1",
+        "positive_mass": "1",
+        "exp_partial_sum": "13563139/4989600",
+        "exp_tail_bound": "13/5748019200",
+        "retained_numerator": "6222967/4915200",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "1",
+          "0",
+          "1/2",
+          "0",
+          "3/8",
+          "0",
+          "5/16",
+          "0",
+          "35/128",
+          "0",
+          "63/256",
+          "0"
+        ],
+        "local_types": 1,
+        "largest_ball": 13
+      },
+      "cycle_formula": {
+        "value": 0.46575960759364043,
+        "seconds": 5.632299871649593e-05
+      },
+      "limit": {
+        "seconds": 0.0003319829993415624,
+        "midpoint": 0.4657596078353193,
+        "error_bound": 4.1600702510064873e-10,
+        "same_local_data": true
+      }
+    },
+    {
+      "case": "cycle_256",
+      "vertices": 256,
+      "edges": 256,
+      "local_seconds": 0.009123144998739008,
+      "dense": {
+        "value": 0.46575960759364043,
+        "matrix_seconds": 0.0003502710023894906,
+        "eigensolve_seconds": 0.002098674995067995,
+        "total_seconds": 0.0024489459974574856,
+        "matrix_bytes": 524288
+      },
+      "midpoint": 0.4657596078353193,
+      "absolute_error_bound": 4.1600702510064873e-10,
+      "observed_difference": 2.4167884360437597e-10,
+      "certificate": {
+        "interval": {
+          "lower": "16633990791/35713682608",
+          "upper": "116437935745/249995778256",
+          "midpoint": "116437935641/249995778256",
+          "error_bound": "13/31249472282"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "steps": 11,
+        "radius": 6,
+        "variation_bound": "1",
+        "positive_mass": "1",
+        "exp_partial_sum": "13563139/4989600",
+        "exp_tail_bound": "13/5748019200",
+        "retained_numerator": "6222967/4915200",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "1",
+          "0",
+          "1/2",
+          "0",
+          "3/8",
+          "0",
+          "5/16",
+          "0",
+          "35/128",
+          "0",
+          "63/256",
+          "0"
+        ],
+        "local_types": 1,
+        "largest_ball": 13
+      },
+      "cycle_formula": {
+        "value": 0.46575960759364043,
+        "seconds": 3.061600000364706e-05
+      },
+      "limit": {
+        "seconds": 0.0003557780000846833,
+        "midpoint": 0.4657596078353193,
+        "error_bound": 4.1600702510064873e-10,
+        "same_local_data": true
+      }
+    },
+    {
+      "case": "cycle_768",
+      "vertices": 768,
+      "edges": 768,
+      "local_seconds": 0.03539733399520628,
+      "dense": {
+        "value": 0.4657596075936404,
+        "matrix_seconds": 0.0022990130019024946,
+        "eigensolve_seconds": 0.030330592002428602,
+        "total_seconds": 0.0326296050043311,
+        "matrix_bytes": 4718592
+      },
+      "midpoint": 0.4657596078353193,
+      "absolute_error_bound": 4.1600702510064873e-10,
+      "observed_difference": 2.416788991155272e-10,
+      "certificate": {
+        "interval": {
+          "lower": "16633990791/35713682608",
+          "upper": "116437935745/249995778256",
+          "midpoint": "116437935641/249995778256",
+          "error_bound": "13/31249472282"
+        },
+        "time": "1/2",
+        "degree_bound": 2,
+        "steps": 11,
+        "radius": 6,
+        "variation_bound": "1",
+        "positive_mass": "1",
+        "exp_partial_sum": "13563139/4989600",
+        "exp_tail_bound": "13/5748019200",
+        "retained_numerator": "6222967/4915200",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "1",
+          "0",
+          "1/2",
+          "0",
+          "3/8",
+          "0",
+          "5/16",
+          "0",
+          "35/128",
+          "0",
+          "63/256",
+          "0"
+        ],
+        "local_types": 1,
+        "largest_ball": 13
+      },
+      "cycle_formula": {
+        "value": 0.4657596075936404,
+        "seconds": 4.761099989991635e-05
+      },
+      "limit": {
+        "seconds": 0.00041657900146674365,
+        "midpoint": 0.4657596078353193,
+        "error_bound": 4.1600702510064873e-10,
+        "same_local_data": true
+      }
+    },
+    {
+      "case": "prism_256",
+      "vertices": 256,
+      "edges": 384,
+      "local_seconds": 0.02585083099984331,
+      "dense": {
+        "value": 0.3185514958777096,
+        "matrix_seconds": 0.0002649529997142963,
+        "eigensolve_seconds": 0.0020594480010913685,
+        "total_seconds": 0.002324401000805665,
+        "matrix_bytes": 524288
+      },
+      "midpoint": 0.3185514996835599,
+      "absolute_error_bound": 3.9052816023478815e-09,
+      "observed_difference": 3.805850301574765e-09,
+      "certificate": {
+        "interval": {
+          "lower": "910335846892225/2857735276577847",
+          "upper": "910335869212747/2857735276577847",
+          "midpoint": "910335858052486/2857735276577847",
+          "error_bound": "45927/11760227475629"
+        },
+        "time": "1/2",
+        "degree_bound": 3,
+        "steps": 12,
+        "radius": 6,
+        "variation_bound": "1",
+        "positive_mass": "1",
+        "exp_partial_sum": "36185315027/8074035200",
+        "exp_tail_bound": "6561/187432960000",
+        "retained_numerator": "2801033375053/1961990553600",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "1",
+          "0",
+          "1/3",
+          "0",
+          "19/81",
+          "0",
+          "47/243",
+          "0",
+          "41/243",
+          "0",
+          "8953/59049",
+          "0",
+          "73789/531441"
+        ],
+        "local_types": 1,
+        "largest_ball": 24
+      },
+      "limit": {
+        "seconds": 0.0007711449943599291,
+        "midpoint": 0.3185514996835599,
+        "error_bound": 3.9052816023478815e-09,
+        "same_local_data": true
+      },
+      "factorized": {
+        "seconds": 0.00682188799692085,
+        "same_local_data": true,
+        "same_interval": true
+      }
+    },
+    {
+      "case": "torus_576",
+      "vertices": 576,
+      "edges": 1152,
+      "local_seconds": 1.923782564997964,
+      "dense": {
+        "value": 0.21693201206578194,
+        "matrix_seconds": 0.0016737350015318953,
+        "eigensolve_seconds": 0.012619365996215492,
+        "total_seconds": 0.014293100997747388,
+        "matrix_bytes": 2654208
+      },
+      "midpoint": 0.2169320139861297,
+      "absolute_error_bound": 1.937864073633431e-09,
+      "observed_difference": 1.9203477696905225e-09,
+      "certificate": {
+        "interval": {
+          "lower": "3756213114188535/17315162841677824",
+          "upper": "3756213181297399/17315162841677824",
+          "midpoint": "3756213147742967/17315162841677824",
+          "error_bound": "64/33026052173"
+        },
+        "time": "1/2",
+        "degree_bound": 4,
+        "steps": 14,
+        "radius": 7,
+        "variation_bound": "1",
+        "positive_mass": "1",
+        "exp_partial_sum": "314533829/42567525",
+        "exp_tail_bound": "128/4469590125",
+        "retained_numerator": "9265334947/5780275200",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "1",
+          "0",
+          "1/4",
+          "0",
+          "9/64",
+          "0",
+          "25/256",
+          "0",
+          "1225/16384",
+          "0",
+          "3969/65536",
+          "0",
+          "53361/1048576",
+          "0",
+          "184041/4194304"
+        ],
+        "local_types": 1,
+        "largest_ball": 113
+      },
+      "limit": {
+        "seconds": 0.0021135179995326325,
+        "midpoint": 0.2169320139861297,
+        "error_bound": 1.937864073633431e-09,
+        "same_local_data": true
+      },
+      "factorized": {
+        "seconds": 0.006925733003299683,
+        "same_local_data": true,
+        "same_interval": true
+      }
+    },
+    {
+      "case": "irregular_128",
+      "vertices": 128,
+      "edges": 159,
+      "local_seconds": 0.07772351600578986,
+      "dense": {
+        "value": 0.3928177564634442,
+        "matrix_seconds": 0.0001668879995122552,
+        "eigensolve_seconds": 0.0007249970003613271,
+        "total_seconds": 0.0008918849998735823,
+        "matrix_bytes": 131072
+      },
+      "midpoint": 0.3928177598957529,
+      "absolute_error_bound": 3.9052816023478815e-09,
+      "observed_difference": 3.4323087150234244e-09,
+      "certificate": {
+        "interval": {
+          "lower": "4490276634240475/11430941106311388",
+          "upper": "4490276723522563/11430941106311388",
+          "midpoint": "4490276678881519/11430941106311388",
+          "error_bound": "45927/11760227475629"
+        },
+        "time": "1/2",
+        "degree_bound": 3,
+        "steps": 12,
+        "radius": 6,
+        "variation_bound": "1",
+        "positive_mass": "1",
+        "exp_partial_sum": "36185315027/8074035200",
+        "exp_tail_bound": "6561/187432960000",
+        "retained_numerator": "13816235797663/7847962214400",
+        "local_error_bound": "0",
+        "retained_returns": [
+          "1",
+          "11/64",
+          "1/3",
+          "13/96",
+          "515/2592",
+          "859/7776",
+          "181/1296",
+          "1441/15552",
+          "22393/209952",
+          "2771/34992",
+          "324067/3779136",
+          "389213/5668704",
+          "151813/2125764"
+        ],
+        "local_types": 128,
+        "largest_ball": 82
+      }
+    }
+  ],
+  "method": "One cold graphlocal-cache run per case; graph construction and Finite construction excluded. Dense matrix construction included. Numerical backend warmed once.",
+  "interpretation": "Synthetic examples, not a broad performance study. Dense eigensolvers, family-specific formulas, and exact certified local calculations provide different guarantees. No general speedup claim."
+}

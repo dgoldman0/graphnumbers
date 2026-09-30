@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "graphnumbers-local"
+version = "0.1.0"
+description = "Exact graph arithmetic and certified local approximations"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{name = "Daniel Goldman"}]
+dependencies = []
+
+[project.optional-dependencies]
+benchmark = ["numpy>=1.23", "scipy>=1.9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

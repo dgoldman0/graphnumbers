@@ -64,3 +64,21 @@ explicit nontrivial kernel and continuous positive linear preimages of
 both signs. It proves further extension constraints and supplies 476 exact
 finite checks. The existence of a full continuous automorphism with that
 reflection remains unresolved.
+
+## Research library and first application
+
+The independent [Python library](python/README.md), `graphnumbers-local`
+version 0.1.0, implements exact rational graph arithmetic, lazy Cartesian
+products, computable local limits, certified local approximation, algebra
+exponentials and derivatives, and finite-catalog reconstruction. The core
+has no third-party runtime dependencies.
+
+Its first application computes graph heat return with rational error
+certificates, including the infinite line and lattice. The accompanying
+[effective analysis](research/local-completion/EFFECTIVE_ANALYSIS_AND_HEAT.md)
+proves the error bounds and shows why heat return requires degree and
+global variation control: at positive times it has no continuous linear
+extension to the entire signed completion. Tests, an executable example,
+and comparisons with dense eigensolves are included. The measurements
+demonstrate the value of retaining Cartesian factorizations and limits,
+while documenting current neighborhood-extraction costs.
