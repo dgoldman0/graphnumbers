@@ -297,3 +297,39 @@ specific standard ambient algebras and a standard analytic subalgebra;
 they narrow the remaining identification question without settling
 priority. The new topological and algebraic obstructions exclude only
 the explicit identifications stated in the report.
+
+## Characters, inverse-closedness, and quantitative approximation
+
+Later on 30 September 2026, work proceeded on research-plan items 1, 2,
+and 5. Items 3 (two-generator subalgebras) and 4 (intrinsic derivations)
+were explicitly deferred. Quantitative approximation uses the existing
+representation theorem and does not depend on those deferred topics.
+
+The focused source check revisited Pedersen, arXiv:0909.2749, Theorem 2.3
+and Corollary 2.4, for character theory and semisimplicity in a neighboring
+weighted convolution Fréchet algebra. Searches combined weighted
+semigroup characters, bounded semicharacters, inverse-closedness,
+polynomial weights, and the Gelfand–Raikov–Shilov condition.
+
+Read Gröchenig–Leinert, *Symmetry and inverse-closedness of matrix algebras
+and functional calculus for infinite matrices*, especially Section 2.1,
+at https://homepage.univie.ac.at/karlheinz.groechenig/preprints/inverselast.pdf.
+Its group/matrix setting motivates the comparison; the local graph
+application is proved directly through the characters of the commutative
+weighted semigroup Banach algebras. No matrix theorem is imported without
+its hypotheses. Abolghasemi–Rejali–Vishki's weighted-semigroup definition
+remains the underlying Banach-algebra reference.
+
+Also examined the semicharacter discussion in the recent primary article
+*On homomorphisms from semigroup algebras: generation, characters, and
+isolated points*, https://doi.org/10.1007/s00233-026-10654-2.
+Its locally compact group/semigroup framework was not used to assert a
+classification of all characters on our balanced subalgebra.
+
+The new [spectral note](CHARACTERS_AND_INVERSION.md) proves separation
+by direct Fourier averaging and verifies subexponential power growth for
+the local ball weights. The [quantitative note](QUANTITATIVE_APPROXIMATION.md)
+uses moment tails, integer minors, finite linear-program duality, and
+explicit path/cycle calculations. These are applications of established
+methods. This focused source check supplies context, not a new exhaustive
+priority search or an originality claim for the resulting graph statements.

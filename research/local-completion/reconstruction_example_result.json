@@ -1,0 +1,126 @@
+{
+  "status": "optimal_on_catalog",
+  "radius": 2,
+  "target": [
+    {
+      "rows": [
+        12,
+        4,
+        3,
+        17,
+        8
+      ],
+      "value": "1"
+    }
+  ],
+  "catalog": [
+    {
+      "rows": [
+        0
+      ],
+      "coefficient": "0",
+      "normalized_coefficient": "0"
+    },
+    {
+      "rows": [
+        2,
+        1
+      ],
+      "coefficient": "0",
+      "normalized_coefficient": "0"
+    },
+    {
+      "rows": [
+        6,
+        1,
+        1
+      ],
+      "coefficient": "0",
+      "normalized_coefficient": "0"
+    },
+    {
+      "rows": [
+        6,
+        5,
+        3
+      ],
+      "coefficient": "0",
+      "normalized_coefficient": "0"
+    },
+    {
+      "rows": [
+        10,
+        5,
+        2,
+        1
+      ],
+      "coefficient": "-1",
+      "normalized_coefficient": "-4"
+    },
+    {
+      "rows": [
+        12,
+        12,
+        3,
+        3
+      ],
+      "coefficient": "0",
+      "normalized_coefficient": "0"
+    },
+    {
+      "rows": [
+        20,
+        12,
+        3,
+        2,
+        1
+      ],
+      "coefficient": "1",
+      "normalized_coefficient": "5"
+    },
+    {
+      "rows": [
+        24,
+        20,
+        10,
+        5,
+        3
+      ],
+      "coefficient": "0",
+      "normalized_coefficient": "0"
+    }
+  ],
+  "dual": [
+    {
+      "rows": [
+        2,
+        5,
+        2
+      ],
+      "value": "-2"
+    },
+    {
+      "rows": [
+        6,
+        1,
+        1
+      ],
+      "value": "4"
+    },
+    {
+      "rows": [
+        12,
+        4,
+        3,
+        17,
+        8
+      ],
+      "value": "9"
+    }
+  ],
+  "cost": "9",
+  "negative_mass": "4",
+  "rank": 8,
+  "catalog_size": 8,
+  "search_work": 2
+}

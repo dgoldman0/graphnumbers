@@ -16,6 +16,10 @@ for each approximation. Signed coefficients are essential to that proof.
 It also follows that some completed elements have no representation as a
 finite signed measure on whole rooted graphs.
 
+The subsequent [quantitative note](QUANTITATIVE_APPROXIMATION.md) gives
+explicit moment-controlled cutoff rates, graph-size and coefficient-mass
+bounds, certified finite reconstruction, and sharp cancellation examples.
+
 ## 1. Arrays and the balance condition
 
 Use the rooted induced ball types $\mathcal B_r$ from v0.1. Let
@@ -214,7 +218,8 @@ Finite-dimensional linear algebra puts $a_r$ in their span, as required.
 This also provides an explicit reconstruction procedure: enumerate the list,
 form its integer histogram matrix, and solve for real coefficients.
 
-The lemma imposes no sign or size bound on those coefficients.
+This proof imposes no sign or size bound on those coefficients. The later
+quantitative note bounds their mass using an invertible integer minor.
 
 ### Step C. Remove the degree bound without changing the topology
 
@@ -295,8 +300,10 @@ the displayed bound permits graphs on up to
 $$M(n,n)=(n+1)(1+n+\cdots+n^n)$$
 
 vertices. The proof establishes a characterization and an existence
-procedure, not a practical general-purpose implementation. Efficient
-reconstruction and coefficient bounds remain open tasks.
+procedure, not a practical general-purpose implementation. The later
+quantitative note supplies coarse coefficient bounds and a working exact
+solver for small finite catalogs. Efficient general reconstruction remains
+open.
 
 ## 4. Exactly when the arrays define a finite signed measure
 

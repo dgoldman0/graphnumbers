@@ -1,0 +1,8 @@
+{
+  "radius": 2,
+  "max_vertices": 5,
+  "max_degree": 2,
+  "target": [
+    {"rows": [12, 4, 3, 17, 8], "value": "1"}
+  ]
+}

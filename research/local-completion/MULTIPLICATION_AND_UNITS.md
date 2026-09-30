@@ -31,6 +31,12 @@ These results do not provide a finite decision procedure for arbitrary units,
 a classification of all characters, or an analytic topology on the fraction
 field.
 
+The subsequent [character and inversion note](CHARACTERS_AND_INVERSION.md)
+proves semisimplicity and sharpens the unit test: for an element already
+in this completion, unweighted absolute summability of every formal
+local reciprocal implies all its polynomial moments. The weighted
+criterion below remains equivalent; its extra moment tests are automatic.
+
 ## 1. Local convolution and finite divisibility
 
 Write $\mathcal B_r$ for the finite connected rooted simple graphs of root
@@ -649,6 +655,6 @@ The [search log](SEARCH_LOG.md) records the coverage limits, and originality
 remains unestablished.
 
 The next structural questions include a description of all continuous
-characters and maximal ideals, tractable sufficient conditions for (17)
-outside one generated subalgebra, and what topology, if any, makes an
+characters and maximal ideals, effective certificates for the sharpened
+local inversion criterion, and what topology, if any, makes an
 algebraic fraction field useful for the project's analytic aims.

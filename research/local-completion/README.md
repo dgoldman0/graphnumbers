@@ -58,6 +58,16 @@ holomorphic disk algebra, with an explicit zero-free criterion for its
 units. In the full completion, nonunits are dense and the unit group is
 not open, although inversion is continuous on the unit group itself.
 
+The [character and inversion note](CHARACTERS_AND_INVERSION.md) constructs
+a separating family of continuous characters and proves semisimplicity.
+It reduces the reciprocal test to unweighted absolute summability at every
+radius and gives a spectral description using bounded local semicharacters.
+The [quantitative approximation note](QUANTITATIVE_APPROXIMATION.md)
+gives explicit cutoff and coefficient bounds, a rational reconstruction
+tool with exact optimality certificates, and sharp size/cancellation
+tradeoffs for the infinite line. It also proves that elements beyond
+the finite-measure model force diverging coefficient mass in approximants.
+
 ## Files
 
 | File | Purpose |
@@ -72,6 +82,13 @@ not open, although inversion is continuous on the unit group itself.
 | [REPRESENTATION_PROBLEM.md](REPRESENTATION_PROBLEM.md) | Agreed question and proof standards for characterizing this specific completion. |
 | [REPRESENTATION_THEOREM.md](REPRESENTATION_THEOREM.md) | Intrinsic characterization, full proof, measure criterion, and sequence-space example. |
 | [MULTIPLICATION_AND_UNITS.md](MULTIPLICATION_AND_UNITS.md) | Domain proof, recursive unit criterion, analytic retract, and nonopen unit group. |
+| [CHARACTERS_AND_INVERSION.md](CHARACTERS_AND_INVERSION.md) | Separating characters, semisimplicity, local spectral invariance, and the unweighted unit criterion. |
+| [QUANTITATIVE_APPROXIMATION.md](QUANTITATIVE_APPROXIMATION.md) | Explicit approximation bounds, optimal finite-catalog reconstruction, and cancellation costs. |
+| [reconstruct_local.py](reconstruct_local.py) | Standard-library rational reconstruction with primal-dual optimality certificates. |
+| [reconstruction_example.json](reconstruction_example.json) | Radius-two infinite-line target on a five-vertex, degree-two catalog. |
+| [reconstruction_example_result.json](reconstruction_example_result.json) | Complete exact certificate: coefficient mass 9 and negative mass 4. |
+| [verify_spectral_approximation.py](verify_spectral_approximation.py) | Exact Fourier, growth, cutoff, and reconstruction regressions. |
+| [spectral_approximation_results.json](spectral_approximation_results.json) | Recorded output: all 335 checks passed, with four catalog certificates. |
 | [verify_local_algebra.py](verify_local_algebra.py) | Exact finite checks using only Python's standard library. |
 | [verification_results.json](verification_results.json) | Recorded output: all 3,606 checks passed. |
 | [verify_representation.py](verify_representation.py) | Exact checks of indicator expansions, degree filtering, balance, and cycle formulas. |
@@ -88,6 +105,8 @@ cd research/local-completion
 python3 verify_local_algebra.py --output verification_results.json
 python3 verify_representation.py --output representation_results.json
 python3 verify_multiplication.py --output multiplication_results.json
+python3 verify_spectral_approximation.py --output spectral_approximation_results.json
+python3 reconstruct_local.py --input reconstruction_example.json --output reconstruction_example_result.json
 ```
 
 The verifier uses exact rational arithmetic and exact isomorphism backtracking.
@@ -111,6 +130,14 @@ It also checks formal reciprocals, hypercube ball sizes, and the odd-cycle
 characters detecting nonunits near the identity. Its universal claims have
 separate proofs in MULTIPLICATION_AND_UNITS.md.
 
+The spectral/approximation verifier additionally checks finite Fourier
+coefficient recovery, polynomial growth in Cartesian powers, moment cutoff
+bounds, and independently evaluated exact reconstruction certificates.
+The reconstruction tool accepts a finite rational target and explicit
+catalog bounds. Budget exhaustion and an infeasible specified catalog
+are reported separately. The general size bounds are theoretical and
+typically much larger than the implementation can enumerate.
+
 To rebuild the PDF from this directory with a standard LaTeX installation:
 
 ```sh
@@ -128,8 +155,8 @@ The committed PDF was rendered and all seven pages were visually inspected.
   element is injective. Its algebraic fraction field exists, but no analytic
   topology on that field has been established.
 - Nonunits converge to the identity. Invertibility is not an open condition
-  in the chosen topology; the explicit unit criterion requires all-radius,
-  all-weight summability.
+  in the chosen topology. The sharpened criterion requires unweighted
+  local reciprocal summability at every radius; the weighted bounds follow.
 - Component count is discontinuous: C_(2n) - 2 C_n tends to zero locally while
   its linear component count remains -1.
 - There is no continuous norm on the full completion; in particular, no
@@ -139,8 +166,9 @@ The committed PDF was rendered and all seven pages were visually inspected.
 - The graph limits describe local combinatorial neighborhoods. Additional
   requirements involving global geometry or a dense-graphon metric remain open.
 
-The historical software is independent of these verifiers. Character
-classification, more tractable unit tests, efficient reconstruction and
-coefficient bounds, and the range of geometrically useful graph variations
-remain research questions. The v0.1 PDF and TeX remain the original checkpoint;
-the later representation and multiplication results are separate notes.
+The historical software is independent of these verifiers. Full character
+classification, effective unit certificates, efficient general reconstruction,
+sharper coefficient bounds, and geometrically useful graph variations remain
+research questions. Two-generator subalgebras and intrinsic derivations are
+deferred. The v0.1 PDF and TeX remain the original checkpoint; later results
+are in separate notes.

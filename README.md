@@ -41,3 +41,11 @@ places these results within generalized power-series and weighted convolution
 Fréchet algebra theory, credits the standard domain argument, and records
 explicit obstructions to identifying the whole completion with nearby models.
 An exact prior identification of the full balanced completion remains unlocated.
+
+The [character and inversion results](research/local-completion/CHARACTERS_AND_INVERSION.md)
+prove semisimplicity, give a faithful character transform, and reduce the
+unit criterion to unweighted local inverses. The independent
+[quantitative approximation results](research/local-completion/QUANTITATIVE_APPROXIMATION.md)
+provide explicit bounds, an exact finite-catalog reconstruction tool, and
+certified examples showing the tradeoff between graph size and signed
+cancellation. All 335 accompanying finite checks passed.
