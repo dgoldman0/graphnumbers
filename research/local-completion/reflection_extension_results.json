@@ -1,0 +1,85 @@
+{
+  "status": "passed",
+  "total_checks": 476,
+  "checks": {
+    "algebraic_involution_discontinuity_coordinate": 3,
+    "algebraic_involution_image_stays_separated": 3,
+    "degree_kernel_witness": 1,
+    "distinct_retraction_kernels": 1,
+    "edge_reflection": 1,
+    "joined_graph_exact_signed_marginal": 3,
+    "joined_graph_image_formula": 3,
+    "joined_graph_image_zero_mass": 3,
+    "joined_graph_mixed_signs": 3,
+    "joined_graph_weighted_limit_bound": 12,
+    "linear_involution_path_image": 1,
+    "linear_involution_product_defect": 1,
+    "linear_involution_square": 10,
+    "negative_preimage_size": 10,
+    "parity_cut_cartesian_identity": 100,
+    "positive_nonzero_kernel": 1,
+    "positive_preimage_of_negative": 10,
+    "positive_preimage_size": 10,
+    "positive_right_inverse": 10,
+    "reflection_multiplicativity": 100,
+    "reflection_not_involutive_on_all_graphs": 1,
+    "signed_negative_section_bound": 24,
+    "signed_positive_section_bound": 24,
+    "signed_reflection_bound": 24,
+    "triangle_retraction_multiplicativity": 100,
+    "triangle_retraction_section": 5,
+    "uniform_parity_involution": 6,
+    "uniform_parity_reflection": 6
+  },
+  "connected_catalog_size": 10,
+  "mixed_sign_witnesses": [
+    {
+      "cycle_length": 5,
+      "vertices": 20,
+      "radius_one_star_coefficients": {
+        "1": "1/10",
+        "2": "1/5",
+        "3": "-3/10"
+      }
+    },
+    {
+      "cycle_length": 7,
+      "vertices": 28,
+      "radius_one_star_coefficients": {
+        "1": "1/14",
+        "2": "2/7",
+        "3": "-5/14"
+      }
+    },
+    {
+      "cycle_length": 11,
+      "vertices": 44,
+      "radius_one_star_coefficients": {
+        "1": "1/22",
+        "2": "4/11",
+        "3": "-9/22"
+      }
+    }
+  ],
+  "algebraic_involution_discontinuity": [
+    {
+      "cycle_length": 7,
+      "input_radius_two_weight_one": "27/5",
+      "image_hypercube_ball_coefficient": "-26/15",
+      "image_radius_two_weight_one": "427/15"
+    },
+    {
+      "cycle_length": 11,
+      "input_radius_two_weight_one": "81/23",
+      "image_hypercube_ball_coefficient": "-42/23",
+      "image_radius_two_weight_one": "29"
+    },
+    {
+      "cycle_length": 17,
+      "input_radius_two_weight_one": "81/35",
+      "image_hypercube_ball_coefficient": "-66/35",
+      "image_radius_two_weight_one": "1027/35"
+    }
+  ],
+  "scope": "Exact finite examples. A full continuous automorphism reflecting H remains unconstructed and unexcluded."
+}

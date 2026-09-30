@@ -57,3 +57,10 @@ Cartesian-prime generators. It recovers the neighborhood-kernel filtration
 up to cofinal refinement and supplies 256 exact finite checks. Whether the
 bare topological algebra determines the finite graphs and positive cones
 remains open.
+
+The [normalized-edge reflection study](research/local-completion/REFLECTION_EXTENSION.md)
+constructs a continuous surjective endomorphism reflecting K2/2, with an
+explicit nontrivial kernel and continuous positive linear preimages of
+both signs. It proves further extension constraints and supplies 476 exact
+finite checks. The existence of a full continuous automorphism with that
+reflection remains unresolved.

@@ -286,6 +286,13 @@ reconstruction proof must characterize the relevant structures without
 assuming the graph coordinates it is trying to recover. The present
 results establish restrictions, not full intrinsic graph reconstruction.
 
+The subsequent [reflection investigation](REFLECTION_EXTENSION.md)
+constructs a continuous surjective endomorphism sending $H$ to $-H$,
+with a nontrivial kernel. It proves further necessary conditions for an
+injective extension and excludes a coordinated infinite algebraic
+involution by an explicit continuity obstruction. The automorphism
+question remains unresolved.
+
 ## 8. Dependencies, source scope, and verification
 
 The proofs use the established domain theorem, the line limit,

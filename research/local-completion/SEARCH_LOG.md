@@ -357,3 +357,23 @@ finitely many prime generators are proved directly in
 The topological kernel argument is standard locally convex reasoning.
 The new note makes no priority claim, and it leaves the full automorphism
 and intrinsic-reconstruction questions open.
+
+## The normalized-edge reflection extension
+
+The next investigation asked specifically whether H = K2/2 can be sent
+to -H by an automorphism of the whole completion. Searches combined
+Cartesian graph algebras, reflection/involution, continuous automorphisms,
+split algebra extensions, degree parity, and surjective endomorphisms.
+Results again largely concerned graph C*-algebras, graph homomorphisms,
+or unrelated uses of semilinearity. No external classification theorem
+from those results is used here. The operation-specific search did not
+establish a prior identification or novelty of the signed parity filter.
+
+[REFLECTION_EXTENSION.md](REFLECTION_EXTENSION.md) supplies direct proofs
+of Cartesian multiplicativity and weighted continuity for the parity
+filter, positive local constructions proving surjectivity, and an exact
+block criterion for an automorphism extension. The surjective map has
+a nonzero kernel. The note also gives a proper-subalgebra reflection,
+a universal mixed-sign image constraint on injective extensions, and a
+discontinuous algebraic involution that changes infinitely many primes.
+These results leave the full automorphism existence question open.
