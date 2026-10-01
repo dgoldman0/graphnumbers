@@ -34,9 +34,12 @@ required polynomial moments. It should be distinguished from
 
 $$P_{\mathrm{fin}}=\overline{\operatorname{cone}(\Gamma)}.$$
 
-We know $P_{\mathrm{fin}}\subseteq P_{\mathrm{loc}}$; equality has not
-been established. The signed approximation theorem does not prove
-approximation by positive finite graph combinations.
+The subsequent [positive-cone checkpoint](STRICT_POSITIVE_CONES.md) proves
+$P_{\mathrm{fin}}\subsetneq P_{\mathrm{loc}}$, with a mass-one
+bounded-degree witness, by explicitly transferring the cited non-soficity
+theorem to simple graphs. This establishes that the two cones differ;
+their intrinsic recovery and invariance under general automorphisms
+remain open.
 
 Any characterization of $\Gamma$ or either cone solely from the real
 topological algebra must be preserved by every continuous unital

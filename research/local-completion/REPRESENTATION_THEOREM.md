@@ -290,9 +290,12 @@ measures; then increase $s$.
 Consequently the positive mass-one elements are exactly the unimodular
 probability laws with finite $\int |B_r|^k$ for every $r,k$.
 Their approximants in the proof are signed graph combinations.
-There is no assertion that those approximants can be chosen positive or
-as individual normalized finite graphs. The positive finite-approximation
-issue discussed in the [literature review](LITERATURE_REVIEW.md) is separate.
+The subsequent [positive-cone checkpoint](STRICT_POSITIVE_CONES.md) proves
+that some bounded-degree laws here admit no positive finite approximation,
+even allowing mixtures with real coefficients and unrestricted degrees.
+It uses the external non-soficity theorem and an explicit simple-graph
+encoding. Every signed approximation of its witness retains a positive
+amount of negative coefficient mass.
 
 **The computation is finite but potentially enormous.** At the $n$-th step,
 the displayed bound permits graphs on up to

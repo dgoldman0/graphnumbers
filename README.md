@@ -238,3 +238,12 @@ spectral domain is a proper part of the controlled-heat algebra. The note
 corrects the finite-edit spectral-shift assumption and proves a second
 heat-sign crossing for the earlier interaction fixture. Exact standalone
 verification passes; independent proof review remains deferred.
+
+The [positive-cone checkpoint](research/local-completion/STRICT_POSITIVE_CONES.md)
+proves P_fin ⊊ P_loc using the cited non-soficity theorem and an explicit
+bounded-degree encoding into simple graphs. Root averaging preserves
+unimodularity, and a local decoder repairs imperfect finite approximants.
+Some mass-one positive elements consequently require persistent negative
+coefficient mass in every finite graph approximation. The source law and
+separating inequality are existential. Exact finite encoding checks pass;
+independent proof review remains deferred.

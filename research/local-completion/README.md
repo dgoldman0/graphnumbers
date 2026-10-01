@@ -232,10 +232,25 @@ shift. Exact spectral factorization also proves that the earlier interaction
 fixture has at least two positive-time heat zeros. The new proof checkpoint
 and its standalone rational verification retain deferred review status.
 
+The [positive-cone checkpoint](STRICT_POSITIVE_CONES.md) proves that the
+closed finite positive cone is strictly smaller than the local positive
+cone, with a mass-one bounded-degree witness. It applies the cited
+non-co-sofic IRS theorem through an explicit simple-graph encoding,
+constant-fiber root averaging, and local decoding with finite permutation
+repair. Rational mixtures and degree cutoff close the unrestricted
+positive-approximation case. A finite-radius separator forces persistent
+negative coefficient mass in every finite signed approximation of the
+witness. Its source law and separating coefficients are existential;
+the standalone verifier checks finite mechanisms, and independent proof
+review remains deferred.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [STRICT_POSITIVE_CONES.md](STRICT_POSITIVE_CONES.md) | Strict finite/local positive-cone inclusion; simple-graph encoding, root averaging, soficity reflection and necessary negative coefficient mass. |
+| [verify_positive_cone_encoding.py](verify_positive_cone_encoding.py) | Standalone exact encoding, local decoder, malformed-gadget repair, root averaging, mixture and degree-cutoff checks. |
+| [positive_cone_encoding_results.json](positive_cone_encoding_results.json) | Executed finite action catalogues and repair fixtures, rational root probabilities, scope and verifier source hash. |
 | [SPECTRAL_MEASURE_HOMOMORPHISM.md](SPECTRAL_MEASURE_HOMOMORPHISM.md) | Exact signed spectral domain, convolution, controlled limits, BV qualification for finite edits, and a controlled nonmeasure counterexample. |
 | [verify_spectral_measure.py](verify_spectral_measure.py) | Standalone exact matrix/Bernstein, product, cycle/Chebyshev, characteristic-polynomial and heat-sign fixtures. |
 | [spectral_measure_results.json](spectral_measure_results.json) | Executed horizons, rational witnesses, independent determinant results, heat enclosures and source hash. |

@@ -249,6 +249,15 @@ of the signed completion with unimodular laws having all polynomial
 neighborhood-size moments finite. Its approximants are signed combinations;
 it makes no positive-approximation assertion.
 
+The subsequent [positive-cone checkpoint](STRICT_POSITIVE_CONES.md)
+completes the application of [22–23]: an explicit bounded-degree
+simple-graph encoding, root averaging and local decoder with permutation
+repair prove P_fin ⊊ P_loc in this completion. Its treatment of positive
+mixtures and degree cutoff covers unrestricted finite approximants.
+The non-sofic source law is existential; no numerical law or separating
+inequality is computed. This is a consequence of the cited theorem in
+the present setting, with independent review of the reduction deferred.
+
 The loss of global information is also familiar in local-limit theory.
 Local-global convergence and graphings [24] provide a relevant comparison if
 the project needs colored-neighborhood or global partition information.
@@ -404,13 +413,17 @@ paper was audited. Specific sections above identify the material used.
     Introduction, Section 3, and the graph application in Section 5.4.
 22. **Lewis Bowen, Michael Chapman, Alexander Lubotzky, Thomas Vidick.**
     *The Aldous–Lyons Conjecture I: Subgroup Tests* (2024 preprint).
-    [arXiv:2408.00110](https://arxiv.org/abs/2408.00110).
-    Introduction, Main Theorems I–II, and stated consequence for the conjecture.
+    [arXiv:2408.00110v1](https://arxiv.org/abs/2408.00110v1).
+    Introduction and footnote 2; Theorem 1.10, Corollary 1.12,
+    Theorems 7.3–7.4, Corollary 7.5 and its proof. Remark 1.14
+    records the existential scope of the non-co-sofic IRS.
 23. **Lewis Bowen, Michael Chapman, Thomas Vidick.** *The Aldous–Lyons
-    Conjecture II: Undecidability* (2025 arXiv posting).
-    [arXiv:2501.00173](https://arxiv.org/abs/2501.00173).
-    Abstract and introduction for the combined negative resolution; the long
-    complexity-theoretic proof was not independently audited.
+    Conjecture II: Undecidability* (submitted 30 December 2024;
+    January 2025 arXiv identifier and PDF dated 3 January 2025).
+    [arXiv:2501.00173v1](https://arxiv.org/abs/2501.00173v1).
+    Theorem 1.1 and its formal statement, Theorem 2.31, checked against
+    Part I's Theorem 7.4. The long complexity-theoretic proof remains
+    an external dependency and was not independently audited.
 24. **Hamed Hatami, László Lovász, Balázs Szegedy.** *Limits of local-global
     convergent graph sequences* (2012 preprint; 2014 publication).
     [arXiv:1205.4356](https://arxiv.org/abs/1205.4356).

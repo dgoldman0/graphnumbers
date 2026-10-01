@@ -74,6 +74,15 @@ introducing additional geometric objects.
 Definition source:
 [Benjamini–Schramm, Section 1.2](https://arxiv.org/html/math/0011019v4).
 
+The later [positive-cone checkpoint](STRICT_POSITIVE_CONES.md), Lemma 1,
+extends this comparison to the full closed finite positive cone. Rational
+disjoint unions replace finite positive mixtures by individual normalized
+graphs. If the limiting law has degree at most D, isolating vertices of
+original degree greater than D preserves local convergence and produces
+degree-D approximants. Thus the bounded-degree mass-one slice of P_fin
+is exactly the sofic laws, even when its original approximants have
+arbitrary finite degrees.
+
 ## 3. Positive normalized convergence
 
 Let mu_n=U(G_n) for nonempty finite graphs, and let mu be a probability law on

@@ -130,5 +130,7 @@ rooted-ball extraction, and compares local absolute mass zero with global
 Jordan mass two. That fixture checks the distinction in (1), not the
 general measure theorem. The local-cylinder extension and the preservation
 of Jordan parts under the edge lift are the proof obligations discharged
-in Section 1. No strict inclusion of the finite positive cone in P is
-claimed; the labelled-network encoding remains separate work.
+in Section 1. The subsequent [positive-cone checkpoint](STRICT_POSITIVE_CONES.md)
+supplies the labelled-network encoding and proves strict inclusion of the
+closed finite positive cone in P, using the cited non-soficity theorem.
+That result is separate from this note's Jordan-decomposition argument.

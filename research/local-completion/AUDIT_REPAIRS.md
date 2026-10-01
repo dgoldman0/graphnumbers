@@ -52,7 +52,7 @@ PYTHONPATH=python/src python -S -m unittest discover -s python/tests -p test_aud
 | M1–M10, M12–M14 | Added radius and cut-count restrictions, one-way balance implication, missing weighted-tail factor, distinct retractions, prescribed-link hypothesis, subtraction sign, named character family, factor-two threshold and finite-marginal wording. |
 | M15 | The mixed note records the nonzero E²+2P obstruction for regular-face characters at r>=2. The radius-one face is the whole monoid and does not obey that relation; its explicit marginal is 4 times the degree-two star minus 4 times the degree-three star. |
 | M11, M17, M18 | Informational: existing realization and buffer bounds remain sufficient and deliberately unoptimized; the characteristic-zero restriction is unnecessary for the noted domain argument. No sharper bound is claimed here. |
-| M16 | Still open in this repository. Strict finite-cone inclusion needs a checked encoding of the cited labelled-network result into simple graphs. The plan records the route, not a completed proof. |
+| M16 | Addressed at proof-checkpoint level in [STRICT_POSITIVE_CONES.md](STRICT_POSITIVE_CONES.md): explicit bounded-degree simple-graph encoding, uniform fiber-root averaging, and local decoding with repair transfer the cited non-co-sofic IRS theorem. Positive mixtures and unrestricted approximant degrees are handled explicitly. The witness is existential; independent proof review remains pending. |
 
 These are written mathematical repairs, not machine-checked proofs. The
 new radius-one marginal for E²+2P was also compared with exact library
@@ -112,6 +112,17 @@ are not presented as universal measure-existence certificates. The new
 proofs await the same deferred independent review; the library API and
 version are unchanged.
 
+The [positive-cone checkpoint](STRICT_POSITIVE_CONES.md) supplies the
+encoding required by M16 and proves P_fin ⊊ P_loc. Its finite-radius
+separator also gives a positive lower bound on the negative vertex mass
+of all signed approximations to its positive witness. The
+[standalone verifier](verify_positive_cone_encoding.py) checks 875 finite
+permutation actions, vertex relabeling, malformed-gadget repair, decoder
+locality, root averaging, rational mixtures and degree cutoff. These
+fixtures test the finite reduction mechanisms. The non-sofic law is an
+external existential theorem input, and no numerical separating inequality
+or independent audit of the external complexity proof is claimed.
+
 ## Literature
 
 | Finding | Disposition |
@@ -131,3 +142,9 @@ Knill's moment preprint, Theorem 2.2 and Corollary 2.3, and
 Potapov–Sukochev–Zanin, Theorem 7 and Lemma 10. Complete links and their
 specific uses are recorded in the spectral-measure note. This does not
 close the broader bibliography backlog above.
+
+For Step 6, the checked source chain is Part I of the Aldous–Lyons papers,
+Theorems 1.10, 7.3 and 7.4 and Corollary 7.5, together with Part II,
+Theorems 1.1 and 2.31. Part I's introduction and footnote 2 give the
+IRS/Schreier correspondence and decoration route; Remark 1.14 states the
+existential scope. Exact versions and links are recorded in the new note.
