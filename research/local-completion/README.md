@@ -271,10 +271,27 @@ of ghosts are invisible to every point derivation at the vertex-mass
 character. The proofs are Proposed; a standalone verifier checks their
 finite inputs.
 
+The [positivity-certificate note](POSITIVITY_CERTIFICATES.md) states what
+Step 6 means for certificates. A local statistic is nonnegative on every
+bounded-degree unimodular law exactly when, up to any ε, it is a nonnegative
+ball function plus the divergence of a local transport. The radius-by-radius
+linear programs converge to the true minimum. Such certificates exist for
+every inequality valid on finite graphs only if every unimodular law is
+sofic, so Step 6's separator is an uncertifiable valid inequality. This
+mirrors the Klep–Schweighofer form of Connes' embedding problem, with
+rerooting differences as the commutators. The persistent negative mass of
+Step 6 equals the robustness with respect to the sofic laws and, by duality,
+the largest normalized violation of a finite-graph inequality. 1 + 2R is
+submultiplicative under the Cartesian product. The proofs are Proposed; a
+standalone verifier checks the finite mechanisms.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [POSITIVITY_CERTIFICATES.md](POSITIVITY_CERTIFICATES.md) | Certificates for unimodular laws, their failure for finite graphs, the Connes-embedding correspondence, ghost mass as robustness, product bound and open questions. |
+| [verify_positivity_certificates.py](verify_positivity_certificates.py) | Standalone checks of transport divergences, two explicit certificates and unbalanced violations, permutation trace identities and product masses. |
+| [positivity_certificates_results.json](positivity_certificates_results.json) | Executed fixtures, graph counts and verifier source hash. |
 | [GHOST_EDGE.md](GHOST_EDGE.md) | The old ghost edge as U(ℤ) − 1: convergent and divergent routes, A^∞(D̄) algebra, spectrum and units, failed old identities, ghost and phantom ideals. |
 | [verify_ghost_edge.py](verify_ghost_edge.py) | Standalone exact checks of cycle and lattice balls, refuting coefficient identities, the unit threshold, route divergence, Leibniz identities and the rook–Shrikhande phantom. |
 | [ghost_edge_results.json](ghost_edge_results.json) | Executed fixtures, ball sizes, divergence values and verifier source hash. |

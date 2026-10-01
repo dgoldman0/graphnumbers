@@ -263,3 +263,11 @@ the earlier ghost edge with U(ℤ) − 1 in the local completion. The stub is
 the local line and generates the real form of A^∞(D̄). The ghost edge is
 transcendental, the stub has no inverse, and the old complete-graph route
 diverges. Ghosts and phantoms form closed ideals with no nilpotents.
+
+The [positivity-certificate note](research/local-completion/POSITIVITY_CERTIFICATES.md)
+gives Step 6 its certificate form. Nonnegativity on unimodular laws is always
+certified, up to any ε, by a nonnegative ball function plus a rerooting
+difference, but some inequality valid on all finite graphs has no such
+certificate. This mirrors the Klep–Schweighofer form of Connes' embedding
+problem. The persistent negative mass equals the robustness with respect to
+the sofic laws, and it is controlled under Cartesian products.

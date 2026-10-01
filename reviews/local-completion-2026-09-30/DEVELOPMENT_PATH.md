@@ -243,6 +243,13 @@ Positive realizability also has local obstructions (Proposed;
 No graph has every vertex link equal to P₃, so the radius-one point mass at
 the cone over P₃ is a marginal of A_loc but not of any positive element.
 
+**Certificate form of M1 (Proposed;
+[POSITIVITY_CERTIFICATES.md](../../research/local-completion/POSITIVITY_CERTIFICATES.md)).**
+- **Certificates on the unimodular side.** Nonnegativity on unimodular laws is certified, up to any ε, by a nonnegative ball function plus a transport divergence. The radius-by-radius linear programs converge.
+- **Failure on the finite side.** Such certificates exist for every inequality valid on finite graphs exactly when 𝒦_Δ = 𝒰_Δ, so Step 6's separator is an uncertifiable valid inequality. This is the Klep–Schweighofer pattern, with rerooting differences as commutators.
+- **Ghost mass.** The persistent negative mass equals the robustness R with respect to the sofic laws, and 1 + 2R is submultiplicative under ⊠.
+- **Open.** Amplification under powers, curing by sofic factors, computability, and finiteness of R.
+
 **M2, order structure (Problems).**
 - **Non-generation (immediate consequence of Known results).** P_loc does not generate all of A_loc. Every positive element has radius-independent local variation equal to its finite vertex mass. A difference of two positives therefore has uniformly bounded local variation, whereas ‖T_r E‖₁ = 4r.
 - **Positive-span characterization (Proof checkpoint).** P_loc − P_loc consists exactly of elements represented by a finite signed measure μ with ∫|B_r|^k d|μ| finite for every r and k. [POSITIVE_SPAN.md](../../research/local-completion/POSITIVE_SPAN.md) now proves the local-cylinder-to-edge-measure balance step, preservation of Jordan parts under the edge lift, and the application of Aldous–Lyons Proposition 2.2. Finite variation alone does not supply the absolute-measure moment hypotheses.

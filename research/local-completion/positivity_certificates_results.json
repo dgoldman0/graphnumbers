@@ -1,0 +1,57 @@
+{
+  "arithmetic": "Python standard library; exact integers and rationals; seeded random graphs",
+  "degree_certificate": {
+    "certificate": "(deg o - 1)^2 + divergence of F(o,v)=deg(v)[v~o]",
+    "graphs_checked": 300,
+    "inequality": "E[sum_{v~o} deg v] >= E[2 deg o - 1] on every unimodular law",
+    "unbalanced_point_mass_at_star_centre": -2,
+    "uniform_root_on_the_same_star": "1"
+  },
+  "divergences_sum_to_zero": {
+    "graphs_checked": 275,
+    "transports": [
+      "F(o,v)=deg(v)[v~o]",
+      "F(o,v)=[dist(o,v)=2][deg(o)=3]"
+    ]
+  },
+  "p3_certificate": {
+    "certificate": "slack 2[link in {K2,K2+K1}] - (P3 roots using o as an end) >= 0, plus a divergence",
+    "graphs_checked": 15911,
+    "inequality": "Pr[link = P3] <= Pr[link in {K2, K2+K1}] on unimodular laws of degree <= 3",
+    "p3_roots_seen": 4402,
+    "unbalanced_point_mass_at_cone_over_P3": -2
+  },
+  "permutation_traces": {
+    "actions_checked": 280,
+    "identity": "phi(ab) = phi(ba): o is fixed by ab iff o.a is fixed by ba"
+  },
+  "product_decomposition": {
+    "claim": "(1+m)s-mq times (1+n)s'-nq' has negative mass m+n+2mn",
+    "records": [
+      {
+        "m": "0",
+        "n": "0",
+        "negative_mass_of_product": "0"
+      },
+      {
+        "m": "1/3",
+        "n": "0",
+        "negative_mass_of_product": "1/3"
+      },
+      {
+        "m": "1/2",
+        "n": "2/5",
+        "negative_mass_of_product": "13/10"
+      },
+      {
+        "m": "3",
+        "n": "7/4",
+        "negative_mass_of_product": "61/4"
+      }
+    ]
+  },
+  "proof_review": "The note's arguments remain unreviewed.",
+  "scope": "Finite mechanisms only; the certificate, duality and product theorems are proved in the note.",
+  "source_sha256": "6f2e7665fd51f6d98df30fe54be7ff065fe198c2d5f057763b1a8cfcc1c29862",
+  "status": "passed"
+}
