@@ -1,11 +1,11 @@
 {
   "python": "3.12.14",
-  "tests_run": 115,
+  "tests_run": 127,
   "failures": 0,
   "errors": 0,
   "skipped": 0,
   "success": true,
-  "seconds": 11.903445787000237,
+  "seconds": 29.608985595994454,
   "coverage": [
     "160 independent brute-force isomorphism comparisons",
     "300 exact local/full Cartesian histogram comparisons",
@@ -34,6 +34,8 @@
     "3780 exact cut-line coordinate, phase, power norm and entire-calculus checks",
     "unbounded-variation exponential units, weighted Poisson tails and inverse identity",
     "local inverse residuals, inexact refinement and local/global invertibility separation",
+    "regular-tree cut symmetry versus independent buffered witnesses and lattice cuts versus periodic witnesses",
+    "branching and planar variation, mixed local products and degree-matched fourth Laplacian moments",
     "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"
   ]
 }

@@ -24,12 +24,13 @@ from .inverse import InverseCertificate, NeumannInverse
 from .local_inverse import (LocalInverseCertificate, UncertifiedLocalInverse,
                             local_inverse_certificate, refine_local_inverse)
 from .defect_exponential import CutLineExponential, DefectExponentialCertificate
+from .medium_defects import InfiniteRegularTreeCut, SquareLatticeEdgeCut
 from .nonspectral import (ROOT_DEGREE, JetCertificate, JointDistribution,
                           MomentJet, RootStatistic, certified_jet,
                           joint_distribution, link_components, multi_indices,
                           rooted_cliques)
 
-__version__ = "0.7.0"
+__version__ = "0.8.0"
 __all__ = [
     "Element", "ExactLocalUnavailable", "Finite", "Line", "exp", "exp_derivative",
     "polynomial", "polynomial_derivative", "BudgetExceeded", "Graph", "ball",
@@ -53,4 +54,5 @@ __all__ = [
     "LocalInverseCertificate", "UncertifiedLocalInverse",
     "local_inverse_certificate", "refine_local_inverse",
     "CutLineExponential", "DefectExponentialCertificate",
+    "InfiniteRegularTreeCut", "SquareLatticeEdgeCut",
 ]

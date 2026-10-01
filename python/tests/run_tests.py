@@ -44,6 +44,8 @@ report = {
                  "3780 exact cut-line coordinate, phase, power norm and entire-calculus checks",
                  "unbounded-variation exponential units, weighted Poisson tails and inverse identity",
                  "local inverse residuals, inexact refinement and local/global invertibility separation",
+                 "regular-tree cut symmetry versus independent buffered witnesses and lattice cuts versus periodic witnesses",
+                 "branching and planar variation, mixed local products and degree-matched fourth Laplacian moments",
                  "optional NumPy/SciPy block Krylov polynomial exactness and dense comparisons"],
 }
 if args.output:

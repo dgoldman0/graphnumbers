@@ -1,0 +1,1291 @@
+{
+  "success": true,
+  "checks": 1061,
+  "marginals": [
+    {
+      "family": "B3",
+      "radius": 1,
+      "buffer_vertices": 6,
+      "types": 2,
+      "variation": "4",
+      "largest_ball": 4,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 3,
+          "edges": 2,
+          "root_degree": 2,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            2
+          ]
+        },
+        {
+          "coefficient": "-2",
+          "vertices": 4,
+          "edges": 3,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B4",
+      "radius": 1,
+      "buffer_vertices": 8,
+      "types": 2,
+      "variation": "4",
+      "largest_ball": 5,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 4,
+          "edges": 3,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3
+          ]
+        },
+        {
+          "coefficient": "-2",
+          "vertices": 5,
+          "edges": 4,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4
+          ]
+        }
+      ]
+    },
+    {
+      "family": "P",
+      "radius": 1,
+      "buffer_vertices": 81,
+      "types": 2,
+      "variation": "4",
+      "largest_ball": 5,
+      "terms": [
+        {
+          "coefficient": "-2",
+          "vertices": 5,
+          "edges": 4,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 4,
+          "edges": 3,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B3",
+      "radius": 2,
+      "buffer_vertices": 30,
+      "types": 3,
+      "variation": "12",
+      "largest_ball": 10,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 7,
+          "edges": 6,
+          "root_degree": 2,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "coefficient": "-6",
+          "vertices": 10,
+          "edges": 9,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            6
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 9,
+          "edges": 8,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            5
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B4",
+      "radius": 2,
+      "buffer_vertices": 80,
+      "types": 3,
+      "variation": "16",
+      "largest_ball": 17,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 13,
+          "edges": 12,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            9
+          ]
+        },
+        {
+          "coefficient": "-8",
+          "vertices": 17,
+          "edges": 16,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            12
+          ]
+        },
+        {
+          "coefficient": "6",
+          "vertices": 16,
+          "edges": 15,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "family": "P",
+      "radius": 2,
+      "buffer_vertices": 169,
+      "types": 4,
+      "variation": "16",
+      "largest_ball": 13,
+      "terms": [
+        {
+          "coefficient": "-8",
+          "vertices": 13,
+          "edges": 16,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 12,
+          "edges": 15,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            7
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 13,
+          "edges": 15,
+          "root_degree": 4,
+          "root_squares": 3,
+          "sphere_sizes": [
+            1,
+            4,
+            8
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 11,
+          "edges": 12,
+          "root_degree": 3,
+          "root_squares": 2,
+          "sphere_sizes": [
+            1,
+            3,
+            7
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B3",
+      "radius": 3,
+      "buffer_vertices": 126,
+      "types": 4,
+      "variation": "28",
+      "largest_ball": 22,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 15,
+          "edges": 14,
+          "root_degree": 2,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            2,
+            4,
+            8
+          ]
+        },
+        {
+          "coefficient": "-14",
+          "vertices": 22,
+          "edges": 21,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            6,
+            12
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 19,
+          "edges": 18,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            5,
+            10
+          ]
+        },
+        {
+          "coefficient": "8",
+          "vertices": 21,
+          "edges": 20,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            6,
+            11
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B4",
+      "radius": 3,
+      "buffer_vertices": 728,
+      "types": 4,
+      "variation": "52",
+      "largest_ball": 53,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 40,
+          "edges": 39,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            9,
+            27
+          ]
+        },
+        {
+          "coefficient": "-26",
+          "vertices": 53,
+          "edges": 52,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            12,
+            36
+          ]
+        },
+        {
+          "coefficient": "6",
+          "vertices": 49,
+          "edges": 48,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            11,
+            33
+          ]
+        },
+        {
+          "coefficient": "18",
+          "vertices": 52,
+          "edges": 51,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            12,
+            35
+          ]
+        }
+      ]
+    },
+    {
+      "family": "P",
+      "radius": 3,
+      "buffer_vertices": 289,
+      "types": 7,
+      "variation": "36",
+      "largest_ball": 25,
+      "terms": [
+        {
+          "coefficient": "-18",
+          "vertices": 25,
+          "edges": 36,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 24,
+          "edges": 35,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            11
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 25,
+          "edges": 35,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 23,
+          "edges": 32,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            7,
+            11
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 25,
+          "edges": 35,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 25,
+          "edges": 35,
+          "root_degree": 4,
+          "root_squares": 3,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 23,
+          "edges": 31,
+          "root_degree": 3,
+          "root_squares": 2,
+          "sphere_sizes": [
+            1,
+            3,
+            7,
+            12
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B3",
+      "radius": 4,
+      "buffer_vertices": 510,
+      "types": 5,
+      "variation": "60",
+      "largest_ball": 46,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 31,
+          "edges": 30,
+          "root_degree": 2,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            2,
+            4,
+            8,
+            16
+          ]
+        },
+        {
+          "coefficient": "-30",
+          "vertices": 46,
+          "edges": 45,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            6,
+            12,
+            24
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 39,
+          "edges": 38,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            5,
+            10,
+            20
+          ]
+        },
+        {
+          "coefficient": "8",
+          "vertices": 43,
+          "edges": 42,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            6,
+            11,
+            22
+          ]
+        },
+        {
+          "coefficient": "16",
+          "vertices": 45,
+          "edges": 44,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            6,
+            12,
+            23
+          ]
+        }
+      ]
+    },
+    {
+      "family": "B4",
+      "radius": 4,
+      "buffer_vertices": 6560,
+      "types": 5,
+      "variation": "160",
+      "largest_ball": 161,
+      "terms": [
+        {
+          "coefficient": "2",
+          "vertices": 121,
+          "edges": 120,
+          "root_degree": 3,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            3,
+            9,
+            27,
+            81
+          ]
+        },
+        {
+          "coefficient": "-80",
+          "vertices": 161,
+          "edges": 160,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            12,
+            36,
+            108
+          ]
+        },
+        {
+          "coefficient": "6",
+          "vertices": 148,
+          "edges": 147,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            11,
+            33,
+            99
+          ]
+        },
+        {
+          "coefficient": "18",
+          "vertices": 157,
+          "edges": 156,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            12,
+            35,
+            105
+          ]
+        },
+        {
+          "coefficient": "54",
+          "vertices": 160,
+          "edges": 159,
+          "root_degree": 4,
+          "root_squares": 0,
+          "sphere_sizes": [
+            1,
+            4,
+            12,
+            36,
+            107
+          ]
+        }
+      ]
+    },
+    {
+      "family": "P",
+      "radius": 4,
+      "buffer_vertices": 441,
+      "types": 11,
+      "variation": "64",
+      "largest_ball": 41,
+      "terms": [
+        {
+          "coefficient": "-32",
+          "vertices": 41,
+          "edges": 64,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 40,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            15
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 41,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 39,
+          "edges": 60,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            11,
+            15
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 41,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 41,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 39,
+          "edges": 59,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            7,
+            11,
+            16
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 41,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 41,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 4,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "4",
+          "vertices": 41,
+          "edges": 63,
+          "root_degree": 4,
+          "root_squares": 3,
+          "sphere_sizes": [
+            1,
+            4,
+            8,
+            12,
+            16
+          ]
+        },
+        {
+          "coefficient": "2",
+          "vertices": 39,
+          "edges": 59,
+          "root_degree": 3,
+          "root_squares": 2,
+          "sphere_sizes": [
+            1,
+            3,
+            7,
+            12,
+            16
+          ]
+        }
+      ]
+    }
+  ],
+  "tree_coordinate_product_fixtures": 20,
+  "products": [
+    {
+      "factors": [
+        "B3",
+        "B3"
+      ],
+      "radius": 1,
+      "variation": "16",
+      "upper_bound": "16",
+      "types": 3
+    },
+    {
+      "factors": [
+        "B4",
+        "B4"
+      ],
+      "radius": 1,
+      "variation": "16",
+      "upper_bound": "16",
+      "types": 3
+    },
+    {
+      "factors": [
+        "P",
+        "P"
+      ],
+      "radius": 1,
+      "variation": "16",
+      "upper_bound": "16",
+      "types": 3
+    },
+    {
+      "factors": [
+        "B3",
+        "P"
+      ],
+      "radius": 1,
+      "variation": "16",
+      "upper_bound": "16",
+      "types": 3
+    },
+    {
+      "factors": [
+        "B3",
+        "B4"
+      ],
+      "radius": 1,
+      "variation": "16",
+      "upper_bound": "16",
+      "types": 3
+    },
+    {
+      "factors": [
+        "B3",
+        "B3"
+      ],
+      "radius": 2,
+      "variation": "144",
+      "upper_bound": "144",
+      "types": 6
+    },
+    {
+      "factors": [
+        "B4",
+        "B4"
+      ],
+      "radius": 2,
+      "variation": "256",
+      "upper_bound": "256",
+      "types": 6
+    },
+    {
+      "factors": [
+        "P",
+        "P"
+      ],
+      "radius": 2,
+      "variation": "256",
+      "upper_bound": "256",
+      "types": 10
+    },
+    {
+      "factors": [
+        "B3",
+        "P"
+      ],
+      "radius": 2,
+      "variation": "192",
+      "upper_bound": "192",
+      "types": 12
+    },
+    {
+      "factors": [
+        "B3",
+        "B4"
+      ],
+      "radius": 2,
+      "variation": "192",
+      "upper_bound": "192",
+      "types": 9
+    },
+    {
+      "factors": [
+        "P",
+        "P"
+      ],
+      "radius": 3,
+      "variation": "1296",
+      "upper_bound": "1296",
+      "types": 28
+    }
+  ],
+  "mixed_polynomials": [
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": 1,
+      "radius": 1,
+      "power": 1,
+      "variation": "4",
+      "types": 2
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": 1,
+      "radius": 1,
+      "power": 2,
+      "variation": "16",
+      "types": 3
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": 1,
+      "radius": 1,
+      "power": 3,
+      "variation": "64",
+      "types": 4
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 1,
+      "power": 1,
+      "variation": "8",
+      "types": 3
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 1,
+      "power": 2,
+      "variation": "64",
+      "types": 5
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 1,
+      "power": 3,
+      "variation": "512",
+      "types": 7
+    },
+    {
+      "families": [
+        "B4",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 1,
+      "power": 1,
+      "variation": "0",
+      "types": 0
+    },
+    {
+      "families": [
+        "B4",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 1,
+      "power": 2,
+      "variation": "0",
+      "types": 0
+    },
+    {
+      "families": [
+        "B4",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 1,
+      "power": 3,
+      "variation": "0",
+      "types": 0
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": 1,
+      "radius": 2,
+      "power": 1,
+      "variation": "28",
+      "types": 7
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": 1,
+      "radius": 2,
+      "power": 2,
+      "variation": "784",
+      "types": 28
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": 1,
+      "radius": 2,
+      "power": 3,
+      "variation": "21952",
+      "types": 84
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 2,
+      "power": 1,
+      "variation": "28",
+      "types": 7
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 2,
+      "power": 2,
+      "variation": "784",
+      "types": 28
+    },
+    {
+      "families": [
+        "B3",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 2,
+      "power": 3,
+      "variation": "21952",
+      "types": 84
+    },
+    {
+      "families": [
+        "B4",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 2,
+      "power": 1,
+      "variation": "32",
+      "types": 7
+    },
+    {
+      "families": [
+        "B4",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 2,
+      "power": 2,
+      "variation": "1024",
+      "types": 28
+    },
+    {
+      "families": [
+        "B4",
+        "P"
+      ],
+      "second_sign": -1,
+      "radius": 2,
+      "power": 3,
+      "variation": "32768",
+      "types": 84
+    }
+  ],
+  "regular_face_root_edge_pairs": 441,
+  "mixed_coefficient_lower_bound": {
+    "radius": 2,
+    "axes": [
+      "B3",
+      "B4",
+      "P"
+    ],
+    "coefficient_norm": "2587/15",
+    "projected_variation": "2587/15",
+    "full_variation": "9863/15",
+    "terms": [
+      {
+        "multiindex": [
+          0,
+          0,
+          0
+        ],
+        "coefficient": "1"
+      },
+      {
+        "multiindex": [
+          1,
+          0,
+          0
+        ],
+        "coefficient": "-2"
+      },
+      {
+        "multiindex": [
+          0,
+          0,
+          1
+        ],
+        "coefficient": "1/3"
+      },
+      {
+        "multiindex": [
+          1,
+          0,
+          1
+        ],
+        "coefficient": "2"
+      },
+      {
+        "multiindex": [
+          0,
+          2,
+          0
+        ],
+        "coefficient": "-1/2"
+      },
+      {
+        "multiindex": [
+          1,
+          1,
+          0
+        ],
+        "coefficient": "3/5"
+      }
+    ]
+  },
+  "full_matrix_relative_laplacian_moments": {
+    "B4": [
+      0,
+      -2,
+      -16,
+      -116,
+      -832
+    ],
+    "P": [
+      0,
+      -2,
+      -16,
+      -116,
+      -848
+    ]
+  },
+  "planar_coordinate_obstruction": {
+    "roots_relative_to_deleted_edge": [
+      [
+        -1,
+        -1
+      ],
+      [
+        0,
+        -2
+      ]
+    ],
+    "deleted_edge": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "radius": 3,
+    "sphere_sizes": [
+      1,
+      4,
+      8,
+      12
+    ],
+    "root_squares": 4,
+    "defect_edges": [
+      35,
+      35
+    ],
+    "baseline_edges": 36,
+    "equal_coordinates": [
+      0,
+      0,
+      0,
+      2
+    ],
+    "rooted_defect_rows": [
+      [
+        30,
+        225,
+        833,
+        3201,
+        6657,
+        57346,
+        81926,
+        163850,
+        851972,
+        1572884,
+        6422536,
+        4194328,
+        26214416,
+        32,
+        96,
+        160,
+        320,
+        1152,
+        256,
+        768,
+        4608,
+        1024,
+        3072,
+        4096,
+        4096
+      ],
+      [
+        30,
+        225,
+        833,
+        3201,
+        6657,
+        57346,
+        81926,
+        163850,
+        851972,
+        1572884,
+        2228232,
+        12582936,
+        26214416,
+        32,
+        96,
+        160,
+        320,
+        1152,
+        256,
+        768,
+        4608,
+        1024,
+        2048,
+        6144,
+        4096
+      ]
+    ],
+    "interpretation": "Same sphere/square characters see these distinct signed types identically; the cut-line proof does not transfer unchanged."
+  },
+  "scope": "Exact finite-radius comparisons and witnesses; universal joint entire-function and spectral claims rely on the companion proofs."
+}

@@ -175,10 +175,40 @@ coordinated infinite algebraic involution by a continuity obstruction
 and gives an exact criterion for a full automorphism extension. That
 extension question remains open.
 
+## Breadth beyond the cut line
+
+The branching and planar comparison tests which conclusions depended on
+the earlier concentration on E. Let B_d be a single-edge cut in the
+infinite d-regular tree, and P a single-edge cut in the square lattice.
+Their local variations are respectively
+\(4\sum_{j<r}(d-1)^j\) and \(4r^2\). Each generates a closed
+entire-function algebra, with zero-free entire functions exactly the
+ambient units. Distinct tree degrees give independent entire variables;
+distinct branching degrees d>=3 together with P do so as well. A
+regular-background projection and additive root-edge component counts
+prove the mixed statement without classifying all planar product atoms.
+
+The embeddings retain different radius growth and analytic responses.
+The degree-four tree and lattice cuts agree in their first three relative
+Laplacian trace moments, while the fourth values are -832 and -848.
+Their relative heat difference begins with \(2t^4/3\). At general radii,
+the planar local spectrum is bounded between disks of radii \(2r^2\)
+and \(4r^2\); exact equality with the latter is proved at radius two.
+The whole planar defect has spectrum \(\mathbb C\) regardless of that
+remaining local gap. These are statements about selected embedded
+subalgebras of the local Cartesian completion, not an identification of
+the full completion with an entire-function algebra.
+
+Version 0.8.0 provides exact local arrays and finite buffered witnesses
+for both media. Independent finite checks accompany the proofs below.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [BRANCHING_ARITHMETIC.md](BRANCHING_ARITHMETIC.md) | Exact regular-tree cut norms, local spectra, entire-function arithmetic, independent tree degrees, and degree-matched heat comparison. |
+| [PLANAR_ARITHMETIC.md](PLANAR_ARITHMETIC.md) | Single-edge square-lattice cut, exact variation, entire-function algebra and ambient inversion. |
+| [MIXED_MEDIUM_ARITHMETIC.md](MIXED_MEDIUM_ARITHMETIC.md) | Regular-background projection, root-edge component coordinates, and joint entire-function algebras for branching and planar cuts. |
 | [UNBOUNDED_VARIATION_INVERSION.md](UNBOUNDED_VARIATION_INVERSION.md) | Cut-line entire-function algebra, exact spectra, units, divisibility and inverse tails. |
 | [EFFECTIVE_LOCAL_INVERSION.md](EFFECTIVE_LOCAL_INVERSION.md) | Residual certificates and computability of inversion on the full computable unit domain. |
 | [GEOMETRIC_ARITHMETIC.md](GEOMETRIC_ARITHMETIC.md) | Neighbor-link polydisc retracts, ambient units and algebraic closure, principal degree kernels, spectral-blind unit threshold, and certified inverse series. |
@@ -266,6 +296,18 @@ PYTHONPATH=python/src python3 python/examples/unbounded_inverse_examples.py
 The first verifies finite coordinate, character and power-norm identities;
 the second checks rational inverse certificates against independent local
 formulas, including a local success with a larger-radius obstruction.
+
+Version 0.8.0 adds 1,061 exact branching/planar comparison checks:
+
+```sh
+PYTHONPATH=python/src python3 python/examples/defect_breadth_verification.py --output python/results/defect_breadth_verification.json
+```
+
+These include 441 rooted-product fixtures for the regular face and
+root-edge graph identity, buffered marginal stability, mixed polynomial
+coefficient recovery, and full integer-matrix Laplacian moments. The
+finite comparisons support the separate universal proofs; the observed
+low-radius product norm equalities are not asserted at arbitrary radii.
 
 The representation verifier additionally checks rooted indicator expansions
 against independent injective-embedding enumeration, the finite triangular
