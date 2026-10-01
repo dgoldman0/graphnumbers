@@ -325,3 +325,7 @@ against existing mathematics.
   - Marks: a finite palette first, then continuous and matrix-valued marks.
   - Interacting components as weighted defects along the diagonal of G□G. Interacting particles separate rook from Shrikhande where non-interacting probes cannot. Check this route first against cluster and virial expansions, Beth–Uhlenbeck and the Bethe ansatz.
 - **Not recommended.** Treating the spectral kernel as a hidden physical sector, by analogy with the superseded ghost edges, is generic to any graph ring and is not recommended.
+- **The mathematical content of the ghost edge (Proposed; [GHOST_EDGE.md](../../research/local-completion/GHOST_EDGE.md)).**
+  - The old ghost edge is U(ℤ) − 1, and the old complete-graph route to it diverges.
+  - The local line generates the real form of A^∞(D̄), with spectrum D̄. So the ghost edge is transcendental, the stub has no inverse, and 1 + tG is a unit exactly when Re t < 1/2.
+  - Ghosts and phantoms form closed ideals with no nilpotents.

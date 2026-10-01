@@ -1,6 +1,6 @@
 # Notes
 
-1. Quadratic relationship does not hold for ghost edge. That would violate field properties, and was likely a product of assuming vertex and edge counts resulted in equal graphs reals.
+1. Quadratic relationship does not hold for ghost edge. That would violate field properties, and was likely a product of assuming vertex and edge counts resulted in equal graphs reals. The [ghost-edge note](research/local-completion/GHOST_EDGE.md) confirms this in the local completion. The ghost edge is U(ℤ) − 1, it satisfies no polynomial identity, and its complete-graph route diverges.
 
 ## Local Cartesian graph completion — 30 September 2026
 
@@ -257,3 +257,9 @@ because Cartesian multiplication composes independently. The note separates
 the construction's own limits from the library's, records new observations
 with a standalone verifier, and proposes marks and interacting components
 as the directions most likely to change that verdict.
+
+The [ghost-edge note](research/local-completion/GHOST_EDGE.md) identifies
+the earlier ghost edge with U(ℤ) − 1 in the local completion. The stub is
+the local line and generates the real form of A^∞(D̄). The ghost edge is
+transcendental, the stub has no inverse, and the old complete-graph route
+diverges. Ghosts and phantoms form closed ideals with no nilpotents.

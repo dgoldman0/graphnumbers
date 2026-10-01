@@ -259,10 +259,25 @@ a radius-one obstruction to positivity. The proposed directions are marks,
 and interacting components as weighted diagonal defects. Its standalone
 verifier checks the finite fixtures; the general arguments are unreviewed.
 
+The [ghost-edge note](GHOST_EDGE.md) places the earlier Graph Reals
+"ghost edge" in this completion. The cycle route converges, giving the
+stub as the local line U(ℤ) and the ghost edge as U(ℤ) − 1. The
+complete-graph route diverges, because its vertex mass escapes to infinite
+degree. The stub generates the real form of A^∞(D̄), so the ghost edge is
+transcendental and the stub is not invertible. Every identity the old work
+claimed for them fails, and 1 + tG is a unit exactly when Re t < 1/2.
+Ghosts and phantoms form closed ideals; no ghost is nilpotent, and products
+of ghosts are invisible to every point derivation at the vertex-mass
+character. The proofs are Proposed; a standalone verifier checks their
+finite inputs.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [GHOST_EDGE.md](GHOST_EDGE.md) | The old ghost edge as U(ℤ) − 1: convergent and divergent routes, A^∞(D̄) algebra, spectrum and units, failed old identities, ghost and phantom ideals. |
+| [verify_ghost_edge.py](verify_ghost_edge.py) | Standalone exact checks of cycle and lattice balls, refuting coefficient identities, the unit threshold, route divergence, Leibniz identities and the rook–Shrikhande phantom. |
+| [ghost_edge_results.json](ghost_edge_results.json) | Executed fixtures, ball sizes, divergence values and verifier source hash. |
 | [APPLICATION_ASSESSMENT.md](APPLICATION_ASSESSMENT.md) | Real-world use search, structure-driven derivations checked against existing mathematics, construction-versus-library scope, new observations and directions. |
 | [verify_application_assessment.py](verify_application_assessment.py) | Standalone exact checks: edge-space duality, degree-two sign law and branch-point failures, adjacency interaction, spanning-tree signs, circulant balls, mixture factorization. |
 | [application_assessment_results.json](application_assessment_results.json) | Executed fixtures with certified heat intervals, sign counts, onsets and verifier source hash. |

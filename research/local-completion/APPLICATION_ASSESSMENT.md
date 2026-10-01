@@ -290,7 +290,11 @@ bounded variation.
   (see the correction note
   [Ghosts and Phantoms](../../Ghosts_and_Phantoms__A_Correction_to_an_Exploratory_Framework_for_Completing_Graph_Arithmetic.pdf)).
   The rook–Shrikhande element is a phantom in that sense (16 vertices and 48
-  edges each), and the move would apply equally to any algebra.
+  edges each), and the move would apply equally to any algebra. The
+  legitimate content behind the analogy is mathematical. The old ghost edge
+  is the element U(ℤ) − 1 of this completion, and the old complete-graph
+  route to it diverges. The ghost edge is transcendental, the stub has no
+  inverse, and no ghost is nilpotent; see [GHOST_EDGE](GHOST_EDGE.md).
 
 ## 6. Directions
 

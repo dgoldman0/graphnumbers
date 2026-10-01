@@ -1,0 +1,313 @@
+{
+  "arithmetic": "Python standard library; exact integers and rationals",
+  "complete_graph_route": {
+    "conclusion": "p_{1,2} grows like 2n, so the sequence is unbounded and has no limit",
+    "records": [
+      {
+        "edge_count": "1",
+        "n": 3,
+        "p_1_2": "9",
+        "vertex_mass": "1"
+      },
+      {
+        "edge_count": "1",
+        "n": 5,
+        "p_1_2": "25/2",
+        "vertex_mass": "1/2"
+      },
+      {
+        "edge_count": "1",
+        "n": 10,
+        "p_1_2": "200/9",
+        "vertex_mass": "2/9"
+      },
+      {
+        "edge_count": "1",
+        "n": 20,
+        "p_1_2": "800/19",
+        "vertex_mass": "2/19"
+      },
+      {
+        "edge_count": "1",
+        "n": 50,
+        "p_1_2": "5000/49",
+        "vertex_mass": "2/49"
+      },
+      {
+        "edge_count": "1",
+        "n": 100,
+        "p_1_2": "20000/99",
+        "vertex_mass": "2/99"
+      }
+    ],
+    "sequence": "(2/(n(n-1))) K_n"
+  },
+  "cycle_route": {
+    "claim": "every rooted r-ball of C_n with n > 2r+1 is the centred path, so C_n/n has the line's marginals",
+    "edges_per_vertex": 1,
+    "records": [
+      {
+        "ball": "path on 3 vertices",
+        "cycle_lengths": [
+          4,
+          10
+        ],
+        "radius": 1
+      },
+      {
+        "ball": "path on 5 vertices",
+        "cycle_lengths": [
+          6,
+          12
+        ],
+        "radius": 2
+      },
+      {
+        "ball": "path on 7 vertices",
+        "cycle_lengths": [
+          8,
+          14
+        ],
+        "radius": 3
+      },
+      {
+        "ball": "path on 9 vertices",
+        "cycle_lengths": [
+          10,
+          16
+        ],
+        "radius": 4
+      }
+    ],
+    "vertex_mass": 1
+  },
+  "ghost_strata": {
+    "X_rook_minus_shrikhande": {
+      "Q4": "1/2",
+      "edges_per_vertex": 0,
+      "vertex_mass": 0
+    },
+    "cut_line_fixture": {
+      "edge_count": -1,
+      "vertex_mass": 0
+    },
+    "leibniz_pairs_checked": [
+      "P3xC4",
+      "K4xK2",
+      "K4xP3",
+      "C4xC4"
+    ]
+  },
+  "lattice_powers": {
+    "ball_size": "|B_r(Z^j)| = sum_i 2^i C(j,i) C(r,i), polynomial in j of degree r",
+    "records": [
+      {
+        "ball_size": 1,
+        "dimension": 0,
+        "radius": 1
+      },
+      {
+        "ball_size": 1,
+        "dimension": 0,
+        "radius": 2
+      },
+      {
+        "ball_size": 1,
+        "dimension": 0,
+        "radius": 3
+      },
+      {
+        "ball_size": 3,
+        "dimension": 1,
+        "radius": 1
+      },
+      {
+        "ball_size": 5,
+        "dimension": 1,
+        "radius": 2
+      },
+      {
+        "ball_size": 7,
+        "dimension": 1,
+        "radius": 3
+      },
+      {
+        "ball_size": 5,
+        "dimension": 2,
+        "radius": 1
+      },
+      {
+        "ball_size": 13,
+        "dimension": 2,
+        "radius": 2
+      },
+      {
+        "ball_size": 25,
+        "dimension": 2,
+        "radius": 3
+      },
+      {
+        "ball_size": 7,
+        "dimension": 3,
+        "radius": 1
+      },
+      {
+        "ball_size": 25,
+        "dimension": 3,
+        "radius": 2
+      },
+      {
+        "ball_size": 63,
+        "dimension": 3,
+        "radius": 3
+      },
+      {
+        "ball_size": 9,
+        "dimension": 4,
+        "radius": 1
+      },
+      {
+        "ball_size": 41,
+        "dimension": 4,
+        "radius": 2
+      },
+      {
+        "ball_size": 129,
+        "dimension": 4,
+        "radius": 3
+      }
+    ],
+    "root_degree": "2j, so the ball types of distinct powers differ at every radius r >= 1",
+    "torus_approximants": [
+      {
+        "dimension": 1,
+        "radius": 2,
+        "root_degree": 2,
+        "torus_side": 7
+      },
+      {
+        "dimension": 2,
+        "radius": 1,
+        "root_degree": 4,
+        "torus_side": 5
+      },
+      {
+        "dimension": 2,
+        "radius": 2,
+        "root_degree": 4,
+        "torus_side": 7
+      },
+      {
+        "dimension": 3,
+        "radius": 1,
+        "root_degree": 6,
+        "torus_side": 5
+      },
+      {
+        "dimension": 3,
+        "radius": 2,
+        "root_degree": 6,
+        "torus_side": 7
+      }
+    ]
+  },
+  "polynomial_identities": {
+    "G^2-2G_coefficients_on_U(Z^0),U(Z^1),U(Z^2)": [
+      3,
+      -4,
+      1
+    ],
+    "U(Z)(2-U(Z))_coefficients": [
+      0,
+      2,
+      -1
+    ],
+    "second_ghost_with_unit_edge_count": "(U(Z^2)-1)/2"
+  },
+  "proof_review": "The note's arguments remain unreviewed.",
+  "scope": "Finite inputs to GHOST_EDGE.md; the general proofs are not checked here.",
+  "source_sha256": "baa28e35270c0747c3dc423f964f28fcd2c3a0fbe75319310f1599721f2e4913",
+  "status": "passed",
+  "unit_threshold": {
+    "claim": "1 + tG is a unit exactly when Re t < 1/2",
+    "records": [
+      {
+        "t": [
+          "-1",
+          "0"
+        ],
+        "unit": true
+      },
+      {
+        "t": [
+          "0",
+          "0"
+        ],
+        "unit": true
+      },
+      {
+        "t": [
+          "1/4",
+          "0"
+        ],
+        "unit": true
+      },
+      {
+        "t": [
+          "49/100",
+          "0"
+        ],
+        "unit": true
+      },
+      {
+        "t": [
+          "1/2",
+          "0"
+        ],
+        "unit": false
+      },
+      {
+        "t": [
+          "51/100",
+          "0"
+        ],
+        "unit": false
+      },
+      {
+        "t": [
+          "1",
+          "0"
+        ],
+        "unit": false
+      },
+      {
+        "t": [
+          "2",
+          "0"
+        ],
+        "unit": false
+      },
+      {
+        "t": [
+          "1/2",
+          "1"
+        ],
+        "unit": false
+      },
+      {
+        "t": [
+          "1/4",
+          "3"
+        ],
+        "unit": true
+      },
+      {
+        "t": [
+          "3/5",
+          "-2"
+        ],
+        "unit": false
+      }
+    ]
+  }
+}
