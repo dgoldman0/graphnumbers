@@ -245,10 +245,11 @@ the cone over P₃ is a marginal of A_loc but not of any positive element.
 
 **Certificate form of M1 (Proposed;
 [POSITIVITY_CERTIFICATES.md](../../research/local-completion/POSITIVITY_CERTIFICATES.md)).**
-- **Certificates on the unimodular side.** Nonnegativity on unimodular laws is certified, up to any ε, by a nonnegative ball function plus a transport divergence. The radius-by-radius linear programs converge.
-- **Failure on the finite side.** Such certificates exist for every inequality valid on finite graphs exactly when 𝒦_Δ = 𝒰_Δ, so Step 6's separator is an uncertifiable valid inequality. This is the Klep–Schweighofer pattern, with rerooting differences as commutators.
-- **Ghost mass.** The persistent negative mass equals the robustness R with respect to the sofic laws, and 1 + 2R is submultiplicative under ⊠.
-- **Open.** Amplification under powers, curing by sofic factors, computability, and finiteness of R.
+- **Certificates on the unimodular side.** Nonnegativity on unimodular laws is certified, up to any ε, by a nonnegative ball function plus a transport divergence. This is the Farkas dual of the linear-programming hierarchy of Bowen–Chapman–Lubotzky–Vidick (Lemma 2.16, Theorem 1.10) and Lyons–Terlov–Vidnyánszky.
+- **Failure on the finite side.** Such certificates exist for every inequality valid on finite graphs exactly when 𝒦_Δ = 𝒰_Δ, so Step 6's separator is an uncertifiable valid inequality. This has the shape of Ozawa's Corollary 8 form of Connes' embedding, with rerooting differences as commutators.
+- **Ghost mass.** The persistent negative mass equals the robustness R with respect to the sofic laws, by standard robustness duality. 1 + 2R is submultiplicative under ⊠.
+- **Products.** Curing by a sofic factor is impossible for edge-labelled products.
+- **Open.** Amplification under powers, curing in the unlabelled setting, and finiteness of R. No explicit separating radius is known; this is Lyons–Terlov–Vidnyánszky's Problem 16.
 
 **M2, order structure (Problems).**
 - **Non-generation (immediate consequence of Known results).** P_loc does not generate all of A_loc. Every positive element has radius-independent local variation equal to its finite vertex mass. A difference of two positives therefore has uniformly bounded local variation, whereas ‖T_r E‖₁ = 4r.
@@ -308,6 +309,7 @@ factorization and intrinsic recovery retain their open status.
 - **Spectral shift and moments:** Potapov–Sukochev–Zanin (2014), Theorem 7 and Lemma 10, and Knill's 2000 moment preprint, Theorem 2.2 and Corollary 2.3, checked for Step 5. Further Birman–Krein, density-of-states and Lück-approximation comparisons remain reading tasks.
 - **Asymptotic spectra:** Strassen; Zuiddam; Fritz.
 - **Infinite-graph factorization:** Imrich, on the weak Cartesian product.
+- **Certificates and robustness:** Bowen–Chapman–Lubotzky–Vidick, Part I, Lemma 2.16 and Theorem 1.10 (the primal linear-programming hierarchy); Lyons–Terlov–Vidnyánszky, arXiv:2505.06215 (neighbourhood statistics; Problem 16); Ozawa, arXiv:1212.1700, Theorem 6 and Corollary 8; Lovász–Szegedy and Hatami–Norine (dense limits); Howard–Campbell (robustness duality and submultiplicativity). Passages are recorded in [POSITIVITY_CERTIFICATES §7](../../research/local-completion/POSITIVITY_CERTIFICATES.md).
 - **Applications and physical readings:** the sources opened for the applications assessment are listed in [APPLICATION_ASSESSMENT §7](../../research/local-completion/APPLICATION_ASSESSMENT.md). They include Schaden on irreducible many-body Casimir energies, Kostrykin–Schrader on surface densities of states, Hellmuth–Imrich–Kupka on local product recognition, and Fritz's Vergleichsstellensätze.
 
 Much of Section 2 is probably standard once M_r is understood. Reading the semigroup-algebra literature first avoids re-deriving it and moves the originality to where it likely belongs: the combinatorics of M_r and the graph-specific computations.

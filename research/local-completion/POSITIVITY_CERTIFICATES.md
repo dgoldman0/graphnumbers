@@ -25,8 +25,10 @@ results in [positivity_certificates_results.json](positivity_certificates_result
    statistic is nonnegative on every unimodular law of bounded degree
    exactly when, for every ε > 0, adding ε makes it a nonnegative function
    of a larger ball plus a rerooting difference, the divergence of a local
-   transport. The radius-by-radius linear programs that produce these
-   certificates converge to the true minimum.
+   transport. The convergence of the radius-by-radius linear programs is
+   the hierarchy of Bowen–Chapman–Lubotzky–Vidick, which
+   Lyons–Terlov–Vidnyánszky transported to neighbourhood statistics. The
+   certificate form is its Farkas dual.
 2. **They fail for finite graphs** (Corollary 2). Every inequality valid on
    all finite graphs of degree at most Δ has such certificates exactly when
    every unimodular law of that degree is sofic. By Step 6 this fails, and
@@ -39,13 +41,20 @@ results in [positivity_certificates_results.json](positivity_certificates_result
    literally a rerooting identity.
 4. **Ghost mass is robustness** (Theorem 3). The least negative mass that
    finite signed approximations of a positive element must keep equals its
-   robustness with respect to the sofic laws. By duality this equals the
-   largest normalized violation of an inequality valid on all finite graphs.
+   robustness with respect to the sofic laws. By the standard robustness
+   duality, this equals the largest normalized violation of an inequality
+   valid on all finite graphs.
 5. **Products** (Proposition 4). 1 + 2R is submultiplicative under the
    Cartesian product, and multiplying by a sofic law never increases R.
 6. **Open questions** (Section 6): amplification under Cartesian powers (a
-   parallel-repetition analogue), curing by sofic factors, computability,
-   and finiteness of R.
+   parallel-repetition analogue), curing by sofic factors in the unlabelled
+   setting, and finiteness of R.
+
+Section 7 records what is credited to prior work. The new content is the
+certificate form in this completion's transport language, the
+Klep–Schweighofer-shaped dictionary for unimodular laws, the robustness
+reading of Step 6's negative mass, and the product bound. All of it is
+routine once stated, and none was found in the sources examined.
 
 ## 0. Setting
 
@@ -107,9 +116,17 @@ Consequently:
 
 Each m_ρ(f) is a finite linear program, and the
 [radius-two atlas](RADIUS_TWO_ATLAS.md) already describes the constraint
-spaces 𝓗_ρ at small radius. These programs bound the unimodular value of a
-local statistic from one side. They play the role the NPA hierarchy plays
-for commuting-operator correlations.
+spaces 𝓗_ρ at small radius. The primal statement, that these programs
+converge, is not new. It is the bounded-degree, unlabelled form of the
+pseudo-IRS polytopes of Bowen–Chapman–Lubotzky–Vidick, Part I
+([arXiv:2408.00110](https://arxiv.org/abs/2408.00110)): Lemma 2.16 gives
+"computable polytopes", and Theorem 1.10(2) a non-increasing sequence
+converging to the ergodic value. Their Remark 1.11 compares this with the
+Navascués–Pironio–Acín (NPA) hierarchy. Lyons, Terlov and Vidnyánszky
+([arXiv:2505.06215](https://arxiv.org/abs/2505.06215)) carry the same
+computation to r-neighbourhood statistics of bounded-degree graphs. What
+Theorem 1 adds is the Farkas-dual certificate form (a)–(b), written with
+the completion's local transports.
 
 **Two checked examples.** In both, a positive but unbalanced array violates
 the inequality, so it is the balance that does the work.
@@ -178,8 +195,19 @@ Corollary 2 have exactly this shape:
 | certificates for matrices ⇔ Connes' conjecture | Corollary 2: certificates for finite graphs ⇔ 𝒦_Δ = 𝒰_Δ |
 | Connes' conjecture is false | P_fin ≠ P_loc (Step 6) |
 
-For Schreier graphs of the free group, the commutator row is literal. Let
-φ(g) be the probability that g fixes the root. The root o is fixed by ab
+Ozawa's survey ([arXiv:1212.1700](https://arxiv.org/abs/1212.1700)) states
+the template compactly: "CEC holds true if and only if
+H_d^fin = arch(k⟨x_1, …, x_d⟩_+ + K_h)", where K_h is spanned by
+commutators. Corollary 2 is this statement with finite graphs in place of
+matrices, nonnegative ball functions in place of hermitian squares, and
+transport divergences in place of commutators.
+
+Unimodularity is the trace property here. Aldous and Lyons
+([math/0603062](https://arxiv.org/abs/math/0603062), §5) show that
+E(T o, o) is a trace on the algebra of a unimodular network, and that
+Tr(ST) = Tr(TS) "follows from the Mass-Transport Principle". For Schreier
+graphs of the free group, the commutator row is literal. Let φ(g) be the
+probability that g fixes the root. The root o is fixed by ab
 exactly when the rerooted vertex o·a is fixed by ba. So invariance under
 moving the root along an a-edge gives φ(ab) = φ(ba): the trace identity is a
 rerooting identity. The verifier checks this mechanism on random finite
@@ -189,16 +217,25 @@ setting. Bowen, Chapman and Vidick
 variant of the compression technique developed in MIP*=RE" and note that "As
 a byproduct, we are reproving the negation of Connes' embedding problem".
 
-**Contrast with dense graph limits.** Hatami and Norine
+**Contrast with dense graph limits.** For dense limits, Lovász and Szegedy
+([arXiv:0902.1327](https://arxiv.org/abs/0902.1327), abstract) prove that
+every valid linear inequality between subgraph densities "can be
+approximated arbitrarily well by another valid inequality that is a 'sum of
+squares'". Hatami and Norine
 ([arXiv:1005.2382](https://arxiv.org/abs/1005.2382), abstract) show that
-sums-of-squares certificates for valid inequalities between homomorphism
-densities can fail, via "the fact that there are positive polynomials that
-cannot be expressed as sums of squares". There, every limit object is
-already a limit of finite graphs, and the certificate system is incomplete
-for the limit objects themselves. Here, by Theorem 1, the certificate
-system is complete for the limit objects. Its only failure is that those
-objects outrun finite graphs. The dense failure is real-algebraic; the local
-one is of the MIP* = RE kind.
+exact certificates can fail, using "the fact that there are positive
+polynomials that cannot be expressed as sums of squares". So in the dense
+setting approximate certificates always exist. In the local setting they
+exist for unimodular laws (Theorem 1), but by Corollary 2 and Step 6 they
+can fail even approximately for finite graphs. The local failure is at the
+approximate level and comes from the MIP* = RE phenomenon. The dense one is
+an exact-level, real-algebraic failure. Csóka
+([arXiv:1108.4995](https://arxiv.org/abs/1108.4995)) notes that "For sparse
+graphs, the closure of the set of distributions is convex, so contrary to
+the dense case, linear inequalities are sufficient to completely describe
+it". He also proves exact feasibility undecidable, both for limits of
+finite graphs and for unimodular random graphs, which is consistent with
+the ε in Theorem 1.
 
 ## 4. Ghost mass is robustness
 
@@ -250,6 +287,19 @@ duality obtained from its normalization 0 ≤ ℓ(G) ≤ 2|V(G)|. Theorem 3 says
 the best such bound is exact. The minimal ghost mass and the best normalized
 certificate failure are the same number.
 
+The duality is the standard one for robustness measures. Vidal and Tarrach
+introduced robustness as "the minimal amount of mixing with locally
+prepared states which washes out all entanglement"
+([quant-ph/9806094](https://arxiv.org/abs/quant-ph/9806094), abstract).
+Howard and Campbell's robustness of magic,
+"R(ρ) = min ||x||1 subject to Ax = b", for which "strong duality holds"
+([arXiv:1609.07488](https://arxiv.org/abs/1609.07488)), corresponds to
+1 + 2R here. No robustness measure of non-soficity, or of the gap between
+finite-dimensional and commuting-operator correlations, was found. The
+closest is the gap between the ergodic and sofic values of a single test in
+Bowen–Chapman–Lubotzky–Vidick, which is one normalized violation rather
+than a per-law robustness.
+
 ## 5. Products
 
 **Proposition 4.** For x in 𝒰_Δ and y in 𝒰_Δ′,
@@ -267,6 +317,11 @@ continuous. Let x = (1+m)s − mq and y = (1+n)s′ − nq′. Expanding,
 The second bracket has total mass m + n + 2mn, and both brackets normalize
 to sofic laws by convexity. Hence R(x⊠y) ≤ m + n + 2mn. ∎
 
+This is the analogue of the submultiplicativity of the robustness of magic,
+"R(ρ1 ⊗ ρ2) ≤ R(ρ1)R(ρ2)" (Howard–Campbell, eq. (4)). Sofic ⊠ sofic is
+sofic by the finite-graph product argument in Aldous–Lyons, Proposition
+4.11.
+
 ## 6. Open questions
 
 - **Amplification.** How does R(x^{⊠n}) grow? The bound gives at most
@@ -274,35 +329,58 @@ to sofic laws by convexity. Hence R(x⊠y) ≤ m + n + 2mn. ∎
   products, just as optimal strategies for a repeated game need not be
   product strategies. This is the parallel-repetition question for these
   inequalities.
-- **Curing.** Can x⊠s be sofic when x is not and s is? For groups,
-  soficity passes to subgroups. Here the question reduces to recognizing
-  the factor directions of a product locally, from its squares.
+  - On the game side, Bowen–Chapman–Vidick (Remark 3.49, Lemma 3.50 of
+    [arXiv:2501.00173](https://arxiv.org/abs/2501.00173)) relate the
+    product of games to the Cartesian product of Schreier graphs, and use
+    anchored parallel repetition to reduce game values.
+  - No amplification result for sofic values or for R was found.
+- **Curing.** Can x⊠s be sofic when x is not and s is?
+  - *Edge-labelled Schreier graphs: no.* Take independent invariant random
+    subgroups H₁ of F(S₁) and H₂ of F(S₂). The Cartesian product of their
+    Schreier graphs is the Schreier graph of K = π₁⁻¹(H₁) ∩ π₂⁻¹(H₂) in
+    F(S₁ ⊔ S₂), where π_i retracts onto F(S_i), and K ∩ F(S₁) = H₁.
+    Restricting finite actions to F(S₁) is continuous and preserves
+    finiteness, so a co-sofic K would make H₁ co-sofic. In graph terms,
+    deleting the second factor's labelled edges is a local map. This short
+    argument was supplied by the literature check; it was not found in a
+    source.
+  - *Unlabelled completion.* The same argument works whenever the factor of
+    each edge of x⊠s can be read locally. Whether it always can is open.
 - **Computability.** The programs m_ρ(f) bound the unimodular value from one
-  side and finite graphs bound m_fin(f) from the other. By the Aldous–Lyons
-  counterexample, approximating the finite-graph value of the encoded test
-  statistics is undecidable, provided Step 6's decoder preserves values
-  quantitatively, which is not checked here. In that case R(x) is not
-  computable in general.
+  side and finite graphs bound m_fin(f) from the other. Bowen–Chapman–
+  Lubotzky–Vidick (Corollary 1.12) and Lyons–Terlov–Vidnyánszky already
+  observe that a positive Aldous–Lyons answer would make such values
+  computable. No explicit separating radius is known: Lyons–Terlov–
+  Vidnyánszky pose "Find an explicit r > 0 such that Ar ≠ A′r" as their
+  Problem 16. Whether R(x) is computable in general therefore inherits these
+  undecidability results. Transferring them through Step 6's encoding needs
+  a quantitative version of its decoder, which is not checked here.
 - **Finiteness.** Is R(x) finite for every bounded-degree unimodular law, or
   can a unimodular law lie outside every K_m?
 
 ## 7. Literature and novelty
 
-No novelty claim is made here.
-- **Theorem 1** is linear-programming duality plus compactness, applied to
-  the representation theorem. It may already appear in the literature on
-  unimodular random graphs.
-- **Theorem 3** is a convex-duality statement of the robustness kind
-  familiar from Bell nonlocality.
-- **Proposition 4** is elementary.
+A targeted search (21 lookups; passages quoted above were read in the
+opened papers or their abstracts) gives these verdicts.
 
-The sources checked so far, by their abstracts or the passages quoted
-above, are Klep–Schweighofer, Bowen–Chapman–Vidick, Hatami–Norine, and
-Aldous–Lyons on the independent product. A targeted search for prior
-certificate theorems for unimodular laws, for robustness measures of the
-finite-versus-commuting-operator gap, and for products or parallel
-repetition of subgroup tests is in progress. Its findings will be recorded
-here.
+| Claim | Prior work | Status here |
+| --- | --- | --- |
+| Convergence of the radius-by-radius programs | Bowen–Chapman–Lubotzky–Vidick, Lemma 2.16 and Theorem 1.10(2); Lyons–Terlov–Vidnyánszky for neighbourhood statistics | Credited; not new |
+| Certificate form, Theorem 1(a)–(b) | Not found; the template is Klep–Schweighofer and Ozawa's Theorem 6 | Routine Farkas dual, stated in transport language |
+| Corollary 2 and the Connes dictionary | Shape of Ozawa's Corollary 8; trace from mass transport in Aldous–Lyons §5; "every IRS induces a character" (BCLV, footnote 6) | Statement for unimodular laws not found |
+| Dense contrast | Lovász–Szegedy (approximate certificates exist); Hatami–Norine (exact certificates fail) | Credited |
+| Theorem 3 | Standard robustness duality (Vidal–Tarrach; Howard–Campbell; witness formulations by Brandão and Regula) | Applied to non-soficity, which was not found elsewhere |
+| Proposition 4 | Howard–Campbell's submultiplicativity; Aldous–Lyons Proposition 4.11 | Routine |
+| Curing, labelled case | Not found | Short argument recorded in Section 6 |
+
+No source examined gives a per-law measure of non-soficity, or of the gap
+between finite-dimensional and commuting-operator correlations.
+Al-Safi–Short is not a source for the duality: it shows that non-signalling
+correlations arise once positivity is relaxed, and leaves bounds on the
+negativity open. Not opened: Lovász's book (page 358 is known only through
+Lyons–Terlov–Vidnyánszky), Hatami–Lovász–Szegedy, Elek, Netzer–Thom,
+Kun–Thom, Arzhantseva–Păunescu, Harangi, and the full texts of Brandão,
+Regula and Abramsky–Barbosa–Mansfield.
 
 ## 8. Status and reproduction
 

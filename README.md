@@ -267,7 +267,8 @@ diverges. Ghosts and phantoms form closed ideals with no nilpotents.
 The [positivity-certificate note](research/local-completion/POSITIVITY_CERTIFICATES.md)
 gives Step 6 its certificate form. Nonnegativity on unimodular laws is always
 certified, up to any ε, by a nonnegative ball function plus a rerooting
-difference, but some inequality valid on all finite graphs has no such
-certificate. This mirrors the Klep–Schweighofer form of Connes' embedding
+difference. This is the dual of the known linear-programming hierarchy of
+Bowen–Chapman–Lubotzky–Vidick and Lyons–Terlov–Vidnyánszky. Some
+inequality valid on all finite graphs has no such certificate. This mirrors the Klep–Schweighofer form of Connes' embedding
 problem. The persistent negative mass equals the robustness with respect to
 the sofic laws, and it is controlled under Cartesian products.

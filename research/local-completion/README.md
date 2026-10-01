@@ -274,8 +274,9 @@ finite inputs.
 The [positivity-certificate note](POSITIVITY_CERTIFICATES.md) states what
 Step 6 means for certificates. A local statistic is nonnegative on every
 bounded-degree unimodular law exactly when, up to any ε, it is a nonnegative
-ball function plus the divergence of a local transport. The radius-by-radius
-linear programs converge to the true minimum. Such certificates exist for
+ball function plus the divergence of a local transport. This is the Farkas
+dual of the linear-programming hierarchy of Bowen–Chapman–Lubotzky–Vidick
+and Lyons–Terlov–Vidnyánszky, which is credited there. Such certificates exist for
 every inequality valid on finite graphs only if every unimodular law is
 sofic, so Step 6's separator is an uncertifiable valid inequality. This
 mirrors the Klep–Schweighofer form of Connes' embedding problem, with
