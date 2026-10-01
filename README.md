@@ -209,3 +209,12 @@ guide the next work. The [repair register](research/local-completion/AUDIT_REPAI
 records corrections, the evidence actually supplied by each verification
 artifact, and remaining gaps. Historical assertion counts are not measures
 of theorem coverage or independent evidence.
+
+The first October proof checkpoints describe the
+[radius-one algebra](research/local-completion/RADIUS_ONE_STRUCTURE.md),
+characterize the [span of the local positive cone](research/local-completion/POSITIVE_SPAN.md),
+and extend entire-function arithmetic to
+[finite edge deletions in bipartite transitive regular backgrounds](research/local-completion/FINITE_DELETION_ARITHMETIC.md).
+The deletion proof includes split-off finite regular components.
+Each note separates its universal proof from the accompanying finite
+fixtures; independent referee review of these new proofs is pending.

@@ -214,6 +214,11 @@ include dependent and formal checks and are not independent coverage totals.
 
 | File | Purpose |
 | --- | --- |
+| [RADIUS_ONE_STRUCTURE.md](RADIUS_ONE_STRUCTURE.md) | Free link monoid, constructive finite realization and complete radius-one character space. |
+| [POSITIVE_SPAN.md](POSITIVE_SPAN.md) | Absolute-measure moment criterion for the positive span, normality and discontinuous lattice modulus. |
+| [FINITE_DELETION_ARITHMETIC.md](FINITE_DELETION_ARITHMETIC.md) | General bipartite transitive finite-deletion theorem, including split-off finite regular components. |
+| [verify_foundation_checkpoint.py](verify_foundation_checkpoint.py) | Independent permutation, rational-rank and edited-lattice fixtures for the three new notes. |
+| [foundation_checkpoint_results.json](foundation_checkpoint_results.json) | Explicit finite realization coefficients and finite-deletion observations with their scope. |
 | [AUDIT_REPAIRS.md](AUDIT_REPAIRS.md) | Disposition of audit findings, concrete regressions, and remaining evidence and performance work. |
 | [BRANCHING_ARITHMETIC.md](BRANCHING_ARITHMETIC.md) | Exact regular-tree cut norms, local spectra, entire-function arithmetic, independent tree degrees, and degree-matched heat comparison. |
 | [PLANAR_ARITHMETIC.md](PLANAR_ARITHMETIC.md) | Single-edge square-lattice cut, exact variation, entire-function algebra and ambient inversion. |

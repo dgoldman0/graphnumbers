@@ -1,0 +1,1096 @@
+{
+  "finite_deletions": [
+    {
+      "deleted_edges": [
+        [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      ],
+      "endpoint_count": 2,
+      "expected_eventual_q_coefficients": {},
+      "name": "single_line_cut",
+      "observations": [
+        {
+          "affected_roots": 2,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "1": 2
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 6,
+          "certified_character_disc_radius": 6,
+          "positive_regular_mass_by_degree": {},
+          "radius": 3,
+          "sufficient_finite_buffer_distance_from_endpoints": 7,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 8,
+          "certified_character_disc_radius": 8,
+          "positive_regular_mass_by_degree": {},
+          "radius": 4,
+          "sufficient_finite_buffer_distance_from_endpoints": 9,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 0
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            -1
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ]
+      ],
+      "endpoint_count": 3,
+      "expected_eventual_q_coefficients": {
+        "0": 1
+      },
+      "name": "isolated_line_vertex",
+      "observations": [
+        {
+          "affected_roots": 3,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "0": 1,
+            "1": 2
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 9,
+          "certified_character_disc_radius": 8,
+          "positive_regular_mass_by_degree": {
+            "0": 1
+          },
+          "radius": 4,
+          "sufficient_finite_buffer_distance_from_endpoints": 9,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 11,
+          "certified_character_disc_radius": 10,
+          "positive_regular_mass_by_degree": {
+            "0": 1
+          },
+          "radius": 5,
+          "sufficient_finite_buffer_distance_from_endpoints": 11,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 1
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            -1
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          [
+            1
+          ],
+          [
+            2
+          ]
+        ]
+      ],
+      "endpoint_count": 4,
+      "expected_eventual_q_coefficients": {
+        "1": 2
+      },
+      "name": "isolated_line_edge",
+      "observations": [
+        {
+          "affected_roots": 4,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "1": 4
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 12,
+          "certified_character_disc_radius": 10,
+          "positive_regular_mass_by_degree": {
+            "1": 2
+          },
+          "radius": 5,
+          "sufficient_finite_buffer_distance_from_endpoints": 11,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 14,
+          "certified_character_disc_radius": 12,
+          "positive_regular_mass_by_degree": {
+            "1": 2
+          },
+          "radius": 6,
+          "sufficient_finite_buffer_distance_from_endpoints": 13,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 2
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            -1
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "endpoint_count": 4,
+      "expected_eventual_q_coefficients": {},
+      "name": "isolated_nonregular_path",
+      "observations": [
+        {
+          "affected_roots": 4,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "1": 4
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 13,
+          "certified_character_disc_radius": 13,
+          "positive_regular_mass_by_degree": {},
+          "radius": 5,
+          "sufficient_finite_buffer_distance_from_endpoints": 11,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 15,
+          "certified_character_disc_radius": 15,
+          "positive_regular_mass_by_degree": {},
+          "radius": 6,
+          "sufficient_finite_buffer_distance_from_endpoints": 13,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 0
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            -1
+          ],
+          [
+            0
+          ]
+        ],
+        [
+          [
+            0
+          ],
+          [
+            1
+          ]
+        ],
+        [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ]
+      ],
+      "endpoint_count": 5,
+      "expected_eventual_q_coefficients": {
+        "0": 1,
+        "1": 2
+      },
+      "name": "line_vertex_and_edge_components",
+      "observations": [
+        {
+          "affected_roots": 5,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "0": 1,
+            "1": 4
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 15,
+          "certified_character_disc_radius": 12,
+          "positive_regular_mass_by_degree": {
+            "0": 1,
+            "1": 2
+          },
+          "radius": 6,
+          "sufficient_finite_buffer_distance_from_endpoints": 13,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 17,
+          "certified_character_disc_radius": 14,
+          "positive_regular_mass_by_degree": {
+            "0": 1,
+            "1": 2
+          },
+          "radius": 7,
+          "sufficient_finite_buffer_distance_from_endpoints": 15,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 3
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ],
+      "endpoint_count": 2,
+      "expected_eventual_q_coefficients": {},
+      "name": "single_lattice_cut",
+      "observations": [
+        {
+          "affected_roots": 2,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "3": 2
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 18,
+          "certified_character_disc_radius": 18,
+          "positive_regular_mass_by_degree": {},
+          "radius": 3,
+          "sufficient_finite_buffer_distance_from_endpoints": 7,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 32,
+          "certified_character_disc_radius": 32,
+          "positive_regular_mass_by_degree": {},
+          "radius": 4,
+          "sufficient_finite_buffer_distance_from_endpoints": 9,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 0
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            -1
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ]
+      ],
+      "endpoint_count": 5,
+      "expected_eventual_q_coefficients": {
+        "0": 1
+      },
+      "name": "isolated_lattice_vertex",
+      "observations": [
+        {
+          "affected_roots": 5,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "0": 1,
+            "3": 4
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 85,
+          "certified_character_disc_radius": 84,
+          "positive_regular_mass_by_degree": {
+            "0": 1
+          },
+          "radius": 6,
+          "sufficient_finite_buffer_distance_from_endpoints": 13,
+          "uniform_classification_threshold_met": true
+        },
+        {
+          "affected_roots": 113,
+          "certified_character_disc_radius": 112,
+          "positive_regular_mass_by_degree": {
+            "0": 1
+          },
+          "radius": 7,
+          "sufficient_finite_buffer_distance_from_endpoints": 15,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 1
+    },
+    {
+      "deleted_edges": [
+        [
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            -1,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            -1
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            -1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      ],
+      "endpoint_count": 12,
+      "expected_eventual_q_coefficients": {
+        "2": 4
+      },
+      "name": "isolated_lattice_square",
+      "observations": [
+        {
+          "affected_roots": 12,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "2": 4,
+            "3": 8
+          },
+          "radius": 1,
+          "sufficient_finite_buffer_distance_from_endpoints": 3,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 40,
+          "certified_character_disc_radius": null,
+          "positive_regular_mass_by_degree": {
+            "2": 4
+          },
+          "radius": 3,
+          "sufficient_finite_buffer_distance_from_endpoints": 7,
+          "uniform_classification_threshold_met": false
+        },
+        {
+          "affected_roots": 420,
+          "certified_character_disc_radius": 416,
+          "positive_regular_mass_by_degree": {
+            "2": 4
+          },
+          "radius": 13,
+          "sufficient_finite_buffer_distance_from_endpoints": 27,
+          "uniform_classification_threshold_met": true
+        }
+      ],
+      "regular_component_vertex_mass": 4
+    }
+  ],
+  "positive_span": {
+    "difference": "C16/16-C8/8",
+    "global_jordan_variation": "2",
+    "global_measure_by_vertex_count": {
+      "8": "-1",
+      "16": "1"
+    },
+    "global_support_separation": "Different total vertex counts",
+    "graphs": [
+      "C8/8",
+      "C16/16"
+    ],
+    "local_variation": "0",
+    "radius": 2,
+    "scope": "A finite illustration of cancellation under pushforward, not a proof of the measure characterization"
+  },
+  "radius_one": {
+    "cone_matrix_determinant": 2880,
+    "cone_matrix_diagonal": [
+      1,
+      2,
+      1,
+      3,
+      1,
+      1,
+      2,
+      4,
+      1,
+      1,
+      1,
+      2,
+      1,
+      1,
+      1,
+      2,
+      1,
+      3,
+      5
+    ],
+    "connected_host_max_vertices": 5,
+    "connected_host_types": 31,
+    "histogram_matrix_rank": 19,
+    "link_max_vertices": 4,
+    "link_types": 19,
+    "product_scope": "Every ordered pair of link types through three vertices; full Cartesian graph then BFS ball",
+    "realization_witnesses": [
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "1",
+            "graph_key": [
+              1,
+              0
+            ]
+          }
+        ],
+        "link_key": [
+          0,
+          0
+        ],
+        "target_rooted_ball_key": [
+          1,
+          0
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "1/2",
+            "graph_key": [
+              2,
+              1
+            ]
+          }
+        ],
+        "link_key": [
+          1,
+          0
+        ],
+        "target_rooted_ball_key": [
+          2,
+          1
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              3,
+              3
+            ]
+          }
+        ],
+        "link_key": [
+          2,
+          0
+        ],
+        "target_rooted_ball_key": [
+          3,
+          3
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "1/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          }
+        ],
+        "link_key": [
+          2,
+          1
+        ],
+        "target_rooted_ball_key": [
+          3,
+          7
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-3/2",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              4,
+              7
+            ]
+          }
+        ],
+        "link_key": [
+          3,
+          0
+        ],
+        "target_rooted_ball_key": [
+          4,
+          7
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/2",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "-2/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              4,
+              15
+            ]
+          }
+        ],
+        "link_key": [
+          3,
+          1
+        ],
+        "target_rooted_ball_key": [
+          4,
+          15
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "1/2",
+            "graph_key": [
+              4,
+              31
+            ]
+          }
+        ],
+        "link_key": [
+          3,
+          3
+        ],
+        "target_rooted_ball_key": [
+          4,
+          31
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "1/4",
+            "graph_key": [
+              4,
+              63
+            ]
+          }
+        ],
+        "link_key": [
+          3,
+          7
+        ],
+        "target_rooted_ball_key": [
+          4,
+          63
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-2",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              15
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          0
+        ],
+        "target_rooted_ball_key": [
+          5,
+          15
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "-2/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              31
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          1
+        ],
+        "target_rooted_ball_key": [
+          5,
+          31
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/2",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "-1/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "-1/2",
+            "graph_key": [
+              4,
+              31
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              63
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          3
+        ],
+        "target_rooted_ball_key": [
+          5,
+          63
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/2",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "1/2",
+            "graph_key": [
+              5,
+              127
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          7
+        ],
+        "target_rooted_ball_key": [
+          5,
+          127
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/2",
+            "graph_key": [
+              2,
+              1
+            ]
+          },
+          {
+            "coefficient": "-3/4",
+            "graph_key": [
+              4,
+              63
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              191
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          11
+        ],
+        "target_rooted_ball_key": [
+          5,
+          191
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-4/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              207
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          12
+        ],
+        "target_rooted_ball_key": [
+          5,
+          207
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1",
+            "graph_key": [
+              4,
+              31
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              223
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          13
+        ],
+        "target_rooted_ball_key": [
+          5,
+          223
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/6",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "-1/4",
+            "graph_key": [
+              4,
+              63
+            ]
+          },
+          {
+            "coefficient": "1/2",
+            "graph_key": [
+              5,
+              255
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          15
+        ],
+        "target_rooted_ball_key": [
+          5,
+          255
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "4/3",
+            "graph_key": [
+              3,
+              7
+            ]
+          },
+          {
+            "coefficient": "-2",
+            "graph_key": [
+              4,
+              31
+            ]
+          },
+          {
+            "coefficient": "1",
+            "graph_key": [
+              5,
+              495
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          30
+        ],
+        "target_rooted_ball_key": [
+          5,
+          495
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "-1/6",
+            "graph_key": [
+              4,
+              63
+            ]
+          },
+          {
+            "coefficient": "1/3",
+            "graph_key": [
+              5,
+              511
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          31
+        ],
+        "target_rooted_ball_key": [
+          5,
+          511
+        ]
+      },
+      {
+        "host_coefficients": [
+          {
+            "coefficient": "1/5",
+            "graph_key": [
+              5,
+              1023
+            ]
+          }
+        ],
+        "link_key": [
+          4,
+          63
+        ],
+        "target_rooted_ball_key": [
+          5,
+          1023
+        ]
+      }
+    ]
+  },
+  "scope": "Finite constructive fixtures for three written proofs; no assertion-count coverage metric"
+}

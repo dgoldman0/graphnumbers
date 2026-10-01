@@ -74,6 +74,18 @@ fixtures and expected outputs, and explain the independent oracle used. Do not
 turn repeated assertions, identities implied by earlier identities, or literal
 report fields into headline check counts.
 
+The subsequent [foundation checkpoint](RADIUS_ONE_STRUCTURE.md) adds a direct
+cone-induction realization proof at radius one, with explicit rational
+witnesses and an independently enumerated host-matrix rank. Its
+[standalone verifier](verify_foundation_checkpoint.py) imports no library
+code and also checks the fragile finite-component cases of the
+[deletion theorem](FINITE_DELETION_ARITHMETIC.md). This strengthens the
+radius-one and deletion evidence; it does not close the all-radius
+representation or tree-factor/cumulant coverage gaps above. The
+[positive-span note](POSITIVE_SPAN.md) gives a measure-theoretic proof;
+its cycle fixture illustrates local cancellation rather than verifying
+the general Jordan argument computationally.
+
 ## Literature
 
 | Finding | Disposition |
