@@ -228,3 +228,13 @@ General freeness and complete coordinate separation remain open.
 The source, raw catalogues and exact verification records are reproducible
 with a C++17 compiler and the Python standard library. Independent review
 is deferred while this next research checkpoint is recorded.
+
+The [spectral-measure checkpoint](research/local-completion/SPECTRAL_MEASURE_HOMOMORPHISM.md)
+characterizes the degree-bounded elements admitting finite signed Laplacian
+spectral measures and proves their Cartesian convolution law. Uniform
+spectral variation supports local limits. A degree-two cycle limit with
+edit budget at most one has controlled heat but no such measure, so the
+spectral domain is a proper part of the controlled-heat algebra. The note
+corrects the finite-edit spectral-shift assumption and proves a second
+heat-sign crossing for the earlier interaction fixture. Exact standalone
+verification passes; independent proof review remains deferred.

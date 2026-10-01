@@ -381,6 +381,12 @@ $$J(c)\text{ is represented by a finite signed measure}
 For example $c_j=1$ gives a completed element with finite data at every
 radius and unbounded total variation as the radius increases.
 
+The later [spectral-measure note](SPECTRAL_MEASURE_HOMOMORPHISM.md), Section 5,
+shows that -J((1,1,...)) also has a uniform finite-edit approximation budget
+of one and controlled heat, yet has no finite signed Laplacian spectral
+measure. The obstruction uses unbounded Chebyshev evaluations, separately
+from the rooted-graph variation criterion proved here.
+
 There is also a topological conclusion. $J$ is a continuous linear embedding
 of $\mathbb R^{\mathbb N}$ with its product topology. The coefficient $c_j$
 is recovered by the coordinate of the rooted $C_{2N_j}$ type at radius

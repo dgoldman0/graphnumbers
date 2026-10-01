@@ -341,6 +341,15 @@ linear, multiplicative functional on this subalgebra. Changing to a
 larger degree parameter leaves its value unchanged by the binomial
 uniformization identity and absolute convergence.
 
+The later [spectral-measure theorem](SPECTRAL_MEASURE_HOMOMORPHISM.md)
+identifies a proper subalgebra of this domain by the signed Hausdorff
+condition. Finite spectral variation gives a scalar profile, but even
+uniform edit budgets can have local limits with no finite spectral measure.
+Its degree-two cycle example has profile (0,2) and budget at most one.
+This proves strict inclusion of the spectral-measure domain in the profile
+domain; it does not prove strict inclusion of the edit-controlled domain
+in the profile domain.
+
 For a fixed cap D, fixed profile and fixed t, heat is uniformly
 continuous in the inherited local topology. Choose a common M to
 make the two profile tails small; the retained difference is bounded

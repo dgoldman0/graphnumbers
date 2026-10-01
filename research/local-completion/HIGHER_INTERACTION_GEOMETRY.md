@@ -372,6 +372,15 @@ These decimal intervals are outward relaxations of the exact rational
 enclosures in the [result record](../../python/results/higher_interaction_verification.json).
 Their strict opposite signs prove a crossing between the two times.
 
+The later [spectral-measure calculation](SPECTRAL_MEASURE_HOMOMORPHISM.md),
+Section 6, factors the eight characteristic polynomials exactly. It proves
+that the lowest surviving spectral atom is in (0.5188,0.5189), with
+coefficient +1, and gives a rational estimate making H_F(t)>0 for t>=40.
+Together these results prove at least two positive-time zeros, in (1,3)
+and (3,40). The standalone verifier independently re-encloses the signs
+at 1 and 3 and checks the characteristic polynomials by two exact methods;
+the number of all zeros is not classified.
+
 Library version 0.5.0 implements `interaction_moments(X, order)` using
 the incidence cross moments and a dynamic program indexed by used-label
 masks, last labels and polynomial degree. A mask records support; it

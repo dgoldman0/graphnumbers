@@ -98,6 +98,20 @@ representation, tree-factor or universal-cumulant verification backlog.
 Independent proof review has been deferred by the author until after this
 additional work. Historical findings retain their original status.
 
+The [spectral-measure checkpoint](SPECTRAL_MEASURE_HOMOMORPHISM.md) corrects
+the development plan's identification of a finite relative spectral measure
+with the Krein shift: the latter pairs with a derivative, and its zero
+extension must be BV to yield a measure. The exact signed Hausdorff domain
+is a proper subalgebra of the controlled-heat domain, as shown by a cycle
+limit with uniform edit budget one and unbounded unit-norm Chebyshev tests.
+The [standalone verifier](verify_spectral_measure.py) checks concrete
+matrix/Bernstein, Cartesian, cycle, characteristic-polynomial and rational
+heat fixtures. It also certifies the eventual positive sign of the earlier
+interaction, proving at least two positive-time zeros. Finite moment rows
+are not presented as universal measure-existence certificates. The new
+proofs await the same deferred independent review; the library API and
+version are unchanged.
+
 ## Literature
 
 | Finding | Disposition |
@@ -112,3 +126,8 @@ Primary passages checked in this pass: Aldous–Lyons, Proposition 2.2
 and proposition, and Knill, Section 1.14. The older Aldous–Lyons author
 manuscript and the arXiv rendering use different numbering for the product
 proposition; the review records both rather than silently conflating them.
+For the Step 5 checkpoint, the primary full-text passages checked are
+Knill's moment preprint, Theorem 2.2 and Corollary 2.3, and
+Potapov–Sukochev–Zanin, Theorem 7 and Lemma 10. Complete links and their
+specific uses are recorded in the spectral-measure note. This does not
+close the broader bibliography backlog above.

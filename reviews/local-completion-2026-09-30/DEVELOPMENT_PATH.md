@@ -197,14 +197,13 @@ defect; these generate the same unital closed algebra.
 
 **D3, line and plane (Problem).** Decide whether E and P are algebraically independent. Regular-face characters cannot do it, so look for faces defined by the irregular atoms: the half-line ends of E against the cut-lattice balls of P.
 
-**D4, spectral-measure homomorphism (Proposed on a subdomain).**
-- Write H_t(x) = ∫e^{−tλ} dμ_x(λ). For normalized finite graphs, μ_x is the spectral measure averaged over roots. For finite-edit defects it is the relative trace measure, the Krein spectral shift†.
-- Heat return is multiplicative and Laplace transforms are injective. So μ_{xy} = μ_x ∗ μ_y (additive convolution) wherever these measures exist with bounded total variation: finite graphs, finite-edit defects, and their products and controlled limits.
-- Consequences:
-  - heat and resolvent responses of product defects by convolution;
-  - SPARSE_DEFECTS §6's binomial moment identity as a moment identity of convolution;
-  - sign changes of interactions read from the signed spectral measure. In the HIGHER_INTERACTION fixture, the lowest atom (λ ≈ 0.5188, coefficient +1) fixes the sign for large t, which explains the second sign change.
-- *Problem.* Extend μ_x to the whole controlled domain of PLANAR_DEFECTS §4. This needs a signed Hausdorff moment condition, not just moment growth bounds. Compare with density-of-states theory for unimodular graphs†.
+**D4, spectral-measure homomorphism (Proof checkpoint on an exact subdomain).**
+- [The spectral-measure note](../../research/local-completion/SPECTRAL_MEASURE_HOMOMORPHISM.md) characterizes the degree-bounded domain S by uniform bounds on all signed Hausdorff/Bernstein rows of the local Laplacian moments. Their increasing variations converge to the spectral total variation. This is the classical signed Hausdorff criterion applied to the completion; the primary references and a full proof are included.
+- On S, ν_{xy}=ν_x∗ν_y. The domain contains finite signed rooted-graph measures, the cut-line defect E, and their sums and Cartesian products. Local limits remain in S under a common degree cap and uniform **spectral** total variation. Heat and resolvent formulas follow from convolution, as does the binomial moment identity. Resolvents themselves are generally not multiplicative.
+- **Correction to the proposal:** the Krein spectral shift ξ pairs with f′, not f. An actual infinite-graph finite edit has a finite spectral measure exactly when its zero-extended shift is BV; then ν=−Dξ. A finite edit budget alone does not supply this hypothesis.
+- **The proposed extension to the whole controlled domain is false.** The explicit limit X=Σ_{j≥1}[U(C_{3^j})−U(C_{2·3^j})] has degree cap two and uniformly bounded edit budget one, but no finite spectral measure. Unit-norm Chebyshev test polynomials have evaluations m at degrees 3^m. Thus S is a proper subalgebra of the finite-profile heat domain; even the uniform-edit closure is not contained in S.
+- Exact factorization of the HIGHER_INTERACTION fixture identifies its lowest spectral atom as the smallest root of z³−7z²+13z−5, in (0.5188,0.5189), with coefficient +1. Rational estimates prove positive heat for t≥40. Together with independently checked signs at t=1 and t=3, this proves at least two positive-time zeros, without claiming exactly two.
+- *Remaining problem:* classify BV shifts for individual finite edits on infinite backgrounds and find practical sufficient spectral-variation certificates. The counterexample is a controlled limit of edit combinations, not a claimed single finite-edge perturbation. Independent review is deferred.
 
 ## 4. Signed measure theory for unimodular random graphs
 
@@ -252,19 +251,21 @@ The encoding is standard in spirit but must be written out and checked. Self-con
 | 2 | Positive-span characterization M2 | Representation theorem; Jordan decomposition; involution invariance | Proof checkpoint; includes normality and discontinuous modulus |
 | 3 | General finite-deletion theorem D1 | Face lemma; finite-component classification; Rouché bounds | Proof checkpoint with finite-component edge-case fixtures |
 | 4 | Atlas of M_2 (§1.3) | Explicit monoid operations and independent canonicalization | Completed staged atlas: degree 4 through 9 vertices, complete degree 3; finite-slice and decorated-neighbor proofs await review |
-| 5 | Spectral-measure homomorphism D4 on its subdomain | Existence of finite signed spectral measures; heat multiplicativity | Proposed; establish measure hypotheses first |
+| 5 | Spectral-measure homomorphism D4 on its subdomain | Existence of finite signed spectral measures; heat multiplicativity | Proof checkpoint: exact domain, convolution and controlled limits; counterexample rules out the full controlled domain |
 | 6 | Strict cone inclusion M1 | Verify Bowen–Chapman–Lubotzky–Vidick; explicit gadget encoding | Route identified |
 | 7 | Character completeness T1 and spectral geometry T2 | Steps 1 and 4; semigroup-algebra literature | Open |
 | 8 | Joint defects D2, D3 | Steps 3 and 4 | Criterion proposed; conjecture open |
 | 9 | Automorphisms T4 and reconstruction T5 | Step 7 | Open |
 
-Steps 1–4 now have written proofs and explicitly scoped finite evidence;
+Steps 1–5 now have written proofs and explicitly scoped finite evidence;
 independent review is deferred as requested. The audit register preserves
 unfinished performance, evidence and bibliography tasks. Step 4's planned
 nine-vertex catalogue is complete, with larger degree-four and higher-radius
-catalogues left as extensions. Step 5 is the next research milestone. The
-later measure, soficity and character-completeness tasks retain their open
-status.
+catalogues left as extensions. Step 5 supplies the spectral subdomain and
+corrects the former finite-edit assumption; its universal controlled-domain
+extension is ruled out by an explicit example. Step 6, strict cone inclusion
+with a checked simple-graph encoding, is the next research milestone.
+The later soficity and character-completeness tasks retain their open status.
 
 ## 6. Literature to read first†
 
@@ -272,7 +273,7 @@ status.
 - **Locally m-convex algebras and functional calculus:** Michael (1952); Arens–Calderón; Waelbroeck.
 - **Affine monoids and cones:** Bruns and Gubeladze, *Polytopes, Rings and K-Theory* (2009).
 - **Unimodular random graphs and soficity:** Aldous and Lyons (2007); Bowen, Chapman, Lubotzky and Vidick (2024).
-- **Spectral shift and densities of states:** the Krein spectral shift and Birman–Krein formula; density of states and Lück approximation for unimodular graphs.
+- **Spectral shift and moments:** Potapov–Sukochev–Zanin (2014), Theorem 7 and Lemma 10, and Knill's 2000 moment preprint, Theorem 2.2 and Corollary 2.3, checked for Step 5. Further Birman–Krein, density-of-states and Lück-approximation comparisons remain reading tasks.
 - **Asymptotic spectra:** Strassen; Zuiddam; Fritz.
 - **Infinite-graph factorization:** Imrich, on the weak Cartesian product.
 

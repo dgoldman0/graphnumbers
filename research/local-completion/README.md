@@ -221,10 +221,24 @@ and the scope of the factorization evidence are retained. The full
 reproduction driver and raw data are in [radius_two_atlas/](radius_two_atlas/).
 Independent review of the new proofs is deferred as requested.
 
+The [spectral-measure checkpoint](SPECTRAL_MEASURE_HOMOMORPHISM.md) identifies
+the exact degree-bounded subalgebra with finite signed Laplacian spectral
+measures, using the classical signed Hausdorff criterion. It proves the
+convolution law and local-limit closure under uniform spectral variation.
+An explicit degree-two cycle limit has edit budget at most one and controlled
+heat, but no finite spectral measure, ruling out extension to the whole
+moment-profile domain. Actual infinite-graph finite edits need a BV spectral
+shift. Exact spectral factorization also proves that the earlier interaction
+fixture has at least two positive-time heat zeros. The new proof checkpoint
+and its standalone rational verification retain deferred review status.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [SPECTRAL_MEASURE_HOMOMORPHISM.md](SPECTRAL_MEASURE_HOMOMORPHISM.md) | Exact signed spectral domain, convolution, controlled limits, BV qualification for finite edits, and a controlled nonmeasure counterexample. |
+| [verify_spectral_measure.py](verify_spectral_measure.py) | Standalone exact matrix/Bernstein, product, cycle/Chebyshev, characteristic-polynomial and heat-sign fixtures. |
+| [spectral_measure_results.json](spectral_measure_results.json) | Executed horizons, rational witnesses, independent determinant results, heat enclosures and source hash. |
 | [RADIUS_TWO_ATLAS.md](RADIUS_TWO_ATLAS.md) | Complete finite radius-two catalogues, supported balanced-slice basis, decorated-neighbor coordinates, factorization evidence and open limits. |
 | [radius_two_atlas/](radius_two_atlas/) | Dependency-free enumerator, exact analyzer, separate permutation/Cartesian/injection oracles, raw TSV catalogues and reproducibility manifest. |
 | [RADIUS_ONE_STRUCTURE.md](RADIUS_ONE_STRUCTURE.md) | Free link monoid, constructive finite realization and complete radius-one character space. |

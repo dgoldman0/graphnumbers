@@ -11,6 +11,13 @@ The implementation is `graphlocal` version 0.2.0; see the
 [focused literature comparison](SPARSE_DEFECT_COMPARISON.md), and
 [reproducible experiment](../../python/examples/defect_benchmark.py).
 
+The subsequent [spectral-measure study](SPECTRAL_MEASURE_HOMOMORPHISM.md)
+distinguishes these heat certificates from finite spectral variation.
+It constructs a degree-two limit with uniform edit budget one and no finite
+signed spectral measure. For an actual finite edit on an infinite graph,
+the Krein shift gives a derivative trace formula; a finite relative spectral
+measure requires its zero extension to have bounded variation.
+
 ## 1. Exact cancellation near finitely many edited edges
 
 Let G and G' be finite simple graphs on the same n-vertex set, differing in m
