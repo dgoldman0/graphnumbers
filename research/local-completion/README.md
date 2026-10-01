@@ -1,6 +1,6 @@
 # Local Cartesian graph completion
 
-Research checkpoint, 30 September 2026. Candidate v0.1.
+Research checkpoints through 1 October 2026. Candidate v0.1.
 
 The research goal is a complete extension of graph arithmetic containing the
 ordinary reals, with meaningful graph approximation, continuous graph quantities,
@@ -8,7 +8,7 @@ and useful calculus. This directory specifies one candidate and records its
 proofs and limitations. We call this construction the **local Cartesian
 graph completion**, $\mathcal A_{\mathrm{loc}}$, and its elements **local
 Cartesian graph numbers**. "Graph numbers" is the umbrella term for the
-project's other constructions as well.
+project’s other constructions as well.
 
 The [literature review](LITERATURE_REVIEW.md) identifies direct prior art for
 the finite graph ring and substantial prior art for graph-number completions,
@@ -210,10 +210,23 @@ verification scope, and remaining work against the
 Historical result files retain their original counters; those counters
 include dependent and formal checks and are not independent coverage totals.
 
+The [radius-two atlas](RADIUS_TWO_ATLAS.md) completes the next planned
+structural checkpoint. It contains every degree-four radius-two ball through
+nine vertices and every degree-three radius-two ball, with their complete
+factorizations. A new finite-slice basis proof gives exact balanced
+dimensions and finite reconstruction from hosts having a radius-r center.
+Decorated-neighbor component counts provide further additive coordinates,
+characters and irreducibility certificates; explicit coordinate collisions
+and the scope of the factorization evidence are retained. The full
+reproduction driver and raw data are in [radius_two_atlas/](radius_two_atlas/).
+Independent review of the new proofs is deferred as requested.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [RADIUS_TWO_ATLAS.md](RADIUS_TWO_ATLAS.md) | Complete finite radius-two catalogues, supported balanced-slice basis, decorated-neighbor coordinates, factorization evidence and open limits. |
+| [radius_two_atlas/](radius_two_atlas/) | Dependency-free enumerator, exact analyzer, separate permutation/Cartesian/injection oracles, raw TSV catalogues and reproducibility manifest. |
 | [RADIUS_ONE_STRUCTURE.md](RADIUS_ONE_STRUCTURE.md) | Free link monoid, constructive finite realization and complete radius-one character space. |
 | [POSITIVE_SPAN.md](POSITIVE_SPAN.md) | Absolute-measure moment criterion for the positive span, normality and discontinuous lattice modulus. |
 | [FINITE_DELETION_ARITHMETIC.md](FINITE_DELETION_ARITHMETIC.md) | General bipartite transitive finite-deletion theorem, including split-off finite regular components. |

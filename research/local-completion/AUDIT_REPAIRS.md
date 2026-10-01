@@ -86,6 +86,18 @@ representation or tree-factor/cumulant coverage gaps above. The
 its cycle fixture illustrates local cancellation rather than verifying
 the general Jordan argument computationally.
 
+The subsequent [radius-two atlas](RADIUS_TWO_ATLAS.md) supplies a written
+finite-slice basis theorem using independent rooted-injection constraints
+and finite host columns. It executes their integer annihilation and matching
+modular rank certificates for the complete degree-three radius-two slice
+and smaller degree-four slices. A separate permutation oracle checks the
+catalogue through six vertices, with full Cartesian product checks and
+explicit reconstruction and coordinate witnesses. This strengthens the
+finite local realization evidence; it does not close the general all-radius
+representation, tree-factor or universal-cumulant verification backlog.
+Independent proof review has been deferred by the author until after this
+additional work. Historical findings retain their original status.
+
 ## Literature
 
 | Finding | Disposition |

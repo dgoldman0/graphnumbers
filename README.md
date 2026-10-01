@@ -218,3 +218,13 @@ and extend entire-function arithmetic to
 The deletion proof includes split-off finite regular components.
 Each note separates its universal proof from the accompanying finite
 fixtures; independent referee review of these new proofs is pending.
+
+The subsequent [radius-two atlas](research/local-completion/RADIUS_TWO_ATLAS.md)
+completes the planned catalogue through nine vertices at degree four and
+the full degree-three radius-two catalogue. It records all factorizations
+in those slices, exact balanced dimensions and finite reconstruction,
+and additional additive coordinates from decorated root neighborhoods.
+General freeness and complete coordinate separation remain open.
+The source, raw catalogues and exact verification records are reproducible
+with a C++17 compiler and the Python standard library. Independent review
+is deferred while this next research checkpoint is recorded.

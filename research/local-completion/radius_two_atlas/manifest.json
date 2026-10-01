@@ -1,0 +1,24 @@
+{
+  "compiler": "c++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "generated_sha256": {
+    "degree3_n10/balls.tsv": "8ffd1d4d2dfe04909be0050159c429b922aa00c6bdeb56ff73ad42139e6d5285",
+    "degree3_n10/histograms.tsv": "4770067466cf683db4aec54bff5616560496bc726b1b350fcc462a008088e3b6",
+    "degree3_n10/hosts.tsv": "c4f09fac9379d4dc02b5775377ebeb53d615326504205863c0471f8c3993af6f",
+    "degree3_n10/products.tsv": "eecd5eecc801b32448a91413a42f551ebdb42fdd171870b2644ef57772df2320",
+    "degree3_n10/results.json": "06ee11ff06a3ad3b51c3d4beb6d58ed21747662829a3759fe26f0664d101320c",
+    "degree4_n9/balls.tsv": "7d0a8e51c8f652c593a511243641ee827932db2eacd2b11635d9a6fa9cdc0b46",
+    "degree4_n9/histograms.tsv": "5d7e68d6afa32130136c446ed1043ec17a1e2ef92ebb5f5ad6b3e0ec472cae65",
+    "degree4_n9/hosts.tsv": "6c40bed444da3073a2adaf720a9e34747e344c49b2f7ca029010f8d8500eb80f",
+    "degree4_n9/products.tsv": "731c3e9c360692384bbe2af0e111f4b1db3a94439c9d182acf36f1b25d8dca54",
+    "degree4_n9/results.json": "57dcd6ef89ba35fb40b90d57d799a9fdaabf28914c6335225071da3ca97d93b1",
+    "verification.json": "1fa7fb531ec3eb5ba78de8641f407f4c6edc33bf9b8797357366903f6841c3f2"
+  },
+  "scope": "Independent referee review of the written proofs remains deferred.",
+  "source_sha256": {
+    "analyze.py": "5451f39474e9f91e37f2f06d58795d1d66681f918b6542875a4b0bb0a7026534",
+    "atlas.cpp": "a6a3594b4cb13a4e7987ff5052d550f086550494a92cea494715e1ac54385c9e",
+    "run.py": "3e2677c36dedf4164567a5555819ca30f858d7db6185df447d43e1c68ebf6c72",
+    "verify.py": "e5ce250b7be61270fb2b76d8722e33f232e19b834332550098ab6052fd5706ed"
+  },
+  "status": "catalogues regenerated; exact analysis and scoped independent oracles passed"
+}
