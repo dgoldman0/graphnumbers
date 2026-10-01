@@ -69,11 +69,10 @@ orientation; changing that order leaves the interaction unchanged.
 Here heat means sum_j (-t)^j I_j/j!. For both adjacent cases alpha=beta=10
 and su=6. The values sv are respectively 38 and 37, proving their
 fourth-order distinction directly from (2). Their heat interactions
-differ by t^4/3+O(t^5). The displayed moments were also checked by two
-independent exact integer calculations: sparse recurrence on a 12 by
-12 torus and dense matrix powers on a 10 by 10 torus, agreeing through
-degree eight. These sizes cannot introduce a mixed closed walk of
-length at most eight that winds around the torus.
+differ by t^4/3+O(t^5). The repository verifier compares a local sparse
+recurrence with full integer matrix powers on buffered finite grids.
+It does not contain the formerly claimed 12-by-12 and 10-by-10 torus
+comparison through degree eight; that claim has been withdrawn.
 
 There is a general explanation of the first nonzero term. Suppose
 
@@ -140,8 +139,9 @@ For every r>=1, the precise marginal variation is
 
 In particular E^2 has variation 16r^2 and is not representable by a
 finite signed measure on rooted graphs. The exact variation for k=2
-was checked at r=1,2,3,4, giving 16,64,144,256 and respectively
-3,6,10,15 rooted types.
+is checked by the original product verifier at r=1,2,3, giving
+16,64,144 and respectively 3,6,10 rooted types. The r=4 values
+256 and 15 follow from the proof, not from that recorded run.
 
 To prove (6), let B_(r,a) be the r-ball in a half-line whose root is
 at distance a from its endpoint, and let B_(r,infinity) be the line
@@ -206,7 +206,14 @@ Laplacian. For t>=0 put K_t=exp(-tA_1)-exp(-tA_0). Duhamel gives
 
 The integrand is trace class because A_0-A_1 is one edge Laplacian,
 with trace norm two, and both semigroups are contractions. The earlier
-cut-line calculation gives Tr K_t=(1-exp(-4t))/2.
+cut-line calculation gives the same value as Tr K_t. To justify that
+identification, telescope the Laplacian powers in trace norm:
+||A_1^m-A_0^m||_1<=2m 4^(m-1). The difference of exponential series
+therefore converges in trace norm. Each polynomial difference has
+finitely supported diagonal, whose trace is exactly the stabilized
+local relative moment. Interchanging trace and the absolutely convergent
+series identifies Tr K_t with H_t(E)=(1-exp(-4t))/2. In particular its
+diagonal is absolutely summable; no conditional infinite trace is used.
 
 On l^2(Z^k), the Laplacian after a set S of complete coordinate cuts
 is the Kronecker sum of A_1 in coordinates in S and A_0 elsewhere.
@@ -217,7 +224,10 @@ Factorization of the commuting coordinate semigroups yields
                                                                     \tag{12}
 \]
 
-The sum is trace class, with trace norm at most (2t)^k, and hence
+The sum is trace class, with trace norm at most (2t)^k. Its trace is the
+product of the one-dimensional traces. The local functional agrees:
+the absolutely convergent moment-profile series and multiplicativity
+proved in Section 4 give
 
 \[
  H_t(E^k)=\left(\frac{1-e^{-4t}}2\right)^k.                    \tag{13}

@@ -100,7 +100,9 @@ Knill [3] discusses the weak/Cartesian graph ring as well as other graph rings.
 His 2019 paper [4] explicitly proposes real and complex Banach completions of
 graph arithmetic, using join and its compatible product. The 2021 treatment [5]
 uses the complementary disjoint-union/strong-product presentation and discusses
-weighted Wiener algebras and functional calculus. This is direct prior art for
+weighted Wiener algebras and functional calculus (Section 1.14 of the
+[author PDF](https://people.math.harvard.edu/~knill/graphgeometry/papers/ring3.pdf),
+checked 1 October 2026). This is direct prior art for
 the broad ambition of graphs extending ordinary numbers in a complete algebra.
 
 Two calculations distinguish the current candidate from that Banach model:
@@ -162,6 +164,16 @@ $$\mu_{G\sqcup H}=\mu_G+\mu_H,
 Radius truncation gives T_r(G). Thus the candidate can be described exactly as a
 weighted local convolution completion of these counting measures. This
 reformulation is proved in [Lemma 1](COMPARISON_LEMMAS.md#1-counting-measures-and-convolution).
+The independent rooted product of unimodular probability laws is already
+defined by Aldous–Lyons [7], in the proposition titled "Product Networks"
+(Proposition 4.11 in the [arXiv HTML](https://arxiv.org/html/math/0603062v6),
+5.11 in the older author manuscript). That passage also records compatibility
+with random weak limits of finite products. For the Cartesian product,
+preservation of mass transport follows directly by applying each factor's
+mass-transport identity in turn to a nonnegative transport on the product;
+Tonelli justifies both sums. No finite-approximation assumption is needed
+for this argument. The signed weighted completion studied here requires
+the additional representation and integrability arguments in the notes.
 It explains why standard weighted semigroup algebras [10] and locally m-convex
 algebras [11] supply the completion theorem.
 

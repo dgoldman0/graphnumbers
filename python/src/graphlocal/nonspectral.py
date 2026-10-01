@@ -65,7 +65,6 @@ def _root_degree(g):
 ROOT_DEGREE = RootStatistic("degree", 1, 1, _root_degree)
 
 
-@lru_cache(maxsize=None)
 def rooted_cliques(size):
     """Number of size-cliques containing the root, for size >= 3.
 
@@ -73,6 +72,11 @@ def rooted_cliques(size):
     count each clique once after summing over all roots.
     """
     integer(size, "clique size", 3)
+    return _rooted_cliques(size)
+
+
+@lru_cache(maxsize=None)
+def _rooted_cliques(size):
 
     def count(g):
         return sum(all(g.rows[u] & (1 << v) for u, v in combinations(vertices, 2))
@@ -81,7 +85,6 @@ def rooted_cliques(size):
     return RootStatistic(f"rooted_cliques_{size}", 1, size - 1, count)
 
 
-@lru_cache(maxsize=None)
 def link_components(pattern, name=None):
     """Count neighbor-link components isomorphic to a connected pattern.
 
@@ -95,6 +98,11 @@ def link_components(pattern, name=None):
         raise ValueError("The link pattern must be connected")
     if name is None:
         name = "link_components_" + "_".join(map(str, pattern.rows))
+    return _link_components(pattern, name)
+
+
+@lru_cache(maxsize=None)
+def _link_components(pattern, name):
 
     def count(g):
         link = induced(g, tuple(g.neighbors(0)))

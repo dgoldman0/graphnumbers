@@ -169,8 +169,10 @@ The output records every catalog graph, its coefficient, and the dual
 observable, so the certificate can be checked independently. The
 [recorded example](reconstruction_example_result.json) has optimal cost
 nine and negative mass four. The [verification results](spectral_approximation_results.json)
-contain **335 passing exact checks** and four complete catalog certificates.
-These finite checks accompany the proofs, rather than establishing the
+contain four complete catalog certificates alongside finite regression
+fixtures. The basis-enumeration solver is practical only for small catalogs;
+even the connected graphs through five vertices can exhaust its default
+search budget. These finite checks accompany the proofs, rather than establishing the
 universal statements by enumeration.
 
 ## 4. A sharp size-versus-cancellation example

@@ -25,11 +25,16 @@ class Graph:
     rows: tuple[int, ...]
 
     def __post_init__(self):
+        object.__setattr__(self, "rows", tuple(self.rows))
         n = len(self.rows)
+        if any(isinstance(row, bool) or not isinstance(row, int) for row in self.rows):
+            raise ValueError("Adjacency rows must be integers")
         for u, row in enumerate(self.rows):
-            assert 0 <= row < (1 << n) and not (row & (1 << u))
+            if not 0 <= row < (1 << n) or row & (1 << u):
+                raise ValueError("Adjacency rows require in-range vertices and no loops")
             for v in range(n):
-                assert bool(row & (1 << v)) == bool(self.rows[v] & (1 << u))
+                if bool(row & (1 << v)) != bool(self.rows[v] & (1 << u)):
+                    raise ValueError("Adjacency must be symmetric")
 
     @property
     def n(self):
@@ -187,7 +192,11 @@ class RootTypes:
 
     @lru_cache(None)
     def register(self, g):
+        if not g.n:
+            raise ValueError("Rooted graph types must be nonempty")
         ds = distances(g, 0)
+        if len(ds) != g.n:
+            raise ValueError("Rooted graph types must be connected")
         signature = (g.n, g.edges, g.rows[0].bit_count(),
                      tuple(sorted((ds[u], g.rows[u].bit_count()) for u in range(g.n))))
         for i in self.buckets[signature]:

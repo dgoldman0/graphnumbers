@@ -284,8 +284,14 @@ each internal vertex; there are (deg_T(v)-1)! choices there. Every
 such rotation system on a tree produces one contour cycle, as an
 induction removing a leaf verifies. Its leaf order traverses every
 edge exactly twice. Conversely, an optimal cyclic leaf order traverses
-each directed edge once and determines these local cyclic orders.
-Thus this correspondence is a bijection; reversing every order counts
+each directed edge once and determines a successor permutation of the
+incident edges at each internal vertex. That permutation is one cycle:
+each incident branch is separated from the rest by a bridge, so every
+departure into that branch must return along the same edge before
+another branch is visited. Two successor cycles would therefore split
+the global traversal into two disjoint cycles, a contradiction.
+Thus the successors are local cyclic orders and the correspondence is
+a bijection; reversing every order counts
 the reversed contour separately when it is distinct.
 
 Each cyclic leaf order has ell ordered starting points in (4), so its
@@ -341,9 +347,11 @@ The [independent verifier](../../python/examples/higher_interaction_verification
 uses full integer matrix powers on edited subsets and direct cyclic-word
 enumeration. It checks the repeated-label and three-defect cancellation
 examples, a four-defect example with two consecutive canceled orders,
-and the binary quartet. It also exhaustively checks all 249 nonempty
-selected cut sets of the 14 unlabelled trees through six vertices,
-including 51 single cuts. These agree with the tree formula; single
+and the binary quartet. Its four-defect graph below differs from the
+earlier K4 fixture; agreement of their displayed moments does not make
+them the same example. It also exhaustively checks all nonempty
+selected cut sets of the unlabelled trees through six vertices.
+These agree with the tree formula; single
 cuts have the separate leading term 2t.
 
 The four-defect cancellation graph has edges (0,1),(0,2),(0,4),(1,2),

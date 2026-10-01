@@ -136,7 +136,7 @@ path creates holding probabilities at its endpoints. Its third return
 probability differs from that of the original cycle, while the first
 three moments (orders zero, one and two) agree.
 
-Consequently M retained Poisson terms, with indices 0 through M, require
+Consequently M+1 retained Poisson terms, with indices 0 through M, require
 only R=ceil(M/2). In the implementation P_B^j is evaluated by sparse
 integer-vector updates for D P_B, divided by D^j.
 
@@ -245,9 +245,11 @@ inputs where available. All resulting numerical comparisons fall in
 the certified intervals. See the [recorded results](../../python/results/heat_benchmark.json)
 and [interpretation](../../python/README.md#measured-first-application).
 
-The first useful computational gain is preserving a Cartesian
-factorization or a known limit through a calculation. Extracting and
-identifying every neighborhood from an explicit graph is currently
-expensive, especially in the irregular example. The implementation
-provides reproducible certified calculations; the measurements establish
+Preserving a Cartesian factorization improves this implementation's
+explicit-product path. In the recorded run the factorized prism takes
+6.82 ms versus 2.32 ms for dense eigensolving; the factorized torus takes
+6.93 ms versus 14.29 ms. No conventional product-aware baseline was timed.
+Explicit neighborhood extraction is expensive: its largest slowdown
+against the dense baseline is the torus (about 135 times), followed by
+the irregular example (about 87 times). These measurements establish
 no general advantage over specialized graph or matrix algorithms.

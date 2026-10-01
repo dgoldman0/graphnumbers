@@ -19,7 +19,7 @@ series = exp(H / 10).approximate(radius=1, k=1, epsilon="1e-8")
 print("Algebra exponential local error bound:", float(series.error))
 
 heat = heat_return(L * L, time=Fraction(1, 2), epsilon="1e-8")
-print("Square-lattice heat return:", float(heat.interval.midpoint))
+print("Square-lattice heat certificate midpoint:", float(heat.interval.midpoint))
 print("Absolute error bound:", float(heat.interval.radius))
 print("Required radius:", heat.radius)
 

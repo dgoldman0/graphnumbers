@@ -1,4 +1,4 @@
-# graphnumbers-local 0.8.0
+# graphnumbers-local 0.8.1
 
 A research library for local Cartesian graph arithmetic and certified local
 approximations, imported as `graphlocal`. Python 3.10 or later; the core
@@ -51,7 +51,7 @@ assert result.coefficients == (Fraction(-1), Fraction(1))
 assert result.cost == 9
 
 heat = heat_return(grid, time="1/2", epsilon="1e-8")
-print(float(heat.interval.midpoint))  # approximately 0.2169320140
+print(float(heat.interval.midpoint))  # certificate midpoint; heat is about 0.21693201
 print(heat.interval.lower, heat.interval.upper)  # exact rational endpoints
 ```
 
@@ -154,11 +154,24 @@ implementations likewise supply mathematical approximation and norm
 bounds. Arbitrary input histograms are not automatically validated as
 balanced coherent elements of the full completion.
 
+Consumers reject observable contradictions in custom certificates: wrong
+radius, insufficient weight, excess error, or above-cap mass exceeding the
+stated error. These checks do not prove a custom oracle's mathematical promise.
+Built-in statistic factories canonicalize equivalent call forms, so positional
+and keyword calls define the same axis. `graph(n, edges)` requires each
+undirected edge exactly once and rejects repeated or reversed duplicates.
+
 The implementation uses exact isomorphism, not hash equality as a
 substitute. Backtracking and graph growth limit practical sizes.
 Materialized and local products default to a 10,000-vertex limit per
 constructed graph; the isomorphism search has a 100,000-node work budget.
 Exponential and reconstruction routines have explicit term/search budgets.
+These limits count terms or search nodes, not elapsed time or all arithmetic
+operations. A single isomorphism node can be expensive, and the generic
+inverse/exponential routines can take substantial time before a limit is hit.
+Reconstruction requires nonempty connected catalog entries and is practical
+only for tiny catalogs; even a five-vertex catalog can exhaust the default
+search budget. Certificates describe optimality within the supplied catalog.
 `BudgetExceeded` means the implementation stopped without a result.
 `OutOfSpan` supplies a dual witness against the specified catalog only.
 
@@ -394,8 +407,10 @@ PYTHONPATH=src python3 examples/arithmetic_geometry_verification.py --output res
 PYTHONPATH=src python3 examples/certified_arithmetic.py --output results/certified_arithmetic.json
 ```
 
-The first example records 1,671 exact finite checks. The second adds 36
-end-to-end checks of actual inverse certificates and moment extraction.
+The first example includes finite graph fixtures and formal coefficient
+identities; it also re-runs the cospectral verifier. The second exercises
+actual inverse certificates and moment extraction, with some bounds checked
+against their defining formulas. These are distinct kinds of evidence.
 It uses a small rook–Shrikhande parameter to keep the required Cartesian
 truncation within the generic exact-isomorphism budget.
 
@@ -757,7 +772,8 @@ and `scipy.linalg.eigh(..., eigvals_only=True)`.
 | Irregular degree-at-most-three graph, 128 vertices | 77.72 | 0.89 | — | — |
 
 All six numerical baseline values lie inside the computed rational
-enclosures. The square-lattice result is approximately 0.2169320140,
+enclosures. The square-lattice heat value is approximately 0.21693201;
+the recorded certificate midpoint is 0.2169320140,
 with interval radius below 1.94e-9, using one radius-seven ball of 113
 vertices. The factorized torus produces exactly the same certificate
 as its materialized graph. The limiting lattice has the same retained
@@ -769,7 +785,8 @@ from an explicit graph is generally slower than the dense baseline at
 these sizes. The specialized cycle-spectrum formula is faster still
 (recorded separately). These are six synthetic examples and single-run
 timings, with different numerical guarantees; they establish no general
-performance advantage or optimality against sparse solvers.
+performance advantage or optimality against sparse solvers. A conventional
+baseline using the given Cartesian factorization was not timed.
 
 The first demonstrated use is retaining algebraic structure and known
 limits through a certified computation. Rooted isomorphism and repeated
@@ -856,7 +873,8 @@ for coherent local limits and defect identities. They provide no basis
 for preferring its current generic histogram implementation as a faster
 numerical engine. The higher interaction identity is a concrete reusable
 result. The branching and planar results above extend that investigation
-to a larger controlled domain and identify explicit failures of the
+to a controlled algebra containing the edit-budget class, without a proved
+strict inclusion, and identify explicit failures of the
 line-only rules.
 
 ## Verification and provenance
@@ -877,10 +895,11 @@ polynomial trace exactness and compare numerical methods independently.
 The prepared-query and interaction tests compare with independent finite
 subset sums, exact binomial moments, and 80-digit positive series. The
 cospectral and reuse comparator tests add independent matrix/motif checks.
-Branching tests cover 942 tree cut sets and 3,763 rooted identities, plus
+Branching tests cover all tree cut sets through seven vertices; their
+rooted identities follow from the component identities. They also check
 buffered planar moments and leading coefficients. Controlled-heat tests
 include crossing products and inexact local approximations. Higher
-interaction tests add 249 exhaustive tree leading terms, independent
+interaction tests add exhaustive tree leading terms through six vertices, independent
 integer subset matrices, repeated-word and cancellation examples,
 certified sign reversal, and geometry-sensitive profiles and tails.
 Inverse and nonspectral tests check rational inverse tails, inexact source
@@ -891,11 +910,17 @@ independent buffered trees and lattice arrays with periodic witnesses.
 The breadth verifier checks mixed products, regular-background projection,
 root-edge component identities, a planar sphere-coordinate collision, and
 full integer Laplacian matrix powers for the degree-matched comparison.
-All 127 tests passed with NumPy/SciPy; running with site packages disabled
-passes the 118 core tests and skips the nine optional baseline tests.
+The October repair run passes the full suite, including the optional
+NumPy/SciPy comparisons. The new audit regressions also pass with site
+packages disabled. The result record lists actual discovered test IDs and
+skip reasons; its run count is not a theorem-coverage metric. Several older
+checks compare library paths or interval overlap. See the
+[repair register](../research/local-completion/AUDIT_REPAIRS.md) for the
+remaining need for independent oracles and broader mechanism coverage.
 
 Graph isomorphism and catalog reconstruction are adapted from the existing
-research verifiers, which remain unchanged. The runtime package imports
+research verifiers; their shared input validation now also works under
+`python -O`. The runtime package imports
 none of those scripts. Uniformization is established Markov-chain
 methodology; the analysis note gives a primary reference. The project
 makes no originality claim for that method or the full completion.

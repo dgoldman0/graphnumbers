@@ -371,7 +371,15 @@ checking them again. In particular, the restriction \(d_i\ge3\) is
 substantive in this proof: a line background gives \(\Gamma=K_2\),
 whereas the square-lattice background gives \(\Gamma=2K_2\). These
 specific background coordinates therefore do not establish independence
-of the line-cut defect \(E\) and the planar cut \(P\).
+of the line-cut defect \(E\) and the planar cut \(P\). In fact this
+obstruction applies to every character supported on the regularity face
+at radius $r\ge2$:
+the intact planar ball is the local square of the intact line ball,
+so \(\chi(P)=-\chi(E)^2/2\). At radius one,
+\(T_1(E^2+2P)=4\delta_{K_{1,2}}-4\delta_{K_{1,3}}\ne0\).
+Thus all those face characters annihilate
+a nonzero element. They cannot prove the joint independence. The radius-one
+face is the whole monoid and does not satisfy this quadratic identity.
 
 The entire-function arithmetic found for the line is consequently part
 of a broader phenomenon involving branching media, planar media, and

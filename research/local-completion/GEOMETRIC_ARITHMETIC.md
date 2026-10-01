@@ -69,7 +69,9 @@ $$\operatorname{lk}(G_i,v)\cong J_i\quad
 \text{for every }v\in V(G_i).\tag{6}$$
 
 Thus $G_i$ is regular of degree $d_i=|V(J_i)|\ge1$. Vertex transitivity
-is sufficient but unnecessary. Write $U_i=G_i/|V(G_i)|$.
+makes the links isomorphic, but they must still have the prescribed
+connected types $J_i$, distinct across $i$. Transitivity alone is not
+sufficient for these hypotheses. Write $U_i=G_i/|V(G_i)|$.
 
 **Theorem.** The map
 
@@ -125,8 +127,11 @@ gives $|a_n|\le C_N(1+|n|)^{-N}$ for every $N$. Taking $N>k+m$ gives
 
 No new function algebra is being proposed. The content of the theorem is
 its realization and continuous retraction through specified graph
-geometry. The one-variable case with $G_1=K_2$ is the earlier
-[normalized-edge retract](MULTIPLICATION_AND_UNITS.md).
+geometry. The one-variable case with $G_1=K_2$ has the same image as the
+earlier [normalized-edge retract](MULTIPLICATION_AND_UNITS.md), but a
+different retraction: it counts isolated vertices of the link, whereas
+the earlier map counts root degree. A triangle has zero of the former
+and two of the latter.
 
 ## 3. Ambient units, spectra, and divisibility
 
@@ -247,7 +252,7 @@ y=1-\tfrac12H^2+\tfrac34T.\tag{18}$$
 They have the identical, zero-free degree generating function
 $D(x)(u)=D(y)(u)=1+u^2/4$. Nevertheless $x$ is a unit, whereas $y$ is
 a nonunit: its two-variable polynomial vanishes at $(z,w)=(1,-2/3)$.
-Their difference is $3(T-H^2)/4$, precisely in the principal kernel.
+Their difference $y-x$ is $3(T-H^2)/4$, precisely in the principal kernel.
 
 More generally, adjoining $H_{d_2},\ldots,H_{d_m}$ to $H_1$ gives
 
@@ -386,7 +391,7 @@ $n^m$ in falling factorials and differentiating the geometric series
 proves (31). With $m=rk$, the tail in (30) is exactly
 
 $$
-q^{N+1}\sum_{j=0}^m\binom mj
+(r+1)^k q^{N+1}\sum_{j=0}^m\binom mj
 \bigl(1+D(N+1)\bigr)^{m-j}D^jF_j(q).
 \tag{32}
 $$

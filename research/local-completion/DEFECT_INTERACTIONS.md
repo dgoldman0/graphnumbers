@@ -141,6 +141,13 @@ zero. For odd j the moment is zero. In particular
     d_j(I_ell)=0 for j<2ell,
     d_(2ell)(I_ell)=2ell/2^(2ell).
 
+For completeness, the edit budget bounds the relative Laplacian moments
+by |delta_m|<=2qm(2D)^(m-1) for m>=1: telescope each power and use the
+trace norm two of an edge Laplacian. The estimate passes to stabilized
+local moments. Thus sum_m (-t)^m delta_m/m! converges absolutely and
+locally uniformly for complex t; the finite binomial identity identifies
+it with uniformization. Coefficient comparison and the following
+small-time expansion are consequently justified, not merely formal.
 The heat interaction has the expansion
 
     J_ell(t) = t^(2ell)/(2ell-1)! + O(t^(2ell+1))                 (7)

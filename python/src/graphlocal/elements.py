@@ -63,6 +63,19 @@ def _request(radius, k, epsilon):
     return epsilon
 
 
+def _checked_approximation(value, radius, k, epsilon, norm_bound=None):
+    """Validate the observable part of an effective source's certificate."""
+    result = value.approximate(radius, k, epsilon)
+    if (not isinstance(result, LocalApproximation)
+            or result.histogram.radius != radius or result.k < k
+            or result.error > epsilon):
+        raise ValueError("Source returned an invalid approximation contract")
+    if norm_bound is not None and result.histogram.norm(k) > norm_bound + result.error:
+        raise ValueError("Source approximation contradicts its norm bound")
+    # A stronger weighted certificate also bounds this requested norm.
+    return LocalApproximation(result.histogram, k, result.error)
+
+
 def exp_bracket(x, max_terms=512):
     """Rational lower and upper bounds for exp(x), x >= 0."""
     x = rational(x)
@@ -242,7 +255,9 @@ class Sum(Element):
 
     def approximate(self, radius, k=1, epsilon="0.000001"):
         eps = _request(radius, k, epsilon)
-        return self.left.approximate(radius, k, eps / 2).add(self.right.approximate(radius, k, eps / 2))
+        left = _checked_approximation(self.left, radius, k, eps / 2)
+        right = _checked_approximation(self.right, radius, k, eps / 2)
+        return left.add(right)
 
     def finite(self, max_vertices=10000):
         return Finite(self.left.finite(max_vertices).terms + self.right.finite(max_vertices).terms)
@@ -274,7 +289,8 @@ class Scale(Element):
         eps = _request(radius, k, epsilon)
         if not self.coefficient:
             return LocalApproximation(LocalHistogram(radius), k)
-        return self.value.approximate(radius, k, eps / abs(self.coefficient)).scale(self.coefficient)
+        return _checked_approximation(self.value, radius, k,
+                                      eps / abs(self.coefficient)).scale(self.coefficient)
 
     def finite(self, max_vertices=10000):
         if not self.coefficient:
@@ -309,8 +325,8 @@ class Product(Element):
         eps = _request(radius, k, epsilon)
         a, b = self.left.norm_bound(radius, k), self.right.norm_bound(radius, k)
         delta = min(Q(1), eps / (a + b + 3))
-        left = self.left.approximate(radius, k, delta)
-        right = self.right.approximate(radius, k, delta)
+        left = _checked_approximation(self.left, radius, k, delta, a)
+        right = _checked_approximation(self.right, radius, k, delta, b)
         return left.multiply(right)
 
     def finite(self, max_vertices=10000):
@@ -327,14 +343,14 @@ class Exponential(Element):
         self.positive = self.value.positive
 
     def norm_bound(self, radius, k):
-        return exp_bracket(self.value.norm_bound(radius, k))[1]
+        return exp_bracket(self.value.norm_bound(radius, k), max(512, self.max_terms))[1]
 
     def approximate(self, radius, k=1, epsilon="0.000001"):
         eps = _request(radius, k, epsilon)
         bound = self.value.norm_bound(radius, k)
-        lipschitz = exp_bracket(bound + 1)[1]
+        lipschitz = exp_bracket(bound + 1, max(512, self.max_terms))[1]
         delta = min(Q(1), eps / (2 * lipschitz))
-        approx = self.value.approximate(radius, k, delta)
+        approx = _checked_approximation(self.value, radius, k, delta, bound)
         x = approx.histogram
         z = x.norm(k)
         term = total = LocalHistogram(radius, [(graph(1), Q(1))])

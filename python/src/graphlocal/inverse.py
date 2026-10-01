@@ -4,7 +4,7 @@ from fractions import Fraction as Q
 from functools import lru_cache
 from math import comb, factorial
 
-from .elements import Element, as_element
+from .elements import Element, as_element, _checked_approximation
 from .graphs import BudgetExceeded, graph, integer, rational
 from .local import LocalApproximation, LocalHistogram
 
@@ -90,6 +90,12 @@ class NeumannInverse(Element):
             return Q(1)
         return _power_majorant(self.q, self.source_degree, radius, k)
 
+    def local(self, radius):
+        integer(radius, "radius")
+        if not self.q or (self.mass is not None and (not radius or not self.source_degree)):
+            return LocalHistogram(radius, [(graph(1), Q(1) if not self.q else self.mass)])
+        return super().local(radius)
+
     def approximation_certificate(self, radius, k=1, epsilon="1e-6"):
         integer(radius, "radius")
         integer(k, "weight exponent", 1)
@@ -103,11 +109,11 @@ class NeumannInverse(Element):
         reference = (1 + self.q) / 2
         lipschitz = _power_majorant(reference, self.source_degree, radius, k, derivative=True)
         delta = min((1 - self.q) / 2, epsilon / (2 * lipschitz))
-        source = self.value.approximate(radius, k, delta)
-        if source.histogram.radius != radius or source.k < k or source.error > delta:
-            raise ValueError("Source returned an invalid approximation contract")
-        histogram = LocalHistogram(radius, ((key, c) for key, c in source.histogram.values.items()
-                                            if key.graph.max_degree <= self.source_degree))
+        source = _checked_approximation(self.value, radius, k, delta)
+        if (self.value.mass is not None
+                and abs(source.histogram.mass - self.value.mass) > source.error):
+            raise ValueError("Source approximation contradicts its mass certificate")
+        histogram = source.project_degree(self.source_degree).histogram
         qhat = histogram.norm(0)
         if qhat > self.q + source.error or qhat >= 1:
             raise ValueError("Source approximation contradicts the variation certificate")

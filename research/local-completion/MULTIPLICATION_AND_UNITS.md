@@ -425,7 +425,7 @@ root degrees are $n$. Consequently, for every finite coefficient sequence,
 
 $$
 p_{r,k}\left(\sum_n c_nH^n\right)
-=\sum_n|c_n|b_r(n)^k.
+=\sum_n|c_n|b_r(n)^k\qquad(r\ge1).
 \tag{22}
 $$
 
@@ -625,8 +625,8 @@ The sufficiency direction of the unit criterion additionally uses the full
 representation theorem. No unique factorization theorem for truncated
 rooted balls is assumed.
 
-The accompanying [verifier](verify_multiplication.py) records **21,697**
-exact finite checks in [multiplication_results.json](multiplication_results.json).
+The accompanying [verifier](verify_multiplication.py) records finite
+fixtures in [multiplication_results.json](multiplication_results.json).
 It checks the coalgebra symbolically, including parallel-edge patterns,
 against both iterated and direct three-color coproducts; compares the
 homomorphism identity with direct root-preserving assignments; checks

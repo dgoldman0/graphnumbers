@@ -172,7 +172,14 @@ and by continuity and density it is the identity on $A$.
 $A_0\cong\mathbb R[X_P:P\text{ Cartesian-prime connected}]$ allows
 arbitrary algebraic substitutions $P\mapsto\lambda_PP$ with
 $\lambda_P\ne0$. They are diagonal on the connected-graph basis.
-The theorem shows that such an automorphism extends continuously to
+Any continuous extension has $V\circ\Phi$ bounded by one local seminorm,
+so it annihilates some $N_R$. Normalized cycles of length greater than
+$2R+1$ have equal radius-$R$ data; their diagonal factors $c_{C_n}$ are
+therefore one common nonzero scalar $c$. Nonzeroness follows from the
+algebraic rescaling on each finite cycle, without assuming that the
+extension is injective. The spanning-tree and sparse-bridge limits in
+the proof above now apply with this $c$ and force every $c_G=1$.
+Thus such an automorphism extends continuously to
 $A$ only when every $\lambda_P=1$. This includes infinite collections
 of sign changes; it is not just a finite-support obstruction.
 
@@ -311,8 +318,9 @@ exhaustive literature review or a priority claim.
 
 The accompanying [verifier](verify_intrinsic_structure.py) checks the
 weighted sparse-change estimates against directly constructed graphs,
-the exact sign-change witness, bridge and square fixtures, mixture
-observables, strict filtration examples, and the two positivity
-obstructions. All [256 recorded checks](intrinsic_structure_results.json)
-passed. These finite checks support the examples; the universal
+input-side estimates for the sign-change witness, bridge and square fixtures,
+mixture observables, strict filtration examples, and scalar positivity
+obstructions. The sign-change substitution itself is not executed by this
+verifier. The [recorded output](intrinsic_structure_results.json) supports
+these finite calculations; the universal
 rigidity assertions depend on the proofs above.

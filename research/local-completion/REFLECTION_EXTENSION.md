@@ -373,7 +373,7 @@ filter directly, its Cartesian multiplicativity, both positive preimage
 constructions, weighted estimates on signed inputs, the explicit mixed-sign
 family, the failed linear involution, the discontinuous algebraic
 involution, and the triangle-weighted retraction.
-All [476 recorded checks](reflection_extension_results.json) passed.
+Its finite output is [recorded separately](reflection_extension_results.json).
 Universal continuity, surjectivity, and the lifting criterion follow from
 the proofs here, not from a finite search for automorphisms.
 

@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from fractions import Fraction as Q
 
 from .defects import _relative_moments
-from .elements import moment_profile
+from .elements import as_element, moment_profile, _checked_approximation
 from .graphs import BudgetExceeded, integer, rational
 from .local import Interval, LocalApproximation, LocalHistogram
 
@@ -43,6 +43,7 @@ def controlled_heat(value, time, epsilon="1e-8", max_steps=256):
     This includes products of defects whose first-order edit certificate is
     unavailable. It does not define heat on every completed graph element.
     """
+    value = as_element(value)
     time, epsilon = rational(time), rational(epsilon)
     integer(max_steps, "max_steps")
     if time < 0 or epsilon <= 0:
@@ -77,15 +78,10 @@ def controlled_heat(value, time, epsilon="1e-8", max_steps=256):
     else:
         raise BudgetExceeded("Controlled heat truncation exceeds max_steps")
     radius = (steps + 1) // 2
-    local = value.approximate(radius, 1, epsilon / 2)
-    if local.histogram.radius != radius or local.k < 1 or local.error > epsilon / 2:
-        raise ValueError("Source returned an invalid approximation contract")
+    local = _checked_approximation(value, radius, 1, epsilon / 2)
     # The target has no mass on higher-degree types. Projecting an inexact
     # approximation onto its certified support cannot increase its error.
-    if any(key.graph.max_degree > degree for key in local.histogram.values):
-        histogram = LocalHistogram(radius, ((key, c) for key, c in local.histogram.values.items()
-                                            if key.graph.max_degree <= degree))
-        local = LocalApproximation(histogram, local.k, local.error)
+    local = local.project_degree(degree)
     moments = _relative_moments(local, degree, steps)
     weight, numerator = Q(1), Q(0)
     for j, m in enumerate(moments):

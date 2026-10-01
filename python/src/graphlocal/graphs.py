@@ -66,6 +66,7 @@ class Graph:
 
 
 def graph(n, edges=()):
+    """Build a simple graph, requiring each undirected edge exactly once."""
     integer(n, "vertex count")
     rows = [0] * n
     for u, v in edges:
@@ -73,6 +74,8 @@ def graph(n, edges=()):
         integer(v, "vertex")
         if u >= n or v >= n or u == v:
             raise ValueError("Edges require distinct vertices in range")
+        if rows[u] & (1 << v):
+            raise ValueError("Repeated undirected edges are not allowed")
         rows[u] |= 1 << v
         rows[v] |= 1 << u
     return Graph(tuple(rows))

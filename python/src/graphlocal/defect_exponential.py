@@ -94,6 +94,12 @@ class CutLineExponential(Element):
     def inverse(self):
         return CutLineExponential(-self.parameter, self.max_terms, self.max_vertices)
 
+    def local(self, radius):
+        integer(radius, "radius")
+        if not radius or not self.parameter:
+            return LocalHistogram(radius, [(graph(1), Q(1))])
+        return super().local(radius)
+
     def norm_bound(self, radius, k):
         integer(radius, "radius")
         integer(k, "weight exponent", 1)
@@ -101,7 +107,8 @@ class CutLineExponential(Element):
             return Q(1)
         parameter = 4 * radius * abs(self.parameter)
         polynomial = _poisson_polynomial(parameter, radius * k)
-        return (radius + 1) ** k * polynomial * exp_bracket(parameter)[1]
+        return ((radius + 1) ** k * polynomial
+                * exp_bracket(parameter, max(512, self.max_terms))[1])
 
     def approximation_certificate(self, radius, k=1, epsilon="1e-6"):
         epsilon = _request(radius, k, epsilon)

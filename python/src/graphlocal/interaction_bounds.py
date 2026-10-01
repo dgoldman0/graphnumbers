@@ -71,6 +71,8 @@ Otherwise (k-1)! oriented cyclic orders are counted with the first edit fixed.
 The work limit is checked before those orders are enumerated.
 """
     integer(max_cycles, "max_cycles")
+    if isinstance(value, GeometricInteraction):
+        value = value.source
     if not isinstance(value, EdgeInteraction):
         raise TypeError("Geometry requires an EdgeInteraction")
     edits = value.active_edits
@@ -111,6 +113,8 @@ class GeometricInteraction(Element):
     operations; it can be sharper at small times and coarser at large times.
     """
     def __init__(self, source, max_cycles=1000000):
+        if isinstance(source, GeometricInteraction):
+            source = source.source
         self.source = source
         self.geometry = interaction_geometry(source, max_cycles)
         for field in ("degree_bound", "variation_bound", "edit_bound", "mass", "positive"):

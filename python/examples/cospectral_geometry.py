@@ -31,7 +31,8 @@ def shrikhande_graph():
     steps = ((1, 0), (3, 0), (0, 1), (0, 3), (1, 1), (3, 3))
     return graph(16, ((4 * x + y, 4 * ((x + dx) % 4) + (y + dy) % 4)
                       for x in range(4) for y in range(4)
-                      for dx, dy in steps))
+                      for dx, dy in steps
+                      if 4 * x + y < 4 * ((x + dx) % 4) + (y + dy) % 4))
 
 
 def count_cliques(g, size):

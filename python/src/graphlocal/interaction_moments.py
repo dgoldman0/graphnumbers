@@ -9,6 +9,7 @@ from fractions import Fraction as Q
 from math import comb, factorial
 
 from .edge_interactions import EdgeInteraction
+from .interaction_bounds import GeometricInteraction
 from .graphs import BudgetExceeded, integer
 from .graphs import distances
 
@@ -36,6 +37,8 @@ def tree_interaction_leading(value):
     (-1)^(k-ell)*p*t^(2s-ell)/(2s-ell-1)!, with the supplied normalization.
     A single cut starts with 2*t. This helper performs no spectral computation.
     """
+    if isinstance(value, GeometricInteraction):
+        value = value.source
     if not isinstance(value, EdgeInteraction):
         raise TypeError("Tree leading terms require a finite EdgeInteraction")
     g, edits = value.before, value.edits
@@ -102,6 +105,8 @@ def interaction_moments(value, order, max_work=2000000):
     formula supplies all repeated edit occurrences and the factor n/m.
     A missing first nonzero order means only that the computed prefix is zero.
     """
+    if isinstance(value, GeometricInteraction):
+        value = value.source
     if not isinstance(value, EdgeInteraction):
         raise TypeError("Incidence moments require a finite EdgeInteraction")
     integer(order, "order")

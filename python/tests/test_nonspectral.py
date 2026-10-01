@@ -134,7 +134,8 @@ class NonspectralTests(unittest.TestCase):
         rook = cartesian(complete(4), complete(4))
         moves = ((1, 0), (3, 0), (0, 1), (0, 3), (1, 1), (3, 3))
         shrikhande = graph(16, ((4 * a + b, 4 * ((a + da) % 4) + (b + db) % 4)
-                               for a in range(4) for b in range(4) for da, db in moves))
+                               for a in range(4) for b in range(4) for da, db in moves
+                               if 4 * a + b < 4 * ((a + da) % 4) + (b + db) % 4))
         axes = (ROOT_DEGREE, rooted_cliques(4), link_components(complete(3)), link_components(cycle(6)))
         dr = joint_distribution(Finite.from_graph(rook, normalize=True), axes)
         ds = joint_distribution(Finite.from_graph(shrikhande, normalize=True), axes)

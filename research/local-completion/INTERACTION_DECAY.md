@@ -148,7 +148,7 @@ For fixed k, D and t, they give factorial suppression with separation.
 For example, if the edits split into two nonempty groups and the endpoint
 support of one group is at distance at least R from that of the other,
 every cyclic order crosses between the groups at least twice. Hence
-tau_*>=2R and |H_t|<=2^k t^k Pr{N>=2R}. If every pair of distinct edited
+tau_*>=2R and |H_t|<=2^k t^k Pr{N>=2R}. If k>=2 and every pair of distinct edited
 supports is at distance at least R, tau_*>=kR. More generally m>=2 groups
 with pairwise support distance at least R require at least m crossings,
 so tau_*>=mR. The elementary bound
@@ -285,8 +285,8 @@ profile therefore gives the especially transparent estimate
        \Pr\{N\ge 2(s-\ell)\}.                              \tag{16}
 \]
 
-The separation entering the analytic tail is the total amount of
-connecting tree left after its terminal edges are removed.
+The separation entering the analytic tail is twice the number of edges
+of the connecting tree left after its terminal edges are removed.
 
 The [reproducible bound example](../../python/examples/geometry_bound_examples.py)
 compares the original and geometric profiles for three equally spaced

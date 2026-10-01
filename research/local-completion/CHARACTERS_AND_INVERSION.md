@@ -221,13 +221,14 @@ this particular graph monoid; Sections 2–3 include the application in full.
   convolution Fréchet algebra.
 
 No classification of every character or maximal ideal of $A$ is claimed.
-The displayed local family does separate elements and detect all units,
-which suffices for the stated results. Priority remains unestablished.
+The bounded local semicharacter family separates elements and detects all units;
+the phase subfamily alone supplies only separation. These are the families
+used for the stated results. Priority remains unestablished.
 
 The [combined verifier](verify_spectral_approximation.py) checks exact
 finite Fourier inversion and multiplicativity over fourth roots of unity,
 the polynomial power-growth estimate on direct Cartesian products, and
 the distinction between separating phases and interior spectral zeros.
-Its [335 recorded checks](spectral_approximation_results.json) also cover
+Its [recorded finite fixtures](spectral_approximation_results.json) also cover
 the separate quantitative approximation note. Infinite separation and
 inverse-closedness follow from the proofs above, not from those fixtures.

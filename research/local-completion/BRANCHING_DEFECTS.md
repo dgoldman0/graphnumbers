@@ -242,11 +242,11 @@ reduction. Mixed insertions/deletions and cyclic cuts are supported by
 the general inclusion-exclusion constructor without bridge reduction.
 The empty edit list returns zero by the relative convention.
 
-The independent [exact verifier](../../python/examples/branch_planar_verification.py)
-enumerates all 25 unlabelled trees with one through seven vertices and
-their 942 nonempty cut sets. All 942 component-basis identities and
-3,763 rooted-histogram identities passed; 370 selections have a proper
-internal-edge reduction. It also checks branching stars, subdivided
+The [exact verifier](../../python/examples/branch_planar_verification.py)
+enumerates the unlabelled trees through seven vertices and their nonempty
+cut sets. It checks component-basis identity (2); the histogram identities
+follow from it. It imports library helpers, so the two stages are not
+independent implementations. It also checks branching stars, subdivided
 arms, the triangle obstruction, and buffered square-lattice defects.
 The [result record](../../python/results/branch_planar_verification.json)
 contains exact integer moments and rational leading heat coefficients.
@@ -257,7 +257,8 @@ star/triangle heat enclosures against independent 70-digit formulas.
 These finite checks support the implementation; the argument above proves
 the identity for arbitrary selected bridge sets.
 
-The verification covers the following distinctions:
+The following remain proposed verification tasks, rather than claims
+about what the original verifier executes:
 
 - Enumerate all cut subsets for small trees and compare the exact finite
   graph combination with (2) and (3), allowing isomorphic terms to merge.

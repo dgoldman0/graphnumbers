@@ -12,7 +12,7 @@ from fractions import Fraction as Q
 from itertools import chain, combinations, product
 
 from .elements import Finite
-from .graphs import BudgetExceeded, distances, graph, integer, isomorphic
+from .graphs import BudgetExceeded, Graph, distances, graph, integer, isomorphic
 from .local import LocalHistogram
 
 
@@ -105,8 +105,10 @@ class Reconstruction:
 def reconstruct(target, graphs, search_budget=100000):
     integer(search_budget, "search_budget", 1)
     graphs = tuple(graphs)
-    if not graphs or any(not g.n for g in graphs):
+    if not graphs or any(not isinstance(g, Graph) or not g.n for g in graphs):
         raise ValueError("Supply a nonempty catalog of nonempty graphs")
+    if any(len(distances(g, 0)) != g.n for g in graphs):
+        raise ValueError("Reconstruction catalog graphs must be connected")
     radius = target.radius
     columns = [LocalHistogram.from_graph(g, radius).values for g in graphs]
     rows = sorted(set(target.values).union(*(set(c) for c in columns)), key=lambda key: key.graph.rows)

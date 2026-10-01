@@ -212,7 +212,8 @@ or from the existence of an arbitrary local approximation procedure.
 The domain need not be assumed closed under arbitrary algebra products.
 
 In particular E belongs to K_(2,1). Formula (4) provides finite rational
-certificates for its relative heat despite its infinite marginal variation.
+certificates for its relative heat despite the infinite supremum of its
+marginal variations. Each individual marginal has finite variation.
 
 ## 5. Exact relative heat of the cut line
 
@@ -311,8 +312,14 @@ where m_l(Y) is the integrated l-step return for I-Delta_Y/D2 and
     |d_j(XY)| <= 2qCj/D.
 
 When D2=0 the formula reduces directly to scalar multiplication. The
-binomial identity is a finite local polynomial identity, so it also
-holds for these completed elements. Absolute convergence of the
+binomial identity extends as follows. Each fixed-order return moment is
+a continuous local polynomial observable: closed walks of that length
+are determined by a finite ball and bounded by a polynomial in its size.
+Approximate X and Y by the degree-filtered finite signed combinations
+from the representation theorem. Their products converge by continuity
+of multiplication, so every term in the finite binomial sum converges.
+No variation bound on those approximants is required for this identity.
+Absolute convergence of the
 uniformization series permits rearrangement and proves
 
     H_t(XY)=H_t(X) H_t(Y).

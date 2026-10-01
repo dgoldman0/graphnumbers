@@ -144,7 +144,7 @@ Therefore
 $$\left\|T_r\left(\sum_na_nB_d^n\right)\right\|_1
 =\sum_n|a_n|\bigl(4S_r(d)\bigr)^n\tag{16}$$
 
-for every finite coefficient sequence. The unique formal reciprocal
+for $r\ge2$ and every finite coefficient sequence. The unique formal reciprocal
 of $1-tT_rB_d$ is the geometric series in $tT_rB_d$. Its local
 absolute coefficient sum converges exactly when
 $4S_r(d)|t|<1$, and then equals
@@ -195,7 +195,7 @@ In particular,
 
 $$\exp(tB_d)^{-1}=\exp(-tB_d),\qquad
 \boxed{\|T_r\exp(tB_d)\|_1=
-\exp\bigl(4|t|S_r(d)\bigr)}.\tag{22}$$
+\exp\bigl(4|t|S_r(d)\bigr)}\quad(r\ge2).\tag{22}$$
 
 For $t\ne0$, both inverse partners have unbounded local variation.
 This growth is exponential in the radius for the line and exponential
@@ -330,7 +330,7 @@ for real-coefficient functions and inverses.
 For example, mixed exponential units have the exact variation
 
 $$\left\|T_r\exp\left(\sum_it_iB_{d_i}\right)\right\|_1
-=\exp\left(\sum_i4|t_i|S_r(d_i)\right),\tag{29}$$
+=\exp\left(\sum_i4|t_i|S_r(d_i)\right)\quad(r\ge2),\tag{29}$$
 
 and inverse obtained by negating all $t_i$. The mixed coordinates are
 algebraically independent, not merely distinct individual elements.
@@ -383,7 +383,14 @@ squares. Consequently the moment lists through order four are
 $$B_4:\ (0,-2,-16,-116,-832),\qquad
 P:\ (0,-2,-16,-116,-848).\tag{33}$$
 
-The controlled relative heat series therefore satisfies
+To pass from moments to heat, a finite edit budget $q$ and degree cap $D$
+give $|\delta_m|\le 2qm(2D)^{m-1}$ for $m\ge1$, by telescoping
+Laplacian powers and using the trace norm of each edited edge.
+This bound survives local limits and makes
+$\sum_m(-t)^m\delta_m/m!$ absolutely convergent, uniformly on bounded
+complex $t$ sets. Binomial expansion identifies this series with the
+controlled uniformization definition. The controlled relative heat
+series therefore satisfies
 
 $$H_t(B_4)-H_t(P)=\frac23t^4+O(t^5)\qquad(t\to0).\tag{34}$$
 

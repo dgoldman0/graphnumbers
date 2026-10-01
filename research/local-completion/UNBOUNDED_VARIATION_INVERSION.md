@@ -193,7 +193,7 @@ $$f(E)=\sum_{n\ge0}a_nE^n\tag{20}$$
 therefore converges in every defining seminorm. Its product respects
 ordinary multiplication of entire functions. The same estimates give
 
-$$\|T_r f(E)\|_1=\sum_{n\ge0}|a_n|(4r)^n,\tag{21}$$
+$$\|T_r f(E)\|_1=\sum_{n\ge0}|a_n|(4r)^n\qquad(r\ge2),\tag{21}$$
 $$p_{r,k}(f(E))\le(r+1)^k
 \sum_{n\ge0}|a_n|(1+2n)^{rk}(4r)^n.\tag{22}$$
 

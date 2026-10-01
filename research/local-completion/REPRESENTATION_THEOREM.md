@@ -239,7 +239,7 @@ and are supported on degree-$D$ balls. They remain balanced. To see this,
 pull a transport on $Q_DG$ back to $G$, assigning zero to pairs in different
 components of $Q_DG$. Its range remains finite, its required observation
 radius increases by at most one, and its growth remains polynomial.
-Balance for $a$ is exactly balance for the transformed arrays.
+Balance for $a$ therefore implies balance for the transformed arrays.
 
 If $|B|\le D$, truncation and $\theta_{D,r}$ agree on $B$.
 Both maps decrease size, so
@@ -348,7 +348,7 @@ see [Albeverio–Mazzucchi, Section 5.1, Theorems 4–5](https://arxiv.org/pdf/1
 Their general topological statement also has a tightness requirement. The
 direct proof above supplies sufficiency for this countable discrete system.
 
-## 5. A closed family of elements beyond finite signed measures
+## 5. A closed sequence-space family containing nonmeasure elements
 
 Let $N_j=3^j$, $j\ge1$, and define normalized cycle differences
 
@@ -409,6 +409,6 @@ bibliographic comparison; this note establishes no priority claim.
 The [companion verifier](verify_representation.py) checks the delicate finite indicator expansion by
 independent embedding enumeration, the degree-cutoff locality and error
 bound, transport balance and the excluded rooted-path example, and explicit
-cycle cancellation formulas. All
-[13,758 exact checks passed](representation_results.json). Its finite checks support the calculations;
+cycle cancellation formulas, with [recorded output](representation_results.json).
+Its finite checks support the calculations;
 the all-radius and all-graph statements follow from the proofs above.

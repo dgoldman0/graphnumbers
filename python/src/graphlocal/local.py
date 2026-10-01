@@ -150,6 +150,24 @@ class LocalApproximation:
             raise ValueError("A weaker certificate cannot imply a stronger weight")
         return LocalApproximation(self.histogram.truncate(radius), k, self.error)
 
+    def project_degree(self, degree):
+        """Project to a certified support, rejecting observable contradictions.
+
+        The true local array is assumed supported on degree <= degree.
+        Removed weighted mass must fit within this certificate's error.
+        Under that assumption projection cannot increase the true error.
+        """
+        integer(degree, "degree_bound")
+        removed = sum((abs(c) * key.graph.n ** self.k
+                       for key, c in self.histogram.values.items()
+                       if key.graph.max_degree > degree), Q(0))
+        if removed > self.error:
+            raise ValueError("Source approximation contradicts its degree bound")
+        histogram = LocalHistogram(self.histogram.radius,
+                                   ((key, c) for key, c in self.histogram.values.items()
+                                    if key.graph.max_degree <= degree))
+        return LocalApproximation(histogram, self.k, self.error)
+
     def to_data(self):
         return {"histogram": self.histogram.to_data(), "k": self.k, "error_bound": str(self.error)}
 
