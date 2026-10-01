@@ -1,0 +1,12 @@
+# git HEAD: 65f08bba3772ca3e8ac9f14b1bd09ec6804aa118
+Title:           A local completion of Cartesian graph arithmetic
+Producer:        pdfTeX-1.40.25
+CreationDate:    Wed Sep 30 16:12:48 2026 UTC
+Pages:           7
+not normable                                   pdf=1 tex=1
+Ordinary finite graphs remain discrete         pdf=1 tex=1
+Measure representation remains unclassified    pdf=1 tex=1
+cospectral regression pair                     pdf=1 tex=1
+All 3,606 recorded checks passed               pdf=1 tex=1
+numbered results in PDF: 8
+numbered results in TeX: 8

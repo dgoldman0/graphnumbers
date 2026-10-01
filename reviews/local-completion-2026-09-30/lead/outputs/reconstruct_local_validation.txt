@@ -1,0 +1,7 @@
+# git HEAD: 65f08bba3772ca3e8ac9f14b1bd09ec6804aa118
+== disconnected rooted target (rows [0,0]), normal interpreter
+KeyError: 1
+== asymmetric adjacency rows [2,0], normal interpreter
+AssertionError
+== asymmetric adjacency rows [2,0], python -O (asserts disabled)
+   reported status: outside_catalog_span

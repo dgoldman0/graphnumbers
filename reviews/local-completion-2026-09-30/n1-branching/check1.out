@@ -1,0 +1,21 @@
+d=2 r=1: types=2 variation=4 = 4*S_r=4; Ls=[1, 2, 3]; p_rk ok
+d=2 r=2: types=3 variation=8 = 4*S_r=8; Ls=[3, 4, 5]; p_rk ok
+d=2 r=3: types=4 variation=12 = 4*S_r=12; Ls=[5, 6, 7]; p_rk ok
+d=2 r=4: types=5 variation=16 = 4*S_r=16; Ls=[7, 8, 9]; p_rk ok
+d=3 r=1: types=2 variation=4 = 4*S_r=4; Ls=[1, 2, 3]; p_rk ok
+d=3 r=2: types=3 variation=12 = 4*S_r=12; Ls=[3, 4, 5]; p_rk ok
+d=3 r=3: types=4 variation=28 = 4*S_r=28; Ls=[5, 6, 7]; p_rk ok
+d=3 r=4: types=5 variation=60 = 4*S_r=60; Ls=[7, 8, 9]; p_rk ok
+d=4 r=1: types=2 variation=4 = 4*S_r=4; Ls=[1, 2, 3]; p_rk ok
+d=4 r=2: types=3 variation=16 = 4*S_r=16; Ls=[3, 4, 5]; p_rk ok
+d=4 r=3: types=4 variation=52 = 4*S_r=52; Ls=[5, 6, 7]; p_rk ok
+d=4 r=4: types=5 variation=160 = 4*S_r=160; Ls=[7, 8, 9]; p_rk ok
+d=5 r=1: types=2 variation=4 = 4*S_r=4; Ls=[1, 2, 3]; p_rk ok
+d=5 r=2: types=3 variation=20 = 4*S_r=20; Ls=[3, 4, 5]; p_rk ok
+d=5 r=3: types=4 variation=84 = 4*S_r=84; Ls=[5, 6, 7]; p_rk ok
+d=5 r=4: types=5 variation=340 = 4*S_r=340; Ls=[7, 8]; p_rk ok
+B_2 = E at radii 1..4: ok
+
+real	0m14.531s
+user	0m14.099s
+sys	0m0.168s

@@ -1,0 +1,6 @@
+# git HEAD: 65f08bba3772ca3e8ac9f14b1bd09ec6804aa118
+closed form (e^-1 I0(1))^2 : 0.216932012065782
+certified interval         : 0.21693201204826562 0.21693201592399378
+interval contains value    : True
+midpoint quoted in README  : 0.2169320139861297
+midpoint - closed form     : 1.9203e-9

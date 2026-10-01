@@ -1,0 +1,21 @@
+# git HEAD: 65f08bba3772ca3e8ac9f14b1bd09ec6804aa118
+# python: Python 3.11.15
+verification_results.json: IDENTICAL
+representation_results.json: IDENTICAL
+multiplication_results.json: IDENTICAL
+spectral_approximation_results.json: IDENTICAL
+intrinsic_structure_results.json: IDENTICAL
+reflection_extension_results.json: IDENTICAL
+reconstruction_example_result.json: IDENTICAL
+results/arithmetic_geometry_verification.json: IDENTICAL
+results/branch_planar_verification.json: IDENTICAL
+results/certified_arithmetic.json: IDENTICAL
+results/controlled_heat_examples.json: IDENTICAL
+results/defect_breadth_verification.json: IDENTICAL
+results/geometry_bound_examples.json: IDENTICAL
+results/higher_interaction_verification.json: IDENTICAL
+results/interaction_analysis.json: IDENTICAL
+results/unbounded_inverse_examples.json: IDENTICAL
+results/unbounded_inverse_verification.json: IDENTICAL
+results/cospectral_geometry.json: IDENTICAL
+# exit status: 0

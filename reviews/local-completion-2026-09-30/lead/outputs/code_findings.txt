@@ -1,0 +1,11 @@
+# git HEAD: 65f08bba3772ca3e8ac9f14b1bd09ec6804aa118
+(a) reconstruct() with a disconnected catalog graph (reconstruction.py:105-164)
+    cost 4 | negative_mass 1 | coefficients ('1', '-1') | returned element terms [('1', 2)]
+    -> cost/negative mass describe catalog coordinates; the merged element is just K2
+(b) lru_cache keys on call form (nonspectral.py:68,84)
+    rooted_cliques(3) is rooted_cliques(size=3): False | identical laws compare equal: False
+(c) exp() trusts the inner approximation's weight (elements.py:332-347)
+    claimed k 3 | claimed error 0.0006411759155777747 | actual weight-3 error 0.12968567841131823
+(d) degree-cap projection drops mass silently (inverse.py:109-113, controlled.py:83-88)
+    certified histogram mass 1 | certified error 0 | NeumannInverse(...).mass 4/3
+    heat_return rejects the same input: Histogram exceeds the certified degree bound

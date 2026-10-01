@@ -1,0 +1,5 @@
+{'r': 3, 'n': 0, 'm': 8, 'types': 1, 'l1': 1, 'pred_l1': 1, 'pred_types': 1, 'secs': 0.0, 'coords_are_exponents': True, 'coef_matches_multinomial': True, 'distinct_coord_vectors': True}
+{'r': 3, 'n': 1, 'm': 8, 'types': 4, 'l1': 12, 'pred_l1': 12, 'pred_types': 4, 'secs': 0.0, 'coords_are_exponents': True, 'coef_matches_multinomial': True, 'distinct_coord_vectors': True}
+{'r': 3, 'n': 2, 'm': 8, 'types': 10, 'l1': 144, 'pred_l1': 144, 'pred_types': 10, 'secs': 0.0, 'coords_are_exponents': True, 'coef_matches_multinomial': True, 'distinct_coord_vectors': True}
+{'r': 3, 'n': 3, 'm': 8, 'types': 20, 'l1': 1728, 'pred_l1': 1728, 'pred_types': 20, 'secs': 0.8, 'coords_are_exponents': True, 'coef_matches_multinomial': True, 'distinct_coord_vectors': True}
+cross-power support intersections: {(0, 1): 0, (0, 2): 0, (0, 3): 0, (1, 2): 0, (1, 3): 0, (2, 3): 0}

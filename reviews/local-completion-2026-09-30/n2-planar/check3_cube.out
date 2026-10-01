@@ -1,0 +1,9 @@
+r=2: explicit grid-product T_2(P^2) == atom convolution: skipped  types: 10  norm: 256  (16^2=256)  t=0.0s
+     regular part: {41: 64}
+r=2 n=0: types=1 (multisets 1) norm=1 (16^n=1) regular=[(1, 1)]  t=0.0s
+r=2 n=1: types=4 (multisets 4) norm=16 (16^n=16) regular=[(13, -8)]  t=0.0s
+r=2 n=2: types=10 (multisets 10) norm=256 (16^n=256) regular=[(41, 64)]  t=0.1s
+r=2 n=3: types=20 (multisets 20) norm=4096 (16^n=4096) regular=[(85, -512)]  t=17.6s
+r=2: supports of T_2(P^n), n=0..4, pairwise disjoint
+r=3 n=2: types=28 norm=1296 (36^2=1296) regular=[(129, 324)] t=0.2s
+r=3: explicit grid-product T_3(P^2) == atom convolution: True  t=422.1s

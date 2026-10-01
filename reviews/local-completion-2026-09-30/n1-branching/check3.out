@@ -1,0 +1,60 @@
+direct finite product (G3\e-G3)x(P_n-C_n) at r=2 equals local convolution: types=9, norm=96 (expected 96)
+direct finite product (G3\e-G3)^2 at r=2 equals local convolution: types=6, norm=144 (expected 144)  [4s]
+direct finite product (G3\e-G3)x(P_n-C_n) at r=3 equals local convolution: types=16, norm=336 (expected 336)  [23s]
+r=2 d=2: powers 0..5 norms (4S_r)^n with R=8, supports C(n+r,r), disjoint; polynomial norm exact  [23s]
+Timeout (0:04:00)!
+Thread 0x00007fac15e9e080 (most recent call first):
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/classes/graph.py", line 533 in __getitem__
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 551 in syntactic_feasibility
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 338 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 342 in match
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 320 in isomorphisms_iter
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/pylibs/networkx/algorithms/isomorphism/isomorphvf2.py", line 310 in is_isomorphic
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/n1-branching/canon.py", line 87 in cid
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/n1-branching/canon.py", line 106 in ball_cid
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/n1-branching/canon.py", line 124 in star
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/n1-branching/canon.py", line 159 in convolve
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/n1-branching/check3_products.py", line 23 in power_list
+  File "/tmp/claude-0/-home-user-graphnumbers/e9d3214b-3df1-59f7-a233-27f10f01c1c5/scratchpad/n1-branching/check3_products.py", line 75 in <module>

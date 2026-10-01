@@ -1,0 +1,19 @@
+(12) ok d=2 r=2
+(12) ok d=2 r=3
+(12) ok d=2 r=4
+(12) ok d=3 r=2
+(12) ok d=3 r=3
+(12) ok d=3 r=4
+(12) ok d=4 r=2
+(12) ok d=4 r=3
+(12) ok d=4 r=4
+(12) ok d=5 r=2
+(12) ok d=5 r=3
+additivity of Q-formula, N_d, c_j (d=2,3,4) on 378 arbitrary ball pairs at r=2: ok
+  sample N_3 values on arbitrary balls: ['2/3', '1', '4/3', '5/3', '2', '7/3', '8/3', '10/3']
+additivity of Q-formula, N_d, c_j (d=2,3,4) on 378 arbitrary ball pairs at r=3: ok
+  sample N_3 values on arbitrary balls: ['2/3', '1', '4/3', '5/3', '2', '7/3', '8/3', '10/3']
+
+real	0m5.628s
+user	0m5.419s
+sys	0m0.076s

@@ -1,0 +1,10 @@
+n<=2: trees 1, cutsets 1, single 1, bad 0, pos 1, neg 0, 0.0s
+n<=3: trees 2, cutsets 4, single 3, bad 0, pos 4, neg 0, 0.0s
+n<=4: trees 4, cutsets 18, single 9, bad 0, pos 17, neg 1, 0.0s
+n<=5: trees 7, cutsets 63, single 21, bad 0, pos 55, neg 8, 0.0s
+n<=6: trees 13, cutsets 249, single 51, bad 0, pos 194, neg 55, 0.0s
+n<=7: trees 24, cutsets 942, single 117, bad 0, pos 658, neg 284, 0.1s
+n<=8: trees 47, cutsets 3863, single 278, bad 0, pos 2437, neg 1426, 0.8s
+n<=9: trees 94, cutsets 15848, single 654, bad 0, pos 9242, neg 6606, 4.6s
+n<=10: trees 200, cutsets 70014, single 1608, bad 0, pos 38492, neg 31522, 29.7s
+n<=11: trees 435, cutsets 310419, single 3958, bad 0, pos 164288, neg 146131, 179.7s

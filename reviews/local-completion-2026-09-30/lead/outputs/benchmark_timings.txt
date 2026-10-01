@@ -1,0 +1,7 @@
+# git HEAD: 65f08bba3772ca3e8ac9f14b1bd09ec6804aa118
+0: cycle_64                               local=     2.46  dense=   0.31  local/dense=    8.0x
+1: cycle_256                              local=     9.12  dense=   2.45  local/dense=    3.7x
+2: cycle_768                              local=    35.40  dense=  32.63  local/dense=    1.1x
+3: prism_256                              local=    25.85  dense=   2.32  local/dense=   11.1x  factorized=  6.82
+4: torus_576                              local=  1923.78  dense=  14.29  local/dense=  134.6x  factorized=  6.93
+5: irregular_128                          local=    77.72  dense=   0.89  local/dense=   87.1x

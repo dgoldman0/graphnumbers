@@ -1,0 +1,4 @@
+r=2: 29 distinct nontrivial rooted tree r-balls (trees<= 7 vertices); 464 multisets of size <= 2: products pairwise distinct; proof's recovery exact  [0s]
+r=2: 11 distinct nontrivial rooted tree r-balls (trees<= 5 vertices); 363 multisets of size <= 3: products pairwise distinct; proof's recovery exact  [1s]
+r=3: 59 distinct nontrivial rooted tree r-balls (trees<= 7 vertices); 1829 multisets of size <= 2: products pairwise distinct; proof's recovery exact  [3s]
+r=3: 15 distinct nontrivial rooted tree r-balls (trees<= 5 vertices); 815 multisets of size <= 3: products pairwise distinct; proof's recovery exact  [5s]

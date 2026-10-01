@@ -1,0 +1,20 @@
+r=1 n=0: #types=1 l1=1 (2^n=1); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=1: #types=2 l1=2 (2^n=2); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=2: #types=3 l1=4 (2^n=4); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=3: #types=4 l1=8 (2^n=8); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=4: #types=5 l1=16 (2^n=16); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=5: #types=6 l1=32 (2^n=32); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=6: #types=7 l1=64 (2^n=64); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+r=1 n=7: #types=8 l1=128 (2^n=128); all types cone(2a K3 + b C6), coeff C(n,a)(-1)^b, size 6n+1: True
+  t=1/4: residual == -(-t)^(N+1) X^(N+1): True; l1(partial)=127/64 == sum_(n<=N)(2|t|)^n: True; p11 matches sum (2|t|)^n (6n+1): True; p12 matches: True
+  t=-1/3: residual == -(-t)^(N+1) X^(N+1): True; l1(partial)=2059/729 == sum_(n<=N)(2|t|)^n: True; p11 matches sum (2|t|)^n (6n+1): True; p12 matches: True
+  t=9/20: residual == -(-t)^(N+1) X^(N+1): True; l1(partial)=5217031/1000000 == sum_(n<=N)(2|t|)^n: True; p11 matches sum (2|t|)^n (6n+1): True; p12 matches: True
+  t=-49/100: residual == -(-t)^(N+1) X^(N+1): True; l1(partial)=103026927151/15625000000 == sum_(n<=N)(2|t|)^n: True; p11 matches sum (2|t|)^n (6n+1): True; p12 matches: True
+  character (z per K3 comp=1j, w per C6 comp=1) of 1+tX at t=1/2: 0j
+  character (z per K3 comp=1, w per C6 comp=-1) of 1+tX at t=-1/2: 0
+r=2 (1, 0): |V|=16, #distinct WL hashes of root 2-balls=1, 2-ball |V|,|E|=16,48, radius-1 truncation=((0, 2),)
+r=2 (0, 1): |V|=16, #distinct WL hashes of root 2-balls=1, 2-ball |V|,|E|=16,48, radius-1 truncation=((1, 1),)
+r=2 (2, 0): |V|=256, #distinct WL hashes of root 2-balls=1, 2-ball |V|,|E|=67,240, radius-1 truncation=((0, 4),)
+r=2 (1, 1): |V|=256, #distinct WL hashes of root 2-balls=1, 2-ball |V|,|E|=67,240, radius-1 truncation=((0, 2), (1, 1))
+r=2 (0, 2): |V|=256, #distinct WL hashes of root 2-balls=1, 2-ball |V|,|E|=67,240, radius-1 truncation=((1, 2),)
+radius-1 truncations of the five product 2-balls pairwise distinct: True
