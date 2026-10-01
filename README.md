@@ -247,3 +247,13 @@ Some mass-one positive elements consequently require persistent negative
 coefficient mass in every finite graph approximation. The source law and
 separating inequality are existential. Exact finite encoding checks pass;
 independent proof review remains deferred.
+
+The [applications assessment](research/local-completion/APPLICATION_ASSESSMENT.md)
+searched for real-world uses and derived the physics and network behaviour
+the completion's structure implies, checking each against existing
+mathematics. None of 14 candidate uses scored above 2 of 5. No phenomenon
+was found that depends on both the graph structure and the arithmetic,
+because Cartesian multiplication composes independently. The note separates
+the construction's own limits from the library's, records new observations
+with a standalone verifier, and proposes marks and interacting components
+as the directions most likely to change that verdict.

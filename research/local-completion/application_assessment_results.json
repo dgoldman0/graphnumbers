@@ -1,0 +1,815 @@
+{
+  "adjacency_interaction": {
+    "fixtures": [
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "fixture": "HI fixture",
+        "leading_covering_walks": 12,
+        "onset": 6
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "fixture": "path P5",
+        "leading_covering_walks": 8,
+        "onset": 8
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "fixture": "K4",
+        "leading_covering_walks": 16,
+        "onset": 4
+      },
+      {
+        "cuts": [
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "fixture": "C5 plus chord",
+        "leading_covering_walks": 8,
+        "onset": 4
+      }
+    ],
+    "identity": "sum_S (-1)^(k-|S|) tr A(G-S)^m = (-1)^k #closed walks of length m using every cut edge",
+    "powers_checked": "0..14"
+  },
+  "arithmetic": "Python standard library; exact integers and rationals, certified heat-series tails",
+  "circulant_square_lattice": {
+    "graph": "C_101(1,10), vertex-transitive and Cartesian-prime because 101 is prime",
+    "radii": [
+      {
+        "ball_vertices": 5,
+        "radius": 1,
+        "rooted_ball_equals_square_lattice": true
+      },
+      {
+        "ball_vertices": 13,
+        "radius": 2,
+        "rooted_ball_equals_square_lattice": true
+      },
+      {
+        "ball_vertices": 25,
+        "radius": 3,
+        "rooted_ball_equals_square_lattice": true
+      },
+      {
+        "ball_vertices": 41,
+        "radius": 4,
+        "rooted_ball_equals_square_lattice": true
+      },
+      {
+        "ball_vertices": 61,
+        "radius": 5,
+        "rooted_ball_equals_square_lattice": false
+      },
+      {
+        "ball_vertices": 85,
+        "radius": 6,
+        "rooted_ball_equals_square_lattice": false
+      }
+    ]
+  },
+  "edge_space_duality": {
+    "affine_term_cancels_for_k": [
+      2,
+      3,
+      4
+    ],
+    "fixtures": [
+      {
+        "cut_subsets": 8,
+        "fixture": "path P7",
+        "powers_checked": "1..10"
+      },
+      {
+        "cut_subsets": 8,
+        "fixture": "cycle C8",
+        "powers_checked": "1..10"
+      },
+      {
+        "cut_subsets": 8,
+        "fixture": "star K13",
+        "powers_checked": "1..10"
+      },
+      {
+        "cut_subsets": 8,
+        "fixture": "spider 222",
+        "powers_checked": "1..10"
+      },
+      {
+        "cut_subsets": 8,
+        "fixture": "HI fixture",
+        "powers_checked": "1..10"
+      },
+      {
+        "cut_subsets": 8,
+        "fixture": "G7",
+        "powers_checked": "1..10"
+      }
+    ],
+    "identity": "tr(L_{G-S}^n) = tr(K[E-S]^n) for n>=1, and the zeroth traces differ by |V|-|E-S|"
+  },
+  "mixture_factorization": {
+    "factor_sets_differ": true,
+    "factors_positive_mass_one": true,
+    "identity": "(1+H+H^2)/3 * (1+H^3)/2 = (1+H)/2 * (1+H^2+H^4)/3 = (1+...+H^5)/6"
+  },
+  "proof_review": "The general arguments in APPLICATION_ASSESSMENT.md remain unreviewed.",
+  "scope": "Finite fixtures for the assessment's new observations; literature verdicts are not checked.",
+  "sign_law": {
+    "law": "(-1)^k H_F(t) > 0 for k cuts in one component when maximum degree <= 2",
+    "records": [
+      {
+        "cuts": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "fixture": "path P7",
+        "interval": [
+          1.2450474843602954e-06,
+          1.2450474843602954e-06
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "fixture": "path P7",
+        "interval": [
+          0.0012985447425666163,
+          0.0012985447425666163
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            1,
+            2
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "fixture": "path P7",
+        "interval": [
+          0.04816293399222565,
+          0.04816293399222565
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "3"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "fixture": "path P7",
+        "interval": [
+          -1.6012662294724201e-12,
+          -1.6012662294724201e-12
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "fixture": "path P7",
+        "interval": [
+          -4.0100336685767797e-07,
+          -4.0100336685767797e-07
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "fixture": "path P7",
+        "interval": [
+          -0.0007645245823756791,
+          -0.0007645245823756791
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "3"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          7.396345177328408e-09,
+          7.396345177328408e-09
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          0.00011995846458965251,
+          0.00011995846458965251
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          0.033549697990948674,
+          0.033549697990948674
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "3"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          -3.701379670638818e-09,
+          -3.701379670638818e-09
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          -6.07994961590264e-05,
+          -6.07994961590264e-05
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            5,
+            6
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          -0.018621215785972377,
+          -0.018621215785972377
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "3"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          3.698176228859578e-09,
+          3.698176228859578e-09
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          5.999387501137496e-05,
+          5.999387501137496e-05
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            6,
+            7
+          ]
+        ],
+        "fixture": "cycle C8",
+        "interval": [
+          0.017034001913161217,
+          0.017034001913161217
+        ],
+        "sign": 1,
+        "sign_law_prediction": 1,
+        "t": "3"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "fixture": "star K13",
+        "interval": [
+          0.008429020985106398,
+          0.008429020985106398
+        ],
+        "sign": 1,
+        "sign_law_prediction": -1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "fixture": "star K13",
+        "interval": [
+          0.09291915767646189,
+          0.09291915767646189
+        ],
+        "sign": 1,
+        "sign_law_prediction": -1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ]
+        ],
+        "fixture": "star K13",
+        "interval": [
+          0.04271489703777158,
+          0.04271489703777158
+        ],
+        "sign": 1,
+        "sign_law_prediction": -1,
+        "t": "3"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "fixture": "HI fixture",
+        "interval": [
+          0.006519530280034984,
+          0.006519530280034984
+        ],
+        "sign": 1,
+        "sign_law_prediction": -1,
+        "t": "1/4"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "fixture": "HI fixture",
+        "interval": [
+          0.0256745756778361,
+          0.0256745756778361
+        ],
+        "sign": 1,
+        "sign_law_prediction": -1,
+        "t": "1"
+      },
+      {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ]
+        ],
+        "fixture": "HI fixture",
+        "interval": [
+          -0.03857341890563762,
+          -0.03857341890563762
+        ],
+        "sign": -1,
+        "sign_law_prediction": -1,
+        "t": "3"
+      }
+    ],
+    "times": [
+      "1/4",
+      "1",
+      "3"
+    ]
+  },
+  "source_sha256": "1c04b7a0cb7ac71634c6016c6589c14a1e1b217cbee6862a2513ae07cad1e429",
+  "spanning_tree_interactions": {
+    "G7_pair_04_24": {
+      "heat_interaction": {
+        "1": {
+          "interval": [
+            -0.004188348978273827,
+            -0.004188348978273827
+          ],
+          "sign": -1
+        },
+        "1/2": {
+          "interval": [
+            0.009227536701264959,
+            0.009227536701264959
+          ],
+          "sign": 1
+        }
+      },
+      "spanning_tree_ratio": "840935/857064"
+    },
+    "pair_fixtures": [
+      {
+        "fixture": "K4",
+        "pairs_equal": 3,
+        "pairs_strict": 12
+      },
+      {
+        "fixture": "K5",
+        "pairs_equal": 15,
+        "pairs_strict": 30
+      },
+      {
+        "fixture": "wheel W6",
+        "pairs_equal": 5,
+        "pairs_strict": 40
+      },
+      {
+        "fixture": "Petersen",
+        "pairs_equal": 15,
+        "pairs_strict": 90
+      },
+      {
+        "fixture": "G7",
+        "pairs_equal": 0,
+        "pairs_strict": 105
+      }
+    ],
+    "pair_law": "tau(G) tau(G-e-f) <= tau(G-e) tau(G-f) whenever G-e-f is connected",
+    "three_bond_examples": {
+      "+": {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "fixture": "K4",
+        "ratio": "32/27"
+      },
+      "-": {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "fixture": "K4",
+        "ratio": "8/9"
+      },
+      "0": {
+        "cuts": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            4
+          ]
+        ],
+        "fixture": "K5",
+        "ratio": "1"
+      }
+    },
+    "three_bond_log_tau_signs": {
+      "+": 345,
+      "-": 769,
+      "0": 35
+    }
+  },
+  "status": "passed",
+  "z_matrix_orientations": {
+    "criterion": "some orientation makes K a Z-matrix iff maximum degree <= 2",
+    "fixtures": [
+      {
+        "fixture": "path P5",
+        "max_degree": 2,
+        "nonpositive_offdiagonal_orientation_exists": true
+      },
+      {
+        "fixture": "cycle C5",
+        "max_degree": 2,
+        "nonpositive_offdiagonal_orientation_exists": true
+      },
+      {
+        "fixture": "cycle C6",
+        "max_degree": 2,
+        "nonpositive_offdiagonal_orientation_exists": true
+      },
+      {
+        "fixture": "triangle",
+        "max_degree": 2,
+        "nonpositive_offdiagonal_orientation_exists": true
+      },
+      {
+        "fixture": "star K13",
+        "max_degree": 3,
+        "nonpositive_offdiagonal_orientation_exists": false
+      },
+      {
+        "fixture": "spider 222",
+        "max_degree": 3,
+        "nonpositive_offdiagonal_orientation_exists": false
+      },
+      {
+        "fixture": "HI fixture",
+        "max_degree": 4,
+        "nonpositive_offdiagonal_orientation_exists": false
+      },
+      {
+        "fixture": "K4",
+        "max_degree": 3,
+        "nonpositive_offdiagonal_orientation_exists": false
+      }
+    ],
+    "three_edges_at_a_vertex_offdiagonal_product": 1
+  }
+}

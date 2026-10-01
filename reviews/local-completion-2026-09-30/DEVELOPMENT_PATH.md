@@ -148,6 +148,11 @@ The partial rigidity theorems of INTRINSIC_GRAPH_STRUCTURE are the starting poin
 - Regular-face characters at r ≥ 2 cannot establish E/P joint independence: E² + 2P ≠ 0 is killed by all of them, because B_r(ℤ²) = B_r(ℤ)^{⋆2}. The radius-one face is the whole monoid and does not satisfy that quadratic identity.
 - Also known: interaction elements, the bridge-cut reduction, crossing cuts, heat and resolvent formulas, decay with separation, and certified evaluation.
 
+**Assessment observations (Proposed; [APPLICATION_ASSESSMENT §4](../../research/local-completion/APPLICATION_ASSESSMENT.md)).**
+- Bond cuts are site deletions for the edge operator K = BᵀB, which shares the Laplacian's nonzero spectrum. Schaden's positivity argument then gives the alternating heat sign (−1)^k whenever every vertex has degree at most two. At a vertex of degree three or more, no orientation makes K a Z-matrix and the argument is unavailable; this accounts for the star, tree-parity and fixture sign violations, although the sign need not fail at every branch point.
+- Fixed-time heat signs do not transfer to free energies: the two-bond spanning-tree interaction has a fixed sign, while the heat interaction can change sign.
+- For the adjacency (communicability) trace, the interaction is sign-definite and its onset is exactly the shortest closed walk covering the cuts.
+
 **D1, general finite-deletion theorem (Proof checkpoint).**
 
 The detailed proof is in
@@ -196,6 +201,7 @@ defect; these generate the same unital closed algebra.
   Then the face argument gives the entire functions of s variables and joint spectrum ℂ^s. This is the MIXED_MEDIUM_ARITHMETIC §7 criterion in general form.
 - *Conjecture.* Condition (1) holds whenever the Γ_i are pairwise non-isomorphic and Cartesian-prime. Its key ingredient would be a local version of unique prime factorization for connected infinite graphs under the weak Cartesian product (Imrich†).
 - *Test cases at r = 2, 3:* (ℤ, hexagonal lattice), (T₃, ℤ²), (ℤ³, ℤ² □ T₃).
+- *Caveats ([APPLICATION_ASSESSMENT §4.4](../../research/local-completion/APPLICATION_ASSESSMENT.md)).* Cartesian primality is not preserved by local limits: the circulants C_N(1, k) with N prime and k ≈ √N are prime, yet converge locally to ℤ². C₁₀₁(1, 10) already matches square-lattice balls through radius 4. Mixtures also factor non-uniquely, (1+H+H²)/3 · (1+H³)/2 = (1+H)/2 · (1+H²+H⁴)/3. So unique factorization should be sought only for the limiting backgrounds themselves, or for extremal laws.
 
 **D3, line and plane (Problem).** Decide whether E and P are algebraically independent. Regular-face characters cannot do it, so look for faces defined by the irregular atoms: the half-line ends of E against the cut-lattice balls of P.
 
@@ -206,6 +212,7 @@ defect; these generate the same unital closed algebra.
 - **The proposed extension to the whole controlled domain is false.** The explicit limit X=Σ_{j≥1}[U(C_{3^j})−U(C_{2·3^j})] has degree cap two and uniformly bounded edit budget one, but no finite spectral measure. Unit-norm Chebyshev test polynomials have evaluations m at degrees 3^m. Thus S is a proper subalgebra of the finite-profile heat domain; even the uniform-edit closure is not contained in S.
 - Exact factorization of the HIGHER_INTERACTION fixture identifies its lowest spectral atom as the smallest root of z³−7z²+13z−5, in (0.5188,0.5189), with coefficient +1. Rational estimates prove positive heat for t≥40. Together with independently checked signs at t=1 and t=3, this proves at least two positive-time zeros, without claiming exactly two.
 - *Remaining problem:* classify BV shifts for individual finite edits on infinite backgrounds and find practical sufficient spectral-variation certificates. The counterexample is a controlled limit of edit combinations, not a claimed single finite-edge perturbation. Independent review is deferred.
+- *Literature for the remaining problem ([APPLICATION_ASSESSMENT §4.7](../../research/local-completion/APPLICATION_ASSESSMENT.md)).* Every compactly supported shift with values in [0, π] arises from some rank-one perturbation (Poltoratski), so failure of bounded variation is not special to this completion. For discrete surface models, Kostrykin–Schrader obtain the integrated surface density of states as a locally integrable function and leave bounded variation open.
 
 ## 4. Signed measure theory for unimodular random graphs
 
@@ -231,6 +238,11 @@ encoding, decoding, malformed-gadget repair, root averaging, rational
 mixtures and degree-cutoff mechanisms. This applies the cited non-soficity
 theorem to this completion. Independent proof review remains pending.
 
+Positive realizability also has local obstructions (Proposed;
+[APPLICATION_ASSESSMENT §4.5](../../research/local-completion/APPLICATION_ASSESSMENT.md)).
+No graph has every vertex link equal to P₃, so the radius-one point mass at
+the cone over P₃ is a marginal of A_loc but not of any positive element.
+
 **M2, order structure (Problems).**
 - **Non-generation (immediate consequence of Known results).** P_loc does not generate all of A_loc. Every positive element has radius-independent local variation equal to its finite vertex mass. A difference of two positives therefore has uniformly bounded local variation, whereas ‖T_r E‖₁ = 4r.
 - **Positive-span characterization (Proof checkpoint).** P_loc − P_loc consists exactly of elements represented by a finite signed measure μ with ∫|B_r|^k d|μ| finite for every r and k. [POSITIVE_SPAN.md](../../research/local-completion/POSITIVE_SPAN.md) now proves the local-cylinder-to-edge-measure balance step, preservation of Jordan parts under the edge lift, and the application of Aldous–Lyons Proposition 2.2. Finite variation alone does not supply the absolute-measure moment hypotheses.
@@ -242,11 +254,12 @@ theorem to this completion. Independent proof review remains pending.
 - Products become independent sums.
 - For f with nonnegative coefficients, f(x) is a random Cartesian power of x with the number of factors distributed by f's coefficients. Example: e^{−t} exp(tH) is the uniformly rooted Poisson(t)-dimensional hypercube.
 - *Development:*
-  - limit theorems for additive local statistics under high Cartesian powers;
+  - limit theorems for additive local statistics under high Cartesian powers (the Gaussian limit is the classical central limit theorem for i.i.d. sums, because a uniform root of a product is an independent pair of roots);
   - which characters are probabilistic (values in [0, 1] on [0, 1]^m);
   - the joint development of Sections 2 and 4.
 
 **M4, comparing positive elements (Problem).** Characterize asymptotic (and catalytic) domination x^{⊗n} ≤ y^{⊗n} by monotone characters, in the framework of Strassen's spectral theorem and Fritz's abstract Vergleichsstellensätze†. Compare with Zuiddam's asymptotic spectrum of graphs, which uses a different product and topology.
+- *Unchecked analysis ([APPLICATION_ASSESSMENT §4.6](../../research/local-completion/APPLICATION_ASSESSMENT.md)).* Homomorphism and covering preorders fail Strassen's embedding of ℕ. The preorder of injective maps sending non-edges to non-edges has the single spectral point |V|. Subgraph inclusion on a finitely generated subsemiring is the candidate setting for Fritz's Theorem 2.4. Its monotone characters include Σ_v s^{deg v} (s ≥ 1) and Tr e^{tA} (t ≥ 0); the Laplacian heat traces are not monotone under inclusion.
 
 **M5, signed moment problems (Problem).**
 - Which signed balanced families have prescribed finite moments?
@@ -288,6 +301,7 @@ factorization and intrinsic recovery retain their open status.
 - **Spectral shift and moments:** Potapov–Sukochev–Zanin (2014), Theorem 7 and Lemma 10, and Knill's 2000 moment preprint, Theorem 2.2 and Corollary 2.3, checked for Step 5. Further Birman–Krein, density-of-states and Lück-approximation comparisons remain reading tasks.
 - **Asymptotic spectra:** Strassen; Zuiddam; Fritz.
 - **Infinite-graph factorization:** Imrich, on the weak Cartesian product.
+- **Applications and physical readings:** the sources opened for the applications assessment are listed in [APPLICATION_ASSESSMENT §7](../../research/local-completion/APPLICATION_ASSESSMENT.md). They include Schaden on irreducible many-body Casimir energies, Kostrykin–Schrader on surface densities of states, Hellmuth–Imrich–Kupka on local product recognition, and Fritz's Vergleichsstellensätze.
 
 Much of Section 2 is probably standard once M_r is understood. Reading the semigroup-algebra literature first avoids re-deriving it and moves the originality to where it likely belongs: the combinatorics of M_r and the graph-specific computations.
 
@@ -298,3 +312,16 @@ Much of Section 2 is probably standard once M_r is understood. Reading the semig
 - Keep summaries to what is proved, and keep the status labels above when results move into the notes.
 - Preserve the degree restriction d ≥ 3 for the joint tree/planar theorem. Independence of E and P remains open, and regular-face characters cannot establish it.
 - Record meaningful commit messages explaining the problem, change, validation and remaining limits. Push the agreed plan first, then publish validated work in separate checkpoints.
+
+## 8. Applications assessment (1 October 2026)
+
+[APPLICATION_ASSESSMENT.md](../../research/local-completion/APPLICATION_ASSESSMENT.md)
+records a search for real-world uses and a structure-driven derivation of
+the physics and network behaviour the completion implies, each checked
+against existing mathematics.
+- **Verdict.** None of 14 candidate uses scored above 2 of 5. No phenomenon was found that depends on both the graph structure and the arithmetic. Cartesian multiplication composes independently, and the characters separate points, so the measurable content is classical. What may be new is the arithmetic itself, under the standard of the literature review.
+- **Scope.** Several limits previously quoted for the construction belong to the library: Cartesian-product inputs, the Laplacian-only operator, bounded degree, and return-only outputs. The construction's own limits are its local topology and its unmarked graphs. For finitely many defects, Green's-function, low-rank and spectral-shift methods already give exact answers.
+- **Directions, if applications remain a goal.**
+  - Marks: a finite palette first, then continuous and matrix-valued marks.
+  - Interacting components as weighted defects along the diagonal of G□G. Interacting particles separate rook from Shrikhande where non-interacting probes cannot. Check this route first against cluster and virial expansions, Beth–Uhlenbeck and the Bethe ansatz.
+- **Not recommended.** Treating the spectral kernel as a hidden physical sector, by analogy with the superseded ghost edges, is generic to any graph ring and is not recommended.

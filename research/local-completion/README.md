@@ -244,10 +244,28 @@ witness. Its source law and separating coefficients are existential;
 the standalone verifier checks finite mechanisms, and independent proof
 review remains deferred.
 
+The [applications assessment](APPLICATION_ASSESSMENT.md) records a search
+for real-world uses and a structure-driven check of the physics and network
+behaviour the completion implies. No use, and no phenomenon depending on
+both the graph structure and the arithmetic, was found. Cartesian
+multiplication is independent composition, and the characters separate
+points, so the measurable content is classical. The note separates the
+construction's own limits from those of the library. It also records new
+observations: bond cuts act as site deletions for the edge operator, which
+gives the alternating sign law on graphs of maximum degree two and explains
+its failures at branch points; heat-trace signs do not transfer to
+spanning-tree free energies; local data cannot certify a global product; and
+a radius-one obstruction to positivity. The proposed directions are marks,
+and interacting components as weighted diagonal defects. Its standalone
+verifier checks the finite fixtures; the general arguments are unreviewed.
+
 ## Files
 
 | File | Purpose |
 | --- | --- |
+| [APPLICATION_ASSESSMENT.md](APPLICATION_ASSESSMENT.md) | Real-world use search, structure-driven derivations checked against existing mathematics, construction-versus-library scope, new observations and directions. |
+| [verify_application_assessment.py](verify_application_assessment.py) | Standalone exact checks: edge-space duality, degree-two sign law and branch-point failures, adjacency interaction, spanning-tree signs, circulant balls, mixture factorization. |
+| [application_assessment_results.json](application_assessment_results.json) | Executed fixtures with certified heat intervals, sign counts, onsets and verifier source hash. |
 | [STRICT_POSITIVE_CONES.md](STRICT_POSITIVE_CONES.md) | Strict finite/local positive-cone inclusion; simple-graph encoding, root averaging, soficity reflection and necessary negative coefficient mass. |
 | [verify_positive_cone_encoding.py](verify_positive_cone_encoding.py) | Standalone exact encoding, local decoder, malformed-gadget repair, root averaging, mixture and degree-cutoff checks. |
 | [positive_cone_encoding_results.json](positive_cone_encoding_results.json) | Executed finite action catalogues and repair fixtures, rational root probabilities, scope and verifier source hash. |
