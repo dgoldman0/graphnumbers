@@ -34,6 +34,14 @@ The full register is in [FINDINGS.md](FINDINGS.md).
 | Literature | All 59 cited works exist with correct metadata. Missing Aldous–Lyons credit; stale TeX bibliography; 9 preprint-only citations. |
 | Reproducibility | All 18 deterministic recorded results regenerate identically; 127/127 tests pass; all README code blocks run; the PDF matches its TeX source. |
 
+## Next steps
+
+[DEVELOPMENT_PATH.md](DEVELOPMENT_PATH.md) is a research plan building on this review (1 October 2026). It contains:
+- the three directions the review identified;
+- the structure problems for the rooted-ball monoids that all three depend on;
+- near-term theorems with proof sketches, each labelled known, proposed, conjecture or open;
+- an order of work.
+
 ## Method
 
 Each referee received a written brief ([BRIEFS.md](BRIEFS.md)) and worked independently, with read-only access to the repository. The briefs required checking proofs line by line and recomputing claims with code written from scratch. The repository's own verifiers were not to be counted as evidence. Referees were to flag checks that do not test what they claim, and to grade findings as ERROR, GAP, OVERCLAIM or MINOR, calling something an ERROR only with a concrete counterexample or failing step.
